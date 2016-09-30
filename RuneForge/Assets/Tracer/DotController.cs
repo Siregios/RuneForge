@@ -12,7 +12,7 @@ public class DotController : MonoBehaviour {
 
     void OnMouseEnter()
     {
+        manager.DotTouched(this.gameObject);
         Destroy(this.gameObject);
-        manager.SpawnDot();
     }
 }

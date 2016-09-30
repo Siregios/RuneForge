@@ -5,7 +5,8 @@ public class RandomSpawner : MonoBehaviour {
     public bool thereCanOnlyBeOne = false;
     public float spawnInterval = 1f;
     public GameObject objectToSpawn;
-    GameObject previousObject = null;
+    [HideInInspector]
+    public GameObject previousObject = null;
     Vector3 worldBounds;
     float cooldown;
     int pad = 1;
@@ -26,14 +27,17 @@ public class RandomSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnObject()
+    public GameObject SpawnObject()
     {
         if (thereCanOnlyBeOne)
             Destroy(previousObject);
         Vector3 randomPos;
         randomPos = new Vector3(Random.Range(-worldBounds.x + pad, worldBounds.x - pad),
                                 Random.Range(-worldBounds.y + pad, worldBounds.y - pad), 0);
-        previousObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
+        GameObject spawnedObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
+        previousObject = spawnedObject;
         cooldown = spawnInterval;
+
+        return spawnedObject;
     }
 }
