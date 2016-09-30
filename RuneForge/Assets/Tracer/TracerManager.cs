@@ -42,8 +42,17 @@ public class TracerManager : MonoBehaviour {
             LineRenderer line = newLine.GetComponent<LineRenderer>();
             line.SetPosition(0, previousDotLoc);
             line.SetPosition(1, newLoc);
+            line.sortingLayerName = "Background";
             lineList.Add(newLine);
         }
+        //else
+        //{
+        //    GameObject newLine = Instantiate(lineRenderer) as GameObject;
+        //    LineRenderer line = newLine.GetComponent<LineRenderer>();
+        //    line.SetPosition(0, newLoc - new Vector3(.1f, .1f, 0));
+        //    line.SetPosition(1, newLoc + new Vector3(.1f, .1f, 0));
+        //    lineList.Add(newLine);
+        //}
         previousDotLoc = newLoc;
         SpawnDot();
     }
