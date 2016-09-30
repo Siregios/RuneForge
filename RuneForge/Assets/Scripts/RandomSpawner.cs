@@ -5,6 +5,12 @@ public class RandomSpawner : MonoBehaviour {
     //public bool thereCanOnlyBeOne = false;
     //public float spawnInterval = 1f;
     public GameObject objectToSpawn;
+
+    //spawn bounds
+    public bool bounds;
+    public Vector3 minBoundPos;
+    public Vector3 maxBoundPos;
+
     [HideInInspector]
     public GameObject previousObject = null;
     Vector3 worldBounds;
@@ -19,6 +25,10 @@ public class RandomSpawner : MonoBehaviour {
 
     void Update()
     {
+        if (bounds)
+        {
+            worldBounds = new Vector3(Mathf.Clamp(Screen.width, minBoundPos.x, maxBoundPos.x), Mathf.Clamp(Screen.height, minBoundPos.y, maxBoundPos.y), 0);
+        }
         //cooldown -= Time.deltaTime;
 
         //if (cooldown <= 0)
