@@ -5,7 +5,12 @@ using System.Collections.Generic;
 public class TracerManager : MonoBehaviour {
 
     RandomSpawner spawner;
+
     public GameObject lineRenderer = null;
+    public float spawnInterval = 1f;
+    float cooldown;
+
+
     Vector3 previousDotLoc = Vector3.back;
 
     void Awake()
@@ -15,7 +20,17 @@ public class TracerManager : MonoBehaviour {
 
     void Start()
     {
-        //currentDot = spawner.SpawnObject();
+        cooldown = spawnInterval;
+    }
+
+    void Update()
+    {
+        cooldown -= Time.deltaTime;
+
+        if (cooldown <= 0)
+        {
+            SpawnDot();
+        }
     }
 
     public void DotTouched(GameObject dot)
@@ -29,17 +44,14 @@ public class TracerManager : MonoBehaviour {
             line.SetPosition(1, newLoc);
         }
         previousDotLoc = newLoc;
-        //Debug.Log(currentDot.transform.position);
-        //Debug.Log(dot.transform.position);
-        //SpawnDot();
-        spawner.SpawnObject();
+        SpawnDot();
     }
 
-
-    
     public void SpawnDot()
     {
-        spawner.SpawnObject();
-        //currentDot = 
+        GameObject newDot = spawner.SpawnObject() as GameObject;
+        //DotController dot = newDot.GetComponent<DotController>();
+        
+        cooldown = spawnInterval;
     }
 }
