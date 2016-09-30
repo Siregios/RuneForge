@@ -10,7 +10,7 @@ public class TracerManager : MonoBehaviour {
     public float spawnInterval = 1f;
     float cooldown;
 
-
+    List<GameObject> lineList = new List<GameObject>();
     Vector3 previousDotLoc = Vector3.back;
 
     void Awake()
@@ -42,16 +42,25 @@ public class TracerManager : MonoBehaviour {
             LineRenderer line = newLine.GetComponent<LineRenderer>();
             line.SetPosition(0, previousDotLoc);
             line.SetPosition(1, newLoc);
+            lineList.Add(newLine);
         }
         previousDotLoc = newLoc;
         SpawnDot();
     }
 
+    public void DotMissed(GameObject dot)
+    {
+        Vector3 newLoc = dot.transform.position;
+        foreach (GameObject line in lineList){
+            Destroy(line);
+        }
+        lineList.Clear();
+        previousDotLoc = Vector3.back;
+    }
+
     public void SpawnDot()
     {
         GameObject newDot = spawner.SpawnObject() as GameObject;
-        //DotController dot = newDot.GetComponent<DotController>();
-        
         cooldown = spawnInterval;
     }
 }

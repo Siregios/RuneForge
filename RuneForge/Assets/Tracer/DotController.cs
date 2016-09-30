@@ -5,6 +5,7 @@ public class DotController : MonoBehaviour {
 
     TracerManager manager;
     GameObject hitCircle;
+    float lifeTime = 0f;
     float timeRemaining = 0f;
 
     void Awake()
@@ -15,15 +16,21 @@ public class DotController : MonoBehaviour {
 
     void Start()
     {
-        timeRemaining = manager.spawnInterval;
+        lifeTime = timeRemaining = manager.spawnInterval;
     }
 
     void Update()
     {
         timeRemaining -= Time.deltaTime;
 
-        float percentageSize = timeRemaining / manager.spawnInterval;
+        float percentageSize = timeRemaining / lifeTime;
         hitCircle.transform.localScale = new Vector3(percentageSize, percentageSize, 1);
+
+        if (timeRemaining <= 0)
+        {
+            manager.DotMissed(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     void OnMouseEnter()

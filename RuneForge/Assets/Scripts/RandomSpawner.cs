@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class RandomSpawner : MonoBehaviour {
-    public bool thereCanOnlyBeOne = false;
+    //public bool thereCanOnlyBeOne = false;
     //public float spawnInterval = 1f;
     public GameObject objectToSpawn;
     [HideInInspector]
@@ -29,8 +29,8 @@ public class RandomSpawner : MonoBehaviour {
 
     public GameObject SpawnObject()
     {
-        if (thereCanOnlyBeOne)
-            Destroy(previousObject);
+        //if (thereCanOnlyBeOne)
+        //    Destroy(previousObject);
         Vector3 randomPos;
         randomPos = new Vector3(Random.Range(-worldBounds.x + pad, worldBounds.x - pad),
                                 Random.Range(-worldBounds.y + pad, worldBounds.y - pad), 0);
