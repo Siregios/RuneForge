@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c7e9e9d21099e464c9dfb8a6a778abf6
+timeCreated: 1475362931
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - RuneButton: {fileID: 1000011618702632, guid: 90eff6383a62ac54fad47d387fbb082f,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
