@@ -21,7 +21,6 @@ public class RandomSpawner : MonoBehaviour {
     {
         //cooldown = spawnInterval;
         worldBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        Debug.Log(worldBounds);
     }
 
     void Update()
