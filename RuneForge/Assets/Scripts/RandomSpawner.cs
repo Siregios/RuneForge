@@ -21,14 +21,11 @@ public class RandomSpawner : MonoBehaviour {
     {
         //cooldown = spawnInterval;
         worldBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        Debug.Log(worldBounds);
     }
 
     void Update()
     {
-        if (bounds)
-        {
-            worldBounds = new Vector3(Mathf.Clamp(Screen.width, minBoundPos.x, maxBoundPos.x), Mathf.Clamp(Screen.height, minBoundPos.y, maxBoundPos.y), 0);
-        }
         //cooldown -= Time.deltaTime;
 
         //if (cooldown <= 0)
@@ -42,8 +39,16 @@ public class RandomSpawner : MonoBehaviour {
         //if (thereCanOnlyBeOne)
         //    Destroy(previousObject);
         Vector3 randomPos;
-        randomPos = new Vector3(Random.Range(-worldBounds.x + pad, worldBounds.x - pad),
-                                Random.Range(-worldBounds.y + pad, worldBounds.y - pad), 0);
+        if (bounds)
+        {
+            randomPos = new Vector3(Random.Range(minBoundPos.x + pad, maxBoundPos.x - pad),
+                                Random.Range(minBoundPos.y + pad, maxBoundPos.y - pad), 0);
+        }
+        else
+        {
+            randomPos = new Vector3(Random.Range(-worldBounds.x + pad, worldBounds.x - pad),
+                                    Random.Range(-worldBounds.y + pad, worldBounds.y - pad), 0);
+        }
         GameObject spawnedObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
         previousObject = spawnedObject;
         //cooldown = spawnInterval;
