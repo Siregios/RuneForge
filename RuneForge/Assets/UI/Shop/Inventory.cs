@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public static class Inventory {
     public static Dictionary<string, int> inventoryDict = new Dictionary<string, int>();
     public static List<string> materialList, runeList;
+    public static string runeRanks = "SABC";
 
     static Inventory()
     {
@@ -44,9 +45,12 @@ public static class Inventory {
 
     static void CreateRune(string rune)
     {
-        CreateItem(rune + "S");
-        CreateItem(rune + "A");
-        CreateItem(rune + "B");
-        CreateItem(rune + "C");
+        foreach (char rank in runeRanks)
+        {
+            CreateItem(rune + rank);
+            //CreateItem(rune + "A");
+            //CreateItem(rune + "B");
+            //CreateItem(rune + "C");
+        }
     }
 }
