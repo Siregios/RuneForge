@@ -11,7 +11,7 @@ public enum Tab
 
 public class ShopUI : MonoBehaviour {
 
-    public GameObject RuneButton;
+    public GameObject RuneButton, MaterialButton;
     GameObject actionPanel, itemsPanel;
     Button materialsTabButton, runesTabButton, previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
@@ -83,8 +83,27 @@ public class ShopUI : MonoBehaviour {
     }
 
     void DisplayMaterialsPage(int page)
-    {
+    {        
         ClearPage();
+
+        int yPos = 150;
+        for (int i = 0; i < 12; i++)
+        {
+            if ((page * 12) + i >= Inventory.materialList.Count)
+                return;
+
+            GameObject newMaterialButton = Instantiate(MaterialButton, itemsPanel.transform.position, Quaternion.identity) as GameObject;
+            newMaterialButton.transform.SetParent(itemsPanel.transform);
+            newMaterialButton.transform.localScale = Vector3.one;
+            newMaterialButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
+            yPos -= 30;
+
+            string material = Inventory.materialList[(page * 12) + i];
+            newMaterialButton.transform.FindChild("Text").GetComponent<Text>().text = material;
+            newMaterialButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(material).ToString();
+
+            pageList.Add(newMaterialButton);
+        }
     }
 
     void DisplayRunePage(int page)
