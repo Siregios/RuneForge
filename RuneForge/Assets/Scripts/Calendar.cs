@@ -26,9 +26,7 @@ public class Calendar : MonoBehaviour {
             if(season > 4)
                 season = 1;
             else
-            {
                 season++;
-            }
         }
 	}
 }
