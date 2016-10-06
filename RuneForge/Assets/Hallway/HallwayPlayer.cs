@@ -22,7 +22,6 @@ public class HallwayPlayer : MonoBehaviour {
             if(door != null)
             {
                 //gameObject.transform.position = new Vector3(door.GetComponent<Door>().connected.transform.position.x, door.GetComponent<Door>().connected.transform.position.y, door.GetComponent<Door>().connected.transform.position.z);
-                Debug.Log(door.GetComponent<Door>().transform.position);
                 this.transform.position = door.GetComponent<Door>().connected.transform.position;
             }
         }

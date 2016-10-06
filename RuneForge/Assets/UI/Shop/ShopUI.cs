@@ -15,6 +15,8 @@ public class ShopUI : MonoBehaviour {
     GameObject actionPanel, itemsPanel;
     Button materialsTabButton, runesTabButton, previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
+    Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
+
     Tab currentTab;
 
     int currentPage = 0;
@@ -29,6 +31,14 @@ public class ShopUI : MonoBehaviour {
         runesTabButton = GameObject.Find("RunesTabButton").GetComponent<Button>();
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
+        foreach (string name in Inventory.runeList)
+        {
+            itemImages[name] = Resources.Load<Sprite>("ItemSprites/" + name + "Rune");
+        }
+        foreach (string name in Inventory.materialList)
+        {
+            itemImages[name] = Resources.Load<Sprite>("ItemSprites/" + name + "Material");
+        }
     }
 
     void Start()
@@ -99,7 +109,7 @@ public class ShopUI : MonoBehaviour {
             yPos -= 30;
 
             string material = Inventory.materialList[(page * 12) + i];
-            newMaterialButton.transform.FindChild("Text").GetComponent<Text>().text = material;
+            newMaterialButton.transform.FindChild("Name").GetComponent<Text>().text = material;
             newMaterialButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(material).ToString();
 
             pageList.Add(newMaterialButton);
@@ -136,8 +146,12 @@ public class ShopUI : MonoBehaviour {
             yPos -= 30;
 
             string rune = runeType + rank;
-            newRuneButton.transform.FindChild("Text").GetComponent<Text>().text = runeType;
+            newRuneButton.transform.FindChild("Name").GetComponent<Text>().text = runeType;
             newRuneButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(rune).ToString();
+            //foreach (string name in itemImages.Keys)
+            //    Debug.Log(name);
+            //Debug.Log(runeType);
+            newRuneButton.transform.FindChild("Icon").GetComponent<Image>().sprite = itemImages[runeType];
 
             pageList.Add(newRuneButton);
         }
