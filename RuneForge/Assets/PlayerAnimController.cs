@@ -12,7 +12,11 @@ public class PlayerAnimController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKey(KeyCode.A))
+        if (GetComponent<SpriteRenderer>().flipX)
+            GetComponentInParent<BoxCollider2D>().offset = new Vector2(.25f, 0);
+        else
+            GetComponentInParent<BoxCollider2D>().offset = new Vector2(-.25f, 0);
+        if (Input.GetKey(KeyCode.A))
         {
             anim.SetBool("walk", true);
             GetComponent<SpriteRenderer>().flipX = false;
