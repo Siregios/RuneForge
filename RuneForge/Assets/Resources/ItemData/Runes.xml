@@ -4,27 +4,27 @@
   <RuneList>
 
     <Rune name="Fire">
-      <Price>1</Price>
+      <Price>350</Price>
     </Rune>
 
     <Rune name="Water">
-      <Price>1</Price>
+      <Price>300</Price>
     </Rune>
 
     <Rune name="Air">
-      <Price>1</Price>
+      <Price>300</Price>
     </Rune>
 
     <Rune name="Earth">
-      <Price>1</Price>
+      <Price>250</Price>
     </Rune>
 
     <Rune name="MagnetPlus">
-      <Price>1</Price>
+      <Price>400</Price>
     </Rune>
 
     <Rune name="MagnetMinus">
-      <Price>1</Price>
+      <Price>400</Price>
     </Rune>
 
   </RuneList>

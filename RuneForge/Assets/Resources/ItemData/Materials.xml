@@ -4,27 +4,27 @@
   <MaterialList>
     
     <Material name="OakWood">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
 
     <Material name="CopperBar">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
 
     <Material name="Bone">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
 
     <Material name="Scale">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
 
     <Material name="Clay">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
 
     <Material name="Chalk">
-      <Price>1</Price>
+      <Price>50</Price>
     </Material>
     
   </MaterialList>
