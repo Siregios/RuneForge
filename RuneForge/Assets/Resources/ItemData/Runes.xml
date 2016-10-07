@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RuneCollection>
+  <RuneList>
+
+    <Rune name="FireS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="FireA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="FireB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="FireC">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="WaterS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="WaterA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="WaterB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="WaterC">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="EarthS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="EarthA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="EarthB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="EarthC">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="AirS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="AirA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="AirB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="AirC">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetPlusS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetPlusA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetPlusB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetPlusC">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetMinusS">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetMinusA">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetMinusB">
+      <Price>1</Price>
+    </Rune>
+
+    <Rune name="MagnetMinusC">
+      <Price>1</Price>
+    </Rune>
+
+  </RuneList>
+</RuneCollection>

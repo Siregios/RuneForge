@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MaterialCollection>
+  <MaterialList>
+    
+    <Material name="OakWood">
+      <Price>1</Price>
+    </Material>
+
+    <Material name="CopperBar">
+      <Price>1</Price>
+    </Material>
+
+    <Material name="Bone">
+      <Price>1</Price>
+    </Material>
+
+    <Material name="Scale">
+      <Price>1</Price>
+    </Material>
+
+    <Material name="Clay">
+      <Price>1</Price>
+    </Material>
+
+    <Material name="Chalk">
+      <Price>1</Price>
+    </Material>
+    
+  </MaterialList>
+</MaterialCollection>
