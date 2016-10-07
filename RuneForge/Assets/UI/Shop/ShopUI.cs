@@ -15,7 +15,7 @@ public class ShopUI : MonoBehaviour {
 
     public GameObject RuneButton, MaterialButton;
     GameObject actionPanel, itemsPanel;
-    Button materialsTabButton, runesTabButton, previousPageButton, nextPageButton;
+    Button /*materialsTabButton, runesTabButton,*/ previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
     Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
 
@@ -31,12 +31,12 @@ public class ShopUI : MonoBehaviour {
     {
         actionPanel = this.transform.FindChild("ActionPanel").gameObject;
         itemsPanel = this.transform.FindChild("ItemsPanel").gameObject;
-        materialsTabButton = GameObject.Find("MaterialsTabButton").GetComponent<Button>();
-        runesTabButton = GameObject.Find("RunesTabButton").GetComponent<Button>();
+        //materialsTabButton = GameObject.Find("MaterialsTabButton").GetComponent<Button>();
+        //runesTabButton = GameObject.Find("RunesTabButton").GetComponent<Button>();
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
 
-        numOfRanks = ItemCollection.runeRanks.Length;
+        numOfRanks = Rune.runeRanks.Count;
         /// Change this from Item to Rune after creating subclass
         foreach (Item rune in ItemCollection.runeList)
         {
@@ -62,7 +62,8 @@ public class ShopUI : MonoBehaviour {
                 nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < ItemCollection.materialList.Count);
                 break;
             case Tab.Runes:
-                nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage / numOfRanks < ItemCollection.runeList.Count);
+                //nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage / numOfRanks < ItemCollection.runeList.Count);
+                nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < ItemCollection.runeList.Count);
                 break;
         }
     }
@@ -81,8 +82,8 @@ public class ShopUI : MonoBehaviour {
 
     public void ClickMaterialsTab()
     {
-        materialsTabButton.interactable = false;
-        runesTabButton.interactable = true;
+        //materialsTabButton.interactable = false;
+        //runesTabButton.interactable = true;
         currentItemsTab = Tab.Materials;
 
         currentPage = 0;
@@ -91,8 +92,8 @@ public class ShopUI : MonoBehaviour {
 
     public void ClickRunesTab()
     {
-        runesTabButton.interactable = false;
-        materialsTabButton.interactable = true;
+        //runesTabButton.interactable = false;
+        //materialsTabButton.interactable = true;
         currentItemsTab = Tab.Runes;
 
         currentPage = 0;
@@ -104,9 +105,9 @@ public class ShopUI : MonoBehaviour {
         ClearPage();
 
         int yPos = 150;
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < buttonsPerPage; i++)
         {
-            if ((page * 12) + i >= ItemCollection.materialList.Count)
+            if ((page * buttonsPerPage) + i >= ItemCollection.materialList.Count)
                 return;
 
             GameObject newMaterialButton = Instantiate(MaterialButton, itemsPanel.transform.position, Quaternion.identity) as GameObject;
@@ -115,7 +116,7 @@ public class ShopUI : MonoBehaviour {
             newMaterialButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
             yPos -= 30;
 
-            string material = ItemCollection.materialList[(page * 12) + i].name;
+            string material = ItemCollection.materialList[(page * buttonsPerPage) + i].name;
             newMaterialButton.transform.FindChild("Name").GetComponent<Text>().text = material;
             //newMaterialButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(material).ToString();
 
@@ -128,9 +129,9 @@ public class ShopUI : MonoBehaviour {
         ClearPage();
 
         int yPos = 150;
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < buttonsPerPage; i++)
         {
-            if ((page * 12) + i >= ItemCollection.runeList.Count)
+            if ((page * buttonsPerPage) + i >= ItemCollection.runeList.Count)
                 return;
 
             GameObject newRuneButton = Instantiate(RuneButton, itemsPanel.transform.position, Quaternion.identity) as GameObject;
@@ -139,7 +140,7 @@ public class ShopUI : MonoBehaviour {
             newRuneButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
             yPos -= 30;
 
-            string rune = ItemCollection.runeList[(page * 12) + i].name;
+            string rune = ItemCollection.runeList[(page * buttonsPerPage) + i].name;
             newRuneButton.transform.FindChild("Name").GetComponent<Text>().text = rune;
             //newMaterialButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(material).ToString();
 
@@ -163,7 +164,7 @@ public class ShopUI : MonoBehaviour {
 
         string runeType = ItemCollection.runeList[runeIndex].name;
         int yPos = 150 - (runeIndex % 3 * 120);
-        foreach (char rank in ItemCollection.runeRanks)
+        foreach (char rank in Rune.runeRanks.Keys)
         {
             GameObject newRuneButton = Instantiate(RuneButton, itemsPanel.transform.position, Quaternion.identity) as GameObject;
             newRuneButton.transform.SetParent(itemsPanel.transform);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -9,48 +10,37 @@ public class Item
     public string name;
     
     [XmlElement("Price")]
-    public float price;
+    public int price;
 
-    //public Item()
-    //{
-    //    this.name = "";
-    //    //this.count = 0;
-    //    this.price = 0f;
-    //    image = null;
-    //}
+    public Item()
+    {
+        this.name = "";
+        this.price = 0;
+    }
 
-    //public Item(string name, float price)
-    //{
-    //    this.name = name;
-    //    //this.count = count;
-    //    this.price = price;
-    //    this.image = Resources.Load<Sprite>("ItemSprites/" + name);
-    //}
+    public Item(Item copyItem)
+    {
+        this.name = copyItem.name;
+        this.price = copyItem.price;
+    }
 }
 
-//public class Rune
-//{
-//    [XmlElement("")]
-//}
+public class Rune : Item
+{
+    public static Dictionary<char, float> runeRanks = new Dictionary<char, float>()
+    {
+        { 'S', 200.0f },
+        { 'A', 150.0f },
+        { 'B', 95.0f },
+        { 'C', 75.0f }
+    };
 
-//public static class AllItems
-//{
-//    public static List<string> materialList = new List<string>() { "OakWood", "CopperBar", "Bone", "Scale", "Clay", "Chalk" };
-//    public static List<string> runeList = new List<string>() { "Fire", "Water", "Air", "Earth", "MagnetPlus", "MagnetMinus" };
-//    public static string runeRanks = "SABC";
-//    public static Dictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
+    public char rank;
 
-//    static AllItems()
-//    {
-//        List<string> newRuneList = new List<string>();
-//        foreach (string runeType in runeList)
-//        {
-//            foreach (char rank in runeRanks)
-//            {
-//                newRuneList.Add(runeType + rank);
-//            }
-//        }
-
-//        runeList = newRuneList;
-//    }
-//}
+    public Rune(Item item, char rank) : base(item)
+    {
+        base.name += rank;
+        base.price *= Mathf.CeilToInt(runeRanks[rank] / 100f);
+        this.rank = rank;
+    }
+}

@@ -17,5 +17,6 @@ public class ItemButton : MonoBehaviour {
 
         actionPanel.transform.FindChild("Name").GetComponent<Text>().text = itemName;
         actionPanel.transform.FindChild("Icon").GetComponent<Image>().sprite = icon;
+        actionPanel.transform.FindChild("Price").GetComponent<Text>().text = ItemCollection.itemDict[itemName].price.ToString();
     }
 }
