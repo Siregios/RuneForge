@@ -24,6 +24,7 @@ public class playerHookScript : MonoBehaviour {
     float hookSpeed = 7f;
 
     //Decrements HookManager
+    GameObject hookManager;
     HookManager decrement;
 
     void Start () {
@@ -32,7 +33,8 @@ public class playerHookScript : MonoBehaviour {
         hook = GameObject.Find("hookMove");
         hookMovement = hook.GetComponent<HookMovement>();
         visible = hook.GetComponent<SpriteRenderer>();
-        decrement = GetComponent<HookManager>();
+        hookManager = GameObject.Find("GameManager");
+        decrement = hookManager.GetComponent<HookManager>();
 
     }
 
