@@ -9,7 +9,7 @@ public class Inventory {
     {
         //Money
         AddItem("Money", 0);
-
+        
         foreach (Item item in ItemCollection.itemList)
         {
             AddItem(item.name, 0);

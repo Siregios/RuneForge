@@ -7,24 +7,34 @@ using System.IO;
 public static class ItemCollection{
     public static MaterialCollection materialCollection = XmlReader<MaterialCollection>.Load("ItemData/Materials");
     public static RuneCollection runeCollection = XmlReader<RuneCollection>.Load("ItemData/Runes");
-    public static List<Item> itemList = new List<Item>(), materialList = new List<Item>();
+
+    public static List<Item> itemList = new List<Item>();
+    public static List<Item> materialList = new List<Item>();
     public static List<Rune> runeList = new List<Rune>();
+
     public static Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
 
     static ItemCollection()
     {
         materialList = materialCollection.materials;
+        runeList = runeCollection.runes;
 
-        foreach (Item item in runeCollection.runes)
-        {
-            foreach(char rank in Rune.runeRanks.Keys)
-                runeList.Add(new Rune(item, rank));
-        }
+        //foreach (Item item in runeCollection.runes)
+        //{
+        //    foreach(char rank in Rune.runeRanks.Keys)
+        //        runeList.Add(new Rune(item, rank));
+        //}
 
         foreach (Item material in materialList)
+        {
+            itemList.Add(material);
             itemDict.Add(material.name, material);
+        }
         foreach (Rune rune in runeList)
+        {
+            itemList.Add(rune);
             itemDict.Add(rune.name, rune);
+        }
     }
 }
 
@@ -54,5 +64,5 @@ public class RuneCollection
 {
     [XmlArray("RuneList")]
     [XmlArrayItem("Rune")]
-    public List<Item> runes = new List<Item>();
+    public List<Rune> runes = new List<Rune>();
 }

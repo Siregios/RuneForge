@@ -7,24 +7,48 @@
       <Price>350</Price>
     </Rune>
 
+    <Rune name="Fire_MC">
+      <Price>700</Price>
+    </Rune>
+
     <Rune name="Water">
       <Price>300</Price>
+    </Rune>
+
+    <Rune name="Water_MC">
+      <Price>600</Price>
     </Rune>
 
     <Rune name="Air">
       <Price>300</Price>
     </Rune>
 
+    <Rune name="Air_MC">
+      <Price>600</Price>
+    </Rune>
+
     <Rune name="Earth">
       <Price>250</Price>
+    </Rune>
+
+    <Rune name="Earth_MC">
+      <Price>500</Price>
     </Rune>
 
     <Rune name="MagnetPlus">
       <Price>400</Price>
     </Rune>
 
+    <Rune name="MagnetPlus_MC">
+      <Price>800</Price>
+    </Rune>
+
     <Rune name="MagnetMinus">
       <Price>400</Price>
+    </Rune>
+
+    <Rune name="MagnetMinus_MC">
+      <Price>800</Price>
     </Rune>
 
   </RuneList>
