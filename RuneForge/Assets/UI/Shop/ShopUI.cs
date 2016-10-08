@@ -178,12 +178,14 @@ public class ShopUI : MonoBehaviour {
     {
         //currentActionTab = Tab.YourStock;
         currentInventory = PlayerInventory.inventory;
+        DisplayTab();
     }
 
     public void ClickShopStock()
     {
         //currentActionTab = Tab.ShopStock;
         currentInventory = ShopInventory.inventory;
+        DisplayTab();
     }
 
     void ClearPage()

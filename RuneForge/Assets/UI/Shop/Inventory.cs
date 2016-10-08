@@ -8,7 +8,7 @@ public class Inventory {
     public Inventory()
     {
         //Money
-        AddItem("Money", 0);
+        //AddItem("Money", 0);
         
         foreach (Item item in ItemCollection.itemList)
         {

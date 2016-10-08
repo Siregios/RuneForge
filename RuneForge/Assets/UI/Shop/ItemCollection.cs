@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 using System.IO;
 
 public static class ItemCollection{
-    public static MaterialCollection materialCollection = XmlReader<MaterialCollection>.Load("ItemData/Materials");
-    public static RuneCollection runeCollection = XmlReader<RuneCollection>.Load("ItemData/Runes");
+    static MaterialCollection materialCollection = XmlReader<MaterialCollection>.Load("ItemData/Materials");
+    static RuneCollection runeCollection = XmlReader<RuneCollection>.Load("ItemData/Runes");
 
     public static List<Item> itemList = new List<Item>();
     public static List<Item> materialList = new List<Item>();
