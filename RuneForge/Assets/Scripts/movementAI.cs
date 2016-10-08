@@ -154,11 +154,11 @@ public class movementAI : MonoBehaviour
     //Makes the object go opposite direction for remainder of travel time.
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "ai")
+        if (other.gameObject.tag == "AI")
         {
             Physics2D.IgnoreCollision(other.collider, this.GetComponent<Collider2D>());
         }
-        else if (other.gameObject.tag == "horizontal")
+        else if (other.gameObject.tag == "HorizontalBounds")
         {
             if (right)
             {
@@ -171,7 +171,7 @@ public class movementAI : MonoBehaviour
                 left = false;
             }
         }
-        else if (other.gameObject.tag == "vertical")
+        else if (other.gameObject.tag == "VerticalBounds")
         {
             if (up)
             {

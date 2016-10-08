@@ -39,7 +39,7 @@ public class fishPlayerScript : MonoBehaviour {
     //Ignore the fish's rigidbody2d.
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "ai")
+        if (other.gameObject.tag == "AI")
         {
             Physics2D.IgnoreCollision(other.collider, this.GetComponent<Collider2D>());
         }

@@ -6,7 +6,7 @@ public class HookManager : MonoBehaviour {
     RandomSpawner spawner;
     public float spawnInterval = 2f;
     public int maxObjects = 10;
-    private int currentObjects = 0;
+    public int currentObjects = 0;
     float cooldown;    
     Vector3 previousDotLoc = Vector3.back;
 
