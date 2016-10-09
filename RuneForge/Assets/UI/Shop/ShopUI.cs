@@ -17,7 +17,7 @@ public class ShopUI : MonoBehaviour {
     GameObject actionPanel, itemsPanel;
     Button previousPageButton, nextPageButton, actionButton;
     Text actionName, actionPrice;
-    //Sprite actionIcon;
+    Image actionIcon;
     List<GameObject> pageList = new List<GameObject>();
     //Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
 
@@ -45,12 +45,12 @@ public class ShopUI : MonoBehaviour {
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
 
         actionName = actionPanel.transform.FindChild("Name").GetComponent<Text>();
-        //actionIcon = actionPanel.transform.FindChild("Icon").GetComponent<Sprite>();
+        actionIcon = actionPanel.transform.FindChild("Icon").GetComponent<Image>();
         actionPrice = actionPanel.transform.FindChild("Price").GetComponent<Text>();
         actionButton = actionPanel.transform.FindChild("ActionButton").GetComponent<Button>();
 
         currentInventory = PlayerInventory.inventory;
-        
+
         /// Might move this to Item/Rune classes to load images into the class rather than here.
         //foreach (Rune rune in ItemCollection.runeList)
         //{
@@ -192,10 +192,19 @@ public class ShopUI : MonoBehaviour {
         currentItem = item;
 
         actionName.text = currentItem.name;
-        //actionIcon.sprite = currentItem.icon;
+        actionIcon.sprite = currentItem.icon;
+        actionIcon.color = Color.white;
         actionPrice.text = ItemCollection.itemDict[currentItem.name].price.ToString();
         actionButton.interactable = true;
-    } 
+    }
+
+    void ClearActionPanel()
+    {
+        actionName.text = "";
+        actionIcon.color = Color.clear;
+        actionPrice.text = "";
+        actionButton.interactable = false;
+    }
 
     public void ClickTrade()
     {
@@ -222,14 +231,6 @@ public class ShopUI : MonoBehaviour {
         newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
 
         return newItemButton;
-    }
-
-    void ClearActionPanel()
-    {
-        actionName.text = "";
-        //actionIcon.sprite = NONE;
-        actionPrice.text = "";
-        actionButton.interactable = false;
     }
 
     void ClearPage()

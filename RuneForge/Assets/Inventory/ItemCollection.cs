@@ -27,11 +27,13 @@ public static class ItemCollection{
 
         foreach (Item material in materialList)
         {
+            material.icon = Resources.Load<Sprite>("ItemSprites/" + material.name);
             itemList.Add(material);
             itemDict.Add(material.name, material);
         }
         foreach (Rune rune in runeList)
         {
+            rune.icon = Resources.Load<Sprite>("ItemSprites/" + rune.name);
             itemList.Add(rune);
             itemDict.Add(rune.name, rune);
         }

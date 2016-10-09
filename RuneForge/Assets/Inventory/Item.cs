@@ -12,6 +12,8 @@ public class Item
     [XmlElement("Price")]
     public int price;
 
+    public Sprite icon;
+
     public Item()
     {
         this.name = "";
@@ -22,6 +24,7 @@ public class Item
     {
         this.name = copyItem.name;
         this.price = copyItem.price;
+        this.icon = copyItem.icon;
     }
 }
 

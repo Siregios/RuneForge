@@ -15,6 +15,7 @@ public class ItemButton : MonoBehaviour {
     {
         this.item = item;
         this.transform.FindChild("Name").GetComponent<Text>().text = item.name;
+        this.transform.FindChild("Icon").GetComponent<Image>().sprite = item.icon;
         if (count == int.MaxValue)
             this.transform.FindChild("Count").GetComponent<Text>().text = "∞";
         else
