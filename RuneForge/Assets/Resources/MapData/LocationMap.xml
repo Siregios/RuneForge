@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Map>
+  <LocationList>
+    
+    <Location name="Snowdin">
+      <Connections>Old Ruins:10/Asgore's Castle:20</Connections>
+    </Location>
+
+    <Location name="Old Ruins">
+      <Connections>Snowdin:10/Asgore's Castle:15</Connections>
+    </Location>
+
+    <Location name="Asgore's Castle">
+      <Connections>Snowdin:20/Old Ruins:15</Connections>
+    </Location>
+
+    
+    
+  </LocationList>
+</Map>
