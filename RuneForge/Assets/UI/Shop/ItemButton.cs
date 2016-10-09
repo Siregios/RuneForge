@@ -3,20 +3,26 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ItemButton : MonoBehaviour {
-    GameObject actionPanel;
+    ShopUI shopUI;
+    Item item;
 
     void Awake()
     {
-        actionPanel = GameObject.Find("ActionPanel");
+        shopUI = GameObject.Find("ShopPanel").GetComponent<ShopUI>();
+    }
+
+    public void Initialize(Item item, int count)
+    {
+        this.item = item;
+        this.transform.FindChild("Name").GetComponent<Text>().text = item.name;
+        if (count == int.MaxValue)
+            this.transform.FindChild("Count").GetComponent<Text>().text = "∞";
+        else
+            this.transform.FindChild("Count").GetComponent<Text>().text = "x" + count.ToString();
     }
 
     public void OnClick()
     {
-        string itemName = this.transform.FindChild("Name").GetComponent<Text>().text;
-        Sprite icon = this.transform.FindChild("Icon").GetComponent<Image>().sprite;
-
-        actionPanel.transform.FindChild("Name").GetComponent<Text>().text = itemName;
-        actionPanel.transform.FindChild("Icon").GetComponent<Image>().sprite = icon;
-        actionPanel.transform.FindChild("Price").GetComponent<Text>().text = ItemCollection.itemDict[itemName].price.ToString();
+        shopUI.SelectItem(this.item);
     }
 }

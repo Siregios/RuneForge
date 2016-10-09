@@ -8,7 +8,7 @@ public static class ShopInventory {
     {
         foreach (Item material in ItemCollection.materialList)
         {
-            inventory.AddItem(material.name, 5);
+            inventory.SetItemCount(material.name, int.MaxValue);
         }
     }
 }

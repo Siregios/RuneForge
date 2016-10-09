@@ -15,18 +15,27 @@ public class ShopUI : MonoBehaviour {
 
     public GameObject RuneButton, MaterialButton;
     GameObject actionPanel, itemsPanel;
-    Button previousPageButton, nextPageButton;
+    Button previousPageButton, nextPageButton, actionButton;
+    Text actionName, actionPrice;
+    //Sprite actionIcon;
     List<GameObject> pageList = new List<GameObject>();
     Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
 
-    Tab currentItemsTab = Tab.Materials;
-    //Tab currentActionTab = Tab.YourStock;
-    Inventory currentInventory;
-
     int currentPage = 0;
     int buttonsPerPage = 12;
-    //int numOfRanks = 4;
+    float buttonHeight = 30;
     float topButtonPos = 150;
+
+    Tab currentItemsTab = Tab.Materials;
+    Tab currentActionTab = Tab.YourStock;
+    Inventory currentInventory;
+    Item currentItem;
+
+    public Item CurrentItem
+    {
+        get { return this.currentItem; }
+        set { this.currentItem = value; }
+    }
 
     void Awake()
     {
@@ -35,18 +44,22 @@ public class ShopUI : MonoBehaviour {
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
 
-        //numOfRanks = Rune.runeRanks.Count;
+        actionName = actionPanel.transform.FindChild("Name").GetComponent<Text>();
+        //actionIcon = actionPanel.transform.FindChild("Icon").GetComponent<Sprite>();
+        actionPrice = actionPanel.transform.FindChild("Price").GetComponent<Text>();
+        actionButton = actionPanel.transform.FindChild("ActionButton").GetComponent<Button>();
+
         currentInventory = PlayerInventory.inventory;
         
         /// Might move this to Item/Rune classes to load images into the class rather than here.
-        foreach (Rune rune in ItemCollection.runeList)
-        {
-            itemImages[rune.name] = Resources.Load<Sprite>("ItemSprites/" + rune.name + "Rune");
-        }
-        foreach (Item material in ItemCollection.materialList)
-        {
-            itemImages[material.name] = Resources.Load<Sprite>("ItemSprites/" + material.name + "Material");
-        }
+        //foreach (Rune rune in ItemCollection.runeList)
+        //{
+        //    itemImages[rune.name] = Resources.Load<Sprite>("ItemSprites/" + rune.name + "Rune");
+        //}
+        //foreach (Item material in ItemCollection.materialList)
+        //{
+        //    itemImages[material.name] = Resources.Load<Sprite>("ItemSprites/" + material.name + "Material");
+        //}
     }
 
     void Start()
@@ -79,18 +92,13 @@ public class ShopUI : MonoBehaviour {
                 return;
 
             GameObject newMaterialButton = CreateItemButton(MaterialButton, yPos);
-            yPos -= 30;
+            yPos -= buttonHeight;
 
             string materialID = ItemCollection.materialList[(page * buttonsPerPage) + i].name;
-            newMaterialButton.transform.FindChild("Name").GetComponent<Text>().text = materialID;
-            newMaterialButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + currentInventory.GetItemCount(materialID).ToString();
+            newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory.GetItemCount(materialID));
 
             pageList.Add(newMaterialButton);
         }
-        //foreach (KeyValuePair<string, int> kvp in currentInventory.inventoryDict)
-        //{
-        //    Debug.Log(kvp);
-        //}
     }
 
     void DisplayRunePage(int page)
@@ -104,24 +112,13 @@ public class ShopUI : MonoBehaviour {
                 return;
 
             GameObject newRuneButton = CreateItemButton(RuneButton, yPos);
-            yPos -= 30;
+            yPos -= buttonHeight;
 
             string runeID = ItemCollection.runeList[(page * buttonsPerPage) + i].name;
-            newRuneButton.transform.FindChild("Name").GetComponent<Text>().text = runeID;
-            newRuneButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + currentInventory.GetItemCount(runeID).ToString();
+            newRuneButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[runeID], currentInventory.GetItemCount(runeID));
 
             pageList.Add(newRuneButton);
         }
-    }
-
-    GameObject CreateItemButton(GameObject buttonType, float yPos)
-    {
-        GameObject newItemButton = Instantiate(buttonType, itemsPanel.transform.position, Quaternion.identity) as GameObject;
-        newItemButton.transform.SetParent(itemsPanel.transform);
-        newItemButton.transform.localScale = Vector3.one;
-        newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
-
-        return newItemButton;
     }
 
     //void DisplayRune(int runeIndex)
@@ -176,16 +173,63 @@ public class ShopUI : MonoBehaviour {
 
     public void ClickYourStock()
     {
-        //currentActionTab = Tab.YourStock;
+        currentActionTab = Tab.YourStock;
         currentInventory = PlayerInventory.inventory;
+        ClearActionPanel();
         DisplayTab();
     }
 
     public void ClickShopStock()
     {
-        //currentActionTab = Tab.ShopStock;
+        currentActionTab = Tab.ShopStock;
         currentInventory = ShopInventory.inventory;
+        ClearActionPanel();
         DisplayTab();
+    }
+
+    public void SelectItem(Item item)
+    {
+        currentItem = item;
+
+        actionName.text = currentItem.name;
+        //actionIcon.sprite = currentItem.icon;
+        actionPrice.text = ItemCollection.itemDict[currentItem.name].price.ToString();
+        actionButton.interactable = true;
+    } 
+
+    public void ClickTrade()
+    {
+        switch (currentActionTab)
+        {
+            //Selling
+            case Tab.YourStock:
+                //Edit this for sell-x
+                TradeManager.SellItem(currentItem, 1);
+                break;
+
+            //Buying
+            case Tab.ShopStock:
+                TradeManager.BuyItem(currentItem, 1);
+                break;
+        }
+    }
+
+    GameObject CreateItemButton(GameObject buttonType, float yPos)
+    {
+        GameObject newItemButton = Instantiate(buttonType, itemsPanel.transform.position, Quaternion.identity) as GameObject;
+        newItemButton.transform.SetParent(itemsPanel.transform);
+        newItemButton.transform.localScale = Vector3.one;
+        newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
+
+        return newItemButton;
+    }
+
+    void ClearActionPanel()
+    {
+        actionName.text = "";
+        //actionIcon.sprite = NONE;
+        actionPrice.text = "";
+        actionButton.interactable = false;
     }
 
     void ClearPage()
