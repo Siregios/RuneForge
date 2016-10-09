@@ -19,7 +19,7 @@ public class ShopUI : MonoBehaviour {
     Text actionName, actionPrice;
     //Sprite actionIcon;
     List<GameObject> pageList = new List<GameObject>();
-    Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
+    //Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
 
     int currentPage = 0;
     int buttonsPerPage = 12;

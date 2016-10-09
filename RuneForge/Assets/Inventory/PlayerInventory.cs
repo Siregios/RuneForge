@@ -6,6 +6,6 @@ public static class PlayerInventory {
 
     static PlayerInventory()
     {
-        inventory.SetItemCount("Money", 1000);
+        inventory.SetItemCount("Money", 250);
     }
 }

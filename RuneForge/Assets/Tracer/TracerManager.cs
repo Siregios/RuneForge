@@ -59,7 +59,6 @@ public class TracerManager : MonoBehaviour {
 
     public void DotMissed(GameObject dot)
     {
-        Vector3 newLoc = dot.transform.position;
         foreach (GameObject line in lineList){
             Destroy(line);
         }
@@ -69,7 +68,7 @@ public class TracerManager : MonoBehaviour {
 
     public void SpawnDot()
     {
-        GameObject newDot = spawner.SpawnObject() as GameObject;
+        spawner.SpawnObject();
         cooldown = spawnInterval;
     }
 }
