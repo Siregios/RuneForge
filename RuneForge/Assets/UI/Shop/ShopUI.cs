@@ -95,7 +95,8 @@ public class ShopUI : MonoBehaviour {
             yPos -= buttonHeight;
 
             string materialID = ItemCollection.materialList[(page * buttonsPerPage) + i].name;
-            newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory.GetItemCount(materialID));
+            //newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory.GetItemCount(materialID));
+            newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory);
 
             pageList.Add(newMaterialButton);
         }
@@ -115,7 +116,7 @@ public class ShopUI : MonoBehaviour {
             yPos -= buttonHeight;
 
             string runeID = ItemCollection.runeList[(page * buttonsPerPage) + i].name;
-            newRuneButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[runeID], currentInventory.GetItemCount(runeID));
+            newRuneButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[runeID], currentInventory);
 
             pageList.Add(newRuneButton);
         }
