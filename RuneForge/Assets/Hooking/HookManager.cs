@@ -3,18 +3,18 @@ using System.Collections;
 
 public class HookManager : MonoBehaviour {
 
-    RandomSpawner spawner;
+    //RandomSpawner spawner;
     public float spawnInterval = 2f;
     public int maxObjects = 10;
     public int currentObjects = 0;
     float cooldown;    
-    Vector3 previousDotLoc = Vector3.back;
 
 
-    void Awake ()
-    {
-        spawner = this.GetComponent<RandomSpawner>();
-    }
+
+    //void Awake ()
+    //{
+    //    spawner = this.GetComponent<RandomSpawner>();
+    //}
 
     void Start ()
     {
@@ -34,7 +34,6 @@ public class HookManager : MonoBehaviour {
 
     public void SpawnObject()
     {
-        GameObject target = spawner.SpawnObject() as GameObject;
         cooldown = spawnInterval;
     }
 }

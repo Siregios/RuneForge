@@ -3,9 +3,12 @@ using System.Collections;
 
 public class MapUI : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private bool isShowing = false;
+    public GameObject MapPanel;
+    private GameObject currentLocation;
 
+
+	void Start () {      
         foreach(string location in LocationManager.locationList[0].connections.Keys)
         {
             Debug.Log(location);
@@ -15,8 +18,11 @@ public class MapUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            isShowing = !isShowing;
+            MapPanel.SetActive(isShowing);
+        }
 	
 	}
 }

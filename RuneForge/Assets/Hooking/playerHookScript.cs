@@ -11,7 +11,7 @@ public class playerHookScript : MonoBehaviour {
 
     //Rotation values for the actual gameobject and the raycast
     float rotationZ;
-    float eulerZ;
+    //float eulerZ;
 
     //Transform position of the hook
     private Vector3 hookPos;
@@ -92,7 +92,7 @@ public class playerHookScript : MonoBehaviour {
         else if (hookOut == false)
         {
             rotationZ = hookTransform.rotation.z;
-            eulerZ = hookTransform.rotation.eulerAngles.z;
+            //eulerZ = hookTransform.rotation.eulerAngles.z;
             checkDirection();
         }
 
