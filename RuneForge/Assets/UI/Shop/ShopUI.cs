@@ -19,7 +19,6 @@ public class ShopUI : MonoBehaviour {
     Text actionName, actionPrice;
     Image actionIcon;
     List<GameObject> pageList = new List<GameObject>();
-    //Dictionary<string, Sprite> itemImages = new Dictionary<string, Sprite>();
 
     int currentPage = 0;
     int buttonsPerPage = 12;
@@ -50,16 +49,6 @@ public class ShopUI : MonoBehaviour {
         actionButton = actionPanel.transform.FindChild("ActionButton").GetComponent<Button>();
 
         currentInventory = PlayerInventory.inventory;
-
-        /// Might move this to Item/Rune classes to load images into the class rather than here.
-        //foreach (Rune rune in ItemCollection.runeList)
-        //{
-        //    itemImages[rune.name] = Resources.Load<Sprite>("ItemSprites/" + rune.name + "Rune");
-        //}
-        //foreach (Item material in ItemCollection.materialList)
-        //{
-        //    itemImages[material.name] = Resources.Load<Sprite>("ItemSprites/" + material.name + "Material");
-        //}
     }
 
     void Start()
@@ -95,7 +84,6 @@ public class ShopUI : MonoBehaviour {
             yPos -= buttonHeight;
 
             string materialID = ItemCollection.materialList[(page * buttonsPerPage) + i].name;
-            //newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory.GetItemCount(materialID));
             newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory);
 
             pageList.Add(newMaterialButton);
@@ -121,30 +109,6 @@ public class ShopUI : MonoBehaviour {
             pageList.Add(newRuneButton);
         }
     }
-
-    //void DisplayRune(int runeIndex)
-    //{
-    //    if (runeIndex >= ItemCollection.runeList.Count)
-    //    {
-    //        Debug.Log("You done gone and out of index error-ed");
-    //        return;
-    //    }
-    //    string runeType = ItemCollection.runeList[runeIndex].name;
-    //    int yPos = 150 - (runeIndex % 3 * 120);
-    //    foreach (char rank in Rune.runeRanks.Keys)
-    //    {
-    //        GameObject newRuneButton = Instantiate(RuneButton, itemsPanel.transform.position, Quaternion.identity) as GameObject;
-    //        newRuneButton.transform.SetParent(itemsPanel.transform);
-    //        newRuneButton.transform.localScale = Vector3.one;
-    //        newRuneButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
-    //        yPos -= 30;
-    //        string rune = runeType + rank;
-    //        newRuneButton.transform.FindChild("Name").GetComponent<Text>().text = runeType;
-    //        //newRuneButton.transform.FindChild("Count").GetComponent<Text>().text = "x" + Inventory.GetItemCount(rune).ToString();
-    //        newRuneButton.transform.FindChild("Icon").GetComponent<Image>().sprite = itemImages[runeType];
-    //        pageList.Add(newRuneButton);
-    //    }
-    //}
 
     public void ClickPreviousPage()
     {
