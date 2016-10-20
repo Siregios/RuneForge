@@ -3,51 +3,24 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum Tab
-{
-    Materials,
-    Runes,
-    YourStock,
-    ShopStock
-}
-
-public class ShopUI : MonoBehaviour {
-
+public class ItemListUI : MonoBehaviour {
     public GameObject RuneButton, MaterialButton;
-    GameObject actionPanel, itemsPanel;
-    Button previousPageButton, nextPageButton, actionButton;
-    Text actionName, actionPrice;
-    Image actionIcon;
+
+    Button previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
+
+    Inventory currentInventory;
+    Tab currentItemsTab = Tab.Materials;
 
     int currentPage = 0;
     int buttonsPerPage = 12;
     float buttonHeight = 30;
     float topButtonPos = 150;
 
-    Tab currentItemsTab = Tab.Materials;
-    Tab currentActionTab = Tab.YourStock;
-    Inventory currentInventory;
-    Item currentItem;
-
-    public Item CurrentItem
-    {
-        get { return this.currentItem; }
-        set { this.currentItem = value; }
-    }
-
     void Awake()
     {
-        actionPanel = this.transform.FindChild("ActionPanel").gameObject;
-        itemsPanel = this.transform.FindChild("ItemsPanel").gameObject;
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
-
-        actionName = actionPanel.transform.FindChild("Name").GetComponent<Text>();
-        actionIcon = actionPanel.transform.FindChild("Icon").GetComponent<Image>();
-        actionPrice = actionPanel.transform.FindChild("Price").GetComponent<Text>();
-        actionButton = actionPanel.transform.FindChild("ActionButton").GetComponent<Button>();
-
         currentInventory = PlayerInventory.inventory;
     }
 
@@ -70,8 +43,40 @@ public class ShopUI : MonoBehaviour {
         }
     }
 
+    public void ChangeInventory(Inventory inventory)
+    {
+        currentInventory = inventory;
+        DisplayPage();
+    }
+
+    public void ClickPreviousPage()
+    {
+        currentPage--;
+        DisplayPage();
+    }
+
+    public void ClickNextPage()
+    {
+        currentPage++;
+        DisplayPage();
+    }
+
+    public void ClickMaterialsTab()
+    {
+        currentItemsTab = Tab.Materials;
+        currentPage = 0;
+        DisplayPage();
+    }
+
+    public void ClickRunesTab()
+    {
+        currentItemsTab = Tab.Runes;
+        currentPage = 0;
+        DisplayPage();
+    }
+
     void DisplayMaterialsPage(int page)
-    {        
+    {
         ClearPage();
 
         float yPos = topButtonPos;
@@ -110,88 +115,10 @@ public class ShopUI : MonoBehaviour {
         }
     }
 
-    public void ClickPreviousPage()
-    {
-        currentPage--;
-        DisplayTab();
-    }
-
-    public void ClickNextPage()
-    {
-        currentPage++;
-        DisplayTab();
-    }
-
-    public void ClickMaterialsTab()
-    {
-        currentItemsTab = Tab.Materials;
-        currentPage = 0;
-        DisplayTab();
-    }
-
-    public void ClickRunesTab()
-    {
-        currentItemsTab = Tab.Runes;
-        currentPage = 0;
-        DisplayTab();
-    }
-
-    public void ClickYourStock()
-    {
-        currentActionTab = Tab.YourStock;
-        currentInventory = PlayerInventory.inventory;
-        ClearActionPanel();
-        DisplayTab();
-    }
-
-    public void ClickShopStock()
-    {
-        currentActionTab = Tab.ShopStock;
-        currentInventory = ShopInventory.inventory;
-        ClearActionPanel();
-        DisplayTab();
-    }
-
-    public void SelectItem(Item item)
-    {
-        currentItem = item;
-
-        actionName.text = currentItem.name;
-        actionIcon.sprite = currentItem.icon;
-        actionIcon.color = Color.white;
-        actionPrice.text = ItemCollection.itemDict[currentItem.name].price.ToString();
-        actionButton.interactable = true;
-    }
-
-    void ClearActionPanel()
-    {
-        actionName.text = "";
-        actionIcon.color = Color.clear;
-        actionPrice.text = "";
-        actionButton.interactable = false;
-    }
-
-    public void ClickTrade()
-    {
-        switch (currentActionTab)
-        {
-            //Selling
-            case Tab.YourStock:
-                //Edit this for sell-x
-                TradeManager.SellItem(currentItem, 1);
-                break;
-
-            //Buying
-            case Tab.ShopStock:
-                TradeManager.BuyItem(currentItem, 1);
-                break;
-        }
-    }
-
     GameObject CreateItemButton(GameObject buttonType, float yPos)
     {
-        GameObject newItemButton = Instantiate(buttonType, itemsPanel.transform.position, Quaternion.identity) as GameObject;
-        newItemButton.transform.SetParent(itemsPanel.transform);
+        GameObject newItemButton = Instantiate(buttonType, this.transform.position, Quaternion.identity) as GameObject;
+        newItemButton.transform.SetParent(this.transform);
         newItemButton.transform.localScale = Vector3.one;
         newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
 
@@ -208,7 +135,7 @@ public class ShopUI : MonoBehaviour {
         pageList.Clear();
     }
 
-    void DisplayTab()
+    void DisplayPage()
     {
         switch (currentItemsTab)
         {
