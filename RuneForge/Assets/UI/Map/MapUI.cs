@@ -5,7 +5,8 @@ public class MapUI : MonoBehaviour {
 
     private bool isShowing = false;
     public GameObject MapPanel;
-    private GameObject currentLocation;
+    public GameObject currentLocation;
+    public bool inAir = false;
 
 	void Start () {      
         currentLocation = GameObject.Find("Snowdin");

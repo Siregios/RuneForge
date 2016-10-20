@@ -1,4 +1,5 @@
 ﻿//CREDIT TO https://christianfloisand.wordpress.com/2014/01/23/beat-synchronization-in-unity/ for guide to beat synchronization
+//THE BPM OF EFREN aGUIlar's SONG IS 145 BPM MONKEY CLAP
 using UnityEngine;
 using System.Collections;
 
