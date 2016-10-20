@@ -19,7 +19,9 @@ public static class LocationManager{
             {
                 var pair = pairString.Split(':');
                 location.connections.Add(pair[0], int.Parse(pair[1]));
+                
             }
+            locationDict.Add(location.name, location);
         }
 
     }

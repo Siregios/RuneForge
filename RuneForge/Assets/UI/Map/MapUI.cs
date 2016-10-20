@@ -7,12 +7,20 @@ public class MapUI : MonoBehaviour {
     public GameObject MapPanel;
     private GameObject currentLocation;
 
-
 	void Start () {      
-        foreach(string location in LocationManager.locationList[0].connections.Keys)
-        {
-            Debug.Log(location);
-        }
+        currentLocation = GameObject.Find("Snowdin");
+        foreach (string name in LocationManager.locationDict.Keys)
+            foreach (string location in LocationManager.locationDict[name].connections.Keys)
+            {
+                Debug.Log("Current: " + name + " and Connected location: " + location);
+            }
+        //foreach (Location location in LocationManager.locationList)
+        //{
+        //    if (currentLocation.name == location.name)
+        //    {
+                
+        //    }
+        //}
 
     }
 	
