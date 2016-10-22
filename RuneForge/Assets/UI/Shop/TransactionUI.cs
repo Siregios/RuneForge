@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TransactionUI : MonoBehaviour {
-    BookUI bookUI;
+    ShopUI shopUI;
 
     Button actionButton;
     Text actionName, actionPrice;
@@ -15,7 +15,7 @@ public class TransactionUI : MonoBehaviour {
 
     void Awake()
     {
-        bookUI = GameObject.Find("BookPanel").GetComponent<BookUI>();
+        shopUI = GameObject.Find("ShopPanel").GetComponent<ShopUI>();
 
         actionName = this.transform.FindChild("Name").GetComponent<Text>();
         actionIcon = this.transform.FindChild("Icon").GetComponent<Image>();
@@ -26,14 +26,14 @@ public class TransactionUI : MonoBehaviour {
     public void ClickYourStock()
     {
         currentActionTab = Tab.YourStock;
-        bookUI.itemList.ChangeInventory(PlayerInventory.inventory);
+        shopUI.itemList.ChangeInventory(PlayerInventory.inventory);
         ClearActionPanel();
     }
 
     public void ClickShopStock()
     {
         currentActionTab = Tab.ShopStock;
-        bookUI.itemList.ChangeInventory(ShopInventory.inventory);
+        shopUI.itemList.ChangeInventory(ShopInventory.inventory);
         ClearActionPanel();
     }
 

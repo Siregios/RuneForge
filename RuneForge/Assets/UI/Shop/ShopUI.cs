@@ -7,11 +7,12 @@ public enum Tab
 {
     Materials,
     Runes,
+    Products,
     YourStock,
     ShopStock
 }
 
-public class BookUI : MonoBehaviour
+public class ShopUI : MonoBehaviour
 {
     [HideInInspector]
     public TransactionUI transactionPage;

@@ -5,6 +5,7 @@
 
     <Rune name="Fire">
       <Price>350</Price>
+      <Attribute1>3</Attribute1>
     </Rune>
 
     <Rune name="Fire_MC">

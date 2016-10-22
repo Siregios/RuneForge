@@ -3,13 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ItemButton : MonoBehaviour {
-    BookUI bookUI;
+    ShopUI shopUI;
     Item item;
     Inventory itemOwner;
 
     void Awake()
     {
-        bookUI = GameObject.Find("BookPanel").GetComponent<BookUI>();
+        shopUI = GameObject.Find("ShopPanel").GetComponent<ShopUI>();
     }
 
     void Update()
@@ -30,6 +30,6 @@ public class ItemButton : MonoBehaviour {
 
     public void OnClick()
     {
-        bookUI.SelectItem(this.item);
+        shopUI.SelectItem(this.item);
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class ItemListUI : MonoBehaviour {
     public GameObject RuneButton, MaterialButton;
+    //public GameObject ItemButton;
 
     Button previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
@@ -46,33 +47,33 @@ public class ItemListUI : MonoBehaviour {
     public void ChangeInventory(Inventory inventory)
     {
         currentInventory = inventory;
-        DisplayPage();
+        RefreshPage();
     }
 
     public void ClickPreviousPage()
     {
         currentPage--;
-        DisplayPage();
+        RefreshPage();
     }
 
     public void ClickNextPage()
     {
         currentPage++;
-        DisplayPage();
+        RefreshPage();
     }
 
     public void ClickMaterialsTab()
     {
         currentItemsTab = Tab.Materials;
         currentPage = 0;
-        DisplayPage();
+        RefreshPage();
     }
 
     public void ClickRunesTab()
     {
         currentItemsTab = Tab.Runes;
         currentPage = 0;
-        DisplayPage();
+        RefreshPage();
     }
 
     void DisplayMaterialsPage(int page)
@@ -135,7 +136,7 @@ public class ItemListUI : MonoBehaviour {
         pageList.Clear();
     }
 
-    void DisplayPage()
+    void RefreshPage()
     {
         switch (currentItemsTab)
         {

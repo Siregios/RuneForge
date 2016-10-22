@@ -28,28 +28,25 @@ public class Item
     }
 }
 
-public class Rune : Item
+public class Product : Item
 {
-    //public static Dictionary<char, float> runeRanks = new Dictionary<char, float>()
-    //{
-    //    { 'S', 200.0f },
-    //    { 'A', 150.0f },
-    //    { 'B', 95.0f },
-    //    { 'C', 75.0f }
-    //};
+    [XmlElement("Attribute1")]
+    public int attribute1;
 
-    //public char rank;
+    public Product() : base() { }
+
+    public Product(Item item) : base(item) { }
+}
+
+public class Rune : Product
+{
     public bool isMaster = false;
 
     public Rune() : base() { }
 
-    //public Rune(Item item, char rank) : base(item)
-    public Rune(Item item) : base(item)
+    public Rune(Product product) : base(product)
     {
         if (this.name.Substring(this.name.Length - 2) == "MC")
             isMaster = true;
-        //base.name += rank;
-        //base.price = Mathf.CeilToInt((this.price * runeRanks[rank]) / 100f);
-        //this.rank = rank;
     }
 }
