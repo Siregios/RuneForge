@@ -1,11 +1,14 @@
 ﻿//CREDIT TO https://christianfloisand.wordpress.com/2014/01/23/beat-synchronization-in-unity/ for guide to beat synchronization
-//THE BPM OF EFREN aGUIlar's SONG IS 145 BPM MONKEY CLAP
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This class should be attached to the audio source for which synchronization should occur, and is 
+/// responsible for synching up the beginning of the audio clip with all active beat counters and pattern counters.
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class BeatSynchronizer : MonoBehaviour {
-    public float bpm = 128f;
+    public float bpm = 145f;
     public float startDelay = 1f;
     public delegate void AudioStartAction(double syncTime);
     public static event AudioStartAction OnAudioStart;
