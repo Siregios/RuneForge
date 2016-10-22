@@ -17,7 +17,7 @@ public class TracerManager : MonoBehaviour {
     float cooldown;
 
     List<GameObject> lineList = new List<GameObject>();
-    Vector3 previousDotLoc = Vector3.back;
+    //Vector3 previousDotLoc = Vector3.back;
 
     //For testing purposes only
     public bool trailStays = false;
@@ -53,7 +53,7 @@ public class TracerManager : MonoBehaviour {
         if (trailStays)
             DropTrail();
 
-        Vector3 newLoc = dot.transform.position;
+        //Vector3 newLoc = dot.transform.position;
         
         ///Straight lines between 2 points below
 
@@ -75,7 +75,7 @@ public class TracerManager : MonoBehaviour {
         //    lineList.Add(newLine);
         //}
 
-        previousDotLoc = newLoc;
+        //previousDotLoc = newLoc;
         SpawnDot();
     }
 
@@ -86,7 +86,7 @@ public class TracerManager : MonoBehaviour {
             Destroy(line);
         }
         lineList.Clear();
-        previousDotLoc = Vector3.back;
+        //previousDotLoc = Vector3.back;
     }
 
     public void SpawnDot()
