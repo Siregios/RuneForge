@@ -6,7 +6,7 @@ using System.Linq;
 
 public class IngredientListUI : MonoBehaviour
 {
-    public GameObject ItemButton;
+    public GameObject ingredientButton;
 
     Button previousPageButton, nextPageButton;
     List<GameObject> pageList = new List<GameObject>();
@@ -14,21 +14,25 @@ public class IngredientListUI : MonoBehaviour
     Tab currentItemsTab = Tab.Products;
 
     int currentPage = 0;
-    int columns = 4;
-    int rows = 10;
-    //float buttonHeight = 30;
-    //float topButtonPos = 150;
+    int rows = 6;
+    int columns = 6;
+    int buttonsPerPage = 36;
+    float buttonWidth = 30, buttonHeight = 30, pad = 10;
+    Vector2 topLeftPos = new Vector2(-100, 100);
 
     void Awake()
     {
-        Debug.Log(ItemCollection.runeList[0].attribute1);
+        Debug.Log(ItemCollection.itemList[0].providedAttributes["Water"]);
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
+        buttonWidth = ingredientButton.GetComponent<RectTransform>().rect.width;
+        buttonHeight = ingredientButton.GetComponent<RectTransform>().rect.height;
+        buttonsPerPage = rows * columns;
     }
 
     void Start()
     {
-        //ClickProductsTab();
+        ClickProductsTab();
     }
 
     void Update()
@@ -80,7 +84,28 @@ public class IngredientListUI : MonoBehaviour
 
     void DisplayPage(int page, List<Item> itemList)
     {
+        ClearPage();
 
+        float xPos = topLeftPos.x;
+        float yPos = topLeftPos.y;
+
+        for (int i = 0; i < buttonsPerPage; i++)
+        {
+            if ((page * buttonsPerPage) + i >= itemList.Count)
+                return;
+
+            if ((i % columns) == 0)
+            {
+                xPos = topLeftPos.x;
+                yPos -= buttonHeight + pad;
+            }
+
+            GameObject newIngredientButton = CreateItemButton(ingredientButton, xPos, yPos);
+            xPos += buttonWidth + pad;
+
+
+            pageList.Add(newIngredientButton);
+        }
     }
 
     //void DisplayMaterialsPage(int page)
@@ -123,12 +148,12 @@ public class IngredientListUI : MonoBehaviour
     //    }
     //}
 
-    GameObject CreateItemButton(GameObject buttonType, float yPos)
+    GameObject CreateItemButton(GameObject buttonType, float xPos, float yPos)
     {
         GameObject newItemButton = Instantiate(buttonType, this.transform.position, Quaternion.identity) as GameObject;
         newItemButton.transform.SetParent(this.transform);
         newItemButton.transform.localScale = Vector3.one;
-        newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
+        newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPos, 0);
 
         return newItemButton;
     }
