@@ -7,6 +7,7 @@ public enum Tab
 {
     Materials,
     Runes,
+    Ingredients,
     Products,
     YourStock,
     ShopStock

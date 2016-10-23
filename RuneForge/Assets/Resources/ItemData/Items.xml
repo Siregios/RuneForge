@@ -8,19 +8,119 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
-      <ProvidedAttributes>Fire:4,Water:0,Air:0,Earth:0</ProvidedAttributes>
-      <Recipe>Chalk:2,Wood:2</Recipe>
-      <RequiredAttributes>Fire:3,Water:0,Air:0,Earth:0</RequiredAttributes>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
-    <!--<Item name="Sword">
-      <Type>Final_Product</Type>
+    <Item name="Water_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Air_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Earth_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Law_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Chaos_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Death_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Nature_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Blood_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Astral_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Soul_Rune">
+      <Type>Rune</Type>
+      <Price>350</Price>
+      <isIngredient>true</isIngredient>
+      <isProduct>true</isProduct>
+      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+    </Item>
+
+    <Item name="Sword">
+      <Type>Final</Type>
       <Price>350</Price>
       <isIngredient>false</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes></ProvidedAttributes>
-      <Recipe>Chalk:2,Wood:2</Recipe>
-      <RequiredAttributes>Fire:3,Water:0,Air:0,Earth:0</RequiredAttributes>
+      <Recipe>Chalk:2, Wood:2</Recipe>
+      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
     <Item name="White_Chalk">
@@ -28,10 +128,10 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:1,Water:1,Air:0,Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:1, Water:1, Air:0, Earth:0</ProvidedAttributes>
       <Recipe></Recipe>
       <RequiredAttributes></RequiredAttributes>
-    </Item>-->
+    </Item>
 
   </ItemList>
 </AllItems>

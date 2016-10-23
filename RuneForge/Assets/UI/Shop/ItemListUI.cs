@@ -90,7 +90,7 @@ public class ItemListUI : MonoBehaviour {
             yPos -= buttonHeight;
 
             string materialID = ItemCollection.materialList[(page * buttonsPerPage) + i].name;
-            newMaterialButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory);
+            newMaterialButton.GetComponent<InventoryButton>().Initialize(ItemCollection.itemDict[materialID], currentInventory, ClickButton);
 
             pageList.Add(newMaterialButton);
         }
@@ -110,10 +110,15 @@ public class ItemListUI : MonoBehaviour {
             yPos -= buttonHeight;
 
             string runeID = ItemCollection.runeList[(page * buttonsPerPage) + i].name;
-            newRuneButton.GetComponent<ItemButton>().Initialize(ItemCollection.itemDict[runeID], currentInventory);
+            newRuneButton.GetComponent<InventoryButton>().Initialize(ItemCollection.itemDict[runeID], currentInventory, ClickButton);
 
             pageList.Add(newRuneButton);
         }
+    }
+
+    void ClickButton(Item item)
+    {
+        Debug.Log(item.name);
     }
 
     GameObject CreateItemButton(GameObject buttonType, float yPos)

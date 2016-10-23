@@ -6,27 +6,30 @@ using System.Linq;
 
 public class IngredientListUI : MonoBehaviour
 {
-    public GameObject ingredientButton;
+    public GameObject inventoryButton;
 
     Button previousPageButton, nextPageButton;
+    RectTransform buttonArea;
     List<GameObject> pageList = new List<GameObject>();
 
     Tab currentItemsTab = Tab.Products;
 
     int currentPage = 0;
-    int rows = 6;
-    int columns = 6;
+    int rows = 5;
+    int columns = 5;
     int buttonsPerPage = 36;
-    float buttonWidth = 30, buttonHeight = 30, pad = 10;
-    Vector2 topLeftPos = new Vector2(-100, 100);
+    float buttonWidth = 30, buttonHeight = 30, padX = 10, padY = 20;
 
     void Awake()
     {
-        Debug.Log(ItemCollection.itemList[0].providedAttributes["Water"]);
+        //Debug.Log(ItemCollection.itemList[0].providedAttributes["Water"]);
         previousPageButton = GameObject.Find("PreviousPageButton").GetComponent<Button>();
         nextPageButton = GameObject.Find("NextPageButton").GetComponent<Button>();
-        buttonWidth = ingredientButton.GetComponent<RectTransform>().rect.width;
-        buttonHeight = ingredientButton.GetComponent<RectTransform>().rect.height;
+        buttonArea = this.transform.FindChild("ButtonArea").GetComponent<RectTransform>();
+        buttonWidth = inventoryButton.GetComponent<RectTransform>().rect.width;
+        buttonHeight = inventoryButton.GetComponent<RectTransform>().rect.height;
+        columns = Mathf.FloorToInt((buttonArea.rect.width + padX) / (buttonWidth + padX));
+        rows = Mathf.FloorToInt((buttonArea.rect.height + padY) / (buttonHeight + padY));
         buttonsPerPage = rows * columns;
     }
 
@@ -37,16 +40,8 @@ public class IngredientListUI : MonoBehaviour
 
     void Update()
     {
-        //previousPageButton.interactable = (currentPage > 0);
-        //switch (currentItemsTab)
-        //{
-        //    case Tab.Materials:
-        //        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < ItemCollection.materialList.Count);
-        //        break;
-        //    case Tab.Runes:
-        //        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < ItemCollection.runeList.Count);
-        //        break;
-        //}
+        previousPageButton.interactable = (currentPage > 0);
+        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < pageList.Count);
     }
 
     public void ClickPreviousPage()
@@ -61,16 +56,9 @@ public class IngredientListUI : MonoBehaviour
         RefreshPage();
     }
 
-    public void ClickMaterialsTab()
+    public void ClickIngredientsTab()
     {
-        currentItemsTab = Tab.Materials;
-        currentPage = 0;
-        RefreshPage();
-    }
-
-    public void ClickRunesTab()
-    {
-        currentItemsTab = Tab.Runes;
+        currentItemsTab = Tab.Ingredients;
         currentPage = 0;
         RefreshPage();
     }
@@ -82,30 +70,32 @@ public class IngredientListUI : MonoBehaviour
         RefreshPage();
     }
 
-    void DisplayPage(int page, List<Item> itemList)
+    void DisplayPage(int page, string filter)
     {
         ClearPage();
 
-        float xPos = topLeftPos.x;
-        float yPos = topLeftPos.y;
+        List<Item> filteredItems = ItemCollection.FilterItem(filter);
 
         for (int i = 0; i < buttonsPerPage; i++)
         {
-            if ((page * buttonsPerPage) + i >= itemList.Count)
+            if ((page * buttonsPerPage) + i >= filteredItems.Count)
                 return;
 
-            if ((i % columns) == 0)
-            {
-                xPos = topLeftPos.x;
-                yPos -= buttonHeight + pad;
-            }
+            string itemID = filteredItems[(page * buttonsPerPage) + i].name;
 
-            GameObject newIngredientButton = CreateItemButton(ingredientButton, xPos, yPos);
-            xPos += buttonWidth + pad;
+            float xPos = (i % columns) * (buttonWidth + padX);
+            float yPos = -(i / rows) * (buttonHeight + padY);
 
+            GameObject newInventoryButton = CreateItemButton(inventoryButton, xPos, yPos);
+            newInventoryButton.GetComponent<InventoryButton>().Initialize(ItemCollection.itemDict[itemID], PlayerInventory.inventory, ClickButton);
 
-            pageList.Add(newIngredientButton);
+            pageList.Add(newInventoryButton);
         }
+    }
+
+    void ClickButton(Item item)
+    {
+        Debug.Log(item.name);
     }
 
     //void DisplayMaterialsPage(int page)
@@ -151,7 +141,7 @@ public class IngredientListUI : MonoBehaviour
     GameObject CreateItemButton(GameObject buttonType, float xPos, float yPos)
     {
         GameObject newItemButton = Instantiate(buttonType, this.transform.position, Quaternion.identity) as GameObject;
-        newItemButton.transform.SetParent(this.transform);
+        newItemButton.transform.SetParent(buttonArea.transform);
         newItemButton.transform.localScale = Vector3.one;
         newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPos, 0);
 
@@ -172,16 +162,11 @@ public class IngredientListUI : MonoBehaviour
     {
         switch (currentItemsTab)
         {
-            case Tab.Materials:
-                //DisplayMaterialsPage(currentPage);
-                DisplayPage(currentPage, ItemCollection.materialList);
-                break;
-            case Tab.Runes:
-                //DisplayRunePage(currentPage);
-                DisplayPage(currentPage, ItemCollection.runeList.Cast<Item>().ToList());
+            case Tab.Ingredients:
+                DisplayPage(currentPage, "ingredient");
                 break;
             case Tab.Products:
-                DisplayPage(currentPage, ItemCollection.productList);
+                DisplayPage(currentPage, "product");
                 break;
         }
     }

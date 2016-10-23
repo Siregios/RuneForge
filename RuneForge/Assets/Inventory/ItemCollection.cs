@@ -74,6 +74,26 @@ public static class ItemCollection{
         //    itemDict.Add(rune.name, rune);
         //}
     }
+
+    //This funciton might be slow when there are lots of items in the game.
+    public static List<Item> FilterItem(string filter)
+    {
+        List<Item> result = new List<Item>();
+
+        string lowerFilter = filter.Trim().ToLower();
+
+        foreach (Item item in itemList)
+        {
+            if (lowerFilter.Contains("ingredient") && item.isIngredient)
+                result.Add(item);
+            else if (lowerFilter.Contains("product") && item.isProduct)
+                result.Add(item);
+            else if (item.name.ToLower().Contains(lowerFilter) || item.type.ToLower().Contains(lowerFilter))
+                result.Add(item);
+        }
+
+        return result;
+    }
 }
 
 [XmlRoot("AllItems")]
