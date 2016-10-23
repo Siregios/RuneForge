@@ -17,7 +17,11 @@ public class InventoryButton : MonoBehaviour {
     void Update()
     {
         if (itemOwner.GetItemCount(item.name) == int.MaxValue)
+        {
+            Debug.Log("IsInfinite");
             this.countText.text = "∞";
+        }
+            
         else
             this.countText.text = "x" + itemOwner.GetItemCount(item.name).ToString();
     }

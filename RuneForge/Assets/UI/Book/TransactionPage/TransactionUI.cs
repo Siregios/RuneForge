@@ -3,20 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TransactionUI : MonoBehaviour {
-    ShopUI shopUI;
+    enum TransactionTab
+    {
+        YourStock,
+        ShopStock
+    }
+    public InventoryListUI invListUI;
 
     Button actionButton;
     Text actionName, actionPrice;
     Image actionIcon;
 
-
-    Tab currentActionTab = Tab.YourStock;
+    TransactionTab currentActionTab = TransactionTab.YourStock;
     Item currentItem;
 
     void Awake()
     {
-        shopUI = GameObject.Find("ShopPanel").GetComponent<ShopUI>();
-
         actionName = this.transform.FindChild("Name").GetComponent<Text>();
         actionIcon = this.transform.FindChild("Icon").GetComponent<Image>();
         actionPrice = this.transform.FindChild("Price").GetComponent<Text>();
@@ -25,15 +27,15 @@ public class TransactionUI : MonoBehaviour {
 
     public void ClickYourStock()
     {
-        currentActionTab = Tab.YourStock;
-        shopUI.itemList.ChangeInventory(PlayerInventory.inventory);
+        currentActionTab = TransactionTab.YourStock;
+        invListUI.ChangeInventory(PlayerInventory.inventory);
         ClearActionPanel();
     }
 
     public void ClickShopStock()
     {
-        currentActionTab = Tab.ShopStock;
-        shopUI.itemList.ChangeInventory(ShopInventory.inventory);
+        currentActionTab = TransactionTab.ShopStock;
+        invListUI.ChangeInventory(ShopInventory.inventory);
         ClearActionPanel();
     }
 
@@ -53,13 +55,13 @@ public class TransactionUI : MonoBehaviour {
         switch (currentActionTab)
         {
             //Selling
-            case Tab.YourStock:
+            case TransactionTab.YourStock:
                 //Edit this for sell-x
                 TradeManager.SellItem(currentItem, 1);
                 break;
 
             //Buying
-            case Tab.ShopStock:
+            case TransactionTab.ShopStock:
                 TradeManager.BuyItem(currentItem, 1);
                 break;
         }

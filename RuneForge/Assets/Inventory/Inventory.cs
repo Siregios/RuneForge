@@ -6,10 +6,7 @@ public class Inventory {
     public Dictionary<string, int> inventoryDict = new Dictionary<string, int>();
 
     public Inventory()
-    {
-        //Money
-        //AddItem("Money", 0);
-        
+    {        
         foreach (Item item in ItemCollection.itemList)
         {
             SetItemCount(item.name, 0);

@@ -125,7 +125,7 @@
 
     <Item name="White_Chalk">
       <Type>Chalk</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:1, Water:1, Air:0, Earth:0</ProvidedAttributes>
