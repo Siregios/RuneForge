@@ -14,7 +14,7 @@ public class RandomSpawnNote : MonoBehaviour {
         Instantiate(spawnObject[0], spawnObject[0].transform.position, Quaternion.identity);
     }
 		
-	void Update () {
+	void Update () {        
         if (beatObserver.beatMask == BeatType.OnBeat)
         {
             randomInt = Random.Range(1, 5);

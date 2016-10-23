@@ -12,7 +12,7 @@ public class NoteTracker : MonoBehaviour {
 	
 	
 	void Update () {
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("center").transform.position, 2 * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("center").transform.position, 3 * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +20,10 @@ public class NoteTracker : MonoBehaviour {
         if (other.gameObject.tag != "Note")
             accuracy++;
         if (accuracy == 3)
+        {
+            Debug.Log("you suck");
             Destroy(gameObject);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
