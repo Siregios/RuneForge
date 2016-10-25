@@ -4,43 +4,31 @@ using System.Collections;
 using System;
 
 public class InventoryButton : MonoBehaviour {
-    Text countText;
-    Item item;
-    Inventory itemOwner;
-    Action<Item> clickFunction;
+    public Text countText;
+    public Item item;
+    public Action<Item> ClickFunction;
 
     void Awake()
     {
         countText = this.transform.FindChild("CountText").GetComponent<Text>();
     }
 
-    void Update()
-    {
-        if (itemOwner.GetItemCount(item.name) == int.MaxValue)
-        {
-            Debug.Log("IsInfinite");
-            this.countText.text = "∞";
-        }
-            
-        else
-            this.countText.text = "x" + itemOwner.GetItemCount(item.name).ToString();
-    }
-
-    public void Initialize(Item item, Inventory owner, Action<Item> clickFunction)
+    public void Initialize(Item item)
     {
         this.item = item;
-        this.itemOwner = owner;
-        this.clickFunction = clickFunction;
         this.GetComponent<Image>().sprite = item.icon;
     }
 
     public void OnClick()
     {
-        this.clickFunction(item);
+        if (ClickFunction != null)
+            ClickFunction(item);
+        else
+            Debug.LogError("No Click Functionality defined for InventoryButton [" + item.name + "]");
     }
 
     public void OnHover()
     {
-        Debug.Log("Ohhh");
+        //Debug.Log("Ohhh");
     }
 }

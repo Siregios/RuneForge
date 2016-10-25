@@ -8,34 +8,56 @@ public class TransactionUI : MonoBehaviour {
         YourStock,
         ShopStock
     }
-    public InventoryListUI invListUI;
+    InventoryListUI invListUI;
 
     Button actionButton;
     Text actionName, actionPrice;
     Image actionIcon;
 
     TransactionTab currentActionTab = TransactionTab.YourStock;
+    Inventory currentInventory;
     Item currentItem;
 
     void Awake()
     {
+        currentInventory = PlayerInventory.inventory;
+
         actionName = this.transform.FindChild("Name").GetComponent<Text>();
         actionIcon = this.transform.FindChild("Icon").GetComponent<Image>();
         actionPrice = this.transform.FindChild("Price").GetComponent<Text>();
         actionButton = this.transform.FindChild("ActionButton").GetComponent<Button>();
+
+        invListUI = this.transform.parent.FindChild("InventoryPanel").GetComponent<InventoryListUI>();
+        invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
+    // Tell inventory buttons spawned by invListUI to act in this manner.
+    void ButtonBehavior(InventoryButton invButton)
+    {
+        invButton.ClickFunction = LoadItem;
+        if (currentInventory.GetItemCount(invButton.item.name) == int.MaxValue)
+            invButton.countText.text = "∞";
+        else
+            invButton.countText.text = "x" + currentInventory.GetItemCount(invButton.item.name).ToString();
+    }
+
+
+    /// <summary>
+    /// everytime I change inventories, I should modify the button setups
+    /// </summary>
     public void ClickYourStock()
     {
         currentActionTab = TransactionTab.YourStock;
-        invListUI.ChangeInventory(PlayerInventory.inventory);
+        currentInventory = PlayerInventory.inventory;
+        invListUI.ModifyAllButtons(ButtonBehavior);
         ClearActionPanel();
     }
 
     public void ClickShopStock()
     {
         currentActionTab = TransactionTab.ShopStock;
-        invListUI.ChangeInventory(ShopInventory.inventory);
+        currentInventory = ShopInventory.inventory;
+        invListUI.ModifyAllButtons(ButtonBehavior);
         ClearActionPanel();
     }
 
@@ -65,6 +87,8 @@ public class TransactionUI : MonoBehaviour {
                 TradeManager.BuyItem(currentItem, 1);
                 break;
         }
+
+        invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
     void ClearActionPanel()

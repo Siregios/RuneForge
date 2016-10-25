@@ -8,15 +8,16 @@ using System;
 public class InventoryListUI : MonoBehaviour
 {
     public GameObject inventoryButton;
-    public GameObject pairedPanel;
-    public Action<Item> inventoryButtonFunction;
+    
+    // The left panel must call ModifyAllButtons to pass in how inventoryButtons this script spawns should behave.
+    Action<InventoryButton> buttonBehavior;
 
     InputField searchInput;
     Button previousPageButton, nextPageButton;
     RectTransform buttonArea;
 
     Dictionary<string, FilterInventoryButton> filterToggles = new Dictionary<string, FilterInventoryButton>();
-    List<GameObject> pageList = new List<GameObject>();
+    List<InventoryButton> buttonList = new List<InventoryButton>();
 
     int currentPage = 0;
     string filterString = "";
@@ -30,13 +31,6 @@ public class InventoryListUI : MonoBehaviour
 
     void Awake()
     {
-        if (pairedPanel.GetComponent<TransactionUI>() != null)
-            inventoryButtonFunction = pairedPanel.GetComponent<TransactionUI>().LoadItem;
-        else if (pairedPanel.GetComponent<RecipeUI>() != null)
-            ;
-        else
-            Debug.LogError("Paired Panel missing appropriate script");
-
         searchInput = this.transform.FindChild("SearchInput").GetComponent<InputField>();
         previousPageButton = this.transform.FindChild("PreviousPageButton").GetComponent<Button>();
         nextPageButton = this.transform.FindChild("NextPageButton").GetComponent<Button>();
@@ -59,7 +53,25 @@ public class InventoryListUI : MonoBehaviour
     void Update()
     {
         previousPageButton.interactable = (currentPage > 0);
-        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < pageList.Count);
+        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < buttonList.Count);
+    }
+
+    // Sets the class variable for how a button should behave and refreshes all currently displayed Inventory Buttons to act with the new behavior.
+    public void ModifyAllButtons(Action<InventoryButton> newBehavior)
+    {
+        this.buttonBehavior = newBehavior;
+        foreach (InventoryButton button in buttonList)
+        {
+            ModifyButton(button);
+        }
+    }
+
+    void ModifyButton(InventoryButton button)
+    {
+        if (buttonBehavior != null)
+            buttonBehavior(button);
+        else
+            Debug.LogError("Cannot ModifyButton - No ButtonBehavior defined");
     }
 
     void DisplayPage(int page, string filter)
@@ -79,9 +91,12 @@ public class InventoryListUI : MonoBehaviour
             float yPos = -(i / rows) * (buttonHeight + padY);
 
             GameObject newInventoryButton = CreateItemButton(inventoryButton, xPos, yPos);
-            newInventoryButton.GetComponent<InventoryButton>().Initialize(ItemCollection.itemDict[itemID], this.currentInventory, inventoryButtonFunction);
+            InventoryButton button = newInventoryButton.GetComponent<InventoryButton>();
 
-            pageList.Add(newInventoryButton);
+            button.Initialize(ItemCollection.itemDict[itemID]);
+            ModifyButton(button);
+
+            buttonList.Add(button);
         }
     }
 
@@ -97,18 +112,12 @@ public class InventoryListUI : MonoBehaviour
 
     void ClearPage()
     {
-        foreach (GameObject button in pageList)
+        foreach (InventoryButton button in buttonList)
         {
-            Destroy(button);
+            Destroy(button.gameObject);
         }
 
-        pageList.Clear();
-    }
-
-    public void ChangeInventory(Inventory newInv)
-    {
-        this.currentInventory = newInv;
-        DisplayNewFilter();
+        buttonList.Clear();
     }
 
     public void ClickPreviousPage()
