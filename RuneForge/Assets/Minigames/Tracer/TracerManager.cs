@@ -52,6 +52,7 @@ public class TracerManager : MonoBehaviour {
         score++;
         if (trailStays)
             DropTrail();
+        currentTrail.GetComponent<TrailRenderer>().time += .01f;
 
         //Vector3 newLoc = dot.transform.position;
         
@@ -82,6 +83,7 @@ public class TracerManager : MonoBehaviour {
     public void DotMissed(GameObject dot)
     {
         score = 0;
+        currentTrail.GetComponent<TrailRenderer>().time = .25f;
         foreach (GameObject line in lineList){
             Destroy(line);
         }
