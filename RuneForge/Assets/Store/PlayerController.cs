@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody2D rigidBody;
 
-    private GameObject door;
+    private Door door;
 
     void Awake()
     {
@@ -26,11 +26,12 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if(door != null)
+            if (door != null)
             {
                 //This is messing up at the moment because the destination door is scaled.
-                Vector2 nextLocation = door.GetComponent<Door>().connected.transform.position;
+                Vector2 nextLocation = door.nextDoor.transform.position;
                 rigidBody.MovePosition(nextLocation);
+                Camera.main.transform.position = new Vector3(door.nextDoor.cameraLocation.x, door.nextDoor.cameraLocation.y, -10);
             }
         }
     }
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.CompareTag("Door"))
-            door = col.gameObject;
+            door = col.GetComponent<Door>();
     }
 
     void OnTriggerExit2D(Collider2D col)

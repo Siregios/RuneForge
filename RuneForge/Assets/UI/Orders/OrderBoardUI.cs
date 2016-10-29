@@ -13,8 +13,8 @@ public class OrderBoardUI : MonoBehaviour {
     void Awake()
     {
         rectTransform = this.GetComponent<RectTransform>();
-        padX = orderNote.GetComponent<RectTransform>().rect.width / 2;
-        padY = orderNote.GetComponent<RectTransform>().rect.height / 2;
+        padX = orderNote.GetComponent<RectTransform>().rect.width / 2 + 10;
+        padY = orderNote.GetComponent<RectTransform>().rect.height / 2 + 10;
     }
 
     public void DisplayBoard()

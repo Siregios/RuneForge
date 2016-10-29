@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Door : MonoBehaviour {
-
-    public GameObject connected;
-
+    public Vector3 cameraLocation;
+    public Door nextDoor;
 }
