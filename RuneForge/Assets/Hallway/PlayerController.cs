@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log(door == null);
             if(door != null)
             {
                 //This is messing up at the moment because the destination door is scaled.

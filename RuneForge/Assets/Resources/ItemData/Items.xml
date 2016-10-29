@@ -14,7 +14,7 @@
     </Item>
     
     <Item name="Fire_Rune">
-      <Type>Rune</Type>
+      <Type>BasicRune</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
@@ -24,7 +24,7 @@
     </Item>
 
     <Item name="Water_Rune">
-      <Type>Rune</Type>
+      <Type>BasicRune</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
@@ -34,7 +34,7 @@
     </Item>
 
     <Item name="Wind_Rune">
-      <Type>Rune</Type>
+      <Type>BasicRune</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
@@ -44,7 +44,7 @@
     </Item>
 
     <Item name="Earth_Rune">
-      <Type>Rune</Type>
+      <Type>BasicRune</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
@@ -64,7 +64,7 @@
     </Item>
 
     <Item name="Magic_Stone">
-      <Type>Rune</Type>
+      <Type>Material</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -74,7 +74,7 @@
     </Item>
 
     <Item name="Obsidian">
-      <Type>Rune</Type>
+      <Type>Material</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -84,7 +84,7 @@
     </Item>
 
     <Item name="Purified_Water">
-      <Type>Rune</Type>
+      <Type>Material</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -94,7 +94,7 @@
     </Item>
 
     <Item name="Salamanders_Scale">
-      <Type>Rune</Type>
+      <Type>Material</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
