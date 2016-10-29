@@ -3,28 +3,35 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public GameObject door;
     public float speed = 1f;
 
+    Rigidbody2D rigidBody;
+
+    private GameObject door;
+
+    void Awake()
+    {
+        rigidBody = this.GetComponent<Rigidbody2D>();
+    }
+
 	void Update () {
+
         if (Input.GetKey(KeyCode.A))
         {
-            //gameObject.transform.position = new Vector3(gameObject.transform.position.x - .1f, gameObject.transform.position.y, gameObject.transform.position.z);
-            //this.transform.Translate(-speed * Time.deltaTime, 0, 0);
-            this.GetComponent<Rigidbody2D>().MovePosition(this.transform.position + new Vector3(-speed * Time.deltaTime, 0, 0));
+            rigidBody.MovePosition(this.transform.position + new Vector3(-speed * Time.deltaTime, rigidBody.velocity.y * Time.deltaTime, 0));
         }
         if (Input.GetKey(KeyCode.D))
         {
-            //gameObject.transform.position = new Vector3(gameObject.transform.position.x + .1f, gameObject.transform.position.y, gameObject.transform.position.z);
-            //this.transform.Translate(speed * Time.deltaTime, 0, 0);
-            this.GetComponent<Rigidbody2D>().MovePosition(this.transform.position + new Vector3(speed * Time.deltaTime, 0, 0));
+            rigidBody.MovePosition(this.transform.position + new Vector3(speed * Time.deltaTime, rigidBody.velocity.y * Time.deltaTime, 0));
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
+            Debug.Log(door == null);
             if(door != null)
             {
-                //gameObject.transform.position = new Vector3(door.GetComponent<Door>().connected.transform.position.x, door.GetComponent<Door>().connected.transform.position.y, door.GetComponent<Door>().connected.transform.position.z);
-                this.transform.position = door.GetComponent<Door>().connected.transform.position;
+                //This is messing up at the moment because the destination door is scaled.
+                Vector2 nextLocation = door.GetComponent<Door>().connected.transform.position;
+                rigidBody.MovePosition(nextLocation);
             }
         }
     }

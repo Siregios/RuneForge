@@ -22,8 +22,6 @@ public class InventoryListUI : MonoBehaviour
     int currentPage = 0;
     string filterString = "";
 
-    Inventory currentInventory;
-
     float buttonWidth = 30, buttonHeight = 30, padX = 10, padY = 20;
     int rows = 5;
     int columns = 5;
@@ -35,8 +33,6 @@ public class InventoryListUI : MonoBehaviour
         previousPageButton = this.transform.FindChild("PreviousPageButton").GetComponent<Button>();
         nextPageButton = this.transform.FindChild("NextPageButton").GetComponent<Button>();
         buttonArea = this.transform.FindChild("ButtonArea").GetComponent<RectTransform>();
-
-        currentInventory = PlayerInventory.inventory;
 
         buttonWidth = inventoryButton.GetComponent<RectTransform>().rect.width;
         buttonHeight = inventoryButton.GetComponent<RectTransform>().rect.height;
