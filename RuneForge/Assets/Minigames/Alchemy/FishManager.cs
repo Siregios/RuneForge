@@ -6,6 +6,7 @@ public class FishManager : MonoBehaviour
 {
     public int score = 0;
     public Text scoreText;
+    public Text timer;
     // Use this for initialization
     void Start()
     {

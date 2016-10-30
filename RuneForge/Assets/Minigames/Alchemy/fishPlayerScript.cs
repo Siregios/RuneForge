@@ -5,6 +5,7 @@ public class fishPlayerScript : MonoBehaviour {
 
     //Controls player speed and takes script of fish manager to accumulate score.
     public float speed = 1;
+    public int damage;
     private Vector2 velocity;    
     Rigidbody2D player;
     GameObject FishManager;
@@ -22,15 +23,25 @@ public class fishPlayerScript : MonoBehaviour {
 	void FixedUpdate () {
 	if (Input.GetKey(KeyCode.Space))
         {
-            player.MovePosition(player.position + velocity * Time.deltaTime);
+            //player.MovePosition(player.position + velocity * Time.deltaTime);
+            player.AddForce(new Vector2(0, 20f));
         }
         else
         {
-            player.MovePosition(player.position - velocity * Time.deltaTime);
+            //player.MovePosition(player.position - velocity * Time.deltaTime);
         }
 	}
 
     //As long as the player is hitting the fish, add score.
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Projectile")
+        {
+            Destroy(other.gameObject);
+            fishScript.score -= damage;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         fishScript.score += 1;
