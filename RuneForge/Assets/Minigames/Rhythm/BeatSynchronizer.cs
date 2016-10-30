@@ -9,15 +9,17 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class BeatSynchronizer : MonoBehaviour {
     public float bpm = 145f;
-    public float startDelay = 1f;
+    public float startDelay;
     public delegate void AudioStartAction(double syncTime);
     public static event AudioStartAction OnAudioStart;
 
 	// Use this for initialization
 	void Start () {
+        GetComponent<AudioSource>().Stop();
         double initTime = AudioSettings.dspTime;
         GetComponent<AudioSource>().PlayScheduled(initTime + startDelay);
         if (OnAudioStart != null)
             OnAudioStart(initTime + startDelay);
+        GetComponent<AudioSource>().PlayDelayed(startDelay);
 	}
 }

@@ -6,11 +6,13 @@ using System.IO;
 using System.Text;
 using UnityEditor;
 
-public class RandomSpawnNote : MonoBehaviour {
+public class RandomSpawnNote : MonoBehaviour
+{
     public GameObject[] spawnObject;
     int randomInt = 1;
     private BeatObserver beatObserver;
     private int beatCounter;
+
 
     //Read with these
     public TextAsset beatTime;
@@ -19,34 +21,38 @@ public class RandomSpawnNote : MonoBehaviour {
     public string songName;
 
     //write with these
-    //private string writer;
-    //private bool written = false;
-    //public List<float> timeList;
+    private string writer;
+    private bool written = false;
+    public List<float> timeList;
 
-    void Start () {
+    void Start()
+    {
         beatObserver = GetComponent<BeatObserver>();
         beatCounter = 0;
-        Instantiate(spawnObject[0], spawnObject[0].transform.position, Quaternion.identity);
-        readTime = new List<float>();
         songName = "monkeyClap";
-        beatTime = (TextAsset) AssetDatabase.LoadAssetAtPath("Assets/Resources/Beatmaps/" + songName + ".txt", typeof (TextAsset)) as TextAsset;
+
+        //reading stuff
+        readTime = new List<float>();
+        beatTime = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resources/Beatmaps/" + songName + ".txt", typeof(TextAsset)) as TextAsset;
         foreach (string f in beatTime.text.Split())
         {
             float num;
             if (float.TryParse(f, out num))
-                readTime.Add(num);                                   
+                readTime.Add(num);
         }
 
         //writing stuff
         //timeList = new List<float>();
 
     }
-		
-	void Update () {
+
+    void Update()
+    {
 
         //ALL WRITING STUFF 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
+        //    Debug.Log(Time.time);
         //    timeList.Add(Time.time);
         //}
 
@@ -56,7 +62,7 @@ public class RandomSpawnNote : MonoBehaviour {
         //        writer += beat.ToString() + " ";
         //    if (!written)
         //    {
-        //        System.IO.File.WriteAllText("C:/Users/petergtruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps" + songName + ".txt", writer + "\n");
+        //        System.IO.File.WriteAllText("C:/Users/petergtruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
         //        written = true;
         //    }
         //}
@@ -79,6 +85,4 @@ public class RandomSpawnNote : MonoBehaviour {
             }
         }
     }
-
-
 }

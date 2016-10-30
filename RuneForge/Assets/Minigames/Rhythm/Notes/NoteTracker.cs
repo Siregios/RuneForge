@@ -11,15 +11,15 @@ public class NoteTracker : MonoBehaviour {
 	}
 	
 	
-	void Update () {
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("center").transform.position, 3 * Time.deltaTime);
+	void Update () {   
+        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("center").transform.position, 3.5f * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag != "Note" && other.gameObject.name != "hitbox")
             accuracy++;
-        if (accuracy == 4)
+        if (accuracy == 3)
         {
             Debug.Log("Miss!");
             Destroy(gameObject);
@@ -28,22 +28,22 @@ public class NoteTracker : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.W) && other.gameObject.name == "w_key")
+        if (Input.GetKeyDown(KeyCode.W) && other.gameObject.name == "w_key" && accuracy != 3)
         {
             Debug.Log(accuracy);
             Destroy(gameObject);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && other.gameObject.name == "s_key")
+        else if (Input.GetKeyDown(KeyCode.S) && other.gameObject.name == "s_key" && accuracy != 3)
         {
             Debug.Log(accuracy);
             Destroy(gameObject);
         }
-        else if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name == "a_key")
+        else if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name == "a_key" && accuracy != 3)
         {
             Debug.Log(accuracy);
             Destroy(gameObject);
         }
-        else if (Input.GetKeyDown(KeyCode.D) && other.gameObject.name == "d_key")
+        else if (Input.GetKeyDown(KeyCode.D) && other.gameObject.name == "d_key" && accuracy != 3)
         {
             Debug.Log(accuracy);
             Destroy(gameObject);
