@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using SynchronizerData;
 using System.IO;
 using System.Text;
-using UnityEditor;
 
 public class RandomSpawnNote : MonoBehaviour
 {
     public GameObject[] spawnObject;
     int randomInt = 1;
-    private BeatObserver beatObserver;
-    private int beatCounter;
+    //private BeatObserver beatObserver;
+    //private int beatCounter;
 
 
     //Read with these
@@ -21,19 +20,21 @@ public class RandomSpawnNote : MonoBehaviour
     public string songName;
 
     //write with these
-    private string writer;
-    private bool written = false;
-    public List<float> timeList;
+    //private string writer;
+    //private bool written = false;
+    //public List<float> timeList;
 
     void Start()
     {
-        beatObserver = GetComponent<BeatObserver>();
-        beatCounter = 0;
+        Screen.SetResolution(Screen.width, Screen.width, false);
+        //beatObserver = GetComponent<BeatObserver>();
+        //beatCounter = 0;
         songName = "monkeyClap";
 
         //reading stuff
         readTime = new List<float>();
-        beatTime = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Resources/Beatmaps/" + songName + ".txt", typeof(TextAsset)) as TextAsset;
+        beatTime = Resources.Load("Beatmaps/" + songName, typeof(TextAsset)) as TextAsset;
+
         foreach (string f in beatTime.text.Split())
         {
             float num;
