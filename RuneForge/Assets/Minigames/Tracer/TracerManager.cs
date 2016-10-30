@@ -9,6 +9,8 @@ public class TracerManager : MonoBehaviour {
     public GameObject lineRenderer = null;
     public GameObject trailRenderer = null;
     public float spawnInterval = 1f;
+    public GameObject map;
+    int count = 0;
 
     [HideInInspector]
     public int score = 0;
@@ -40,7 +42,7 @@ public class TracerManager : MonoBehaviour {
 
         if (cooldown <= 0)
         {
-            SpawnDot();
+            //SpawnDot();
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -77,23 +79,42 @@ public class TracerManager : MonoBehaviour {
         //}
 
         //previousDotLoc = newLoc;
-        SpawnDot();
+        SpawnDot(dot);
     }
 
     public void DotMissed(GameObject dot)
     {
-        score = 0;
+        //score = 0;
         currentTrail.GetComponent<TrailRenderer>().time = .25f;
         foreach (GameObject line in lineList){
             Destroy(line);
         }
         lineList.Clear();
+        SpawnDot(dot);
         //previousDotLoc = Vector3.back;
     }
 
-    public void SpawnDot()
+    public void SpawnDot(GameObject dot)
     {
-        spawner.SpawnObject();
+        //spawner.SpawnObject();
+        if (dot.GetComponent<Mapper>().next != null)
+        {
+            dot.GetComponent<Mapper>().next.SetActive(true);
+        }
+        else {
+            if (count < 5)
+            {
+                int temp = (int)Mathf.Round(Random.value * 4);
+                Debug.Log(temp);
+                Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
+                map = (GameObject)Instantiate(Resources.Load("TraceMaps/Map" + temp));
+                count++;
+            }
+            else
+            {
+                Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
+            }
+        }
         cooldown = spawnInterval;
     }
 
