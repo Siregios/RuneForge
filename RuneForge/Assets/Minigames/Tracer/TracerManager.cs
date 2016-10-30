@@ -16,7 +16,6 @@ public class TracerManager : MonoBehaviour {
     public int score = 0;
 
     GameObject currentTrail = null;
-    float cooldown;
 
     void Awake()
     {
@@ -26,7 +25,6 @@ public class TracerManager : MonoBehaviour {
     void Start()
     {
         CreateNewTrail();
-        cooldown = spawnInterval;
     }
 
     void Update()
@@ -69,7 +67,6 @@ public class TracerManager : MonoBehaviour {
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
             }
         }
-        cooldown = spawnInterval;
     }
 
     void CreateNewTrail()

@@ -8,6 +8,7 @@ public class MasterGameManager : MonoBehaviour
     public static MasterGameManager instance = null;
     public ActionClock actionClock;
     public OrderGenerator orderGenerator;
+    public SceneManagerWrapper sceneManager;
 
     void Awake()
     {
