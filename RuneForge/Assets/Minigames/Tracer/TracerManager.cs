@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TracerManager : MonoBehaviour {
-
-    RandomSpawner spawner;
-
     public GameObject lineRenderer = null;
     public GameObject trailRenderer = null;
+    //Number of maps that exist in Assets/TraceMaps
+    public int traceMapCount = 4;
+    //Number of maps to spawn in one playthrough
+    public int mapsPerPlay = 5;
     public float spawnInterval = 1f;
-    public GameObject map;
-    int count = 0;
+    int count = 1;
 
     [HideInInspector]
     public int score = 0;
@@ -18,15 +18,8 @@ public class TracerManager : MonoBehaviour {
     GameObject currentTrail = null;
     float cooldown;
 
-    List<GameObject> lineList = new List<GameObject>();
-    //Vector3 previousDotLoc = Vector3.back;
-
-    //For testing purposes only
-    public bool trailStays = false;
-
     void Awake()
     {
-        spawner = this.GetComponent<RandomSpawner>();
         Cursor.visible = false;
     }
 
@@ -38,13 +31,6 @@ public class TracerManager : MonoBehaviour {
 
     void Update()
     {
-        cooldown -= Time.deltaTime;
-
-        if (cooldown <= 0)
-        {
-            //SpawnDot();
-        }
-
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currentTrail.transform.position = mousePos;        
     }
@@ -52,62 +38,30 @@ public class TracerManager : MonoBehaviour {
     public void DotTouched(GameObject dot)
     {
         score++;
-        if (trailStays)
-            DropTrail();
-        currentTrail.GetComponent<TrailRenderer>().time += .01f;
-
-        //Vector3 newLoc = dot.transform.position;
         
-        ///Straight lines between 2 points below
-
-        //if (previousDotLoc != Vector3.back)
-        //{
-        //    GameObject newLine = Instantiate(lineRenderer) as GameObject;
-        //    LineRenderer line = newLine.GetComponent<LineRenderer>();
-        //    line.SetPosition(0, previousDotLoc);
-        //    line.SetPosition(1, newLoc);
-        //    line.sortingLayerName = "Background";
-        //    lineList.Add(newLine);
-        //}
-        //else
-        //{
-        //    GameObject newLine = Instantiate(lineRenderer) as GameObject;
-        //    LineRenderer line = newLine.GetComponent<LineRenderer>();
-        //    line.SetPosition(0, newLoc - new Vector3(.1f, .1f, 0));
-        //    line.SetPosition(1, newLoc + new Vector3(.1f, .1f, 0));
-        //    lineList.Add(newLine);
-        //}
-
-        //previousDotLoc = newLoc;
+        currentTrail.GetComponent<TrailRenderer>().time += .01f;
+        
         SpawnDot(dot);
     }
 
     public void DotMissed(GameObject dot)
     {
-        //score = 0;
-        currentTrail.GetComponent<TrailRenderer>().time = .25f;
-        foreach (GameObject line in lineList){
-            Destroy(line);
-        }
-        lineList.Clear();
         SpawnDot(dot);
-        //previousDotLoc = Vector3.back;
     }
 
     public void SpawnDot(GameObject dot)
     {
-        //spawner.SpawnObject();
         if (dot.GetComponent<Mapper>().next != null)
         {
             dot.GetComponent<Mapper>().next.SetActive(true);
         }
         else {
-            if (count < 5)
+            if (count < mapsPerPlay)
             {
-                int temp = (int)Mathf.Round(Random.value * 4);
-                Debug.Log(temp);
+                int randomMapNumber = Random.Range(1, traceMapCount + 1);
+                Debug.LogFormat("Spawning Map{0}", randomMapNumber);
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
-                map = (GameObject)Instantiate(Resources.Load("TraceMaps/Map" + temp));
+                Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
                 count++;
             }
             else
@@ -121,14 +75,5 @@ public class TracerManager : MonoBehaviour {
     void CreateNewTrail()
     {
         currentTrail = (GameObject)Instantiate(trailRenderer);
-    }
-
-    void DropTrail()
-    {
-        TrailRenderer trailRend = currentTrail.GetComponent<TrailRenderer>();
-        trailRend.time = 5;
-        trailRend.material.SetColor("_TintColor", Color.cyan);
-        trailRend.autodestruct = true;
-        CreateNewTrail();
     }
 }
