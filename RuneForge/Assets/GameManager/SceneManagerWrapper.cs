@@ -6,6 +6,8 @@ using System.Collections;
 public class SceneManagerWrapper : MonoBehaviour {
 
     Fader fader;
+    [HideInInspector]
+    public bool loadingScene = false;
 
     void Awake()
     {
@@ -14,22 +16,37 @@ public class SceneManagerWrapper : MonoBehaviour {
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        loadingScene = false;
         GameObject faderGO = GameObject.Find("Fader");
         if (faderGO != null)
+        {
             fader = faderGO.GetComponent<Fader>();
+            FadeToClear();
+            StartCoroutine(DelaySceneStart(fader.fadeTime / 2));
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void LoadScene(string sceneName)
     {
-        //if (fader != null)
-        //{
-        //    FadeToBlack();
-        //    StartCoroutine(DelayedSceneLoad(sceneName, fader.fadeTime));
-        //}
-        //else
-        //{
+        //Prevents loading different scenes while fading.
+        if (loadingScene)
+            return;
+        loadingScene = true;
+
+        if (fader != null)
+        {
+            Time.timeScale = 0;
+            FadeToBlack();
+            StartCoroutine(DelayedSceneLoad(sceneName, fader.fadeTime));
+        }
+        else
+        {
             SceneManager.LoadScene(sceneName);
-        //}
+        }
     }
 
     public void FadeToBlack()
@@ -38,9 +55,21 @@ public class SceneManagerWrapper : MonoBehaviour {
             fader.FadeToBlack();
     }
 
+    public void FadeToClear()
+    {
+        if (fader != null)
+            fader.FadeToClear();
+    }
+
     IEnumerator DelayedSceneLoad(string sceneName, float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
         SceneManager.LoadScene(sceneName);
+    }
+
+    IEnumerator DelaySceneStart(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Time.timeScale = 1;
     }
 }

@@ -30,7 +30,7 @@ public class Fader : MonoBehaviour {
 
         while (black.color.a <= 0.99f)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             black.color = new Color(0, 0, 0, timeElapsed / fadeTime);
             yield return new WaitForEndOfFrame();
         }
@@ -43,7 +43,7 @@ public class Fader : MonoBehaviour {
 
         while (black.color.a >= 0.01f)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             black.color = new Color(0, 0, 0, 1 - (timeElapsed / fadeTime));
             yield return new WaitForEndOfFrame();
         }
