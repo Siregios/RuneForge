@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NoteTracker : MonoBehaviour {
     public int accuracy = 0;
-	
+
 	void Start () {
         if (transform.position == new Vector3(0, 6, 0))
         {            
@@ -17,11 +17,11 @@ public class NoteTracker : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Note")
+        if (other.gameObject.tag != "Note" && other.gameObject.name != "hitbox")
             accuracy++;
-        if (accuracy == 3)
+        if (accuracy == 4)
         {
-            Debug.Log("you suck");
+            Debug.Log("Miss!");
             Destroy(gameObject);
         }
     }
