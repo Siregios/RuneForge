@@ -6,6 +6,10 @@ public class RandomSpawner : MonoBehaviour {
     //public float spawnInterval = 1f;
     public GameObject objectToSpawn;
 
+    //multiple objects to spawn RNG god pls
+    public GameObject[] multipleObjectSpawn;
+    public bool multiple = false;
+
     //spawn bounds
     public bool bounds;
     public Vector3 minBoundPos;
@@ -48,10 +52,14 @@ public class RandomSpawner : MonoBehaviour {
             randomPos = new Vector3(Random.Range(-worldBounds.x + pad, worldBounds.x - pad),
                                     Random.Range(-worldBounds.y + pad, worldBounds.y - pad), 0);
         }
-        GameObject spawnedObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
+        GameObject spawnedObject;
+        if (multiple)
+                spawnedObject = Instantiate(multipleObjectSpawn[Random.Range(0,2)], randomPos, Quaternion.identity) as GameObject;
+        else        
+                spawnedObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
+        
         previousObject = spawnedObject;
-        //cooldown = spawnInterval;
-
         return spawnedObject;
+        //cooldown = spawnInterval;
     }
 }

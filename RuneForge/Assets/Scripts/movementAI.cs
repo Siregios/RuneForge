@@ -74,7 +74,7 @@ public class movementAI : MonoBehaviour
                 if (vertical && horizontal)
                 {
                     randTime = Random.Range(minTime, maxTime);
-                    speed = Random.Range(1, 3);
+                    speed = Random.Range(minSpeed, maxSpeed);
                     options = Random.Range(1, 4);
                     if (options == 1)
                         up = true;
@@ -91,7 +91,7 @@ public class movementAI : MonoBehaviour
                 else if (vertical)
                 {
                     randTime = Random.Range(minTime, maxTime);
-                    speed = Random.Range(1, 3);
+                    speed = Random.Range(minSpeed, maxSpeed);
                     if (Random.Range(1, 101) <= 51)
                     {
                         up = true;

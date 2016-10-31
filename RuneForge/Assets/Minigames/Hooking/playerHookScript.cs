@@ -4,7 +4,8 @@ using System.Collections;
 public class playerHookScript : MonoBehaviour {
     //Gets the transform of the hook
     Transform hookTransform;
-    
+    private Vector3 hookPos;
+
     //Check if the hook has already been released and alternate the hook rotation
     private bool alternate = true;
     private bool hookOut = false;
@@ -13,18 +14,13 @@ public class playerHookScript : MonoBehaviour {
     float rotationZ;
     //float eulerZ;
 
-    //Transform position of the hook
-    private Vector3 hookPos;
-
     //takes the hook gameobject and script to control in this script (visibility, movement)
     GameObject hook;
-    GameObject aiGrab;
     HookMovement hookMovement;
     SpriteRenderer visible;
-    float hookSpeed = 7f;
+    public float hookSpeed = 10f;
 
     //Decrements HookManager
-    GameObject hookManager;
     HookManager decrement;
 
     void Start () {
@@ -33,20 +29,18 @@ public class playerHookScript : MonoBehaviour {
         hook = GameObject.Find("hookMove");
         hookMovement = hook.GetComponent<HookMovement>();
         visible = hook.GetComponent<SpriteRenderer>();
-        hookManager = GameObject.Find("GameManager");
-        decrement = hookManager.GetComponent<HookManager>();
+        decrement = GameObject.Find("GameManager").GetComponent<HookManager>();
 
     }
 
 	void FixedUpdate () {
-        //Checks when it hits a collider
-        if (hookMovement.aiTag || hookMovement.boundTag)
+        //Checks when it hits boundary collider
+        if (hookMovement.boundTag)
         {
             //If the hook returns to original position, change all variables back to false oh god
             if (Vector3.Distance(hook.transform.position, hookPos) < 0.2f)
             {
-                hookOut = false;                
-                
+                hookOut = false;
                 visible.enabled = false;
                 hook.transform.position = hookPos;
                 hook.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -55,7 +49,11 @@ public class playerHookScript : MonoBehaviour {
                 if (hookMovement.aiTag)
                 {
                     hookMovement.aiTag = false;
-                    Destroy(hookMovement.grabbed);
+                    foreach (GameObject obj in hookMovement.grabbed)
+                    {
+                        Destroy(obj);
+                    }
+                    hookMovement.grabbed.Clear();
                     decrement.currentObjects--;
                 }
             }
@@ -64,30 +62,39 @@ public class playerHookScript : MonoBehaviour {
             {
                 hook.GetComponent<Collider2D>().enabled = false;
                 hook.transform.position = Vector3.MoveTowards(hook.transform.position, hookPos, hookSpeed * 2 * Time.deltaTime);
-                if (hookMovement.aiTag)
+                foreach (GameObject obj in hookMovement.grabbed)
                 {
-                    Vector3 aiPos = hookMovement.grabbed.GetComponent<Transform>().transform.position;
-                    hookMovement.grabbed.GetComponent<Transform>().transform.position = Vector3.MoveTowards(aiPos, hook.transform.position, hookSpeed * 3 * Time.deltaTime);
-                    hookMovement.grabbed.GetComponent<BoxCollider2D>().enabled = false;
+                    obj.transform.position = Vector3.MoveTowards(obj.transform.position, hook.transform.position, hookSpeed * 3 * Time.deltaTime);
                 }
-                
+                //if (hookMovement.aiTag)
+                //{
+                //    Vector3 aiPos = hookMovement.grabbed.GetComponent<Transform>().transform.position;
+                //    hookMovement.grabbed.GetComponent<Transform>().transform.position = Vector3.MoveTowards(aiPos, hook.transform.position, hookSpeed * 3 * Time.deltaTime);
+                //    hookMovement.grabbed.GetComponent<BoxCollider2D>().enabled = false;
+                //}
+
             }
         }
 
         //If hook hasn't hit something, make it move that direction
         else if (hookOut)
         {
+            foreach (GameObject obj in hookMovement.grabbed)
+            {
+                obj.transform.position = Vector3.MoveTowards(obj.transform.position, hook.transform.position, hookSpeed * 3 * Time.deltaTime);
+            }
             hook.GetComponent<Rigidbody2D>().velocity = transform.up * hookSpeed;
         }
 
         //If inputted and hook isn't out already, THEN GO MY HOOK THAT I WILL CALL EDDIE WIN
-        else if (Input.GetKeyDown(KeyCode.Space) && hookOut == false)
+        else if (Input.GetKeyDown(KeyCode.Space) && hookOut == false && decrement.remainingHooks > 0)
         {
             hookOut = true;
             visible.enabled = true;
             hook.transform.rotation = this.transform.rotation;
-
+            decrement.remainingHooks--;
         }
+
         //Otherwise keep rotating the controlling thing
         else if (hookOut == false)
         {

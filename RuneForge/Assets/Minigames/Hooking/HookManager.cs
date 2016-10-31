@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HookManager : MonoBehaviour {
@@ -7,7 +8,14 @@ public class HookManager : MonoBehaviour {
     public float spawnInterval = 2f;
     public int maxObjects = 10;
     public int currentObjects = 0;
-    float cooldown;    
+    float cooldown;
+
+    public Text textRemaining;
+    public Text scoreText;
+    public int remainingHooks = 5;
+
+    [HideInInspector]
+    public int score = 0;
 
 
 
@@ -23,7 +31,9 @@ public class HookManager : MonoBehaviour {
 
     void Update()
     {
+        textRemaining.text = "Hooks Remaining: " + remainingHooks.ToString();
         cooldown -= Time.deltaTime;
+        scoreText.text = "Score: " + score.ToString();
 
         if (cooldown <= 0 && currentObjects < maxObjects)
         {
