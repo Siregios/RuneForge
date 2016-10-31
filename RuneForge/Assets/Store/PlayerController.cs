@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour {
         {
             if (door != null)
             {
-                //This is messing up at the moment because the destination door is scaled.
-                Vector2 nextLocation = door.nextDoor.transform.position;
-                rigidBody.MovePosition(nextLocation);
-                Camera.main.transform.position = new Vector3(door.nextDoor.cameraLocation.x, door.nextDoor.cameraLocation.y, -10);
+                //Bring up UI to select different rooms in the house
+                MasterGameManager.instance.sceneManager.LoadScene(door.nextScene);
+                //Vector2 nextLocation = door.nextDoor.transform.position;
+                //rigidBody.MovePosition(nextLocation);
+                //Camera.main.transform.position = new Vector3(door.nextDoor.cameraLocation.x, door.nextDoor.cameraLocation.y, -10);
             }
         }
     }

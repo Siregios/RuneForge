@@ -5,7 +5,7 @@
 
     <Item name="Sphere">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
@@ -55,7 +55,7 @@
 
     <Item name="Harpys_Feather">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
@@ -65,7 +65,7 @@
 
     <Item name="Magic_Stone">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
@@ -75,7 +75,7 @@
 
     <Item name="Obsidian">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
@@ -85,7 +85,7 @@
 
     <Item name="Purified_Water">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
@@ -95,7 +95,7 @@
 
     <Item name="Salamanders_Scale">
       <Type>Material</Type>
-      <Price>350</Price>
+      <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>

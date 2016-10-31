@@ -17,6 +17,12 @@ public class Interactable : MonoBehaviour {
         interactableLayer = 1 << LayerMask.NameToLayer("Interactable");
     }
 
+    void Start()
+    {
+        if (1 << this.gameObject.layer != interactableLayer)
+            Debug.LogWarningFormat("'{0}' not on the Interactable layer", this.gameObject.name);
+    }
+
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
