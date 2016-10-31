@@ -54,7 +54,7 @@ public class RandomSpawner : MonoBehaviour {
         }
         GameObject spawnedObject;
         if (multiple)
-                spawnedObject = Instantiate(multipleObjectSpawn[Random.Range(0,2)], randomPos, Quaternion.identity) as GameObject;
+                spawnedObject = Instantiate(multipleObjectSpawn[Random.Range(0,multipleObjectSpawn.Length)], randomPos, Quaternion.identity) as GameObject;
         else        
                 spawnedObject = Instantiate(objectToSpawn, randomPos, Quaternion.identity) as GameObject;
         

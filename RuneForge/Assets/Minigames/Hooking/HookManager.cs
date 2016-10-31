@@ -7,17 +7,18 @@ public class HookManager : MonoBehaviour {
     RandomSpawner spawner;
     public float spawnInterval = 2f;
     public int maxObjects = 10;
+    [HideInInspector]
     public int currentObjects = 0;
     float cooldown;
 
     public Text textRemaining;
     public Text scoreText;
     public int remainingHooks = 5;
+    [HideInInspector]
+    public bool endGame = false;
 
     [HideInInspector]
     public int score = 0;
-
-
 
     void Awake ()
     {
@@ -40,6 +41,12 @@ public class HookManager : MonoBehaviour {
             SpawnObject();
             currentObjects++;
         }
+
+        if (endGame)
+        {
+            //Will implement result screen later
+            MasterGameManager.instance.sceneManager.LoadScene("Store");
+        }
     }
 
     public void SpawnObject()
@@ -47,5 +54,7 @@ public class HookManager : MonoBehaviour {
         cooldown = spawnInterval;
         spawner.SpawnObject();
     }
+
+
 }
 

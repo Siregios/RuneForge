@@ -41,6 +41,10 @@ public class HookMovement : MonoBehaviour {
             {
                 addScore.score += 5;
             }
+            else if (other.gameObject.name == "mei(Clone)")
+            {
+                addScore.score += -2;
+            }
             aiTag = true;
         }
         
