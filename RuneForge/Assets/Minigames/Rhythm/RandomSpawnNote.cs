@@ -49,7 +49,10 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-
+        if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
+        {
+            MasterGameManager.instance.sceneManager.LoadScene("Store");
+        }
         //ALL WRITING STUFF 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{

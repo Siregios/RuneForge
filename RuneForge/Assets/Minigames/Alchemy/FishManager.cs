@@ -16,6 +16,8 @@ public class FishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.Find("ProjectileSpawner").GetComponent<ProjectileSpawner>().timeRemaining <= 0)
+            MasterGameManager.instance.sceneManager.LoadScene("Store");
         scoreText.text = "Score: " + score.ToString();
     }
 
