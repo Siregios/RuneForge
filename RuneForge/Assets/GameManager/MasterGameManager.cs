@@ -9,6 +9,7 @@ public class MasterGameManager : MonoBehaviour
     public ActionClock actionClock;
     public OrderGenerator orderGenerator;
     public SceneManagerWrapper sceneManager;
+    public InteractionManager interactionManager;
 
     void Awake()
     {
