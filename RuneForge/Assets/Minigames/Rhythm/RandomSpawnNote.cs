@@ -51,7 +51,7 @@ public class RandomSpawnNote : MonoBehaviour
     {
         if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
         {
-            MasterGameManager.instance.sceneManager.LoadScene("Store");
+            MasterGameManager.instance.sceneManager.LoadScene("Workshop");
         }
         //ALL WRITING STUFF 
         //if (Input.GetKeyDown(KeyCode.Space))

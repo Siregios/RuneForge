@@ -65,9 +65,10 @@ public class TracerManager : MonoBehaviour {
             else
             {
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
+                currentTrail.SetActive(false);
                 Cursor.visible = true;
                 //Should show results screen here first.
-                MasterGameManager.instance.sceneManager.LoadScene("Store"); //Should be changed to workshop later.
+                MasterGameManager.instance.sceneManager.LoadScene("Workshop");
             }
         }
     }

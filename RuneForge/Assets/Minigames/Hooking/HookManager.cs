@@ -45,7 +45,7 @@ public class HookManager : MonoBehaviour {
         if (endGame)
         {
             //Will implement result screen later
-            MasterGameManager.instance.sceneManager.LoadScene("Store");
+            MasterGameManager.instance.sceneManager.LoadScene("Workshop");
         }
     }
 
