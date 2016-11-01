@@ -20,6 +20,9 @@ public class HookManager : MonoBehaviour {
     [HideInInspector]
     public int score = 0;
 
+    [HideInInspector]
+    public int neg = 0;
+
     void Awake ()
     {
         spawner = this.GetComponent<RandomSpawner>();
@@ -51,8 +54,21 @@ public class HookManager : MonoBehaviour {
 
     public void SpawnObject()
     {
-        cooldown = spawnInterval;
-        spawner.SpawnObject();
+        cooldown = spawnInterval;   
+        //This makes less mei's spawn.    
+        if (spawner.SpawnObject().name == "mei(Clone)")
+        {
+            if (neg >= 3)
+            {
+                neg--;
+                Destroy(spawner.multipleObjectSpawn[spawner.multipleObjectSpawn.Length - 1]);
+            }
+            else
+            {
+                neg++;
+            }
+
+        }
     }
 
 

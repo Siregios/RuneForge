@@ -70,9 +70,9 @@ public class playerHookScript : MonoBehaviour {
                     foreach (GameObject obj in hookMovement.grabbed)
                     {
                         Destroy(obj);
+                        decrement.currentObjects--;
                     }
                     hookMovement.grabbed.Clear();
-                    decrement.currentObjects--;
                 }
             }
             //Otherwise keep making the hook move man
