@@ -7,9 +7,5 @@ public static class PlayerInventory {
     static PlayerInventory()
     {
         inventory.SetItemCount("Money", 250);
-
-        //Testing
-        inventory.SetItemCount("Sphere", 2);
-        inventory.SetItemCount("Salamanders_Scale", 2);
     }
 }

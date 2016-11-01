@@ -29,7 +29,7 @@
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
-      <Recipe>Chalk:2, Wood:2</Recipe>
+      <Recipe>Sphere:2, Purified_Water:2</Recipe>
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
@@ -39,7 +39,7 @@
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
-      <Recipe>Chalk:2, Wood:2</Recipe>
+      <Recipe>Sphere:2, Harpys_Feather:2</Recipe>
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
@@ -49,7 +49,7 @@
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
-      <Recipe>Chalk:2, Wood:2</Recipe>
+      <Recipe>Sphere:2, Obsidian:2</Recipe>
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
