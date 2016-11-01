@@ -28,6 +28,9 @@ public class SceneManagerWrapper : MonoBehaviour {
         {
             Time.timeScale = 1;
         }
+
+        //Don't know if we should keep this here, but it'll work for now. Allow interactions after loading scene.
+        MasterGameManager.instance.interactionManager.canInteract = true;
     }
 
     public void LoadScene(string sceneName)
