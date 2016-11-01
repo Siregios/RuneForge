@@ -5,6 +5,11 @@ using System.Collections.Generic;
 public class TracerManager : MonoBehaviour {
     public GameObject lineRenderer = null;
     public GameObject trailRenderer = null;
+
+    public AudioClip dotHit;
+    public AudioClip mapLoad;
+    AudioSource audio;
+
     //Number of maps that exist in Assets/TraceMaps
     public int traceMapCount = 4;
     //Number of maps to spawn in one playthrough
@@ -24,6 +29,7 @@ public class TracerManager : MonoBehaviour {
 
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         CreateNewTrail();
     }
 
@@ -35,6 +41,8 @@ public class TracerManager : MonoBehaviour {
 
     public void DotTouched(GameObject dot)
     {
+        audio.PlayOneShot(dotHit, 1);
+
         score++;
         
         currentTrail.GetComponent<TrailRenderer>().time += .01f;
@@ -59,6 +67,7 @@ public class TracerManager : MonoBehaviour {
                 int randomMapNumber = Random.Range(1, traceMapCount + 1);
                 Debug.LogFormat("Spawning Map{0}", randomMapNumber);
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
+                audio.PlayOneShot(mapLoad, 1);
                 Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
                 count++;
             }
