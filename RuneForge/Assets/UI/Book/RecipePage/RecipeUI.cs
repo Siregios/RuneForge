@@ -28,6 +28,10 @@ public class RecipeUI : MonoBehaviour {
         productIcon = this.transform.FindChild("ProductIcon").GetComponent<Image>();
         recipeText = this.transform.FindChild("Recipe").GetComponent<Text>();
         recipeArea = this.transform.FindChild("RecipeArea").gameObject;
+    }
+
+    void Start()
+    {
         ImportProductMode();
     }
     
@@ -47,6 +51,9 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportProductMode()
     {
+        invListUI.ModifyAllButtons(ProductButtonBehavior);
+        invListUI.DisplayNewFilter("product");
+
         productItem = null;
         productName.text = "";
         productIcon.color = Color.clear;
@@ -57,8 +64,6 @@ public class RecipeUI : MonoBehaviour {
         }
         addedIngredients = new Dictionary<string, int>();
 
-        invListUI.ModifyAllButtons(ProductButtonBehavior);
-        invListUI.DisplayNewFilter("product");
         cancelButton.gameObject.SetActive(false);
     }
 

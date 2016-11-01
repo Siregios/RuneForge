@@ -17,7 +17,7 @@ public class Interactable : MonoBehaviour {
             Debug.LogWarningFormat("'{0}' not on the Interactable layer", this.gameObject.name);
     }
 
-    public void SetInteract(bool active)
+    public void SetGlobalInteract(bool active)
     {
         MasterGameManager.instance.interactionManager.canInteract = active;
     }

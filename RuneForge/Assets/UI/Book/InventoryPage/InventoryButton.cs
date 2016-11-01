@@ -10,7 +10,10 @@ public class InventoryButton : MonoBehaviour {
     public Inventory currentInventory;
     public int ItemCount
     {
-        get { return currentInventory.GetItemCount(this.item.name); }
+        get
+        {
+            return (this.item != null) ? currentInventory.GetItemCount(this.item.name): 0;
+        }
     }
 
     void Awake()
