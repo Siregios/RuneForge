@@ -5,16 +5,19 @@ using System.Collections;
 public class IngredientButton : MonoBehaviour {
     public Item item;
 
+    RecipeUI recipeUI;
+
     public void Initialize(Item item)
     {
+        recipeUI = this.transform.parent.parent.parent.GetComponent<RecipeUI>();
         this.item = item;
         this.GetComponent<Image>().sprite = item.icon;
     }
 
-    public void OnClick()
+    public void RemoveButton()
     {
         PlayerInventory.inventory.AddItem(this.item.name);
-
-        //Destroy(this.gameObject);   //Probably tell the recipe panel to kill me so it can also clean its list.
+        recipeUI.RemoveIngredient(item);
+        Destroy(this.gameObject);
     }
 }

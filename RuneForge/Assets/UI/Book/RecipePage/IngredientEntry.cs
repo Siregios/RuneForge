@@ -23,6 +23,8 @@ public class IngredientEntry : MonoBehaviour {
     public void ClearButton()
     {
         if (loadedButton != null)
-            Destroy(loadedButton.gameObject);
+        {
+            loadedButton.RemoveButton();
+        }
     }
 }

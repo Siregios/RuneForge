@@ -8,6 +8,10 @@ public class InventoryButton : MonoBehaviour {
     public Item item;
     public Action<Item> ClickFunction;
     public Inventory currentInventory;
+    public int ItemCount
+    {
+        get { return currentInventory.GetItemCount(this.item.name); }
+    }
 
     void Awake()
     {
@@ -17,10 +21,10 @@ public class InventoryButton : MonoBehaviour {
 
     void Update()
     {
-        if (currentInventory.GetItemCount(this.item.name) == int.MaxValue)
+        if (ItemCount == int.MaxValue)
             this.countText.text = "∞";
         else
-            this.countText.text = "x" + currentInventory.GetItemCount(this.item.name).ToString();
+            this.countText.text = "x" + ItemCount.ToString();
     }
 
     public void Initialize(Item item)
@@ -34,7 +38,7 @@ public class InventoryButton : MonoBehaviour {
         if (ClickFunction != null)
             ClickFunction(item);
         else
-            Debug.LogError("No Click Functionality defined for InventoryButton [" + item.name + "]");
+            Debug.LogErrorFormat("No Click Functionality defined for InventoryButton [{0}]", item.name);
     }
 
     public void OnHover()

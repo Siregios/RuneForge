@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class RecipeUI : MonoBehaviour {
     Item productItem;
 
-    public Button cancelButton;
+    public Button cancelButton, pinSelectButton, pinRandomButton;
     InventoryListUI invListUI;
     Text productName;
     Image productIcon;
@@ -18,6 +18,7 @@ public class RecipeUI : MonoBehaviour {
     //Peter & Efren: Same
     //Edwin: FUCK
     public List<IngredientEntry> ingredientEntryList;
+    Dictionary<string, int> addedIngredients;
 
     void Awake()
     {
@@ -29,9 +30,24 @@ public class RecipeUI : MonoBehaviour {
         recipeArea = this.transform.FindChild("RecipeArea").gameObject;
         ImportProductMode();
     }
+    
+    void Update()
+    {
+        if (isRecipeMet())
+        {
+            pinSelectButton.interactable = true;
+            pinRandomButton.interactable = true;
+        }
+        else
+        {
+            pinSelectButton.interactable = false;
+            pinRandomButton.interactable = false;
+        }
+    }
 
     public void ImportProductMode()
     {
+        productItem = null;
         productName.text = "";
         productIcon.color = Color.clear;
         recipeText.text = "";
@@ -39,6 +55,7 @@ public class RecipeUI : MonoBehaviour {
         {
             entry.ClearButton();
         }
+        addedIngredients = new Dictionary<string, int>();
 
         invListUI.ModifyAllButtons(ProductButtonBehavior);
         invListUI.DisplayNewFilter("product");
@@ -75,8 +92,12 @@ public class RecipeUI : MonoBehaviour {
 
     void AddIngredient(Item item)
     {
-        if (productItem.recipe.ContainsKey(item.name))
+        if (PlayerInventory.inventory.GetItemCount(item.name) > 0 &&
+            productItem.recipe.ContainsKey(item.name) && 
+            addedIngredients[item.name] < productItem.recipe[item.name])
         {
+            PlayerInventory.inventory.SubtractItem(item.name);
+            addedIngredients[item.name]++;
             foreach (IngredientEntry entry in ingredientEntryList)
             {
                 if (entry.loadedButton == null)
@@ -88,12 +109,31 @@ public class RecipeUI : MonoBehaviour {
         }
     }
 
+    bool isRecipeMet()
+    {
+        if (productItem == null)
+            return false;
+        foreach (string ingredient in productItem.recipe.Keys)
+        {
+            if (addedIngredients[ingredient] < productItem.recipe[ingredient])
+                return false;
+        }
+
+        return true;
+    }
+
+    public void RemoveIngredient(Item item)
+    {
+        addedIngredients[item.name]--;
+    }
+
     string ParseRecipe(Dictionary<string, int> recipe)
     {
         string result = "";
         foreach (var kvp in recipe)
         {
             result += string.Format("{0} x{1}\n", kvp.Key, kvp.Value);
+            addedIngredients.Add(kvp.Key, 0);
         }
 
         result.Trim();
