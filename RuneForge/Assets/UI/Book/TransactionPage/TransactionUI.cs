@@ -35,10 +35,7 @@ public class TransactionUI : MonoBehaviour {
     void ButtonBehavior(InventoryButton invButton)
     {
         invButton.ClickFunction = LoadItem;
-        if (currentInventory.GetItemCount(invButton.item.name) == int.MaxValue)
-            invButton.countText.text = "∞";
-        else
-            invButton.countText.text = "x" + currentInventory.GetItemCount(invButton.item.name).ToString();
+        invButton.currentInventory = currentInventory;
     }
 
 

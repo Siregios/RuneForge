@@ -43,7 +43,7 @@ public class InventoryListUI : MonoBehaviour
 
     void Start()
     {
-        DisplayNewFilter();
+        DisplayNewFilter(filterString);
     }
 
     void Update()
@@ -67,7 +67,7 @@ public class InventoryListUI : MonoBehaviour
         if (buttonBehavior != null)
             buttonBehavior(button);
         else
-            Debug.LogError("Cannot ModifyButton - No ButtonBehavior defined");
+            Debug.LogWarning("InventoryListUI cannot modify inventory buttons - No ButtonBehavior has been defined by the left page");
     }
 
     void DisplayPage(int page, string filter)
@@ -149,19 +149,19 @@ public class InventoryListUI : MonoBehaviour
             this.filterString = "ALL";
         }
 
+        DisplayNewFilter(this.filterString);
         searchInput.text = this.filterString;
-
-        DisplayNewFilter();
     }
 
     public void OnSearchSubmit()
     {
-        this.filterString = searchInput.text;
-        DisplayNewFilter();
+        //this.filterString = searchInput.text;
+        DisplayNewFilter(searchInput.text);
     }
 
-    void DisplayNewFilter()
+    public void DisplayNewFilter(string filter)
     {
+        this.filterString = filter;
         currentPage = 0;
         DisplayPage(currentPage, filterString);
     }

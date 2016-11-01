@@ -19,7 +19,7 @@
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
-      <Recipe>Chalk:2, Wood:2</Recipe>
+      <Recipe>Sphere:2, Salamanders_Scale:2</Recipe>
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
