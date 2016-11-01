@@ -101,7 +101,7 @@ public class RandomSpawnNote : MonoBehaviour
                 {
                     if (readTime[counter + 1] - readTime[counter] < 1f)
                     {
-                        if (Random.Range(1, 5) == 1)                        
+                        if (Random.Range(1, 3) == 1)                        
                             spawnRandomDouble();                        
                         else                        
                             spawnRandomNote();                        
