@@ -12,14 +12,23 @@ public class BeatSynchronizer : MonoBehaviour {
     public float startDelay;
     public delegate void AudioStartAction(double syncTime);
     public static event AudioStartAction OnAudioStart;
+    bool audioPlaying = false;
 
 	// Use this for initialization
 	void Start () {
         GetComponent<AudioSource>().Stop();
-        double initTime = AudioSettings.dspTime;
-        GetComponent<AudioSource>().PlayScheduled(initTime + startDelay);
-        if (OnAudioStart != null)
-            OnAudioStart(initTime + startDelay);
-        GetComponent<AudioSource>().PlayDelayed(startDelay);
-	}
+        //if (OnAudioStart != null)
+        //    OnAudioStart(initTime + startDelay);
+        //GetComponent<AudioSource>().PlayDelayed(startDelay);
+    }
+
+    void Update()
+    {
+        if (GameObject.Find("RandomSpawn").GetComponent<RandomSpawnNote>().songStart && !audioPlaying)
+        {
+            double initTime = AudioSettings.dspTime;
+            GetComponent<AudioSource>().PlayScheduled(initTime + startDelay);
+            audioPlaying = true;
+        }
+    }
 }

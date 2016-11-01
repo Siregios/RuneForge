@@ -105,7 +105,7 @@ public class playerHookScript : MonoBehaviour {
         }
 
         //If inputted and hook isn't out already, THEN GO MY HOOK THAT I WILL CALL EDDIE WIN
-        else if (((Input.GetKeyDown(KeyCode.Space) && hookOut == false) || timerDec <= 0) && decrement.remainingHooks > 0)
+        else if (((Input.GetKeyDown(KeyCode.Space) && hookOut == false) || timerDec <= .90f) && decrement.remainingHooks > 0)
         {
             hookOut = true;
             visible.enabled = true;

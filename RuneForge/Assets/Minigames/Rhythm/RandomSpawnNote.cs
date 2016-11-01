@@ -18,7 +18,8 @@ public class RandomSpawnNote : MonoBehaviour
     private int counter = 0;
     private List<float> readTime;
     public string songName;
-
+    private float startTime;
+    public bool songStart = false;
     //write with these
     //private string writer;
     //private bool written = false;
@@ -27,6 +28,7 @@ public class RandomSpawnNote : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(Screen.width, Screen.width, false);
+        startTime = Time.time;
         //beatObserver = GetComponent<BeatObserver>();
         //beatCounter = 0;
         songName = "monkeyClap";
@@ -49,7 +51,7 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-        if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
+        if (counter >= readTime.Count && !GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
         {
             MasterGameManager.instance.sceneManager.LoadScene("Workshop");
         }
@@ -74,7 +76,9 @@ public class RandomSpawnNote : MonoBehaviour
 
         if (counter < readTime.Count)
         {
-            if (Time.time > readTime[counter])
+            if (counter == 1)
+                songStart = true;
+            if (Time.time > readTime[counter] + startTime)
             {
                 randomInt = Random.Range(1, 5);
                 if (randomInt == 1)
