@@ -16,6 +16,7 @@ public class RandomSpawnNote : MonoBehaviour
 
 
     //Read with these
+    [HideInInspector]
     public TextAsset beatTime;
     private int counter = 0;
     private List<float> readTime;
@@ -92,21 +93,55 @@ public class RandomSpawnNote : MonoBehaviour
 
         if (counter < readTime.Count)
         {
-            if (counter == 1)
+            if (counter >= 1)
                 songStart = true;
             if (Time.time > readTime[counter] + startTime)
             {
-                randomInt = Random.Range(1, 5);
-                if (randomInt == 1)
-                    keyNotes.Add(Instantiate(spawnObject[0], spawnObject[0].transform.position, Quaternion.identity));
-                else if (randomInt == 2)
-                    keyNotes.Add(Instantiate(spawnObject[1], spawnObject[1].transform.position, Quaternion.identity));
-                else if (randomInt == 3)
-                    keyNotes.Add(Instantiate(spawnObject[2], spawnObject[2].transform.position, Quaternion.identity));
-                else if (randomInt == 4)
-                    keyNotes.Add(Instantiate(spawnObject[3], spawnObject[3].transform.position, Quaternion.identity));
-                counter++;
+                if (counter + 1 < readTime.Count)
+                {
+                    if (readTime[counter + 1] - readTime[counter] < 1f)
+                    {
+                        if (Random.Range(1, 5) == 1)                        
+                            spawnRandomDouble();                        
+                        else                        
+                            spawnRandomNote();                        
+                    }
+                    else                   
+                        spawnRandomNote();                   
+                }
+                else
+                {
+                    counter++;  
+                }
             }
         }
+    }
+
+    void spawnRandomNote()
+    {
+        randomInt = Random.Range(1, 5);
+        if (randomInt == 1)
+            keyNotes.Add(Instantiate(spawnObject[0], spawnObject[0].transform.position, Quaternion.identity));
+        else if (randomInt == 2)
+            keyNotes.Add(Instantiate(spawnObject[1], spawnObject[1].transform.position, Quaternion.identity));
+        else if (randomInt == 3)
+            keyNotes.Add(Instantiate(spawnObject[2], spawnObject[2].transform.position, Quaternion.identity));
+        else if (randomInt == 4)
+            keyNotes.Add(Instantiate(spawnObject[3], spawnObject[3].transform.position, Quaternion.identity));
+        counter++;
+    }
+
+    void spawnRandomDouble()
+    {
+        randomInt = Random.Range(1, 5);
+        if (randomInt == 1)
+            keyNotes.Add(Instantiate(spawnObject[4], spawnObject[4].transform.position, Quaternion.identity));
+        else if (randomInt == 2)
+            keyNotes.Add(Instantiate(spawnObject[5], spawnObject[5].transform.position, Quaternion.identity));
+        else if (randomInt == 3)
+            keyNotes.Add(Instantiate(spawnObject[6], spawnObject[6].transform.position, Quaternion.identity));
+        else if (randomInt == 4)
+            keyNotes.Add(Instantiate(spawnObject[7], spawnObject[7].transform.position, Quaternion.identity));
+        counter += 2;
     }
 }

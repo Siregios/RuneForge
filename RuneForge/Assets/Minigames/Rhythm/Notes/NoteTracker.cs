@@ -7,6 +7,7 @@ public class NoteTracker : MonoBehaviour {
     public RandomSpawnNote scriptNote;
     public GameObject center;
     public bool canDie = false;
+    bool trigW, trigS, trigA, trigD = false;
 
 	void Start () {
         scriptNote = GameObject.Find("RandomSpawn").GetComponent<RandomSpawnNote>();
@@ -19,15 +20,42 @@ public class NoteTracker : MonoBehaviour {
         {
             canDie = true;
         }
+        if (Input.GetKeyDown(KeyCode.W) && trigW)
+        {
+            checkAccuracy();
+            Destroy(gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.S) && trigS)
+        {
+            checkAccuracy();
+            Destroy(gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.A) && trigA)
+        {
+            checkAccuracy();
+            Destroy(gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.D) && trigD)
+        {
+            checkAccuracy();
+            Destroy(gameObject);
+        }
         transform.position = Vector3.MoveTowards(transform.position, center.transform.position, speed * Time.deltaTime);
+        
     }            
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            OnTriggerStay2D(other);
-        }
+        if (other.gameObject.name == "hitbox")
+            if (other.transform.parent.name == "w_key" && canDie)
+                trigW = true;
+            if (other.transform.parent.name == "s_key" && canDie)
+                trigS = true;
+            if (other.transform.parent.name == "a_key" && canDie)
+                trigA = true;
+            if (other.transform.parent.name == "d_key" && canDie)
+                trigD = true;
+
         if (other.gameObject.name != "hitbox")
             accuracy++;
 
@@ -40,36 +68,12 @@ public class NoteTracker : MonoBehaviour {
         }        
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (Input.GetKeyDown(KeyCode.W) && other.gameObject.name == "hitbox" && accuracy != 4 && other.transform.parent.name == "w_key" && canDie)
-        {
-            checkAccuracy();
-            Destroy(gameObject);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && other.gameObject.name == "hitbox" && accuracy != 4 && other.transform.parent.name == "s_key" && canDie)
-        {
-            checkAccuracy();
-            Destroy(gameObject);
-        }
-        else if (Input.GetKeyDown(KeyCode.A) && other.gameObject.name == "hitbox" && accuracy != 4 && other.transform.parent.name == "a_key" && canDie)
-        {
-            checkAccuracy();
-            Destroy(gameObject);
-        }
-        else if (Input.GetKey(KeyCode.D) && other.gameObject.name == "hitbox" && accuracy != 4 && other.transform.parent.name == "d_key" && canDie)
-        {
-            checkAccuracy();
-            Destroy(gameObject);
-        }
-    }
-
     void OnTriggerExit2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            OnTriggerStay2D(other);
-        }
+        trigW = false;
+        trigS = false;
+        trigA = false;
+        trigD = false;
     }
 
     void checkAccuracy()
