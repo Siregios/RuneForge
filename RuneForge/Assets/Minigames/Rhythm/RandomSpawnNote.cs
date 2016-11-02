@@ -66,7 +66,7 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Score: " + score.ToString();
         track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
         if (counter >= readTime.Count && !GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
         {
