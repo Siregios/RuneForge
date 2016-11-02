@@ -18,7 +18,7 @@ public class RecipeUI : MonoBehaviour {
     //Peter & Efren: Same
     //Edwin: FUCK
     public List<IngredientEntry> ingredientEntryList;
-    Dictionary<string, int> addedIngredients;
+    Dictionary<string, int> addedIngredients = new Dictionary<string, int>();
 
     void Awake()
     {
@@ -39,7 +39,7 @@ public class RecipeUI : MonoBehaviour {
     
     void Update()
     {
-        if (isRecipeMet())
+        if (isRecipeMet() && !MasterGameManager.instance.workboard.IsFull())
         {
             pinSelectButton.interactable = true;
             pinRandomButton.interactable = true;
@@ -60,11 +60,7 @@ public class RecipeUI : MonoBehaviour {
         productName.text = "";
         productIcon.color = Color.clear;
         recipeText.text = "";
-        foreach(IngredientEntry entry in ingredientEntryList)
-        {
-            entry.ClearButton();
-        }
-        addedIngredients = new Dictionary<string, int>();
+        RemoveAllIngredients(true);
 
         cancelButton.gameObject.SetActive(false);
     }
@@ -76,14 +72,39 @@ public class RecipeUI : MonoBehaviour {
         cancelButton.gameObject.SetActive(true);
     }
 
-    void ProductButtonBehavior(InventoryButton invButton)
+    bool isRecipeMet()
     {
-        invButton.ClickFunction = AddProduct;
+        if (productItem == null)
+            return false;
+        foreach (string ingredient in productItem.recipe.Keys)
+        {
+            if (addedIngredients[ingredient] < productItem.recipe[ingredient])
+                return false;
+        }
+
+        return true;
     }
 
-    void IngredientButtonBehavior(InventoryButton invButton)
+    public void CreateWorkOrder(bool isRandom)
     {
-        invButton.ClickFunction = AddIngredient;
+        MasterGameManager.instance.workboard.CreateWorkOrder(productItem, isRandom);
+        RemoveAllIngredients(false);
+
+        ImportProductMode();
+    }
+
+    string ParseRecipe(Dictionary<string, int> recipe)
+    {
+        string result = "";
+        foreach (var kvp in recipe)
+        {
+            result += string.Format("{0} x{1}\n", kvp.Key, kvp.Value);
+            addedIngredients.Add(kvp.Key, 0);
+        }
+
+        result.Trim();
+
+        return result;
     }
 
     void AddProduct(Item item)
@@ -100,7 +121,7 @@ public class RecipeUI : MonoBehaviour {
     void AddIngredient(Item item)
     {
         if (PlayerInventory.inventory.GetItemCount(item.name) > 0 &&
-            productItem.recipe.ContainsKey(item.name) && 
+            productItem.recipe.ContainsKey(item.name) &&
             addedIngredients[item.name] < productItem.recipe[item.name])
         {
             PlayerInventory.inventory.SubtractItem(item.name);
@@ -116,35 +137,36 @@ public class RecipeUI : MonoBehaviour {
         }
     }
 
-    bool isRecipeMet()
+    public void RemoveIngredient(IngredientEntry entry, bool restockInventory)
     {
-        if (productItem == null)
-            return false;
-        foreach (string ingredient in productItem.recipe.Keys)
-        {
-            if (addedIngredients[ingredient] < productItem.recipe[ingredient])
-                return false;
-        }
+        if (entry.loadedButton == null)
+            return;
 
-        return true;
-    }
+        Item item = entry.loadedButton.item;
 
-    public void RemoveIngredient(Item item)
-    {
         addedIngredients[item.name]--;
+        if (restockInventory)
+            PlayerInventory.inventory.AddItem(item.name);
+        Destroy(entry.loadedButton.gameObject);
+        entry.loadedButton = null;
     }
 
-    string ParseRecipe(Dictionary<string, int> recipe)
+    void RemoveAllIngredients(bool restockInventory)
     {
-        string result = "";
-        foreach (var kvp in recipe)
+        foreach (IngredientEntry entry in ingredientEntryList)
         {
-            result += string.Format("{0} x{1}\n", kvp.Key, kvp.Value);
-            addedIngredients.Add(kvp.Key, 0);
+            RemoveIngredient(entry, restockInventory);
         }
+        addedIngredients.Clear();
+    }
 
-        result.Trim();
+    void ProductButtonBehavior(InventoryButton invButton)
+    {
+        invButton.ClickFunction = AddProduct;
+    }
 
-        return result;
+    void IngredientButtonBehavior(InventoryButton invButton)
+    {
+        invButton.ClickFunction = AddIngredient;
     }
 }

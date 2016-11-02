@@ -10,6 +10,7 @@ public class MasterGameManager : MonoBehaviour
     public OrderGenerator orderGenerator;
     public SceneManagerWrapper sceneManager;
     public InteractionManager interactionManager;
+    public WorkboardManager workboard;
 
     void Awake()
     {

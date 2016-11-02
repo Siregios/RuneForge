@@ -27,6 +27,9 @@ public class Item
     [XmlElement("Recipe")]
     public string recipeString;
 
+    [XmlElement("MinigamesRequired")]
+    public int minigamesRequired;
+
     [XmlElement("RequiredAttributes")]
     public string reqAttrStr;
 
@@ -57,6 +60,7 @@ public class Item
         this.isProduct = copyItem.isProduct;
         this.providedAttributes = copyItem.providedAttributes;
         this.recipe = copyItem.recipe;
+        this.minigamesRequired = copyItem.minigamesRequired;
         this.requiredAttributes = copyItem.requiredAttributes;
         this.icon = copyItem.icon;
     }

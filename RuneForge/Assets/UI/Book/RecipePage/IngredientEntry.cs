@@ -20,11 +20,11 @@ public class IngredientEntry : MonoBehaviour {
         this.loadedButton = newIngredientButton;
     }
 
-    public void ClearButton()
-    {
-        if (loadedButton != null)
-        {
-            loadedButton.RemoveButton();
-        }
-    }
+    //public void ClearButton(bool restockInventory)
+    //{
+    //    if (loadedButton != null)
+    //    {
+    //        loadedButton.RemoveButton(restockInventory);
+    //    }
+    //}
 }

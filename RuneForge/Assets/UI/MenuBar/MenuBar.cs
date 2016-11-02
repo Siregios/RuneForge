@@ -9,14 +9,14 @@ public class MenuBar : MonoBehaviour {
 
     void Awake()
     {
-        moneyText = this.transform.FindChild("MoneyText").GetComponent<Text>();
+        moneyText = this.transform.FindChild("MoneyPanel/MoneyText").GetComponent<Text>();
         dayText = this.transform.FindChild("DayText").GetComponent<Text>();
         actionText = this.transform.FindChild("ActionText").GetComponent<Text>();
     }
 
     void Update()
     {
-        moneyText.text = "Money: " + PlayerInventory.inventory.GetItemCount("Money").ToString();
+        moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
         dayText.text = "Day: " + MasterGameManager.instance.actionClock.Day;
 
         actionText.text = string.Format("Actions: {0}/{1}", MasterGameManager.instance.actionClock.ActionCount, MasterGameManager.instance.actionClock.ActionsPerDay);

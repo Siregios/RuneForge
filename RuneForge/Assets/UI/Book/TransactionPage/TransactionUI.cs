@@ -24,7 +24,8 @@ public class TransactionUI : MonoBehaviour {
 
         actionName = this.transform.Find("Name").GetComponent<Text>();
         actionIcon = this.transform.Find("IconPanel/Icon").GetComponent<Image>();
-        actionPrice = this.transform.Find("Price").GetComponent<Text>();
+        actionPrice = this.transform.Find("PricePanel/Price").GetComponent<Text>();
+        actionPrice.transform.parent.gameObject.SetActive(false);
         actionButton = this.transform.Find("ActionButton").GetComponent<Button>();
 
         invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<InventoryListUI>();
@@ -47,7 +48,7 @@ public class TransactionUI : MonoBehaviour {
         currentActionTab = TransactionTab.YourStock;
         currentInventory = PlayerInventory.inventory;
         invListUI.ModifyAllButtons(ButtonBehavior);
-        ClearActionPanel();
+        //ClearActionPanel();
     }
 
     public void ClickShopStock()
@@ -55,7 +56,7 @@ public class TransactionUI : MonoBehaviour {
         currentActionTab = TransactionTab.ShopStock;
         currentInventory = ShopInventory.inventory;
         invListUI.ModifyAllButtons(ButtonBehavior);
-        ClearActionPanel();
+        //ClearActionPanel();
     }
 
     public void LoadItem(Item item)
@@ -65,6 +66,7 @@ public class TransactionUI : MonoBehaviour {
         actionName.text = currentItem.name;
         actionIcon.sprite = currentItem.icon;
         actionIcon.color = Color.white;
+        actionPrice.transform.parent.gameObject.SetActive(true);
         actionPrice.text = ItemCollection.itemDict[currentItem.name].price.ToString();
         actionButton.interactable = true;
     }
@@ -93,6 +95,7 @@ public class TransactionUI : MonoBehaviour {
         actionName.text = "";
         actionIcon.color = Color.clear;
         actionPrice.text = "";
+        actionPrice.transform.parent.gameObject.SetActive(false);
         actionButton.interactable = false;
     }
 }
