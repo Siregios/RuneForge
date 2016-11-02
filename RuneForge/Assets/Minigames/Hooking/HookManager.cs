@@ -23,6 +23,7 @@ public class HookManager : MonoBehaviour {
     [HideInInspector]
     public int neg = 0;
 
+
     void Awake ()
     {
         spawner = this.GetComponent<RandomSpawner>();
@@ -31,6 +32,7 @@ public class HookManager : MonoBehaviour {
     void Start ()
     {
         cooldown = spawnInterval;
+
     }
 
     void Update()

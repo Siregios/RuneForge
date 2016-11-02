@@ -13,14 +13,17 @@ public class HookMovement : MonoBehaviour {
     [HideInInspector]
     public SpriteRenderer visible;
 
+    private AudioManager AudioManager;
+
     //    GameObject hook;
     //  playerHookScript player;
     void Start () {
         addScore = GameObject.Find("GameManager").GetComponent<HookManager>();
         visible.enabled = false;
         Physics2D.IgnoreLayerCollision(8, 2);
-    //    hook = GameObject.Find("hook");
-    //  player = hook.GetComponent<playerHookScript>();
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //    hook = GameObject.Find("hook");
+        //  player = hook.GetComponent<playerHookScript>();
     }
 	    
 	void Update () {        
@@ -36,14 +39,17 @@ public class HookMovement : MonoBehaviour {
             if (other.gameObject.name == "mercy(Clone)")
             {
                 addScore.score += 1;
+                AudioManager.PlaySound(2);
             }
             else if (other.gameObject.name == "lucio(Clone)")
             {
                 addScore.score += 5;
+                AudioManager.PlaySound(3);
             }
             else if (other.gameObject.name == "mei(Clone)")
             {
                 addScore.score += -2;
+                AudioManager.PlaySound(1);
             }
             aiTag = true;
         }

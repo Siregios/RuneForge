@@ -27,6 +27,8 @@ public class playerHookScript : MonoBehaviour {
     private float timerDec;
     public Text timerText;
 
+    private AudioManager AudioManager;
+
     void Start () {
 	    hookTransform = GetComponent<Transform>();
         hookPos = this.transform.position;
@@ -35,6 +37,7 @@ public class playerHookScript : MonoBehaviour {
         visible = hook.GetComponent<SpriteRenderer>();
         decrement = GameObject.Find("GameManager").GetComponent<HookManager>();
         timerDec = timer;
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
     }
 
@@ -108,6 +111,7 @@ public class playerHookScript : MonoBehaviour {
         else if (((Input.GetKeyDown(KeyCode.Space) && hookOut == false) || timerDec <= .90f) && decrement.remainingHooks > 0)
         {
             hookOut = true;
+            AudioManager.PlaySound(0);
             visible.enabled = true;
             hook.transform.rotation = this.transform.rotation;
             decrement.remainingHooks--;
