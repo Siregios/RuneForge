@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public bool bounds;
     public Vector3 minCameraPos;
     public Vector3 maxCameraPos;
+    //Defaults to 0.5f for center
+    public float characterLocX;
 
     // Update is called once per frame
 
@@ -19,7 +21,7 @@ public class CameraController : MonoBehaviour
         if (target)
         {
             Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
-            Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+            Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(characterLocX, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
             Vector3 destination = transform.position + delta;
             destination.y = -0.25f;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
