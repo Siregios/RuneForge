@@ -33,7 +33,7 @@ public class InventoryButton : MonoBehaviour {
     public void Initialize(Item item)
     {
         this.item = item;
-        this.GetComponent<Image>().sprite = item.icon;
+        this.transform.FindChild("Icon").GetComponent<Image>().sprite = item.icon;
     }
 
     public void OnClick()

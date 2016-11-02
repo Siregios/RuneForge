@@ -150,7 +150,7 @@ public class InventoryListUI : MonoBehaviour
         }
 
         DisplayNewFilter(this.filterString);
-        searchInput.text = this.filterString;
+        
     }
 
     public void OnSearchSubmit()
@@ -164,5 +164,6 @@ public class InventoryListUI : MonoBehaviour
         this.filterString = filter;
         currentPage = 0;
         DisplayPage(currentPage, filterString);
+        searchInput.text = this.filterString;
     }
 }

@@ -22,12 +22,14 @@ public class RecipeUI : MonoBehaviour {
 
     void Awake()
     {
-        invListUI = this.transform.parent.FindChild("InventoryPanel").GetComponent<InventoryListUI>();
+        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<InventoryListUI>();
 
-        productName = this.transform.FindChild("ProductName").GetComponent<Text>();
-        productIcon = this.transform.FindChild("ProductIcon").GetComponent<Image>();
-        recipeText = this.transform.FindChild("Recipe").GetComponent<Text>();
-        recipeArea = this.transform.FindChild("RecipeArea").gameObject;
+        productName = this.transform.Find("ProductName").GetComponent<Text>();
+        productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
+        recipeText = this.transform.Find("Recipe").GetComponent<Text>();
+        recipeArea = this.transform.Find("RecipeArea").gameObject;
+
+        invListUI.ModifyAllButtons(ProductButtonBehavior);
     }
 
     void Start()

@@ -22,12 +22,12 @@ public class TransactionUI : MonoBehaviour {
     {
         currentInventory = PlayerInventory.inventory;
 
-        actionName = this.transform.FindChild("Name").GetComponent<Text>();
-        actionIcon = this.transform.FindChild("Icon").GetComponent<Image>();
-        actionPrice = this.transform.FindChild("Price").GetComponent<Text>();
-        actionButton = this.transform.FindChild("ActionButton").GetComponent<Button>();
+        actionName = this.transform.Find("Name").GetComponent<Text>();
+        actionIcon = this.transform.Find("IconPanel/Icon").GetComponent<Image>();
+        actionPrice = this.transform.Find("Price").GetComponent<Text>();
+        actionButton = this.transform.Find("ActionButton").GetComponent<Button>();
 
-        invListUI = this.transform.parent.FindChild("InventoryPanel").GetComponent<InventoryListUI>();
+        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<InventoryListUI>();
         invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
