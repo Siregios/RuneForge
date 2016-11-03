@@ -11,7 +11,6 @@ public class RecipeUI : MonoBehaviour {
     Text productName;
     Image productIcon;
     Text recipeText;
-    GameObject recipeArea;
 
     //Refactor this later?
     //Roldan: Yes
@@ -27,7 +26,6 @@ public class RecipeUI : MonoBehaviour {
         productName = this.transform.Find("ProductName").GetComponent<Text>();
         productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
         recipeText = this.transform.Find("Recipe").GetComponent<Text>();
-        recipeArea = this.transform.Find("RecipeArea").gameObject;
 
         invListUI.ModifyAllButtons(ProductButtonBehavior);
     }

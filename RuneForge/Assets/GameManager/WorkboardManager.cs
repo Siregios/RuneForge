@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class WorkboardManager : MonoBehaviour {
     public int maxWorkOrders = 5;
-    List<WorkOrder> workorderList = new List<WorkOrder>();
+    public List<WorkOrder> workorderList = new List<WorkOrder>();
 
     public void CreateWorkOrder(Item item, bool isRandom)
     {
@@ -12,15 +12,19 @@ public class WorkboardManager : MonoBehaviour {
         {
             workorderList.Add(new WorkOrder(item, workorderList.Count + 1, isRandom));
         }
-
-        foreach (WorkOrder order in workorderList)
-        {
-            Debug.LogFormat("{0}) {1}: Stage {2}/{3} | Score: {4} | Random: {5}", order.orderNumber, order.item.name, order.currentStage, order.requiredStages, order.score, order.isRandom);
-        }
     }
 
     public bool IsFull()
     {
         return workorderList.Count >= maxWorkOrders;
+    }
+
+    public void CompleteOrder(WorkOrder order)
+    {
+        workorderList.RemoveAt(order.orderNumber - 1);
+        for (int i = 0; i < workorderList.Count; i++)
+        {
+            workorderList[i].orderNumber = i + 1;
+        }
     }
 }
