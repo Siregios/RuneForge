@@ -77,7 +77,7 @@ public class TracerManager : MonoBehaviour {
                 currentTrail.SetActive(false);
                 Cursor.visible = true;
                 //Should show results screen here first.
-                MasterGameManager.instance.sceneManager.LoadScene("Workshop");
+                GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
             }
         }
     }

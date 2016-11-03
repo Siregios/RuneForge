@@ -17,7 +17,7 @@ public class FishManager : MonoBehaviour
     void Update()
     {
         if (GameObject.Find("ProjectileSpawner").GetComponent<ProjectileSpawner>().timeRemaining <= 0.95f)
-            MasterGameManager.instance.sceneManager.LoadScene("Workshop");
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         scoreText.text = "Score: " + score.ToString();
     }
 

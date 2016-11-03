@@ -91,8 +91,8 @@ MonoBehaviour:
   center: {fileID: 0}
   canDie: 0
   doubleSprite:
-  - {fileID: 21300002, guid: 1a98a8254405b894381401ddb6290bfb, type: 3}
   - {fileID: 21300006, guid: 1a98a8254405b894381401ddb6290bfb, type: 3}
+  - {fileID: 21300002, guid: 1a98a8254405b894381401ddb6290bfb, type: 3}
 --- !u!212 &212000012171344542
 SpriteRenderer:
   m_ObjectHideFlags: 1

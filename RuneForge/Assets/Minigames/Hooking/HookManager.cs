@@ -50,7 +50,8 @@ public class HookManager : MonoBehaviour {
         if (endGame)
         {
             //Will implement result screen later
-            MasterGameManager.instance.sceneManager.LoadScene("Workshop");
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
+            //MasterGameManager.instance.sceneManager.LoadScene("Workshop");
         }
     }
 
@@ -65,7 +66,6 @@ public class HookManager : MonoBehaviour {
             {                
                 Destroy(instantiatedObj);
                 currentObjects--;
-                Debug.Log("MEI HAS BEEN DELETERERD");
             }
             else
             {

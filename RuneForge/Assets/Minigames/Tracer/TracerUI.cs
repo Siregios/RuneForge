@@ -10,11 +10,11 @@ public class TracerUI : MonoBehaviour {
     void Awake()
     {
         GM = GameObject.Find("GameManager").GetComponent<TracerManager>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        scoreText = GameObject.Find("Score").GetComponent<Text>();
     }
 
     void Update()
     {
-        scoreText.text = "x" + GM.score;
+        scoreText.text = "Score: " + GM.score;
     }
 }

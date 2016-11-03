@@ -70,7 +70,7 @@ public class RandomSpawnNote : MonoBehaviour
         track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
         if (counter >= readTime.Count && !GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
         {
-            MasterGameManager.instance.sceneManager.LoadScene("Workshop");
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
         //ALL WRITING STUFF 
         //if (Input.GetKeyDown(KeyCode.Space))

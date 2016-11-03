@@ -90,7 +90,9 @@ MonoBehaviour:
   scriptNote: {fileID: 0}
   center: {fileID: 0}
   canDie: 0
-  doubleSprite: []
+  doubleSprite:
+  - {fileID: 21300006, guid: 1a98a8254405b894381401ddb6290bfb, type: 3}
+  - {fileID: 21300002, guid: 1a98a8254405b894381401ddb6290bfb, type: 3}
 --- !u!212 &212000012925168212
 SpriteRenderer:
   m_ObjectHideFlags: 1
