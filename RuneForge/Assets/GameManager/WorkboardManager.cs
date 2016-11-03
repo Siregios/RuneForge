@@ -6,6 +6,13 @@ public class WorkboardManager : MonoBehaviour {
     public int maxWorkOrders = 5;
     public List<WorkOrder> workorderList = new List<WorkOrder>();
 
+    void Awake()
+    {
+        //For testing
+        CreateWorkOrder(ItemCollection.itemDict["Fire_Rune"], false);
+        CreateWorkOrder(ItemCollection.itemDict["Water_Rune"], true);
+    }
+
     public void CreateWorkOrder(Item item, bool isRandom)
     {
         if (!IsFull())

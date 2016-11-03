@@ -5,14 +5,18 @@ using System.Collections.Generic;
 
 public class WorkboardUI : MonoBehaviour {
     public GameObject workOrderButton;
-    public float startY = +100;
+    public float startY = 100;
     List<WorkOrderButton> buttonList = new List<WorkOrderButton>();
 
-    public void DisplayBoard(bool interactableButtons)
+    void OnEnable()
     {
-        this.transform.parent.gameObject.SetActive(true);
+        DisplayBoard();
+    }
 
-        buttonList.Clear();
+    public void DisplayBoard()
+    {
+        ClearButtonList();
+
         float yPos = startY;
         foreach (WorkOrder order in MasterGameManager.instance.workboard.workorderList)
         {
@@ -23,18 +27,18 @@ public class WorkboardUI : MonoBehaviour {
 
             WorkOrderButton newOrderButton = newOrderObject.GetComponent<WorkOrderButton>();
             newOrderButton.Initialize(order);
-            buttonList.Add(newOrderButton);
             yPos -= 50;
-        }
 
-        SetButtonsInteractable(interactableButtons);
+            buttonList.Add(newOrderButton);
+        }
     }
 
-    public void SetButtonsInteractable(bool interactable)
+    void ClearButtonList()
     {
-        foreach (WorkOrderButton orderButton in buttonList)
+        foreach (WorkOrderButton button in buttonList)
         {
-            orderButton.GetComponent<Button>().interactable = interactable;
+            Destroy(button.gameObject);
         }
+        buttonList.Clear();
     }
 }

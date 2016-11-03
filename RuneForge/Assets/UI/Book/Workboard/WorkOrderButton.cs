@@ -3,6 +3,16 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class WorkOrderButton : MonoBehaviour {
+    public enum UIType
+    {
+        Workboard,
+        Minigame
+    }
+    public UIType uiType;
+    WorkOrderPageUI workOrderPanel;
+    MinigamePageUI minigamePanel;
+
+    WorkOrder order;
     Text orderNumber;
     Image orderIcon;
     GameObject stagePanel, scorePanel;
@@ -17,11 +27,32 @@ public class WorkOrderButton : MonoBehaviour {
 
     public void Initialize(WorkOrder order)
     {
+        this.order = order;
         this.orderNumber.text = order.orderNumber.ToString();
         this.orderIcon.sprite = order.item.icon;
         if (order.isRandom)
         {
             this.GetComponent<Image>().color = Color.yellow;
         }
+
+        switch (uiType)
+        {
+            case UIType.Workboard:
+                workOrderPanel = this.transform.root.Find("Book - Workboard/WorkOrderPanel").GetComponent<WorkOrderPageUI>();
+                break;
+            case UIType.Minigame:
+                minigamePanel = this.transform.root.Find("Book - Minigame/MinigamePanel").GetComponent<MinigamePageUI>();
+                break;
+        }
+    }
+
+    public void WorkOrderClick()
+    {
+        workOrderPanel.LoadOrder(this.order);
+    }
+
+    public void MinigameClick()
+    {
+
     }
 }

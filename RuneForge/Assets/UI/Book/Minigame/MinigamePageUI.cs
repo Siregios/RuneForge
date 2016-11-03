@@ -19,16 +19,9 @@ public class MinigamePageUI : MonoBehaviour {
 
     void SetMinigame(string minigame)
     {
-        this.gameObject.SetActive(true);
         this.minigame = minigame;
         Sprite thumbnail = Resources.Load<Sprite>(string.Format("MinigameThumbnails/{0}Thumbnail", minigame));
         minigameThumbnail.sprite = thumbnail;
-    }
-
-    public void ClearPage()
-    {
-        this.minigame = null;
-        this.gameObject.SetActive(false);
     }
 
     public void PlayMinigame()
