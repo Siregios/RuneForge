@@ -79,6 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b07ae42c1cb1664c90903bf6047509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigameList:
+  - Tracer
+  - Alchemy
+  - Hook
+  - Rhythm
   actionClock: {fileID: 114000010917058700}
   orderGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
@@ -95,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf797eb95a5a8d541b085b53bd121954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxWorkOrders: 5
 --- !u!114 &114000013663129980
 MonoBehaviour:
   m_ObjectHideFlags: 1

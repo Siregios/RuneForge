@@ -539,6 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15250b046bf6a044aa3f828a02dbe910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 
 --- !u!114 &114000013315394626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -586,6 +587,7 @@ MonoBehaviour:
   workOrderButton: {fileID: 1000012994315844, guid: 79c7bfc6573c9314bb4f4cbb151c425c,
     type: 2}
   startY: 100
+  buttonList: []
 --- !u!222 &222000011328122776
 CanvasRenderer:
   m_ObjectHideFlags: 1

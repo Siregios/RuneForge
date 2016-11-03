@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class WorkboardUI : MonoBehaviour {
     public GameObject workOrderButton;
     public float startY = 100;
-    List<WorkOrderButton> buttonList = new List<WorkOrderButton>();
+    public List<WorkOrderButton> buttonList = new List<WorkOrderButton>();
 
     void OnEnable()
     {

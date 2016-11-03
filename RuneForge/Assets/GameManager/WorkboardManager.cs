@@ -5,11 +5,12 @@ using System.Collections.Generic;
 public class WorkboardManager : MonoBehaviour {
     public int maxWorkOrders = 5;
     public List<WorkOrder> workorderList = new List<WorkOrder>();
+    public List<WorkOrder> currentWorkOrders = new List<WorkOrder>();   // The Work Orders that are loaded into the current minigame.
 
     void Awake()
     {
         //For testing
-        CreateWorkOrder(ItemCollection.itemDict["Fire_Rune"], false);
+        CreateWorkOrder(ItemCollection.itemDict["Fire_Rune"], true);
         CreateWorkOrder(ItemCollection.itemDict["Water_Rune"], true);
     }
 
@@ -32,6 +33,21 @@ public class WorkboardManager : MonoBehaviour {
         for (int i = 0; i < workorderList.Count; i++)
         {
             workorderList[i].orderNumber = i + 1;
+        }
+    }
+
+    public void WorkOnOrder(WorkOrder order)
+    {
+        if (currentWorkOrders.Contains(order))
+        {
+            Debug.LogWarningFormat("Order #{0}) {1} already exists in currentWorkOrders", order.orderNumber, order.item.name);
+            return;
+        }
+        currentWorkOrders.Add(order);
+
+        foreach (WorkOrder boo in currentWorkOrders)
+        {
+            Debug.LogFormat("Order #{0}) {1} being worked on.", boo.orderNumber, boo.item.name);
         }
     }
 }

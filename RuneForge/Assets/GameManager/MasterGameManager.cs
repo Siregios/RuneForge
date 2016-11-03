@@ -6,6 +6,9 @@ public class MasterGameManager : MonoBehaviour
 {
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static MasterGameManager instance = null;
+
+    public List<string> minigameList = new List<string>();
+
     public ActionClock actionClock;
     public OrderGenerator orderGenerator;
     public SceneManagerWrapper sceneManager;

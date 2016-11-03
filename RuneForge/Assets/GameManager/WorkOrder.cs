@@ -14,7 +14,7 @@ public class WorkOrder {
     public int currentStage;
     public int score;
     public bool isRandom = false;
-    public List<string> minigameList = new List<string>();
+    public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
     public WorkOrder(Item item, int orderNumber, bool isRandom)
     {
@@ -24,6 +24,8 @@ public class WorkOrder {
         this.currentStage = 0;
         this.score = 0;
         this.isRandom = isRandom;
+        if (isRandom)
+            SetRandomMinigames();
     }
 
     public void UpdateOrder(string minigame, int score)
@@ -31,13 +33,49 @@ public class WorkOrder {
         this.score += score;
 
         if (!isRandom)
-            this.minigameList.Add(minigame);
+            this.minigameList.Add(new KeyValuePair<string, int>(minigame, score));
         else
+        {
             Debug.LogWarningFormat("Not adding minigame - {0} - to Work Order #{1}) {2} because it is randomized", minigame, orderNumber, item.name);
+            this.minigameList[currentStage] = new KeyValuePair<string, int>(minigame, score);
+        }
 
         this.currentStage++;
 
         if (currentStage == requiredStages)
+        {
             Debug.LogFormat("Work Order #{0}) {1} has been completed! Score: {2}", orderNumber, item.name, this.score);
+            MasterGameManager.instance.workboard.CompleteOrder(this);
+        }
+    }
+
+    public bool MinigameAt(string minigame, int index)
+    {
+        return minigameList[index].Key == minigame;
+    }
+
+    public bool MinigameListContains(string minigame)
+    {
+        for (int i = 0; i < minigameList.Count; i++)
+        {
+            if (MinigameAt(minigame, i))
+                return true;
+        }
+
+        return false;
+    }
+
+    void SetRandomMinigames()
+    {
+        List<string> tempMinigameList = new List<string>();
+        foreach (string minigame in MasterGameManager.instance.minigameList)
+            tempMinigameList.Add(minigame);
+
+        for (int i = 0; i < requiredStages; i++)
+        {
+            int randomIndex = Random.Range(0, tempMinigameList.Count);
+            minigameList.Add(new KeyValuePair < string, int >(tempMinigameList[randomIndex], int.MinValue));
+            tempMinigameList.RemoveAt(randomIndex);
+        }
     }
 }

@@ -42,9 +42,22 @@ public class WorkOrderButton : MonoBehaviour {
                 break;
             case UIType.Minigame:
                 minigamePanel = this.transform.root.Find("Book - Minigame/MinigamePanel").GetComponent<MinigamePageUI>();
+
+                string minigame = minigamePanel.minigame;
+                if (!this.order.isRandom && this.order.MinigameListContains(minigame))
+                {
+                    this.GetComponent<Button>().interactable = false;
+                }
+                else if (this.order.isRandom && !this.order.MinigameAt(minigame, this.order.currentStage))
+                {
+                    this.GetComponent<Button>().interactable = false;
+                }
+
                 break;
         }
     }
+
+    
 
     public void WorkOrderClick()
     {
@@ -53,6 +66,7 @@ public class WorkOrderButton : MonoBehaviour {
 
     public void MinigameClick()
     {
-
+        MasterGameManager.instance.workboard.WorkOnOrder(this.order);
+        this.GetComponent<Button>().interactable = false;
     }
 }
