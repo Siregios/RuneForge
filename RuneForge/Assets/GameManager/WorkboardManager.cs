@@ -9,9 +9,9 @@ public class WorkboardManager : MonoBehaviour {
 
     void Awake()
     {
-        //For testing
-        CreateWorkOrder(ItemCollection.itemDict["Fire_Rune"], true);
-        CreateWorkOrder(ItemCollection.itemDict["Water_Rune"], true);
+        ////For testing
+        //CreateWorkOrder(ItemCollection.itemDict["Fire_Rune"], true);
+        //CreateWorkOrder(ItemCollection.itemDict["Water_Rune"], true);
     }
 
     public void CreateWorkOrder(Item item, bool isRandom)
@@ -29,6 +29,7 @@ public class WorkboardManager : MonoBehaviour {
 
     public void CompleteOrder(WorkOrder order)
     {
+        PlayerInventory.inventory.AddItem(order.item.name);
         workorderList.RemoveAt(order.orderNumber - 1);
         for (int i = 0; i < workorderList.Count; i++)
         {

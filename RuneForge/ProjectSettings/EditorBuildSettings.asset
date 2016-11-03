@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Store/Store.unity
   - enabled: 1
     path: Assets/Store/Workshop/Workshop.unity
-  - enabled: 0
-    path: Assets/Minigames/Tracer/TracerScene.unity
+  - enabled: 1
+    path: Assets/Minigames/Tracer/Tracer.unity
   - enabled: 1
     path: Assets/Minigames/Alchemy/Alchemy.unity
   - enabled: 1

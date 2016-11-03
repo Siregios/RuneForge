@@ -8,6 +8,7 @@ public class SceneManagerWrapper : MonoBehaviour {
     Fader fader;
     [HideInInspector]
     public bool loadingScene = false;
+    public string currentScene;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class SceneManagerWrapper : MonoBehaviour {
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         loadingScene = false;
+        currentScene = scene.name;
         GameObject faderGO = GameObject.Find("Fader");
         if (faderGO != null)
         {

@@ -8,11 +8,20 @@ public class ResultScreen : MonoBehaviour {
     float time = 1.5f;
     float transition = 3f;
 
-	void Start () {
+    void Start() {
         fade = GetComponent<CanvasGroup>();
         Time.timeScale = 0;
         StartCoroutine("FadeIn");
-        transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final " + GameObject.Find("Score").GetComponent<Text>().text;
+        string scoreText = GameObject.Find("Score").GetComponent<Text>().text;
+        transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final " + scoreText;
+
+        int score;
+        int.TryParse(scoreText.Split(' ')[1], out score);
+        foreach (WorkOrder order in MasterGameManager.instance.workboard.currentWorkOrders)
+        {
+            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, score);
+        }
+
         StartCoroutine("Workshop");
     }
 

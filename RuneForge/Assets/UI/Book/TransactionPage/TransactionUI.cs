@@ -14,13 +14,13 @@ public class TransactionUI : MonoBehaviour {
     Text actionName, actionPrice;
     Image actionIcon;
 
-    TransactionTab currentActionTab = TransactionTab.YourStock;
+    TransactionTab currentActionTab = TransactionTab.ShopStock;
     Inventory currentInventory;
     Item currentItem;
 
     void Awake()
     {
-        currentInventory = PlayerInventory.inventory;
+        currentInventory = ShopInventory.inventory;
 
         actionName = this.transform.Find("Name").GetComponent<Text>();
         actionIcon = this.transform.Find("IconPanel/Icon").GetComponent<Image>();
