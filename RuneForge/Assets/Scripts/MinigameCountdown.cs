@@ -20,9 +20,10 @@ public class MinigameCountdown : MonoBehaviour {
     IEnumerator Countdown(int seconds)
     {
         int count = seconds;
-        GetComponent<AudioSource>().Play();   
         while (count > -1)
         {
+            if (count == 3)
+                GetComponent<AudioSource>().Play();
             if (count == 0)
                 GetComponent<Text>().text = "Go!";
             else
