@@ -12,7 +12,7 @@ public class NoteTracker : MonoBehaviour {
     //ALL FOR DOUBLE NOTES
     public Sprite[] doubleSprite;
     float startSlerp;
-    float timerDouble = 0.05f;
+    float timerDouble = 0.1f;
     SpriteRenderer noteSprite;
 
 
@@ -34,12 +34,12 @@ public class NoteTracker : MonoBehaviour {
         //Checks for double note
         if (switchOver)
         {
-            if (ws && noteSprite.sprite == doubleSprite[0])
+            if (ws && noteSprite.sprite == doubleSprite[1])
             {
                 GameObject aKey = GameObject.Find("a_key");
                 doubleNoteEvent(aKey, KeyCode.A);
             }
-            else if (ws && noteSprite.sprite == doubleSprite[1])
+            else if (ws && noteSprite.sprite == doubleSprite[0])
             {
                 GameObject aKey = GameObject.Find("d_key");
                 doubleNoteEvent(aKey, KeyCode.D);
@@ -161,24 +161,30 @@ public class NoteTracker : MonoBehaviour {
     bool DoubleSpawn()
     {
         if (gameObject.name == "w_double(Clone)" || gameObject.name == "s_double(Clone)")
-        {                          
-            switchOver = true;
+        {
             ws = true;
-        }
-        else if (gameObject.name == "a_double(Clone)" || gameObject.name == "d_double(Clone)")
-        {
-            switchOver = true;
-            ad = true;
-        }
-        if (switchOver)
-        {
-            if (Random.Range(0, 2) == 0)
+            if (gameObject.name == "w_double(Clone)")
                 noteSprite.sprite = doubleSprite[0];
             else
                 noteSprite.sprite = doubleSprite[1];
-            accuracy = -999;
-            startSlerp = Time.time;
+
         }
+        else if (gameObject.name == "a_double(Clone)" || gameObject.name == "d_double(Clone)")
+        {
+            ad = true;
+            if (gameObject.name == "a_double(Clone)")
+                noteSprite.sprite = doubleSprite[0];
+            else
+                noteSprite.sprite = doubleSprite[1];
+        }
+        else
+        {
+            return false;
+        }
+        switchOver = true;                
+        accuracy = -999;
+        startSlerp = Time.time;
+        
         return switchOver;
     }
 
