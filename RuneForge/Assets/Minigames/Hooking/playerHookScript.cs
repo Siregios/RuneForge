@@ -48,6 +48,16 @@ public class playerHookScript : MonoBehaviour {
             timerText.text = Mathf.FloorToInt(timerDec).ToString();
             timerDec -= Time.deltaTime;
         }
+
+        //If inputted and hook isn't out already, THEN GO MY HOOK THAT I WILL CALL EDDIE WIN
+        if (((Input.GetKeyDown(KeyCode.Space) || timerDec <= .90f) && hookOut == false) && decrement.remainingHooks > 0)
+        {
+            hookOut = true;
+            AudioManager.PlaySound(0);
+            visible.enabled = true;
+            hook.transform.rotation = this.transform.rotation;
+            decrement.remainingHooks--;
+        }
     }
 	void FixedUpdate () {
         //Checks when it hits boundary collider
@@ -74,6 +84,8 @@ public class playerHookScript : MonoBehaviour {
                     {
                         Destroy(obj);
                         decrement.currentObjects--;
+                        if (obj.name == "mei(Clone)")
+                            decrement.neg--;
                     }
                     hookMovement.grabbed.Clear();
                 }
@@ -107,16 +119,7 @@ public class playerHookScript : MonoBehaviour {
             hook.GetComponent<Rigidbody2D>().velocity = transform.up * hookSpeed;
         }
 
-        //If inputted and hook isn't out already, THEN GO MY HOOK THAT I WILL CALL EDDIE WIN
-        else if (((Input.GetKeyDown(KeyCode.Space) && hookOut == false) || timerDec <= .90f) && decrement.remainingHooks > 0)
-        {
-            hookOut = true;
-            AudioManager.PlaySound(0);
-            visible.enabled = true;
-            hook.transform.rotation = this.transform.rotation;
-            decrement.remainingHooks--;
-        }
-
+        
         //Otherwise keep rotating the controlling thing
         else if (hookOut == false)
         {

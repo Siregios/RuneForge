@@ -56,14 +56,16 @@ public class HookManager : MonoBehaviour {
 
     public void SpawnObject()
     {
-        cooldown = spawnInterval;   
+        cooldown = spawnInterval;
         //This makes less mei's spawn.    
-        if (spawner.SpawnObject().name == "mei(Clone)")
+        GameObject instantiatedObj = spawner.SpawnObject();        
+        if (instantiatedObj.name == "mei(Clone)")
         {
             if (neg >= 3)
-            {
-                neg--;
-                Destroy(spawner.multipleObjectSpawn[spawner.multipleObjectSpawn.Length - 1]);
+            {                
+                Destroy(instantiatedObj);
+                currentObjects--;
+                Debug.Log("MEI HAS BEEN DELETERERD");
             }
             else
             {
