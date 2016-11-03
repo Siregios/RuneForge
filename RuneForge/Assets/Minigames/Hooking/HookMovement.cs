@@ -38,17 +38,17 @@ public class HookMovement : MonoBehaviour {
             other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             if (other.gameObject.name == "mercy(Clone)")
             {
-                addScore.score += 1;
+                addScore.score += 20;
                 AudioManager.PlaySound(2);
             }
             else if (other.gameObject.name == "lucio(Clone)")
             {
-                addScore.score += 5;
+                addScore.score += 100;
                 AudioManager.PlaySound(3);
             }
             else if (other.gameObject.name == "mei(Clone)")
             {
-                addScore.score += -2;
+                addScore.score += -40;
                 AudioManager.PlaySound(1);
             }
             aiTag = true;

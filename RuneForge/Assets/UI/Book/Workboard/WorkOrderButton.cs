@@ -30,6 +30,8 @@ public class WorkOrderButton : MonoBehaviour {
         this.order = order;
         this.orderNumber.text = order.orderNumber.ToString();
         this.orderIcon.sprite = order.item.icon;
+        this.stagePanel.transform.Find("StageText").GetComponent<Text>().text = string.Format("{0}/{1}", order.currentStage, order.requiredStages);
+        this.scorePanel.transform.Find("ScoreText").GetComponent<Text>().text = order.score.ToString();
         if (order.isRandom)
         {
             this.GetComponent<Image>().color = Color.yellow;

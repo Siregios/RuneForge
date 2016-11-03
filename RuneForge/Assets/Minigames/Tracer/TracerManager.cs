@@ -43,7 +43,7 @@ public class TracerManager : MonoBehaviour {
     {
         audio.PlayOneShot(dotHit, 1);
 
-        score++;
+        score += 10;
         
         currentTrail.GetComponent<TrailRenderer>().time += .01f;
         
