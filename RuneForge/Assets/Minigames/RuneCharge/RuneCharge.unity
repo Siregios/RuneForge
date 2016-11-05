@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f44ec594a86c16458e6ed9f256962ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   pause: 0
   minSpeed: 10
   maxSpeed: 10
@@ -399,6 +400,8 @@ MonoBehaviour:
   startXPos: -6.5
   startYPos: -2
   score: 0
+  maxSpeed: 30
+  speedIncrement: 2
 --- !u!1 &1781918183
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +412,7 @@ GameObject:
   - 4: {fileID: 1781918185}
   - 212: {fileID: 1781918184}
   - 61: {fileID: 1781918186}
+  - 114: {fileID: 1781918187}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -476,3 +480,16 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 9.5, y: 3}
+--- !u!114 &1781918187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1781918183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb847c5cbe0fd7409e3b76e3ede8df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftBound: -6
+  rightBound: 6.5

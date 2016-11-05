@@ -5,7 +5,7 @@ public class movementAI : MonoBehaviour
 {
 
     //Controls speed of fish and the amount of time the fish pauses.
-    float speed;
+    public float speed;
     public float pause = 1.5f;
     public float minSpeed = 1f;
     public float maxSpeed = 3f;
