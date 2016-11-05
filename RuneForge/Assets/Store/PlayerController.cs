@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
             rigidBody.velocity = Vector3.zero;
             mouseClick = false;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
         {
             targetClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetClick = new Vector3(targetClick.x, playerPosition.y, playerPosition.z);

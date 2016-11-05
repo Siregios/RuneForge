@@ -476,9 +476,8 @@ MonoBehaviour:
   - {fileID: 1000012423246338, guid: 43402bd76f4f34a4aa2bd1fd2829e3ce, type: 2}
   - {fileID: 1000013872886826, guid: cacfebd5d3dcfdb409bdbf65d41e197a, type: 2}
   - {fileID: 1000011510921030, guid: 5d8b50d6c490bbf4ebbd424299aa9e30, type: 2}
-  keyNotes: []
   beatTime: {fileID: 0}
-  songName: 
+  songName: monkeyClap
   songStart: 0
   scoreText: {fileID: 1652510234}
   score: 0

@@ -30,7 +30,7 @@ public class PlayerAnimController : MonoBehaviour {
             anim.SetBool("walk", true);
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        if (player.mouseClick)
+        if (player.mouseClick && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
         {
             anim.SetBool("walk", true);
             if (player.playerPosition.x - player.targetClick.x < 0)

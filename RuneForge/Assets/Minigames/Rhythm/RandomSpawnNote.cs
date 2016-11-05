@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class RandomSpawnNote : MonoBehaviour
 {
     public GameObject[] spawnObject;
-    public List<Object> keyNotes;
-    int randomInt;
+    public List<List<GameObject>> keyNotes;
+    public int randomInt;
     //private BeatObserver beatObserver;
     //private int beatCounter;
 
@@ -33,15 +33,11 @@ public class RandomSpawnNote : MonoBehaviour
     [HideInInspector]
     public int good, great, perfect, miss = 0;
     
-    //write with these
-    //private string writer;
-    //private bool written = false;
-    //public List<float> timeList;
-
-
     void Start()
     {
-        keyNotes = new List<Object>();
+        keyNotes = new List<List<GameObject>>();
+        for (int i = 0; i < 4; i++)
+            keyNotes.Add(new List<GameObject>());
         Screen.SetResolution(Screen.width, Screen.width, false);
         startTime = Time.time;
         //beatObserver = GetComponent<BeatObserver>();
@@ -58,10 +54,6 @@ public class RandomSpawnNote : MonoBehaviour
             if (float.TryParse(f, out num))
                 readTime.Add(num);
         }
-
-        //writing stuff
-        //timeList = new List<float>();
-
     }
 
     void Update()
@@ -72,24 +64,6 @@ public class RandomSpawnNote : MonoBehaviour
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
-        //ALL WRITING STUFF 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Debug.Log(Time.time);
-        //    timeList.Add(Time.time);
-        //}
-
-        //if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
-        //{
-        //    foreach (float beat in timeList)
-        //        writer += beat.ToString() + " ";
-        //    if (!written)
-        //    {
-        //        System.IO.File.WriteAllText("C:/Users/petergtruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
-        //        written = true;
-        //    }
-        //}
-        //END WRITING STUFF
 
         if (counter < readTime.Count)
         {
@@ -99,7 +73,7 @@ public class RandomSpawnNote : MonoBehaviour
             {
                 if (counter + 1 < readTime.Count)
                 {
-                    if (readTime[counter + 1] - readTime[counter] < 1f)
+                    if (readTime[counter + 1] - readTime[counter] < 0.2f)
                     {
                         if (Random.Range(1, 3) == 1)                        
                             spawnRandomDouble();                        
@@ -119,29 +93,20 @@ public class RandomSpawnNote : MonoBehaviour
 
     void spawnRandomNote()
     {
-        randomInt = Random.Range(1, 5);
-        if (randomInt == 1)
-            keyNotes.Add(Instantiate(spawnObject[0], spawnObject[0].transform.position, Quaternion.identity));
-        else if (randomInt == 2)
-            keyNotes.Add(Instantiate(spawnObject[1], spawnObject[1].transform.position, Quaternion.identity));
-        else if (randomInt == 3)
-            keyNotes.Add(Instantiate(spawnObject[2], spawnObject[2].transform.position, Quaternion.identity));
-        else if (randomInt == 4)
-            keyNotes.Add(Instantiate(spawnObject[3], spawnObject[3].transform.position, Quaternion.identity));
+        randomInt = Random.Range(0, 4);
+        GameObject note = (GameObject)Instantiate(spawnObject[randomInt], spawnObject[randomInt].transform.position, Quaternion.identity);
+        note.GetComponent<NoteTracker>().indexNote = randomInt;
+        keyNotes[randomInt].Add(note);
+        
         counter++;
     }
 
     void spawnRandomDouble()
     {
-        randomInt = Random.Range(1, 5);
-        if (randomInt == 1)
-            keyNotes.Add(Instantiate(spawnObject[4], spawnObject[4].transform.position, Quaternion.identity));
-        else if (randomInt == 2)
-            keyNotes.Add(Instantiate(spawnObject[5], spawnObject[5].transform.position, Quaternion.identity));
-        else if (randomInt == 3)
-            keyNotes.Add(Instantiate(spawnObject[6], spawnObject[6].transform.position, Quaternion.identity));
-        else if (randomInt == 4)
-            keyNotes.Add(Instantiate(spawnObject[7], spawnObject[7].transform.position, Quaternion.identity));
+        randomInt = Random.Range(0, 4);
+        GameObject note = (GameObject)Instantiate(spawnObject[randomInt + 4], spawnObject[randomInt + 4].transform.position, Quaternion.identity);
+        note.GetComponent<NoteTracker>().indexNote = randomInt;
+        keyNotes[randomInt].Add(note);
         counter += 2;
     }
 }
