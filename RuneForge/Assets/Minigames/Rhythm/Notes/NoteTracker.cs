@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NoteTracker : MonoBehaviour {
     public int accuracy = 0;
+    public int indexNote;
     public float speed = 3.5f;
     public RandomSpawnNote scriptNote;
     public GameObject center;
@@ -24,9 +25,8 @@ public class NoteTracker : MonoBehaviour {
 	
 	
 	void Update () {
-
         //Checks if the note is in front of the list
-        if (gameObject == scriptNote.keyNotes[0])
+        if (gameObject == scriptNote.keyNotes[indexNote][0])
         {
             canDie = true;
         }
@@ -56,29 +56,29 @@ public class NoteTracker : MonoBehaviour {
             }
         }
 
-        //Checks for input when note is on hitbox
-        if (Input.GetKeyDown(KeyCode.W) && trigW && !switchOver)
+        //Checks for input when note is on hitbox and key pressed
+        if (Input.GetKeyDown(KeyCode.W) && trigW && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.S) && trigS && !switchOver)
+        if (Input.GetKeyDown(KeyCode.S) && trigS && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.A) && trigA && !switchOver)
+        if (Input.GetKeyDown(KeyCode.A) && trigA && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.D) && trigD && !switchOver)
+        if (Input.GetKeyDown(KeyCode.D) && trigD && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
@@ -96,6 +96,7 @@ public class NoteTracker : MonoBehaviour {
     {
         //Sets up when the note can be dieded
         if (other.gameObject.name == "hitbox")
+        {
             if (other.transform.parent.name == "w_key" && canDie)
                 trigW = true;
             if (other.transform.parent.name == "s_key" && canDie)
@@ -104,6 +105,7 @@ public class NoteTracker : MonoBehaviour {
                 trigA = true;
             if (other.transform.parent.name == "d_key" && canDie)
                 trigD = true;
+        }
 
         //Timing is key
         if (other.gameObject.name != "hitbox")
@@ -117,6 +119,21 @@ public class NoteTracker : MonoBehaviour {
             scriptNote.score += -5;
             scriptNote.hitText.text = "Miss!";
         }        
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.name == "hitbox")
+        {
+            if (other.transform.parent.name == "w_key" && canDie)
+                trigW = true;
+            if (other.transform.parent.name == "s_key" && canDie)
+                trigS = true;
+            if (other.transform.parent.name == "a_key" && canDie)
+                trigA = true;
+            if (other.transform.parent.name == "d_key" && canDie)
+                trigD = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -154,7 +171,7 @@ public class NoteTracker : MonoBehaviour {
     //When destroyed, removes itself from the front of the list.
     void OnDestroy()
     {
-        scriptNote.keyNotes.Remove(gameObject);
+        scriptNote.keyNotes[indexNote].Remove(gameObject);        
     }
 
     //Will spawn a double note if it is a double.
@@ -208,7 +225,7 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 2);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 8);
             if (transform.position.y <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
@@ -235,7 +252,7 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 2);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 8);
             if (transform.position.x <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
