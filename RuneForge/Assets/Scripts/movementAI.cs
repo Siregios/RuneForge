@@ -64,7 +64,6 @@ public class movementAI : MonoBehaviour
     //Movement handler
     private void MovementAI()
     {
-
         //checks for last pause.
         if (lastPause < Time.time)
         {
