@@ -4,11 +4,11 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
     public AudioClip[] audioClips;
-    AudioSource audio;
+    AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +18,6 @@ public class AudioManager : MonoBehaviour {
 
     public void PlaySound(int sound)
     {
-        audio.PlayOneShot(audioClips[sound]);
+        audioSource.PlayOneShot(audioClips[sound]);
     }
 }
