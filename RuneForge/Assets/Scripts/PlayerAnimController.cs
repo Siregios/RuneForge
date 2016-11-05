@@ -9,7 +9,7 @@ public class PlayerAnimController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-        player = transform.parent.gameObject.GetComponent<PlayerController>();
+        player = GetComponentInParent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,6 @@ public class PlayerAnimController : MonoBehaviour {
             anim.SetBool("walk", true);
             GetComponent<SpriteRenderer>().flipX = true;
         }
-
         if (player.mouseClick)
         {
             anim.SetBool("walk", true);
@@ -39,7 +38,9 @@ public class PlayerAnimController : MonoBehaviour {
             else
                 GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || (!player.mouseClick && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+
+        //If any key is lifted or you reached destination or the player is stuck at a vertical wall, walk animation off.
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || (!player.mouseClick && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) || player.bound)
         {
             anim.SetBool("walk", false);
         }

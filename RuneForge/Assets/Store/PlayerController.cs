@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     //For left click movement    
     public bool mouseClick = false;
     public Vector3 targetClick;
+    public bool bound = false;
 
     void Awake()
     {
@@ -92,12 +93,16 @@ public class PlayerController : MonoBehaviour {
         {            
             mouseClick = false;
             rigidBody.velocity = Vector3.zero;
+            bound = true;
         }
+    }    
+
+
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "VerticalBounds")
+            bound = false;
     }
 
-    void OnCollisionStay2D(Collision2D other)
-    {
-        OnCollisionEnter2D(other);
-    }    
-    
 }
