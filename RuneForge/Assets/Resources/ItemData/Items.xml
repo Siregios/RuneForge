@@ -4,7 +4,7 @@
   <ItemList>
     
     <Item name="Sphere">
-      <Type>Stone</Type>
+      <Type>Material</Type>
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -15,7 +15,7 @@
     </Item>
 
     <Item name="Salamanders_Scale">
-      <Type>Fire</Type>
+      <Type>Material</Type>
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -26,7 +26,7 @@
     </Item>
     
     <Item name="Purified_Water">
-      <Type>Stone</Type>
+      <Type>Material</Type>
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
@@ -75,7 +75,7 @@
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
       <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
-      <Recipe>Stone:2, Fire:2</Recipe>
+      <Recipe>Sphere:2, Salamanders_Scale:2</Recipe>
       <MinigamesRequired>3</MinigamesRequired>
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>

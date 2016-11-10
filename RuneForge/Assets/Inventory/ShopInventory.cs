@@ -13,13 +13,13 @@ public static class ShopInventory {
         {
             inventory.SetItemCount(material.name, int.MaxValue);
         }
-        foreach (Item material in ItemCollection.FilterItem("fire"))
-        {
-            inventory.SetItemCount(material.name, int.MaxValue);
-        }
-        foreach (Item material in ItemCollection.FilterItem("stone"))
-        {
-            inventory.SetItemCount(material.name, int.MaxValue);
-        }
+        //foreach (Item material in ItemCollection.FilterItem("fire"))
+        //{
+        //    inventory.SetItemCount(material.name, int.MaxValue);
+        //}
+        //foreach (Item material in ItemCollection.FilterItem("stone"))
+        //{
+        //    inventory.SetItemCount(material.name, int.MaxValue);
+        //}
     }
 }

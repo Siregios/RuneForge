@@ -119,11 +119,11 @@ public class RecipeUI : MonoBehaviour {
     void AddIngredient(Item item)
     {
         if (PlayerInventory.inventory.GetItemCount(item.name) > 0 &&
-            productItem.recipe.ContainsKey(item.type) &&
-            addedIngredients[item.type] < productItem.recipe[item.type])
+            productItem.recipe.ContainsKey(item.name) &&
+            addedIngredients[item.name] < productItem.recipe[item.name])
         {
             PlayerInventory.inventory.SubtractItem(item.name);
-            addedIngredients[item.type]++;
+            addedIngredients[item.name]++;
             foreach (IngredientEntry entry in ingredientEntryList)
             {
                 if (entry.loadedButton == null)
@@ -142,7 +142,7 @@ public class RecipeUI : MonoBehaviour {
 
         Item item = entry.loadedButton.item;
 
-        addedIngredients[item.type]--;
+        addedIngredients[item.name]--;
         if (restockInventory)
             PlayerInventory.inventory.AddItem(item.name);
         Destroy(entry.loadedButton.gameObject);
