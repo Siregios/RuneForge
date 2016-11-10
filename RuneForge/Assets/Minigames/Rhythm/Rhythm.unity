@@ -476,6 +476,7 @@ MonoBehaviour:
   - {fileID: 1000012423246338, guid: 43402bd76f4f34a4aa2bd1fd2829e3ce, type: 2}
   - {fileID: 1000013872886826, guid: cacfebd5d3dcfdb409bdbf65d41e197a, type: 2}
   - {fileID: 1000011510921030, guid: 5d8b50d6c490bbf4ebbd424299aa9e30, type: 2}
+  randomInt: 0
   beatTime: {fileID: 0}
   songName: monkeyClap
   songStart: 0
@@ -610,6 +611,52 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.89, y: 0.85}
+--- !u!1 &924453081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 924453082}
+  - 114: {fileID: 924453083}
+  m_Layer: 0
+  m_Name: CenterBeat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &924453082
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924453081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 968772858}
+  m_RootOrder: 0
+--- !u!114 &924453083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924453081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b379c9c1ff8b30c42a77c6a202ab93b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatValues: 05000000050000000500000005000000
+  beatScalar: 1
+  loopTime: 20
+  audioSource: {fileID: 1923939869}
+  observers:
+  - {fileID: 1140512102}
 --- !u!1 &943239351
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +780,35 @@ BoxCollider2D:
   m_Offset: {x: 0.7, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.01, y: 1}
+--- !u!1 &968772857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 968772858}
+  m_Layer: 0
+  m_Name: BeatCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &968772858
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968772857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0264709, y: 1.4418737, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 924453082}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1001 &1008300986
 Prefab:
   m_ObjectHideFlags: 0
@@ -743,7 +819,7 @@ Prefab:
     - target: {fileID: 114000012681727040, guid: 3a604191afb20aa47aa0b31894ab2f69,
         type: 2}
       propertyPath: activate.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882885358, guid: 3a604191afb20aa47aa0b31894ab2f69,
         type: 2}
@@ -845,6 +921,16 @@ Prefab:
       propertyPath: activate.Array.data[1]
       value: 
       objectReference: {fileID: 1923939868}
+    - target: {fileID: 114000012681727040, guid: 3a604191afb20aa47aa0b31894ab2f69,
+        type: 2}
+      propertyPath: activate.Array.data[2]
+      value: 
+      objectReference: {fileID: 1140512102}
+    - target: {fileID: 114000012681727040, guid: 3a604191afb20aa47aa0b31894ab2f69,
+        type: 2}
+      propertyPath: activate.Array.data[3]
+      value: 
+      objectReference: {fileID: 924453081}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a604191afb20aa47aa0b31894ab2f69, type: 2}
   m_IsPrefabParent: 0
@@ -1118,6 +1204,7 @@ GameObject:
   - 4: {fileID: 1140512104}
   - 212: {fileID: 1140512103}
   - 114: {fileID: 1140512105}
+  - 114: {fileID: 1140512106}
   m_Layer: 0
   m_Name: center
   m_TagString: Untagged
@@ -1184,6 +1271,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beatWindow: 10
   beatMask: 0
+--- !u!114 &1140512106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140512102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03523af4eaef9874a82127b0f4f8f519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTimeList: []
 --- !u!1 &1201377961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,3 +1994,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 145
   startDelay: 2.1
+  CenterMap: {fileID: 0}

@@ -99,6 +99,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 476337165}
   - 82: {fileID: 476337164}
+  - 114: {fileID: 476337166}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -193,6 +194,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &476337166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476337163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123102942ea73a24f9eb2aef871883ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 145
+  startDelay: 0
+  CenterMap: {fileID: 1380795572}
 --- !u!1 &1380795572
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +217,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1380795574}
   - 114: {fileID: 1380795573}
+  - 114: {fileID: 1380795575}
   m_Layer: 0
-  m_Name: Mapper
+  m_Name: CenterMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,6 +251,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &1380795575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1380795572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0579d21dbae565e4f82a51d6559a6fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatWindow: 5
+  beatMask: 0
+--- !u!1 &1629301341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1629301343}
+  - 114: {fileID: 1629301342}
+  m_Layer: 0
+  m_Name: CenterBeat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1629301342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629301341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b379c9c1ff8b30c42a77c6a202ab93b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatValues: 0300000003000000030000000300000003000000030000000300000003000000
+  beatScalar: 1
+  loopTime: 0
+  audioSource: {fileID: 476337164}
+  observers:
+  - {fileID: 1380795572}
+--- !u!4 &1629301343
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629301341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0264709, y: 1.4418737, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1852292005
 GameObject:
   m_ObjectHideFlags: 0
