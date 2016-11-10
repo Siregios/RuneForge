@@ -11,6 +11,7 @@ public class BeatmappingScript : MonoBehaviour {
     public List<float> timeList;
     public string songName;
     float currentBeat;
+    bool beatDrop = false;
 
     private BeatObserver beatObserver;
     private int beatCounter;
@@ -27,14 +28,16 @@ public class BeatmappingScript : MonoBehaviour {
     {
         //ALL WRITING STUFF
         if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
-            currentBeat = Time.time;
-
-        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Time.time - currentBeat < 0)
+            Debug.Log(Time.time);
+            currentBeat = Time.time;
+            beatDrop = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && beatDrop)
+        {
+            if (Time.time - currentBeat < 0.2f)
                 timeList.Add(currentBeat);
-            else
-                timeList.Add(Time.time);
+            beatDrop = false;
         }
 
         if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)

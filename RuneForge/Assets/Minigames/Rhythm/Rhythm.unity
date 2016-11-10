@@ -1282,7 +1282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03523af4eaef9874a82127b0f4f8f519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTimeList: []
 --- !u!1 &1201377961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,5 +1992,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 145
-  startDelay: 2.1
+  startDelay: 2
   CenterMap: {fileID: 0}
