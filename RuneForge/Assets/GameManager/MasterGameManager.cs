@@ -14,6 +14,7 @@ public class MasterGameManager : MonoBehaviour
     public SceneManagerWrapper sceneManager;
     public InteractionManager interactionManager;
     public WorkboardManager workboard;
+    public UIManager uiManager;
 
     void Awake()
     {

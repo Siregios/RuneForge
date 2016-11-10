@@ -46,6 +46,16 @@ public class InventoryListUI : MonoBehaviour
         DisplayNewFilter(filterString);
     }
 
+    void OnEnable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
+    }
+
     void Update()
     {
         previousPageButton.interactable = (currentPage > 0);

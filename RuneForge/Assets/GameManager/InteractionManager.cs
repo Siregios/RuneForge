@@ -29,7 +29,10 @@ public class InteractionManager : MonoBehaviour {
                 currentInteractable = interactScript;
                 currentInteractable.MouseHover.Invoke();
                 if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
                     currentInteractable.MouseClick.Invoke();
+                    currentInteractable.MouseExit.Invoke();
+                }
             }
             else if (currentInteractable != null)
             {

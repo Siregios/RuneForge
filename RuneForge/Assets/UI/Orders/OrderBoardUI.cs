@@ -17,6 +17,17 @@ public class OrderBoardUI : MonoBehaviour {
         padY = orderNote.GetComponent<RectTransform>().rect.height / 2 + 10;
     }
 
+    void OnEnable()
+    {
+        DisplayBoard();
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
+    }
+
     public void DisplayBoard()
     {
         this.gameObject.SetActive(true);

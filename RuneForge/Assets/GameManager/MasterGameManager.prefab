@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000010453328266}
   - 114: {fileID: 114000013970403354}
   - 114: {fileID: 114000013118490888}
+  - 114: {fileID: 114000011377930820}
   m_Layer: 0
   m_Name: MasterGameManager
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScene: 0
+  currentScene: 
 --- !u!114 &114000010917058700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +91,19 @@ MonoBehaviour:
   sceneManager: {fileID: 114000010453328266}
   interactionManager: {fileID: 114000013970403354}
   workboard: {fileID: 114000013118490888}
+  uiManager: {fileID: 114000011377930820}
+--- !u!114 &114000011377930820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013527338524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8231c97b505f8418de6346c2404fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiOpen: 0
 --- !u!114 &114000013118490888
 MonoBehaviour:
   m_ObjectHideFlags: 1

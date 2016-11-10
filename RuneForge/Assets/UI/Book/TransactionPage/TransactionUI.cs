@@ -32,6 +32,16 @@ public class TransactionUI : MonoBehaviour {
         invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
+    void OnEnable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
+    }
+
     // Tell inventory buttons spawned by invListUI to act in this manner.
     void ButtonBehavior(InventoryButton invButton)
     {

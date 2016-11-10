@@ -30,6 +30,16 @@ public class RecipeUI : MonoBehaviour {
         invListUI.ModifyAllButtons(ProductButtonBehavior);
     }
 
+    void OnEnable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
+    }
+
     void Start()
     {
         ImportProductMode();

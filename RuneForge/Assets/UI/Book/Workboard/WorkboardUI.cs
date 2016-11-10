@@ -11,6 +11,12 @@ public class WorkboardUI : MonoBehaviour {
     void OnEnable()
     {
         DisplayBoard();
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
     }
 
     public void DisplayBoard()

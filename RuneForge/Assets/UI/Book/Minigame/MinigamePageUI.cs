@@ -8,6 +8,16 @@ public class MinigamePageUI : MonoBehaviour {
     Image minigameThumbnail;
     public Button playButton;
 
+    void OnEnable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
+    void OnDisable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = false;
+    }
+
     void Update()
     {
         if (MasterGameManager.instance.workboard.currentWorkOrders.Count > 0)

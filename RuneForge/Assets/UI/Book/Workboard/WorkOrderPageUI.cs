@@ -18,9 +18,14 @@ public class WorkOrderPageUI : MonoBehaviour {
         this.minigamePanel = this.transform.Find("MinigameList").gameObject;
     }
 
+    void OnEnable()
+    {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+    }
+
     void OnDisable()
     {
-        //ClearMinigameLineList();
+        MasterGameManager.instance.uiManager.uiOpen = false;
     }
 
     public void LoadOrder(WorkOrder order)
