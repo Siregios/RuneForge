@@ -14,14 +14,14 @@ public class BeatmappingScript : MonoBehaviour {
     bool beatDrop = false;
 
     private BeatObserver beatObserver;
-    private int beatCounter;
+//    private int beatCounter;
 
     void Start()
     {
         //writing stuff
         timeList = new List<float>();
         beatObserver = GetComponent<BeatObserver>();
-        beatCounter = 0;
+        //beatCounter = 0;
     }
 
     void Update()

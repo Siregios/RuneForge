@@ -5,13 +5,13 @@ using SynchronizerData;
 public class CenterBehavior : MonoBehaviour {
 
     private BeatObserver beatObserver;
-    private int beatCounter;
+//    private int beatCounter;
 
 
     void Start()
     {
         beatObserver = GetComponent<BeatObserver>();
-        beatCounter = 0;
+//        beatCounter = 0;
     }
 
     void Update()

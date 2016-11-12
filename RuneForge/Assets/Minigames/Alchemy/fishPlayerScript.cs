@@ -6,14 +6,14 @@ public class fishPlayerScript : MonoBehaviour {
     //Controls player speed and takes script of fish manager to accumulate score.
     public float speed = 1;
     public int damage;
-    private Vector2 velocity;    
+    //private Vector2 velocity;    
     Rigidbody2D player;
     GameObject FishManager;
     FishManager fishScript;
 
     void Start () {
 	    player = this.GetComponent<Rigidbody2D>();
-        velocity = new Vector2(0, speed);
+        //velocity = new Vector2(0, speed);
         FishManager = GameObject.Find("GameManager");
         fishScript = FishManager.GetComponent<FishManager>();
 
