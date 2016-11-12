@@ -12,6 +12,7 @@ public class TracerManager : MonoBehaviour {
 
     //Number of maps that exist in Assets/TraceMaps
     public int traceMapCount = 4;
+    int currentMap = 4;
     //Number of maps to spawn in one playthrough
     public int mapsPerPlay = 5;
     public float spawnInterval = 1f;
@@ -24,13 +25,13 @@ public class TracerManager : MonoBehaviour {
 
     void Awake()
     {
-        Cursor.visible = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         CreateNewTrail();
+        Cursor.visible = false;
     }
 
     void Update()
@@ -64,7 +65,14 @@ public class TracerManager : MonoBehaviour {
         else {
             if (count < mapsPerPlay)
             {
-                int randomMapNumber = Random.Range(1, traceMapCount + 1);
+                int randomMapNumber;
+                do
+                {
+                    randomMapNumber = Random.Range(1, traceMapCount + 1);
+                    Debug.Log(randomMapNumber);
+                } while (randomMapNumber == currentMap);
+                currentMap = randomMapNumber;
+
                 Debug.LogFormat("Spawning Map{0}", randomMapNumber);
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
                 audioSource.PlayOneShot(mapLoad, 1);
