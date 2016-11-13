@@ -12,6 +12,7 @@ public class ChargeSelector : MonoBehaviour {
     private int mashCount = 0;
     private float lastSpeed;
     private float timeRemaining;
+    private bool randomize = false;
 
     public float startXPos = -6.5f;
     public float startYPos = -2.0f;
@@ -20,6 +21,7 @@ public class ChargeSelector : MonoBehaviour {
     public float speedIncrement = 2.0f;
     public float aimTime = 5.0f;
     public float chargeTime = 5.0f;
+    public float randTime = 5.0f;
 
 
     private TargetMovment target;
@@ -51,6 +53,18 @@ public class ChargeSelector : MonoBehaviour {
             timeRemaining = 0;
         else
             timeRemaining -= Time.deltaTime;
+
+        if (randomize)
+        {
+            randomizeTarget();
+            if (timeRemaining <= 0)
+            {
+                randomize = false;
+                resetMarker();
+            }
+            else
+                return;
+        }
         //Debug.Log(timeRemaining);
         if (timeRemaining <= 0)
         {
@@ -174,12 +188,18 @@ public class ChargeSelector : MonoBehaviour {
         //to be replaced
         for (int i = 0; i < 3; i++)
             lightning[i].enabled = false;
-        resetMarker();
-
-        //IDK why but this makes the target go crazy
-        buttonMash = false;
-        mashCount = 0;
         isPlaying = true;
+        if (!buttonMash)
+        {
+            resetMarker();
+        }
+        else
+        {
+            buttonMash = false;
+            mashCount = 0;
+            randomize = true;
+            timeRemaining = randTime;
+        }
     }
 
     public float getTimeRemaining()
@@ -190,5 +210,11 @@ public class ChargeSelector : MonoBehaviour {
     public string getMode()
     {
         return buttonMash ? "Fire" : "Aim";
+    }
+
+    private void randomizeTarget()
+    {
+        for (int i = 0; i < 15; i++)
+            target.changePosition();
     }
 }
