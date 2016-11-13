@@ -199,11 +199,14 @@ public class ChargeSelector : MonoBehaviour {
             mashCount = 0;
             randomize = true;
             timeRemaining = randTime;
+            transform.position = new Vector2(startXPos, startYPos);
         }
     }
 
     public float getTimeRemaining()
     {
+        if (randomize)
+            return 0;
         return timeRemaining;
     }
 
