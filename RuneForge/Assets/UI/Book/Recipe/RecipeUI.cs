@@ -7,7 +7,7 @@ public class RecipeUI : MonoBehaviour {
     Item productItem;
 
     public Button cancelButton, pinSelectButton, pinRandomButton;
-    ItemListUI invListUI;
+    public ItemListUI productItemList, ingredientItemList;
     Text productName;
     Image productIcon;
     Text recipeText;
@@ -21,7 +21,8 @@ public class RecipeUI : MonoBehaviour {
 
     void Awake()
     {
-        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<ItemListUI>();
+        productItemList.AddButtonFunction(AddProduct);
+        ingredientItemList.AddButtonFunction(AddIngredient);
 
         productName = this.transform.Find("ProductName").GetComponent<Text>();
         productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
@@ -61,8 +62,10 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportProductMode()
     {
-        //invListUI.ModifyAllButtons(ProductButtonBehavior);
-        invListUI.DisplayNewFilter("product");
+        ingredientItemList.gameObject.SetActive(false);
+        
+        productItemList.gameObject.SetActive(true);
+        productItemList.DisplayNewFilter("product");
 
         productItem = null;
         productName.text = "";
@@ -75,8 +78,10 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportIngredientMode()
     {
-        //invListUI.ModifyAllButtons(IngredientButtonBehavior);
-        invListUI.DisplayNewFilter("ingredient");
+        productItemList.gameObject.SetActive(false);
+
+        ingredientItemList.gameObject.SetActive(true);
+        ingredientItemList.DisplayNewFilter("ingredient");
         cancelButton.gameObject.SetActive(true);
     }
 

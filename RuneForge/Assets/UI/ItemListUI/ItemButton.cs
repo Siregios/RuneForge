@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class ItemButton : MonoBehaviour
+public class ItemButton : MonoBehaviour
 {
     public Item item;
 
@@ -20,7 +20,7 @@ public abstract class ItemButton : MonoBehaviour
         }
     }
 
-    public virtual void Awake()
+    public void Awake()
     {
         switch (inventoryType)
         {
@@ -33,7 +33,7 @@ public abstract class ItemButton : MonoBehaviour
         }
     }
 
-    public virtual void Update()
+    public void Update()
     {
         if (countText != null)
         {
@@ -44,7 +44,7 @@ public abstract class ItemButton : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(Item item, List<Action<Item>> buttonFunctions)
+    public void Initialize(Item item, List<Action<Item>> buttonFunctions)
     {
         this.item = item;
         this.transform.FindChild("Icon").GetComponent<Image>().sprite = item.icon;

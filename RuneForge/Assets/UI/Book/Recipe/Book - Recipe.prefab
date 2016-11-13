@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011600626826
 GameObject:
   m_ObjectHideFlags: 1
@@ -392,7 +392,7 @@ GameObject:
   - 114: {fileID: 114000013867268232}
   - 114: {fileID: 114000011449966740}
   m_Layer: 5
-  m_Name: InventoryPanel
+  m_Name: ItemListPanel (Product)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,8 +869,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryButton: {fileID: 1000011658806744, guid: f965de11a4398ce47a98880885de070e,
-    type: 2}
+  itemButton: {fileID: 1000011658806744, guid: bb291521145b5134fb514a5594831119, type: 2}
+  padX: 10
+  padY: 20
 --- !u!114 &114000011458915374
 MonoBehaviour:
   m_ObjectHideFlags: 1

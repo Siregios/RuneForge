@@ -56,9 +56,9 @@ GameObject:
   - 222: {fileID: 222000014125329466}
   - 114: {fileID: 114000010298010508}
   - 114: {fileID: 114000011655930738}
-  - 114: {fileID: 114000013325514494}
+  - 114: {fileID: 114000013728702832}
   m_Layer: 5
-  m_Name: ItemButton (ShopSell)
+  m_Name: ItemButton (RecipeProduct)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,20 +164,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 9001
---- !u!114 &114000013325514494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011658806744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79997a41362c1b49828435a492c4445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countText: {fileID: 114000011831550606}
-  inventoryType: 0
+  m_Text: 
 --- !u!114 &114000013489666586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,6 +192,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000013728702832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011658806744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ad6872c93f6b546acd763525a3606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countText: {fileID: 0}
+  inventoryType: 0
 --- !u!222 &222000010314081868
 CanvasRenderer:
   m_ObjectHideFlags: 1
