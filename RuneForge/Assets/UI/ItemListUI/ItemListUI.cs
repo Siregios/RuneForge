@@ -10,9 +10,6 @@ public class ItemListUI : MonoBehaviour
     public GameObject itemButton;
     public float padX = 10, padY = 20;
     List<Action<Item>> buttonClickFunctions = new List<Action<Item>>();
-    
-    // The left panel must call ModifyAllButtons to pass in how inventoryButtons this script spawns should behave.
-    //Action<InventoryButton> buttonBehavior;
 
     InputField searchInput;
     Button previousPageButton, nextPageButton;
@@ -68,23 +65,6 @@ public class ItemListUI : MonoBehaviour
     {
         buttonClickFunctions.Add(clickFunction);
     }
-
-    // Configures and refreshes all currently displayed ItemButtons to act with the new behavior.
-    //public void ModifyAllButtons(Action<ItemButton> configureButton)
-    //{
-    //    foreach (ItemButton button in buttonList)
-    //    {
-    //        ModifyButton(button, configureButton);
-    //    }
-    //}
-
-    //void ModifyButton(ItemButton button, Action<ItemButton> configureButton)
-    //{
-    //    if (configureButton != null)
-    //        configureButton(button);
-    //    else
-    //        Debug.LogWarning("InventoryListUI cannot modify inventory buttons - No ButtonBehavior has been defined by the left page");
-    //}
 
     void DisplayPage(int page, string filter)
     {
