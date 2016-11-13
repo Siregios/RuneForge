@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInfo: {fileID: 2009194859}
-  scoreInfo: {fileID: 0}
+  scoreInfo: {fileID: 1463500674}
   selectorObj: {fileID: 1604584639}
 --- !u!1 &1463500672
 GameObject:

@@ -115,7 +115,7 @@ public class ChargeSelector : MonoBehaviour {
         lightning[0].enabled = true;
         if (inSelection)
         {
-            score++;
+            score += 50;
             Debug.Log("RIDE THE LIGHTNING!");
             buttonMash = true;
             timeRemaining = chargeTime;
@@ -135,11 +135,18 @@ public class ChargeSelector : MonoBehaviour {
         //Debug.Log(mashCount);
         mashCount++;
 
+        score += 2;
         //to be replaced
         if (((float)mashCount / 25) * 100 > 50)
+        {
+            score += 3;
             lightning[1].enabled = true;
+        }
         if (((float)mashCount / 25) * 100 > 75)
+        {
             lightning[2].enabled = true;
+            score += 5;
+        }
 
         /*if (mashCount == 25)    //After some number/time of button mashing, reset and increase speed
         {
@@ -207,6 +214,11 @@ public class ChargeSelector : MonoBehaviour {
         if (randomize)
             return 0;
         return timeRemaining;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     public string getMode()
