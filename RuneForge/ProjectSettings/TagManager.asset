@@ -16,6 +16,7 @@ TagManager:
   - Yellow
   - Blue
   - Green
+  - Character
   layers:
   - Default
   - TransparentFX

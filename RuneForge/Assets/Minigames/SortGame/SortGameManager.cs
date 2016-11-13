@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SortGameManager : MonoBehaviour {
     
@@ -23,12 +24,15 @@ public class SortGameManager : MonoBehaviour {
     float timeToSpawn = 3f;
     float time;
     public int score;
+    public Text scoreText;
 
 	void Start () {
         time = 0;
 	}
 		
 	void Update () {
+        scoreText.text = "Score: " + score.ToString();
+
         //Check if any characters are requesting an item.
         if (currentSpawn < 3 && time <= 0)
         {
@@ -136,9 +140,12 @@ public class SortGameManager : MonoBehaviour {
             if (characters[randomChar].transform.position.y == charY)
             {
                 check = false;
-                characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);
-                characters[randomChar].transform.position = Vector3.MoveTowards(characters[randomChar].transform.position, new Vector3(bubbles[i].transform.position.x, -4, 0), 10);
+                characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);            
                 characters[randomChar].transform.parent = bubbles[i].transform;
+            }
+            while (Mathf.Abs(characters[randomChar].transform.position.y) - 4 > 0.1f)
+            {
+                characters[randomChar].transform.position = Vector3.MoveTowards(characters[randomChar].transform.position, new Vector3(bubbles[i].transform.position.x, -4, 0), Time.deltaTime);
             }
         }
     }
