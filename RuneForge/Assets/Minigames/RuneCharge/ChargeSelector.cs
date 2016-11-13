@@ -56,7 +56,8 @@ public class ChargeSelector : MonoBehaviour {
         {
             if (buttonMash)
             {
-                StartCoroutine(waitForLightning());
+                if(isPlaying)
+                    StartCoroutine(waitForLightning());
 
             }
             else
@@ -66,7 +67,7 @@ public class ChargeSelector : MonoBehaviour {
 
         if (selectButtonDown() && isPlaying)
         {
-
+            Debug.Log("GG");
             if (buttonMash)
                 mashUp();
             else
@@ -175,11 +176,9 @@ public class ChargeSelector : MonoBehaviour {
             lightning[i].enabled = false;
         resetMarker();
 
-        //IDK
+        //IDK why but this makes the target go crazy
         buttonMash = false;
         mashCount = 0;
-
-
         isPlaying = true;
     }
 
