@@ -7,7 +7,7 @@ public class RecipeUI : MonoBehaviour {
     Item productItem;
 
     public Button cancelButton, pinSelectButton, pinRandomButton;
-    InventoryListUI invListUI;
+    ItemListUI invListUI;
     Text productName;
     Image productIcon;
     Text recipeText;
@@ -21,13 +21,13 @@ public class RecipeUI : MonoBehaviour {
 
     void Awake()
     {
-        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<InventoryListUI>();
+        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<ItemListUI>();
 
         productName = this.transform.Find("ProductName").GetComponent<Text>();
         productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
         recipeText = this.transform.Find("Recipe").GetComponent<Text>();
 
-        invListUI.ModifyAllButtons(ProductButtonBehavior);
+        //invListUI.ModifyAllButtons(ProductButtonBehavior);
     }
 
     void OnEnable()
@@ -61,7 +61,7 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportProductMode()
     {
-        invListUI.ModifyAllButtons(ProductButtonBehavior);
+        //invListUI.ModifyAllButtons(ProductButtonBehavior);
         invListUI.DisplayNewFilter("product");
 
         productItem = null;
@@ -75,7 +75,7 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportIngredientMode()
     {
-        invListUI.ModifyAllButtons(IngredientButtonBehavior);
+        //invListUI.ModifyAllButtons(IngredientButtonBehavior);
         invListUI.DisplayNewFilter("ingredient");
         cancelButton.gameObject.SetActive(true);
     }
@@ -168,13 +168,13 @@ public class RecipeUI : MonoBehaviour {
         addedIngredients.Clear();
     }
 
-    void ProductButtonBehavior(InventoryButton invButton)
-    {
-        invButton.ClickFunction = AddProduct;
-    }
+    //void ProductButtonBehavior(InventoryButton invButton)
+    //{
+    //    invButton.ClickFunction = AddProduct;
+    //}
 
-    void IngredientButtonBehavior(InventoryButton invButton)
-    {
-        invButton.ClickFunction = AddIngredient;
-    }
+    //void IngredientButtonBehavior(InventoryButton invButton)
+    //{
+    //    invButton.ClickFunction = AddIngredient;
+    //}
 }

@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TransactionUI : MonoBehaviour {
+public class TransactionUI : MonoBehaviour
+{
     enum TransactionTab
     {
         YourStock,
         ShopStock
     }
-    InventoryListUI invListUI;
+    ItemListUI invListUI;
 
     Button actionButton;
     Text actionName, actionPrice;
@@ -28,8 +29,8 @@ public class TransactionUI : MonoBehaviour {
         actionPrice.transform.parent.gameObject.SetActive(false);
         actionButton = this.transform.Find("ActionButton").GetComponent<Button>();
 
-        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<InventoryListUI>();
-        invListUI.ModifyAllButtons(ButtonBehavior);
+        invListUI = this.transform.parent.Find("InventoryPanel").GetComponent<ItemListUI>();
+        //invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
     void OnEnable()
@@ -45,7 +46,7 @@ public class TransactionUI : MonoBehaviour {
     // Tell inventory buttons spawned by invListUI to act in this manner.
     void ButtonBehavior(InventoryButton invButton)
     {
-        invButton.ClickFunction = LoadItem;
+        //invButton.ClickFunction = LoadItem;
         invButton.currentInventory = currentInventory;
     }
 
@@ -57,7 +58,7 @@ public class TransactionUI : MonoBehaviour {
     {
         currentActionTab = TransactionTab.YourStock;
         currentInventory = PlayerInventory.inventory;
-        invListUI.ModifyAllButtons(ButtonBehavior);
+        //invListUI.ModifyAllButtons(ButtonBehavior);
         //ClearActionPanel();
     }
 
@@ -65,7 +66,7 @@ public class TransactionUI : MonoBehaviour {
     {
         currentActionTab = TransactionTab.ShopStock;
         currentInventory = ShopInventory.inventory;
-        invListUI.ModifyAllButtons(ButtonBehavior);
+        //invListUI.ModifyAllButtons(ButtonBehavior);
         //ClearActionPanel();
     }
 
@@ -97,7 +98,7 @@ public class TransactionUI : MonoBehaviour {
                 break;
         }
 
-        invListUI.ModifyAllButtons(ButtonBehavior);
+        //invListUI.ModifyAllButtons(ButtonBehavior);
     }
 
     void ClearActionPanel()

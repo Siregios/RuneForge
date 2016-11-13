@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Inventory {
+    public enum InventoryType
+    {
+        PLAYER,
+        SHOP
+    }
+
     public Dictionary<string, int> inventoryDict = new Dictionary<string, int>();
 
     public Inventory()

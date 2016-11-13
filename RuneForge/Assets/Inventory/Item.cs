@@ -34,6 +34,9 @@ public class Item
     public string reqAttrStr;
 
     [XmlIgnoreAttribute]
+    public static int maxAttributeLevel = 10;
+
+    [XmlIgnoreAttribute]
     public Dictionary<string, int> providedAttributes;
 
     [XmlIgnoreAttribute]

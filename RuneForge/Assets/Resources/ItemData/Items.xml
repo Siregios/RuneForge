@@ -91,7 +91,7 @@
       <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
     </Item>
 
-    <Item name="Wind_Rune">
+    <Item name="Air_Rune">
       <Type>BasicRune</Type>
       <Price>350</Price>
       <isIngredient>true</isIngredient>
