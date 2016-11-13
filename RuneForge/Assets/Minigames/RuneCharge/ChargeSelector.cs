@@ -13,10 +13,10 @@ public class ChargeSelector : MonoBehaviour {
     private float lastSpeed;
     private float timeRemaining;
     private bool randomize = false;
+    private int score;
 
     public float startXPos = -6.5f;
     public float startYPos = -2.0f;
-    public int score = 0;
     public int maxSpeed = 30;
     public float speedIncrement = 2.0f;
     public float aimTime = 5.0f;
@@ -81,7 +81,6 @@ public class ChargeSelector : MonoBehaviour {
 
         if (selectButtonDown() && isPlaying)
         {
-            Debug.Log("GG");
             if (buttonMash)
                 mashUp();
             else

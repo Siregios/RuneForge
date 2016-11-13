@@ -6,9 +6,7 @@ public class TracerManager : MonoBehaviour {
     public GameObject lineRenderer = null;
     public GameObject trailRenderer = null;
 
-    public AudioClip dotHit;
-    public AudioClip mapLoad;
-    AudioSource audioSource;
+    private AudioManager AudioManager;
 
     //Number of maps that exist in Assets/TraceMaps
     public int traceMapCount = 4;
@@ -25,7 +23,7 @@ public class TracerManager : MonoBehaviour {
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -42,7 +40,7 @@ public class TracerManager : MonoBehaviour {
 
     public void DotTouched(GameObject dot)
     {
-        audioSource.PlayOneShot(dotHit, 1);
+        AudioManager.PlaySound(0);
 
         score += 10;
         
@@ -75,7 +73,7 @@ public class TracerManager : MonoBehaviour {
 
                 Debug.LogFormat("Spawning Map{0}", randomMapNumber);
                 Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
-                audioSource.PlayOneShot(mapLoad, 1);
+                AudioManager.PlaySound(1);
                 Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
                 count++;
             }

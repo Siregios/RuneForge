@@ -40,7 +40,7 @@ public class MinigameCountdown : MonoBehaviour {
         foreach (GameObject a in activate)
         {
             foreach (Transform child in a.transform)
-                child.gameObject.GetComponent<MonoBehaviour>().enabled = set;
+                child.GetComponent<MonoBehaviour>().enabled = set;
             foreach (MonoBehaviour s in a.GetComponents<MonoBehaviour>())
                 s.enabled = set;
         }

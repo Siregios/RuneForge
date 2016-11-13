@@ -35,6 +35,8 @@ public class DotController : MonoBehaviour {
 
     void OnMouseEnter()
     {
+        if (!this.enabled)
+            return;
         manager.DotTouched(this.gameObject);
         Destroy(this.gameObject);
     }
