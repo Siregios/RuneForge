@@ -11,11 +11,16 @@ public class ChargeSelector : MonoBehaviour {
        
     private int mashCount = 0;
     private float lastSpeed;
+    private float timeRemaining;
+
     public float startXPos = -6.5f;
     public float startYPos = -2.0f;
     public int score = 0;
     public int maxSpeed = 30;
     public float speedIncrement = 2.0f;
+    public float aimTime = 5.0f;
+    public float chargeTime = 5.0f;
+
 
     private TargetMovment target;
     private movementAI movement;
@@ -25,9 +30,11 @@ public class ChargeSelector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        timeRemaining = aimTime;
 
         target = GameObject.Find("Target").GetComponent<TargetMovment>();
         movement = this.GetComponent<movementAI>();
+        lastSpeed = movement.minSpeed;
 
         //to be replaced
         lightning = new SpriteRenderer[3];
@@ -40,6 +47,22 @@ public class ChargeSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (timeRemaining < 0)
+            timeRemaining = 0;
+        else
+            timeRemaining -= Time.deltaTime;
+        //Debug.Log(timeRemaining);
+        if (timeRemaining <= 0)
+        {
+            if (buttonMash)
+            {
+                StartCoroutine(waitForLightning());
+
+            }
+            else
+                if(isPlaying)   //need this becaus of a bug where update runs before coroutine sets the wait
+                    resetMarker();
+        }
 
         if (selectButtonDown() && isPlaying)
         {
@@ -81,6 +104,7 @@ public class ChargeSelector : MonoBehaviour {
             score++;
             Debug.Log("RIDE THE LIGHTNING!");
             buttonMash = true;
+            timeRemaining = chargeTime;
         }
         else
         {
@@ -103,12 +127,13 @@ public class ChargeSelector : MonoBehaviour {
         if (((float)mashCount / 25) * 100 > 75)
             lightning[2].enabled = true;
 
-        if (mashCount == 25)    //After some number/time of button mashing, reset and increase speed
+        /*if (mashCount == 25)    //After some number/time of button mashing, reset and increase speed
         {
             buttonMash = false;
             mashCount = 0;
             StartCoroutine(waitForLightning());
         }
+        */
     }
 
     //stop the marker's movement and save its speed
@@ -137,6 +162,7 @@ public class ChargeSelector : MonoBehaviour {
             movement.speed = lastSpeed;
         }
         target.changePosition();
+        timeRemaining = aimTime;
     }
 
     //may be replaced
@@ -144,10 +170,26 @@ public class ChargeSelector : MonoBehaviour {
     {
         isPlaying = false;
         yield return new WaitForSeconds(1f);
-        isPlaying = true;
         //to be replaced
         for (int i = 0; i < 3; i++)
             lightning[i].enabled = false;
         resetMarker();
+
+        //IDK
+        buttonMash = false;
+        mashCount = 0;
+
+
+        isPlaying = true;
+    }
+
+    public float getTimeRemaining()
+    {
+        return timeRemaining;
+    }
+
+    public string getMode()
+    {
+        return buttonMash ? "Fire" : "Aim";
     }
 }
