@@ -9,6 +9,7 @@ public class ItemButton : MonoBehaviour
     public Item item;
 
     public Text countText;
+    public GameObject hoverInfo;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
 
@@ -20,7 +21,7 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    public void Awake()
+    void Awake()
     {
         switch (inventoryType)
         {
@@ -33,7 +34,7 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    public void Update()
+    void Update()
     {
         if (countText != null)
         {
@@ -52,5 +53,7 @@ public class ItemButton : MonoBehaviour
         {
             this.GetComponent<Button>().onClick.AddListener(() => function(this.item));
         }
+
+        this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
     }
 }
