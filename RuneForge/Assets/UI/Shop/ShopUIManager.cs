@@ -11,6 +11,7 @@ public class ShopUIManager : MonoBehaviour {
     public ItemListUI buyItemList, sellItemList;
     public TransactionBoard transactionBoard;
     public Text moneyText;
+    public GameObject menuBar;
 
     void Awake()
     {
@@ -18,15 +19,23 @@ public class ShopUIManager : MonoBehaviour {
         sellItemList.AddButtonFunction(SellShopItemButton);
     }
 
-    void OnEnable()
+    public void Enable(bool active)
     {
-        MasterGameManager.instance.uiManager.uiOpen = true;
+        this.gameObject.SetActive(active);
+        MasterGameManager.instance.uiManager.uiOpen = active;
+        MasterGameManager.instance.interactionManager.canInteract = !active;
+        menuBar.SetActive(!active);
     }
 
-    void OnDisable()
-    {
-        MasterGameManager.instance.uiManager.uiOpen = false;
-    }
+    //void OnEnable()
+    //{
+    //    MasterGameManager.instance.uiManager.uiOpen = true;
+    //}
+
+    //void OnDisable()
+    //{
+    //    MasterGameManager.instance.uiManager.uiOpen = false;
+    //}
 
     void Update()
     {

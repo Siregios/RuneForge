@@ -53,7 +53,16 @@ public class ItemButton : MonoBehaviour
         {
             this.GetComponent<Button>().onClick.AddListener(() => function(this.item));
         }
+    }
 
-        this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
+    public void HoverInfo(bool active)
+    {
+        if (this.hoverInfo != null)
+        {
+            this.hoverInfo.SetActive(active);
+            this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
+            Debug.Log(hoverInfo.GetComponent<RectTransform>().rect.width);
+            Debug.Log(Screen.width);
+        }
     }
 }

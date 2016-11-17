@@ -613,7 +613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013397990782
 GameObject:
   m_ObjectHideFlags: 1
@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 1000011658806744, guid: 327333ae83385b744ae5c7aab4d0fdf3, type: 2}
+  itemButton: {fileID: 1000011658806744, guid: 1b1fc1aa51d16ca4d889979d8fc4582b, type: 2}
   padX: 15
   padY: 20
 --- !u!114 &114000013071267538
@@ -2391,7 +2391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 1000011658806744, guid: bb291521145b5134fb514a5594831119, type: 2}
+  itemButton: {fileID: 1000011658806744, guid: 7d780aa4671e88e4583f910b0861d098, type: 2}
   padX: 15
   padY: 20
 --- !u!114 &114000013751954944
