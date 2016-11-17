@@ -21,18 +21,28 @@ public class SortGameManager : MonoBehaviour {
     Vector3 oldPos;
     
     //Intervals to how fast bubbles will spawn    
-    float timeToSpawn = 3f;
+    float timeToSpawn = 1f;
     float time;
+
+    public float timer = 30f;
+    public Text timerText;
     public int score;
     public Text scoreText;
 
 	void Start () {
         time = 0;
-	}
+        GetComponent<AudioSource>().Play();
+    }
 		
 	void Update () {
+        timer -= Time.deltaTime;
+        timerText.text = "Time: " + Mathf.FloorToInt(timer).ToString();
         scoreText.text = "Score: " + score.ToString();
 
+        if (timer < 0.01f)
+        {
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
+        }
         //Check if any characters are requesting an item.
         if (currentSpawn < 3 && time <= 0)
         {
