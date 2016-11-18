@@ -55,14 +55,16 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    public void HoverInfo(bool active)
+    public void OnHover(bool active)
     {
         if (this.hoverInfo != null)
         {
-            this.hoverInfo.SetActive(active);
-            this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
-            Debug.Log(hoverInfo.GetComponent<RectTransform>().rect.width);
-            Debug.Log(Screen.width);
+            HoverInfo.Load();
+            HoverInfo.instance.DisplayItem(this);
+            //this.hoverInfo.SetActive(active);
+            //this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
+            //Debug.Log(hoverInfo.GetComponent<RectTransform>().rect.width);
+            //Debug.Log(Screen.width);
         }
     }
 }
