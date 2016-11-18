@@ -9,7 +9,6 @@ public class ItemButton : MonoBehaviour
     public Item item;
 
     public Text countText;
-    public GameObject hoverInfo;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
 
@@ -57,14 +56,14 @@ public class ItemButton : MonoBehaviour
 
     public void OnHover(bool active)
     {
-        if (this.hoverInfo != null)
+        if (active)
         {
             HoverInfo.Load();
             HoverInfo.instance.DisplayItem(this);
-            //this.hoverInfo.SetActive(active);
-            //this.hoverInfo.transform.Find("Text").GetComponent<Text>().text = item.name;
-            //Debug.Log(hoverInfo.GetComponent<RectTransform>().rect.width);
-            //Debug.Log(Screen.width);
+        }
+        else
+        {
+            HoverInfo.instance.Hide();
         }
     }
 }

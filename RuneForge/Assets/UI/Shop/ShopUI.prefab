@@ -1980,6 +1980,7 @@ MonoBehaviour:
   sellItemList: {fileID: 114000013632392264}
   transactionBoard: {fileID: 114000011014986924}
   moneyText: {fileID: 114000011499904118}
+  menuBar: {fileID: 0}
 --- !u!114 &114000012891092094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2391,7 +2392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 1000011658806744, guid: 7d780aa4671e88e4583f910b0861d098, type: 2}
+  itemButton: {fileID: 1000011658806744, guid: 3a807905b7cc64b4ab1815b8febfb5c7, type: 2}
   padX: 15
   padY: 20
 --- !u!114 &114000013751954944
