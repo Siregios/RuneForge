@@ -8,13 +8,14 @@ public class QuestBoardUI : MonoBehaviour {
     public int currentDisplayedDay = 0;    
 
     RectTransform rectTransform;
-    float padX, padY;
+    float xPos, yPos, padY;
 
     void Awake()
     {
         rectTransform = this.GetComponent<RectTransform>();
-        padX = questNote.GetComponent<RectTransform>().rect.width / 2 + 10;
-        padY = questNote.GetComponent<RectTransform>().rect.height / 2 + 10;
+        xPos = -205;
+        yPos = 150;
+        padY = -70;
     }
 
     void OnEnable()
@@ -34,21 +35,33 @@ public class QuestBoardUI : MonoBehaviour {
         if (currentDisplayedDay == MasterGameManager.instance.actionClock.Day)
             return;
 
-        foreach (Order order in MasterGameManager.instance.orderGenerator.todaysOrders)
+        int objCount = 0;
+        foreach(Order order in MasterGameManager.instance.orderGenerator.todaysOrders)
         {
-            GameObject newOrderNote = (GameObject)Instantiate(questNote, this.transform.position, Quaternion.identity);
-            newOrderNote.transform.SetParent(this.transform);
-            newOrderNote.transform.localScale = Vector3.one;
-
-            float xPos = Random.Range(rectTransform.rect.xMin + padX, rectTransform.rect.xMax - padX);
-            float yPos = Random.Range(rectTransform.rect.yMin + padY, rectTransform.rect.yMax - padY);
-            newOrderNote.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPos, 0);
-
-            newOrderNote.transform.FindChild("OrderIcon").GetComponent<Image>().sprite = order.item.icon;
-            newOrderNote.transform.FindChild("OrderName").GetComponent<Text>().text = order.item.name;
-
-            newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
+            GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
+            newQuest.transform.SetParent(this.transform);
+            newQuest.transform.localScale = Vector3.one;
+            float yPosNew = yPos + (padY * objCount);
+            newQuest.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
+            newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = order.item.icon;
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need One: " + order.item.name;
+            objCount++;
         }
+        //foreach (Order order in MasterGameManager.instance.orderGenerator.todaysOrders)
+        //{
+        //    GameObject newOrderNote = (GameObject)Instantiate(questNote, this.transform.position, Quaternion.identity);
+        //    newOrderNote.transform.SetParent(this.transform);
+        //    newOrderNote.transform.localScale = Vector3.one;
+
+        //    float xPos = Random.Range(rectTransform.rect.xMin + padX, rectTransform.rect.xMax - padX);
+        //    float yPos = Random.Range(rectTransform.rect.yMin + padY, rectTransform.rect.yMax - padY);
+        //    newOrderNote.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPos, 0);
+
+        //    newOrderNote.transform.FindChild("OrderIcon").GetComponent<Image>().sprite = order.item.icon;
+        //    newOrderNote.transform.FindChild("OrderName").GetComponent<Text>().text = "Need One: " + order.item.name;
+
+        //    //newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
+        //}
         currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
     }
 }

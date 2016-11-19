@@ -13,7 +13,8 @@ public class OrderGenerator : MonoBehaviour {
     public void GenerateOrders()
     {
         todaysOrders.Clear();
-        for (int i = 0; i < MasterGameManager.instance.actionClock.Day; i++)
+        //Temporary to test
+        for (int i = 0; i < 5; i++)
         {
             todaysOrders.Add(new Order());
         }
