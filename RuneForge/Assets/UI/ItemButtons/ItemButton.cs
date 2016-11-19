@@ -8,6 +8,7 @@ public class ItemButton : MonoBehaviour
 {
     public Item item;
 
+    public bool showHover = true;
     public Text countText;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
@@ -56,14 +57,17 @@ public class ItemButton : MonoBehaviour
 
     public void OnHover(bool active)
     {
-        if (active)
+        if (showHover)
         {
-            HoverInfo.Load();
-            HoverInfo.instance.DisplayItem(this);
-        }
-        else
-        {
-            HoverInfo.instance.Hide();
+            if (active)
+            {
+                HoverInfo.Load();
+                HoverInfo.instance.DisplayItem(this);
+            }
+            else
+            {
+                HoverInfo.instance.Hide();
+            }
         }
     }
 }
