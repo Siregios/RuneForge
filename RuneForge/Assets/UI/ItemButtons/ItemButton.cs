@@ -9,6 +9,8 @@ public class ItemButton : MonoBehaviour
     public Item item;
 
     public bool showHover = true;
+    public Image attribute1;
+    public Image attribute2;
     public Text countText;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
@@ -53,6 +55,7 @@ public class ItemButton : MonoBehaviour
         {
             this.GetComponent<Button>().onClick.AddListener(() => function(this.item));
         }
+        setAttributes();
     }
 
     public void OnHover(bool active)
@@ -68,6 +71,42 @@ public class ItemButton : MonoBehaviour
             {
                 HoverInfo.instance.Hide();
             }
+        }
+    }
+
+    void setAttributes()
+    {
+        KeyValuePair<string, int> mainItemAttribute = new KeyValuePair<string, int>("", 0);
+        KeyValuePair<string, int> secondaryItemAttribute = new KeyValuePair<string, int>("", 0);
+        Dictionary<string, string> attributeToColor = new Dictionary<string, string>()
+        {
+            { "Fire", "red" },
+            { "Water", "blue" },
+            { "Earth", "yellow" },
+            { "Air", "green" }
+        };
+
+        //Should only be two things in providedAttributes
+        foreach (var kvp in item.providedAttributes)
+        {
+            if (kvp.Value > mainItemAttribute.Value)
+            {
+                secondaryItemAttribute = mainItemAttribute;
+                mainItemAttribute = kvp;
+            }
+            else
+                secondaryItemAttribute = kvp;
+        }
+
+        if (attribute1 != null && mainItemAttribute.Key != "")
+        {
+            attribute1.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0}_circle", attributeToColor[mainItemAttribute.Key]));
+            attribute1.transform.Find("Text").GetComponent<Text>().text = mainItemAttribute.Value.ToString();
+        }
+        if (attribute2 != null && secondaryItemAttribute.Key != "")
+        {
+            attribute2.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0}_circle", attributeToColor[secondaryItemAttribute.Key]));
+            attribute2.transform.Find("Text").GetComponent<Text>().text = secondaryItemAttribute.Value.ToString();
         }
     }
 }

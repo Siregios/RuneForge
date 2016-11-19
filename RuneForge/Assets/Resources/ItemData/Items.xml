@@ -8,7 +8,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4, Water:2</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -19,7 +19,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4, Earth:5</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -30,7 +30,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -41,7 +41,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -52,7 +52,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -63,7 +63,7 @@
       <Price>50</Price>
       <isIngredient>true</isIngredient>
       <isProduct>false</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe></Recipe>
       <MinigamesRequired>0</MinigamesRequired>
       <RequiredAttributes></RequiredAttributes>
@@ -74,10 +74,10 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe>Sphere:2, Salamanders_Scale:2</Recipe>
       <MinigamesRequired>3</MinigamesRequired>
-      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+      <RequiredAttributes>Fire:3</RequiredAttributes>
     </Item>
 
     <Item name="Water_Rune">
@@ -85,10 +85,10 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe>Sphere:2, Purified_Water:2</Recipe>
       <MinigamesRequired>3</MinigamesRequired>
-      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+      <RequiredAttributes>Fire:3</RequiredAttributes>
     </Item>
 
     <Item name="Air_Rune">
@@ -96,10 +96,10 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe>Sphere:2, Harpys_Feather:2</Recipe>
       <MinigamesRequired>3</MinigamesRequired>
-      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+      <RequiredAttributes>Fire:3</RequiredAttributes>
     </Item>
 
     <Item name="Earth_Rune">
@@ -107,10 +107,10 @@
       <Price>350</Price>
       <isIngredient>true</isIngredient>
       <isProduct>true</isProduct>
-      <ProvidedAttributes>Fire:4, Water:0, Air:0, Earth:0</ProvidedAttributes>
+      <ProvidedAttributes>Fire:4</ProvidedAttributes>
       <Recipe>Sphere:2, Obsidian:2</Recipe>
       <MinigamesRequired>3</MinigamesRequired>
-      <RequiredAttributes>Fire:3, Water:0, Air:0, Earth:0</RequiredAttributes>
+      <RequiredAttributes>Fire:3</RequiredAttributes>
     </Item>
 
   </ItemList>

@@ -28,7 +28,7 @@ public static class ItemCollection{
                 foreach (string pairString in item.provtAttrStr.Trim().Split(','))
                 {
                     var pair = pairString.Trim().Split(':');
-                    item.providedAttributes.Add(pair[0], int.Parse(pair[1]));
+                    item.providedAttributes.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
                 }
             }
 
@@ -37,13 +37,13 @@ public static class ItemCollection{
                 foreach (string pairString in item.recipeString.Trim().Split(','))
                 {
                     var pair = pairString.Trim().Split(':');
-                    item.recipe.Add(pair[0], int.Parse(pair[1]));
+                    item.recipe.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
                 }
 
                 foreach (string pairString in item.reqAttrStr.Trim().Split(','))
                 {
                     var pair = pairString.Trim().Split(':');
-                    item.requiredAttributes.Add(pair[0], int.Parse(pair[1]));
+                    item.requiredAttributes.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
                 }
             }
 

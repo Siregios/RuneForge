@@ -59,7 +59,7 @@ GameObject:
   - 114: {fileID: 114000013129276832}
   - 114: {fileID: 114000010488240848}
   m_Layer: 5
-  m_Name: ItemButton (RecipeProduct)
+  m_Name: ItemButton (QuestProduct)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,8 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ad6872c93f6b546acd763525a3606e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showHover: 1
+  attribute1: {fileID: 0}
+  attribute2: {fileID: 0}
   countText: {fileID: 0}
-  hoverInfo: {fileID: 0}
   inventoryType: 0
 --- !u!114 &114000013489666586
 MonoBehaviour:
