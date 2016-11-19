@@ -9,7 +9,7 @@ public static class ShopInventory {
         ///NOTICE: Have to find a way to tag shopStock as infinite,
         /// Perhaps another xml sheet indicating shopStock at certain times
 
-        foreach (Item material in ItemCollection.FilterItem("material"))
+        foreach (Item material in ItemCollection.FilterItemList("material"))
         {
             inventory.SetItemCount(material.name, int.MaxValue);
         }

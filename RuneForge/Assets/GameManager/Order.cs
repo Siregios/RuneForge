@@ -8,7 +8,7 @@ public class Order {
 
     public Order()
     {
-        List<Item> productList = ItemCollection.FilterItem("product");
+        List<Item> productList = ItemCollection.FilterItemList("product");
         int randomIndex = Random.Range(0, productList.Count);
         this.item = productList[randomIndex];
         if (item.type == "BasicRune")

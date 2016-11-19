@@ -73,16 +73,37 @@ public static class ItemCollection{
     }
 
     //This funciton might be slow when there are lots of items in the game.
-    public static List<Item> FilterItem(string filter)
+    public static List<Item> FilterItemList(string filter)
     {
         string lowerFilter = filter.Trim().ToLower();
 
         if (lowerFilter.Contains("all"))
             return itemList;
 
+        return FilterSpecificList(itemList, filter);
+
+        //List<Item> result = new List<Item>();
+
+        //foreach (Item item in itemList)
+        //{
+        //    if (lowerFilter.Contains("ingredient") && item.isIngredient)
+        //        result.Add(item);
+        //    else if (lowerFilter.Contains("product") && item.isProduct)
+        //        result.Add(item);
+        //    else if (item.name.ToLower().Contains(lowerFilter) || item.type.ToLower().Contains(lowerFilter))
+        //        result.Add(item);
+        //}
+
+        //return result;
+    }
+
+    public static List<Item> FilterSpecificList(List<Item> specificList, string filter)
+    {
+        string lowerFilter = filter.Trim().ToLower();
+
         List<Item> result = new List<Item>();
 
-        foreach (Item item in itemList)
+        foreach (Item item in specificList)
         {
             if (lowerFilter.Contains("ingredient") && item.isIngredient)
                 result.Add(item);

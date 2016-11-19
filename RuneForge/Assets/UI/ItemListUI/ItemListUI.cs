@@ -8,7 +8,9 @@ using System;
 public class ItemListUI : MonoBehaviour
 {
     public GameObject itemButton;
+    public string defaultFilter = "ALL";
     public float padX = 10, padY = 20;
+    List<Item> defaultList = new List<Item>();
     List<Action<Item>> buttonClickFunctions = new List<Action<Item>>();
 
     InputField searchInput;
@@ -42,6 +44,7 @@ public class ItemListUI : MonoBehaviour
 
     void Start()
     {
+        defaultList = ItemCollection.FilterItemList(defaultFilter);
         DisplayNewFilter(filterString);
     }
 
@@ -70,7 +73,8 @@ public class ItemListUI : MonoBehaviour
     {
         ClearPage();
 
-        List<Item> filteredItems = ItemCollection.FilterItem(filter);
+        //List<Item> filteredItems = ItemCollection.FilterItemList(filter);
+        List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
 
         for (int i = 0; i < buttonsPerPage; i++)
         {
