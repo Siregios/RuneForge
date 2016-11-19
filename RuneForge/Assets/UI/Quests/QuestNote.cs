@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OrderNote : MonoBehaviour {
+public class QuestNote : MonoBehaviour {
 
     bool followingMouse = false;
 
