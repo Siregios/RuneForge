@@ -43,6 +43,8 @@ public class TransactionBoard : MonoBehaviour {
                 sellButton.gameObject.SetActive(false);
                 break;
         }
+
+        //This needs to be refactored
         if (item.isIngredient)
         {
             fireAttribute.gameObject.SetActive(true);
@@ -50,10 +52,19 @@ public class TransactionBoard : MonoBehaviour {
             earthAttribute.gameObject.SetActive(true);
             airAttribute.gameObject.SetActive(true);
 
-            fireAttribute.RefreshBar(item.providedAttributes["Fire"]);
-            waterAttribute.RefreshBar(item.providedAttributes["Water"]);
-            earthAttribute.RefreshBar(item.providedAttributes["Earth"]);
-            airAttribute.RefreshBar(item.providedAttributes["Air"]);
+            int level, value;
+
+            level = (item.providedAttributes.TryGetValue("Fire", out value)) ? value : 0;
+            fireAttribute.RefreshBar(level);
+
+            level = (item.providedAttributes.TryGetValue("Water", out value)) ? value : 0;
+            waterAttribute.RefreshBar(level);
+
+            level = (item.providedAttributes.TryGetValue("Earth", out value)) ? value : 0;
+            earthAttribute.RefreshBar(level);
+
+            level = (item.providedAttributes.TryGetValue("Air", out value)) ? value : 0;
+            airAttribute.RefreshBar(level);
         }
     }
 

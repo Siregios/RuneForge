@@ -3035,7 +3035,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1856447605}
+      objectReference: {fileID: 0}
     - target: {fileID: 114000013914406070, guid: afc244fe76008db40a7d97e7f51cdf92,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4020,6 +4020,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ee1d0f120bacd449a069c518276f05, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &923642463 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010111454622, guid: afc244fe76008db40a7d97e7f51cdf92,
+    type: 2}
+  m_PrefabInternal: {fileID: 614272976}
+--- !u!224 &923642464 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000013262727788, guid: afc244fe76008db40a7d97e7f51cdf92,
+    type: 2}
+  m_PrefabInternal: {fileID: 614272976}
 --- !u!1 &992084433
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,16 +6960,6 @@ Transform:
   - {fileID: 773072693}
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!1 &1713366265 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011230659148, guid: afc244fe76008db40a7d97e7f51cdf92,
-    type: 2}
-  m_PrefabInternal: {fileID: 614272976}
---- !u!224 &1713366266 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224000013670958142, guid: afc244fe76008db40a7d97e7f51cdf92,
-    type: 2}
-  m_PrefabInternal: {fileID: 614272976}
 --- !u!1 &1725211439
 GameObject:
   m_ObjectHideFlags: 0
@@ -7005,7 +7005,7 @@ MonoBehaviour:
   MouseClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1713366265}
+      - m_Target: {fileID: 923642463}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -7224,7 +7224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1469965838}
-  - {fileID: 1713366266}
+  - {fileID: 923642464}
   - {fileID: 6219565}
   - {fileID: 1407271452}
   - {fileID: 1619035847}
@@ -7241,12 +7241,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000010805552992, guid: dd9fa1e73e391024c86dafd1c76c1f17,
     type: 2}
   m_PrefabInternal: {fileID: 6219564}
---- !u!114 &1856447605 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013815834122, guid: afc244fe76008db40a7d97e7f51cdf92,
-    type: 2}
-  m_PrefabInternal: {fileID: 614272976}
-  m_Script: {fileID: 11500000, guid: 16dba244fb0b51140b768087baa472b7, type: 3}
 --- !u!1 &1975428156
 GameObject:
   m_ObjectHideFlags: 0

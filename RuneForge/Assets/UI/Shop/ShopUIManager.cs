@@ -27,16 +27,6 @@ public class ShopUIManager : MonoBehaviour {
         menuBar.SetActive(!active);
     }
 
-    //void OnEnable()
-    //{
-    //    MasterGameManager.instance.uiManager.uiOpen = true;
-    //}
-
-    //void OnDisable()
-    //{
-    //    MasterGameManager.instance.uiManager.uiOpen = false;
-    //}
-
     void Update()
     {
         moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
