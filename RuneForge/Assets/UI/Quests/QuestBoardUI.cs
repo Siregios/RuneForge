@@ -7,12 +7,12 @@ public class QuestBoardUI : MonoBehaviour {
     [HideInInspector]
     public int currentDisplayedDay = 0;    
 
-    RectTransform rectTransform;
+//    RectTransform rectTransform;
     float xPos, yPos, padY;
 
     void Awake()
     {
-        rectTransform = this.GetComponent<RectTransform>();
+        //rectTransform = this.GetComponent<RectTransform>();
         xPos = -205;
         yPos = 150;
         padY = -70;

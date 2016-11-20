@@ -4,6 +4,11 @@ using System.Collections;
 
 public class QuestNote : MonoBehaviour {
 
+    public void OnMouseDown()
+    {
+
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<Image>().sprite == gameObject.transform.Find("QuestIcon").GetComponent<Image>().sprite)

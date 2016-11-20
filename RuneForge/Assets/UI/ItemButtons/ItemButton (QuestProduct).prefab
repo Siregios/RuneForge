@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -261,7 +261,7 @@ MonoBehaviour:
   showHover: 1
   attribute1: {fileID: 0}
   attribute2: {fileID: 0}
-  countText: {fileID: 0}
+  countText: {fileID: 114000011831550606}
   inventoryType: 0
   dragObject: {fileID: 1000010731745402, guid: e6b03dd7e52937f48baca61e74b74ca8, type: 2}
 --- !u!114 &114000013489666586
