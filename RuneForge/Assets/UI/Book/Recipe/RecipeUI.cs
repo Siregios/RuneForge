@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class RecipeUI : MonoBehaviour {
     Item productItem;
+    private AudioManager AudioManager;
+
 
     public Button cancelButton, pinSelectButton, pinRandomButton;
     public ItemListUI productItemList, ingredientItemList;
@@ -27,6 +29,8 @@ public class RecipeUI : MonoBehaviour {
         productName = this.transform.Find("ProductName").GetComponent<Text>();
         productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
         recipeText = this.transform.Find("Recipe").GetComponent<Text>();
+
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         //invListUI.ModifyAllButtons(ProductButtonBehavior);
     }
@@ -66,7 +70,6 @@ public class RecipeUI : MonoBehaviour {
         
         productItemList.gameObject.SetActive(true);
         productItemList.DisplayNewFilter("product");
-
         productItem = null;
         productName.text = "";
         productIcon.color = Color.clear;
@@ -78,8 +81,8 @@ public class RecipeUI : MonoBehaviour {
 
     public void ImportIngredientMode()
     {
+        AudioManager.PlaySound(1);
         productItemList.gameObject.SetActive(false);
-
         ingredientItemList.gameObject.SetActive(true);
         ingredientItemList.DisplayNewFilter("ingredient");
         cancelButton.gameObject.SetActive(true);
@@ -102,7 +105,10 @@ public class RecipeUI : MonoBehaviour {
     {
         MasterGameManager.instance.workboard.CreateWorkOrder(productItem, isRandom);
         RemoveAllIngredients(false);
-
+        if(isRandom)
+            AudioManager.PlaySound(4);
+        else
+            AudioManager.PlaySound(3);
         ImportProductMode();
     }
 
@@ -139,6 +145,7 @@ public class RecipeUI : MonoBehaviour {
         {
             PlayerInventory.inventory.SubtractItem(item.name);
             addedIngredients[item.name]++;
+            AudioManager.PlaySound(2);
             foreach (IngredientEntry entry in ingredientEntryList)
             {
                 if (entry.loadedButton == null)
@@ -171,6 +178,12 @@ public class RecipeUI : MonoBehaviour {
             RemoveIngredient(entry, restockInventory);
         }
         addedIngredients.Clear();
+    }
+
+    public void RecipeCancelButton() 
+    {
+        AudioManager.PlaySound(0);
+        ImportProductMode();
     }
 
     //void ProductButtonBehavior(InventoryButton invButton)
