@@ -2703,6 +2703,11 @@ Prefab:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012564828630, guid: cd0c581a4193c9f4c8a66f5fb274cdf1,
+        type: 2}
+      propertyPath: defaultFilter
+      value: PRODUCTS
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd0c581a4193c9f4c8a66f5fb274cdf1, type: 2}
   m_IsPrefabParent: 0
