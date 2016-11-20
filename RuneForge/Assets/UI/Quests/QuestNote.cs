@@ -1,23 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class QuestNote : MonoBehaviour {
 
-    bool followingMouse = false;
-
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (followingMouse)
-            this.transform.position = Input.mousePosition;
+        if (other.GetComponent<Image>().sprite == gameObject.transform.Find("QuestIcon").GetComponent<Image>().sprite)
+        {
+            Debug.Log("YOLO");
+        }
     }
+    //bool followingMouse = false;
 
-    public void OnMouseDown()
-    {
-        followingMouse = true;
-    }
+    //void Update()
+    //{
+    //    if (followingMouse)
+    //        this.transform.position = Input.mousePosition;
+    //}
 
-    public void OnMouseRelease()
-    {
-        followingMouse = false;
-    }
+    //public void OnMouseDown()
+    //{
+    //    followingMouse = true;
+    //}
+
+    //public void OnMouseRelease()
+    //{
+    //    followingMouse = false;
+    //}
 }

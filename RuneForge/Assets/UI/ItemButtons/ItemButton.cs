@@ -9,11 +9,16 @@ public class ItemButton : MonoBehaviour
     public Item item;
 
     public bool showHover = true;
+    bool followingMouse = false;
     public Image attribute1;
     public Image attribute2;
     public Text countText;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
+
+    //Drag objects
+    public GameObject dragObject;
+    GameObject draggable;
 
     public int ItemCount
     {
@@ -45,7 +50,11 @@ public class ItemButton : MonoBehaviour
             else
                 this.countText.text = "x" + ItemCount.ToString();
         }
-    }
+        if (followingMouse) { 
+            draggable.transform.position = new Vector3(Input.mousePosition.x - 20, Input.mousePosition.y + 15, 0) ;
+            OnHover(false);
+        }
+}
 
     public void Initialize(Item item, List<Action<Item>> buttonFunctions)
     {
@@ -72,6 +81,23 @@ public class ItemButton : MonoBehaviour
                 HoverInfo.instance.Hide();
             }
         }
+    }
+
+    public void OnMouseDown()
+    {
+        followingMouse = true;
+        draggable = (GameObject)Instantiate(dragObject, this.transform.position, Quaternion.identity);
+        draggable.transform.SetParent(gameObject.transform, false);
+        draggable.GetComponent<Image>().sprite = gameObject.transform.Find("Icon").GetComponent<Image>().sprite;
+        gameObject.GetComponent<Button>().interactable = false;
+    }
+
+    public void OnMouseRelease()
+    {
+        followingMouse = false;
+        Destroy(draggable);
+        draggable = null;
+        gameObject.GetComponent<Button>().interactable = true;
     }
 
     void setAttributes()
