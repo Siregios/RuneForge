@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ItemButton : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ItemButton : MonoBehaviour
     public Image attribute2;
     public Text countText;
     public Inventory.InventoryType inventoryType;
+    GameObject LastClicked;
     Inventory referenceInventory;
 
     //Drag objects
@@ -43,6 +45,10 @@ public class ItemButton : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject != this.gameObject || LastClicked == null)
+        {
+            LastClicked = EventSystem.current.currentSelectedGameObject;
+        }
         if (countText != null)
         {
             if (ItemCount == int.MaxValue)
@@ -85,11 +91,24 @@ public class ItemButton : MonoBehaviour
 
     public void OnMouseDown()
     {
-        followingMouse = true;
-        draggable = (GameObject)Instantiate(dragObject, this.transform.position, Quaternion.identity);
-        draggable.transform.SetParent(gameObject.transform, false);
-        draggable.GetComponent<Image>().sprite = gameObject.transform.Find("Icon").GetComponent<Image>().sprite;
-        gameObject.GetComponent<Button>().interactable = false;
+        if (LastClicked != null)
+        {
+            if ((LastClicked.name == "QuestUI(Clone)"))
+            {
+                if (LastClicked.transform.Find("QuestIcon").GetComponent<Image>().sprite == gameObject.transform.Find("Icon").GetComponent<Image>().sprite)
+                {
+                    Debug.Log("YOLOTWO");
+                    LastClicked = null;
+                }
+            }
+
+            else {
+                DragCopy();              
+            }
+        }
+        else {
+            DragCopy();
+        }
     }
 
     public void OnMouseRelease()
@@ -100,6 +119,14 @@ public class ItemButton : MonoBehaviour
         gameObject.GetComponent<Button>().interactable = true;
     }
 
+    void DragCopy()
+    {
+        followingMouse = true;
+        draggable = (GameObject)Instantiate(dragObject, this.transform.position, Quaternion.identity);
+        draggable.transform.SetParent(gameObject.transform, false);
+        draggable.GetComponent<Image>().sprite = gameObject.transform.Find("Icon").GetComponent<Image>().sprite;
+        gameObject.GetComponent<Button>().interactable = false;
+    }
     void setAttributes()
     {
         KeyValuePair<string, int> mainItemAttribute = new KeyValuePair<string, int>("", 0);
