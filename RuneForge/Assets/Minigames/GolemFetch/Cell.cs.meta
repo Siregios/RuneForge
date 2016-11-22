@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 764cf64bb6790654e9ce8316fe299391
-timeCreated: 1479768150
-licenseType: Pro
+timeCreated: 1479804398
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
@@ -9,6 +9,10 @@ MonoImporter:
   - bottomRight: {fileID: 21300000, guid: e323bd3b83f42834984711e7b92e09cf, type: 3}
   - topRight: {fileID: 21300000, guid: a90914138a7f39249929a38fe0e91ce0, type: 3}
   - topLeft: {fileID: 21300000, guid: 025a179fae71095498c04b25f09e999b, type: 3}
+  - spawn: {fileID: 21300000, guid: a3c1e0c84cdde7249a811caf3b42f887, type: 3}
+  - book: {fileID: 21300000, guid: dafea30db76ec8c42a3c211a97028d7e, type: 3}
+  - obstacle: {fileID: 21300000, guid: 6871bb611f2af0341a27aff3feb74e7c, type: 3}
+  - end: {fileID: 21300000, guid: 1522f9b35d4bd3a498bcc0496b339583, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

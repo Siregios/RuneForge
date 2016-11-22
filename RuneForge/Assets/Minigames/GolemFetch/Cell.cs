@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Cell : MonoBehaviour {
     public Sprite bottomLeft, bottomRight, topRight, topLeft;
+    public Sprite spawn, book, obstacle, end;
     public enum CellOrientation
     {
         NONE,
@@ -13,10 +14,19 @@ public class Cell : MonoBehaviour {
         TOP_RIGHT,
         TOP_LEFT
     }
+    public enum CellType
+    {
+        NONE,
+        OBSTACLE,
+        SPAWN,
+        BOOK,
+        END
+    }
     public CellOrientation orientation
     {
         get { return (CellOrientation)orientationInt; }
     }
+    public CellType type = CellType.NONE;
     public int x
     {
         get { return Mathf.FloorToInt(this.transform.position.x); }
@@ -29,21 +39,38 @@ public class Cell : MonoBehaviour {
     int orientationInt = 0;
     SpriteRenderer childSprite;
     Dictionary<CellOrientation, Sprite> orientationSprites = new Dictionary<CellOrientation, Sprite>();
+    Dictionary<CellType, Sprite> typeSprites = new Dictionary<CellType, Sprite>();
 
     void Awake()
     {
         childSprite = this.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+
         orientationSprites.Add(CellOrientation.NONE, null);
         orientationSprites.Add(CellOrientation.BOTTOM_LEFT, bottomLeft);
         orientationSprites.Add(CellOrientation.BOTTOM_RIGHT, bottomRight);
         orientationSprites.Add(CellOrientation.TOP_LEFT, topLeft);
         orientationSprites.Add(CellOrientation.TOP_RIGHT, topRight);
+
+        typeSprites.Add(CellType.OBSTACLE, obstacle);
+        typeSprites.Add(CellType.BOOK, book);
+        typeSprites.Add(CellType.SPAWN, spawn);
+        typeSprites.Add(CellType.END, end);
+    }
+
+    public void Initialize(CellType type)
+    {
+        this.type = type;
+        if (type != CellType.NONE)
+            childSprite.sprite = typeSprites[type];
     }
 
     void OnMouseDown()
     {
-        orientationInt = (orientationInt + 1) % 5;
-        childSprite.sprite = orientationSprites[orientation];
-        //Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
+        if (type == CellType.NONE)
+        {
+            orientationInt = (orientationInt + 1) % 5;
+            childSprite.sprite = orientationSprites[orientation];
+            //Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
+        }
     }
 }

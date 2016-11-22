@@ -28,8 +28,8 @@ public class GolemController : MonoBehaviour {
         if (canMove)
         {
             Move();
-            UpdateCurrentCell();
         }
+        UpdateCurrentCell();
     }
 
     void Move()

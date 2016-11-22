@@ -10,12 +10,35 @@ public class GolemFetchManager : MonoBehaviour
     public GolemController golem;
     public GameObject spawn;
     public GameObject cellObject;
-    public int gridSize = 15;
+    public int gridSize = 17;
     [HideInInspector]
     public Direction.DIRECTION entranceWall;
     public Vector2 startCell;
 
     public List<List<Cell>> grid = new List<List<Cell>>();
+
+    //Temporary
+    List<Vector2> obstacleList = new List<Vector2>()
+    {
+        new Vector2(2, 2), new Vector2(3, 2), new Vector2(5, 2), new Vector2(8, 2), new Vector2(11, 2), new Vector2(13, 2), new Vector2(14, 2),
+        new Vector2(2, 3), new Vector2(8, 3), new Vector2(14, 3),
+        new Vector2(5, 4), new Vector2(7, 4), new Vector2(8, 4), new Vector2(9, 4), new Vector2(11, 4),
+        new Vector2(2, 5), new Vector2(4, 5), new Vector2(12, 5), new Vector2(14, 5),
+        new Vector2(6, 6), new Vector2(7, 6), new Vector2(9, 6), new Vector2(10, 6),
+        new Vector2(4, 7), new Vector2(6, 7), new Vector2(10, 7), new Vector2(12, 7),
+        new Vector2(2, 8), new Vector2(3, 8), new Vector2(4, 8), new Vector2(8, 8), new Vector2(12, 8), new Vector2(13, 8), new Vector2(14, 8),
+        new Vector2(4, 9), new Vector2(6, 9), new Vector2(10, 9), new Vector2(12, 9),
+        new Vector2(6, 10), new Vector2(7, 10), new Vector2(9, 10), new Vector2(10, 10),
+        new Vector2(2, 11), new Vector2(4, 11), new Vector2(12, 11), new Vector2(14, 11),
+        new Vector2(5, 12), new Vector2(7, 12), new Vector2(8, 12), new Vector2(9, 12), new Vector2(11, 12),
+        new Vector2(2, 13), new Vector2(8, 13), new Vector2(14, 13),
+        new Vector2(2, 14), new Vector2(3, 14), new Vector2(5, 14), new Vector2(8, 14), new Vector2(11, 14), new Vector2(13, 14), new Vector2(14, 14)
+    };
+
+    List<Vector2> bookList = new List<Vector2>()
+    {
+        new Vector2(6, 7), new Vector2(10, 11)
+    };
 
     void Awake()
     {
@@ -27,12 +50,24 @@ public class GolemFetchManager : MonoBehaviour
 
         if (IsValidCell(golem.gridX, golem.gridY))
         {
-            if (golem.EnteredNewCell() && (grid[golem.gridX][golem.gridY].orientation != Cell.CellOrientation.NONE))
+            if (golem.EnteredNewCell())
             {
-
-                Debug.LogFormat("{0} oriented cell at ({1}, {2})", grid[golem.gridX][golem.gridY].orientation, golem.gridX, golem.gridY);
-                golem.SnapToGrid();
-                TurnGolem(grid[golem.gridX][golem.gridY].orientation);
+                Cell cell = grid[golem.gridX][golem.gridY];
+                if (cell.type == Cell.CellType.NONE && cell.orientation != Cell.CellOrientation.NONE)
+                {
+                    Debug.LogFormat("{0} oriented cell at ({1}, {2})", grid[golem.gridX][golem.gridY].orientation, golem.gridX, golem.gridY);
+                    golem.SnapToGrid();
+                    TurnGolem(grid[golem.gridX][golem.gridY].orientation);
+                }
+                else if (cell.type == Cell.CellType.OBSTACLE)
+                    SpawnGolem();
+                else if (cell.type == Cell.CellType.BOOK)
+                    ; //TODO : Increment score
+                else if (cell.type == Cell.CellType.END)
+                {
+                    ClearGrid();
+                    InitializePuzzle();
+                }
             }
         }
         else
@@ -114,6 +149,21 @@ public class GolemFetchManager : MonoBehaviour
                 grid[c].Add(newCell);
             }
         }
+        grid[Mathf.FloorToInt(startCell.x)][Mathf.FloorToInt(startCell.y)].Initialize(Cell.CellType.SPAWN);
+
+        //Temporary
+        foreach (Vector2 cell in obstacleList)
+        {
+            int c = Mathf.FloorToInt(cell.x);
+            int r = Mathf.FloorToInt(cell.y);
+            //grid[c][r].type = Cell.CellType.OBSTACLE;
+            grid[c][r].Initialize(Cell.CellType.OBSTACLE);
+        }
+        foreach (Vector2 cell in bookList)
+        {
+            grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
+        }
+        grid[gridSize - 1][0].Initialize(Cell.CellType.END);
     }
 
     bool IsValidCell(int x, int y)
@@ -123,7 +173,8 @@ public class GolemFetchManager : MonoBehaviour
 
     Direction.DIRECTION PickEntranceWall()
     {
-        return RandomEnum<Direction.DIRECTION>();
+        List<Direction.DIRECTION> directionList = new List<Direction.DIRECTION>() { Direction.DIRECTION.UP, Direction.DIRECTION.DOWN, Direction.DIRECTION.LEFT, Direction.DIRECTION.RIGHT };
+        return directionList[Random.Range(0, directionList.Count)];
     }
 
     Vector2 PickStartCell()
@@ -155,11 +206,5 @@ public class GolemFetchManager : MonoBehaviour
             grid[c].Clear();
         }
         grid.Clear();
-    }
-
-    public T RandomEnum<T>()
-    {
-        var values = System.Enum.GetValues(typeof(T));
-        return (T)values.GetValue(Random.Range(0, values.Length));
     }
 }

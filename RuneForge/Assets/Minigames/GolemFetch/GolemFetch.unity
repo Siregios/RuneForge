@@ -179,7 +179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &137876146
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   golem: {fileID: 834737538}
   spawn: {fileID: 137876145}
   cellObject: {fileID: 1000011528779084, guid: 69cbf5795795ff545a8e3af21157ff32, type: 2}
-  gridSize: 15
+  gridSize: 17
   entranceWall: 0
   startCell: {x: 0, y: 0}
 --- !u!4 &280741003
@@ -918,7 +918,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.7205882, g: 0.7205882, b: 0.7205882, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
