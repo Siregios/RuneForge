@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Cell : MonoBehaviour {
+    public Sprite bottomLeft, bottomRight, topRight, topLeft;
     public enum CellOrientation
     {
         NONE,
@@ -11,8 +13,6 @@ public class Cell : MonoBehaviour {
         TOP_RIGHT,
         TOP_LEFT
     }
-    int orientationInt = 0;
-
     public CellOrientation orientation
     {
         get { return (CellOrientation)orientationInt; }
@@ -26,9 +26,24 @@ public class Cell : MonoBehaviour {
         get { return Mathf.FloorToInt(this.transform.position.y); }
     }
 
+    int orientationInt = 0;
+    SpriteRenderer childSprite;
+    Dictionary<CellOrientation, Sprite> orientationSprites = new Dictionary<CellOrientation, Sprite>();
+
+    void Awake()
+    {
+        childSprite = this.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        orientationSprites.Add(CellOrientation.NONE, null);
+        orientationSprites.Add(CellOrientation.BOTTOM_LEFT, bottomLeft);
+        orientationSprites.Add(CellOrientation.BOTTOM_RIGHT, bottomRight);
+        orientationSprites.Add(CellOrientation.TOP_LEFT, topLeft);
+        orientationSprites.Add(CellOrientation.TOP_RIGHT, topRight);
+    }
+
     void OnMouseDown()
     {
         orientationInt = (orientationInt + 1) % 5;
-        Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
+        childSprite.sprite = orientationSprites[orientation];
+        //Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
     }
 }

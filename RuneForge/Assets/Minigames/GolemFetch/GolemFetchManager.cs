@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 // TODO : When generating a new map/puzzle, make sure to call ClearGrid()
-public class GolemFetchManager : MonoBehaviour {
+public class GolemFetchManager : MonoBehaviour
+{
 
     public GolemController golem;
     public GameObject spawn;
@@ -23,19 +24,69 @@ public class GolemFetchManager : MonoBehaviour {
 
     void Update()
     {
+
         if (IsValidCell(golem.gridX, golem.gridY))
         {
-            if (grid[golem.gridX][golem.gridY].orientation != Cell.CellOrientation.NONE)
+            if (golem.EnteredNewCell() && (grid[golem.gridX][golem.gridY].orientation != Cell.CellOrientation.NONE))
             {
+
                 Debug.LogFormat("{0} oriented cell at ({1}, {2})", grid[golem.gridX][golem.gridY].orientation, golem.gridX, golem.gridY);
+                golem.SnapToGrid();
+                TurnGolem(grid[golem.gridX][golem.gridY].orientation);
             }
+        }
+        else
+        {
+            SpawnGolem();
         }
     }
 
-    void SpawnGolem(Vector2 pos)
+    void SpawnGolem()
     {
-        golem.transform.position = pos;
+        golem.canMove = false;
+        golem.transform.position = startCell;
+        golem.SnapToGrid();
         golem.movingDirection = Direction.OppositeDirection(entranceWall);
+    }
+
+    void TurnGolem(Cell.CellOrientation cellOrientation)
+    {
+        if (golem.movingDirection == Direction.DIRECTION.RIGHT)
+        {
+            if (cellOrientation == Cell.CellOrientation.TOP_RIGHT)
+                golem.movingDirection = Direction.DIRECTION.DOWN;
+            else if (cellOrientation == Cell.CellOrientation.BOTTOM_RIGHT)
+                golem.movingDirection = Direction.DIRECTION.UP;
+            else
+                SpawnGolem();
+        }
+        else if (golem.movingDirection == Direction.DIRECTION.LEFT)
+        {
+            if (cellOrientation == Cell.CellOrientation.TOP_LEFT)
+                golem.movingDirection = Direction.DIRECTION.DOWN;
+            else if (cellOrientation == Cell.CellOrientation.BOTTOM_LEFT)
+                golem.movingDirection = Direction.DIRECTION.UP;
+            else
+                SpawnGolem();
+        }
+        else if (golem.movingDirection == Direction.DIRECTION.UP)
+        {
+            if (cellOrientation == Cell.CellOrientation.TOP_LEFT)
+                golem.movingDirection = Direction.DIRECTION.RIGHT;
+            else if (cellOrientation == Cell.CellOrientation.TOP_RIGHT)
+                golem.movingDirection = Direction.DIRECTION.LEFT;
+            else
+                SpawnGolem();
+        }
+        else if (golem.movingDirection == Direction.DIRECTION.DOWN)
+        {
+            if (cellOrientation == Cell.CellOrientation.BOTTOM_LEFT)
+                golem.movingDirection = Direction.DIRECTION.RIGHT;
+            else if (cellOrientation == Cell.CellOrientation.BOTTOM_RIGHT)
+                golem.movingDirection = Direction.DIRECTION.LEFT;
+            else
+                SpawnGolem();
+        }
     }
 
     public void BeginTraversal()
@@ -51,7 +102,7 @@ public class GolemFetchManager : MonoBehaviour {
         entranceWall = PickEntranceWall();
         startCell = PickStartCell();
         spawn.transform.position = startCell;
-        SpawnGolem(startCell);
+        SpawnGolem();
 
         for (int c = 0; c < gridSize; c++)
         {
