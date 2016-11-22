@@ -3591,7 +3591,7 @@ Prefab:
     - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
         type: 2}
       propertyPath: audioClips.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4000014124837080, guid: 1097b33b77309464ab167810e9e1b8fc, type: 2}
       propertyPath: m_LocalPosition.x
@@ -3655,6 +3655,26 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
+        type: 2}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: d9e1607266c56784bae950799bf79c23, type: 3}
+    - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
+        type: 2}
+      propertyPath: audioClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ff0ffd28e9b8f4aa68e218c462fcdd, type: 3}
+    - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
+        type: 2}
+      propertyPath: audioClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec6526f6c19058d44b229851330063d9, type: 3}
+    - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
+        type: 2}
+      propertyPath: audioClips.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: fd462ee5fa03844489e96ae508ee79f8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1097b33b77309464ab167810e9e1b8fc, type: 2}
   m_IsPrefabParent: 0

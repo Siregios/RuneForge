@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WorkOrderPageUI : MonoBehaviour { 
+public class WorkOrderPageUI : MonoBehaviour {
+    private AudioManager AudioManager;
     public GameObject minigameLine; //A panel with a check icon (Image), name of the minigame (Text), and score (Text)
     List<GameObject> minigameLineList = new List<GameObject>();
     WorkOrder order;
@@ -16,16 +17,19 @@ public class WorkOrderPageUI : MonoBehaviour {
         this.orderText = this.transform.Find("OrderText").GetComponent<Text>();
         this.orderIcon = this.transform.Find("IconPanel/Icon").GetComponent<Image>();
         this.minigamePanel = this.transform.Find("MinigameList").gameObject;
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void OnEnable()
     {
         MasterGameManager.instance.uiManager.uiOpen = true;
+        AudioManager.PlaySound(7);
     }
 
     void OnDisable()
     {
         MasterGameManager.instance.uiManager.uiOpen = false;
+        AudioManager.PlaySound(8);
     }
 
     public void LoadOrder(WorkOrder order)

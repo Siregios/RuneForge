@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TransactionBoard : MonoBehaviour {
+    private AudioManager AudioManager;
+
     public Item item;
     public ShopUIManager.TransactionType transactionMode;
 
@@ -12,6 +14,11 @@ public class TransactionBoard : MonoBehaviour {
     public TransactionQuanitity transactionQuanitity;
     public AttributeBarUI fireAttribute, waterAttribute, earthAttribute, airAttribute;
     public Button sellButton, buyButton;
+
+    void Awake()
+    {
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     void Update()
     {
@@ -71,10 +78,12 @@ public class TransactionBoard : MonoBehaviour {
     public void ClickBuy()
     {
         TradeManager.BuyItem(item, transactionQuanitity.quantity);
+        AudioManager.PlaySound(6);
     }
 
     public void ClickSell()
     {
         TradeManager.SellItem(item, transactionQuanitity.quantity);
+        AudioManager.PlaySound(5);
     }
 }

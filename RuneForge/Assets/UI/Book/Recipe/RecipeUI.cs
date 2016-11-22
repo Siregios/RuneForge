@@ -38,11 +38,14 @@ public class RecipeUI : MonoBehaviour {
     void OnEnable()
     {
         MasterGameManager.instance.uiManager.uiOpen = true;
+        AudioManager.PlaySound(7);
+
     }
 
     void OnDisable()
     {
         MasterGameManager.instance.uiManager.uiOpen = false;
+        AudioManager.PlaySound(8);
     }
 
     void Start()
