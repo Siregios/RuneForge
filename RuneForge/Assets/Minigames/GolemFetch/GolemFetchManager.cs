@@ -12,6 +12,8 @@ public class GolemFetchManager : MonoBehaviour
     public GameObject cellObject;
     public int gridSize = 17;
     [HideInInspector]
+    public bool traversing = false;
+    [HideInInspector]
     public Direction.DIRECTION entranceWall;
     public Vector2 startCell;
 
@@ -34,20 +36,24 @@ public class GolemFetchManager : MonoBehaviour
         new Vector2(2, 13), new Vector2(8, 13), new Vector2(14, 13),
         new Vector2(2, 14), new Vector2(3, 14), new Vector2(5, 14), new Vector2(8, 14), new Vector2(11, 14), new Vector2(13, 14), new Vector2(14, 14)
     };
-
     List<Vector2> bookList = new List<Vector2>()
     {
-        new Vector2(6, 7), new Vector2(10, 11)
+        new Vector2(6, 8), new Vector2(10, 11)
     };
+    int score, totalScore;
+    public float initialTime;
+    float timer;
+    public UnityEngine.UI.Text scoreText, timerText;
 
     void Awake()
     {
         InitializePuzzle();
+        timer = initialTime;
     }
 
     void Update()
     {
-
+        Countdown();
         if (IsValidCell(golem.gridX, golem.gridY))
         {
             if (golem.EnteredNewCell())
@@ -60,11 +66,19 @@ public class GolemFetchManager : MonoBehaviour
                     TurnGolem(grid[golem.gridX][golem.gridY].orientation);
                 }
                 else if (cell.type == Cell.CellType.OBSTACLE)
+                {
                     SpawnGolem();
+                }
                 else if (cell.type == Cell.CellType.BOOK)
-                    ; //TODO : Increment score
+                {
+                    score++;
+                    grid[(int)cell.x][(int)cell.y].transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = null;
+                }
                 else if (cell.type == Cell.CellType.END)
                 {
+                    totalScore += score * 100;
+                    scoreText.text = string.Format("Score: {0}", totalScore);
+                    score = 0;
                     ClearGrid();
                     InitializePuzzle();
                 }
@@ -76,12 +90,31 @@ public class GolemFetchManager : MonoBehaviour
         }
     }
 
+    void Countdown()
+    {
+        if (!traversing)
+            timer -= Time.deltaTime;
+        timerText.text = string.Format("Timer: {0}", (int)timer);
+        if (timer <= 0)
+        {
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
+        }
+    }
+
     void SpawnGolem()
     {
+        traversing = false;
         golem.canMove = false;
         golem.transform.position = startCell;
         golem.SnapToGrid();
         golem.movingDirection = Direction.OppositeDirection(entranceWall);
+
+        //Temporary
+        score = 0;
+        foreach (Vector2 cell in bookList)
+        {
+            grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
+        }
     }
 
     void TurnGolem(Cell.CellOrientation cellOrientation)
@@ -127,6 +160,7 @@ public class GolemFetchManager : MonoBehaviour
     public void BeginTraversal()
     {
         golem.canMove = true;
+        traversing = true;
     }
 
     void InitializePuzzle()
@@ -137,7 +171,6 @@ public class GolemFetchManager : MonoBehaviour
         entranceWall = PickEntranceWall();
         startCell = PickStartCell();
         spawn.transform.position = startCell;
-        SpawnGolem();
 
         for (int c = 0; c < gridSize; c++)
         {
@@ -150,6 +183,7 @@ public class GolemFetchManager : MonoBehaviour
             }
         }
         grid[Mathf.FloorToInt(startCell.x)][Mathf.FloorToInt(startCell.y)].Initialize(Cell.CellType.SPAWN);
+        SpawnGolem();
 
         //Temporary
         foreach (Vector2 cell in obstacleList)
