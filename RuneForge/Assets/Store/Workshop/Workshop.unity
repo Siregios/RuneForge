@@ -1574,6 +1574,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013680041434, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: workOrderButton
+      value: 
+      objectReference: {fileID: 1000012994315844, guid: cc3d2249a59a0524d902d8a55bd231a2,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_IsPrefabParent: 0

@@ -22,7 +22,6 @@ public class WorkOrderButton : MonoBehaviour {
 
     void Awake()
     {
-        workOrderPanel = this.transform.parent.GetComponent<WorkOrderPageUI>();
         gaugeMaxWidth = gauge.rect.width;
     }
 
@@ -57,12 +56,9 @@ public class WorkOrderButton : MonoBehaviour {
                 {
                     this.GetComponent<Button>().interactable = false;
                 }
-
                 break;
         }
-    }
-
-    
+    }  
 
     public void WorkOrderClick()
     {
