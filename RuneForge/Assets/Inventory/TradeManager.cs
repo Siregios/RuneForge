@@ -7,10 +7,8 @@ public class TradeManager : MonoBehaviour {
 
         int finalCount = count;
 
-        //if (PlayerInventory.inventory.GetItemCount("Money") < item.price * count)
-        if (PlayerInventory.money < item.price * count)
+        if (!CanBuy(item, count))
         {
-            //finalCount = count - Mathf.CeilToInt(((count * item.price) - PlayerInventory.inventory.GetItemCount("Money")) / (float)item.price);
             finalCount = count - Mathf.CeilToInt(((count * item.price) - PlayerInventory.money) / (float)item.price);
         }
         else if (ShopInventory.inventory.GetItemCount(item) - count < 0)
@@ -27,13 +25,22 @@ public class TradeManager : MonoBehaviour {
 
         int finalCount = count;
 
-        if (PlayerInventory.inventory.GetItemCount(item) < count)
+        if (!CanSell(item, count))
         {
             finalCount = PlayerInventory.inventory.GetItemCount(item);
         }
 
-        //PlayerInventory.inventory.AddItem("Money", finalCount * item.price);
         PlayerInventory.money += finalCount * item.price;
         PlayerInventory.inventory.SubtractItem(item, finalCount);
+    }
+
+    public static bool CanBuy(Item item, int count)
+    {
+        return PlayerInventory.money >= item.price * count;
+    }
+
+    public static bool CanSell(Item item, int count)
+    {
+        return PlayerInventory.inventory.GetItemCount(item) >= count;
     }
 }

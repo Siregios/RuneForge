@@ -27,9 +27,13 @@ public class TransactionBoard : MonoBehaviour {
         if (item != null)
         {
             if (transactionMode == ShopUIManager.TransactionType.SELL)
-                sellButton.interactable = !(PlayerInventory.inventory.GetItemCount(item) <= 0);
+            {
+                sellButton.interactable = !(PlayerInventory.inventory.GetItemCount(item) <= 0) && TradeManager.CanSell(item, transactionQuanitity.quantity);
+            }
             if (transactionMode == ShopUIManager.TransactionType.BUY)
-                buyButton.interactable = !(ShopInventory.inventory.GetItemCount(item) <= 0);
+            {
+                buyButton.interactable = !(ShopInventory.inventory.GetItemCount(item) <= 0) && TradeManager.CanBuy(item, transactionQuanitity.quantity);
+            }
         }
     }
 
@@ -79,17 +83,18 @@ public class TransactionBoard : MonoBehaviour {
 
     public void ClickBuy()
     {
+        bool refreshPlayerInventory = PlayerInventory.inventory.GetItemCount(item) == 0;
         TradeManager.BuyItem(item, transactionQuanitity.quantity);
-        shopManager.buyItemList.RefreshPage();
-        shopManager.sellItemList.RefreshPage();
+        if (refreshPlayerInventory)
+            shopManager.sellItemList.RefreshPage();
         AudioManager.PlaySound(6);
     }
 
     public void ClickSell()
     {
         TradeManager.SellItem(item, transactionQuanitity.quantity);
-        shopManager.buyItemList.RefreshPage();
-        shopManager.sellItemList.RefreshPage();
+        if (PlayerInventory.inventory.GetItemCount(item) == 0)
+            shopManager.sellItemList.RefreshPage();
         AudioManager.PlaySound(5);
     }
 }

@@ -71,7 +71,7 @@ public class ItemListUI : MonoBehaviour
         MasterGameManager.instance.uiManager.uiOpen = false;
     }
 
-    void Update()
+    void LateUpdate()
     {
         previousPageButton.interactable = (currentPage > 0);
         nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < buttonList.Count);

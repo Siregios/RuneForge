@@ -37,27 +37,8 @@ public class ItemButton : MonoBehaviour
         }
         if (countText != null)
         {
-            if (ItemCount == int.MaxValue)
-                this.countText.text = "∞";
-            else
-                this.countText.text = "x" + ItemCount.ToString();
+            SetText();
         }
-        //if (ItemCount <= 0)
-        //{
-        //    this.GetComponent<Button>().interactable = false;
-        //    this.transform.Find("Icon").GetComponent<Image>().color = new Color(this.transform.Find("Icon").GetComponent<Image>().color.r,
-        //        this.transform.Find("Icon").GetComponent<Image>().color.g,
-        //        this.transform.Find("Icon").GetComponent<Image>().color.b,
-        //        0.5f);
-        //}
-        //else
-        //{
-        //    this.GetComponent<Button>().interactable = true;
-        //    this.transform.Find("Icon").GetComponent<Image>().color = new Color(this.transform.Find("Icon").GetComponent<Image>().color.r,
-        //        this.transform.Find("Icon").GetComponent<Image>().color.g,
-        //        this.transform.Find("Icon").GetComponent<Image>().color.b,
-        //        1f);
-        //}
         if (followingMouse) { 
             draggable.transform.position = new Vector3(Input.mousePosition.x - 20, Input.mousePosition.y + 15, 0) ;
             OnHover(false);
@@ -73,6 +54,8 @@ public class ItemButton : MonoBehaviour
         {
             this.GetComponent<Button>().onClick.AddListener(() => function(this.item));
         }
+        if (countText != null)
+            SetText();
         setAttributes();
     }
 
@@ -120,6 +103,14 @@ public class ItemButton : MonoBehaviour
         Destroy(draggable);
         draggable = null;
         gameObject.GetComponent<Button>().interactable = true;
+    }
+
+    void SetText()
+    {
+        if (ItemCount == int.MaxValue)
+            this.countText.text = "∞";
+        else
+            this.countText.text = "x" + ItemCount.ToString();
     }
 
     void DragCopy()
