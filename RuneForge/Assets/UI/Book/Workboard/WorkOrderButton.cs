@@ -13,25 +13,28 @@ public class WorkOrderButton : MonoBehaviour {
     MinigamePageUI minigamePanel;
 
     WorkOrder order;
-    Text orderNumber;
-    Image orderIcon;
-    GameObject stagePanel, scorePanel;
+    public Text orderName;
+    public Image orderIcon;
+    public Text stageText;
+    public RectTransform gauge;
+    float gaugeMaxWidth;
+    public Text scoreText;
 
     void Awake()
     {
-        this.orderNumber = this.transform.Find("OrderNumber").GetComponent<Text>();
-        this.orderIcon = this.transform.Find("OrderIcon").GetComponent<Image>();
-        this.stagePanel = this.transform.Find("StagePanel").gameObject;
-        this.scorePanel = this.transform.Find("ScorePanel").gameObject;
+        workOrderPanel = this.transform.parent.GetComponent<WorkOrderPageUI>();
+        gaugeMaxWidth = gauge.rect.width;
     }
 
     public void Initialize(WorkOrder order)
     {
         this.order = order;
-        this.orderNumber.text = order.orderNumber.ToString();
+        this.orderName.text = order.item.name;
         this.orderIcon.sprite = order.item.icon;
-        this.stagePanel.transform.Find("StageText").GetComponent<Text>().text = string.Format("{0}/{1}", order.currentStage, order.requiredStages);
-        this.scorePanel.transform.Find("ScoreText").GetComponent<Text>().text = order.score.ToString();
+        this.stageText.text = string.Format("{0}/{1}", order.currentStage, order.requiredStages);
+        this.gauge.sizeDelta = new Vector2(gaugeMaxWidth * ((float)order.currentStage / order.requiredStages), gauge.rect.height);
+        this.scoreText.text = order.score.ToString();
+
         if (order.isRandom)
         {
             this.GetComponent<Image>().color = Color.yellow;

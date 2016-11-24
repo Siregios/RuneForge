@@ -323,7 +323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010111454622, guid: afc244fe76008db40a7d97e7f51cdf92, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afc244fe76008db40a7d97e7f51cdf92, type: 2}
@@ -333,6 +333,23 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000013262727788, guid: afc244fe76008db40a7d97e7f51cdf92,
     type: 2}
   m_PrefabInternal: {fileID: 358799254}
+--- !u!1 &765732730 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010217484174, guid: dd9fa1e73e391024c86dafd1c76c1f17,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815225033}
+--- !u!114 &765732732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765732730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf797eb95a5a8d541b085b53bd121954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWorkOrders: 5
 --- !u!1001 &926367441
 Prefab:
   m_ObjectHideFlags: 0
@@ -592,7 +609,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012472985286, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+    - target: {fileID: 114000014264467656, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -701,6 +718,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010805552992, guid: dd9fa1e73e391024c86dafd1c76c1f17, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd9fa1e73e391024c86dafd1c76c1f17, type: 2}
