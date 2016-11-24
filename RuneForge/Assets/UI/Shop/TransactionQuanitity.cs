@@ -18,9 +18,11 @@ public class TransactionQuanitity : MonoBehaviour {
     {
         this.quantity = quantity;
         if (transactionBoard.transactionMode == ShopUIManager.TransactionType.BUY &&
-            PlayerInventory.inventory.GetItemCount("Money") <= transactionBoard.item.price * this.quantity)
+            //PlayerInventory.inventory.GetItemCount("Money") <= transactionBoard.item.price * this.quantity)
+            PlayerInventory.money <= transactionBoard.item.price * this.quantity)
         {
-            this.quantity = PlayerInventory.inventory.GetItemCount("Money") / transactionBoard.item.price;
+            //this.quantity = PlayerInventory.inventory.GetItemCount("Money") / transactionBoard.item.price;
+            this.quantity = PlayerInventory.money / transactionBoard.item.price;
         }
         else if (this.quantity <= 1)
             this.quantity = 1;
@@ -56,9 +58,9 @@ public class TransactionQuanitity : MonoBehaviour {
         switch (transactionBoard.transactionMode)
         {
             case ShopUIManager.TransactionType.SELL:
-                return PlayerInventory.inventory.GetItemCount(transactionBoard.item.name);
+                return PlayerInventory.inventory.GetItemCount(transactionBoard.item);
             case ShopUIManager.TransactionType.BUY:
-                return ShopInventory.inventory.GetItemCount(transactionBoard.item.name);
+                return ShopInventory.inventory.GetItemCount(transactionBoard.item);
             default:
                 return 0;
         }

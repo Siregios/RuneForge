@@ -11,15 +11,7 @@ public static class ShopInventory {
 
         foreach (Item material in ItemCollection.FilterItemList("material"))
         {
-            inventory.SetItemCount(material.name, int.MaxValue);
+            inventory.SetItemCount(material, int.MaxValue);
         }
-        //foreach (Item material in ItemCollection.FilterItem("fire"))
-        //{
-        //    inventory.SetItemCount(material.name, int.MaxValue);
-        //}
-        //foreach (Item material in ItemCollection.FilterItem("stone"))
-        //{
-        //    inventory.SetItemCount(material.name, int.MaxValue);
-        //}
     }
 }

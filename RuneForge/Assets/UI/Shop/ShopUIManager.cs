@@ -31,13 +31,13 @@ public class ShopUIManager : MonoBehaviour {
 
     void Update()
     {
-        moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
+        //moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
+        moneyText.text = PlayerInventory.money.ToString();
     }
     
     void ClickItemButton(Item item, TransactionType transactionType)
     {
         AudioManager.PlaySound(1);
-        Debug.Log(transactionType);
         transactionBoard.DisplayItem(item, transactionType);
     }
 

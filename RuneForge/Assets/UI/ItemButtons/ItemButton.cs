@@ -14,7 +14,6 @@ public class ItemButton : MonoBehaviour
     public Image attribute1;
     public Image attribute2;
     public Text countText;
-    public Inventory.InventoryType inventoryType;
     GameObject LastClicked;
     Inventory referenceInventory;
 
@@ -26,20 +25,7 @@ public class ItemButton : MonoBehaviour
     {
         get
         {
-            return (this.item != null) ? referenceInventory.GetItemCount(this.item.name) : 0;
-        }
-    }
-
-    void Awake()
-    {
-        switch (inventoryType)
-        {
-            case Inventory.InventoryType.PLAYER:
-                referenceInventory = PlayerInventory.inventory;
-                break;
-            case Inventory.InventoryType.SHOP:
-                referenceInventory = ShopInventory.inventory;
-                break;
+            return (this.item != null) ? referenceInventory.GetItemCount(this.item) : 0;
         }
     }
 
@@ -56,15 +42,32 @@ public class ItemButton : MonoBehaviour
             else
                 this.countText.text = "x" + ItemCount.ToString();
         }
+        //if (ItemCount <= 0)
+        //{
+        //    this.GetComponent<Button>().interactable = false;
+        //    this.transform.Find("Icon").GetComponent<Image>().color = new Color(this.transform.Find("Icon").GetComponent<Image>().color.r,
+        //        this.transform.Find("Icon").GetComponent<Image>().color.g,
+        //        this.transform.Find("Icon").GetComponent<Image>().color.b,
+        //        0.5f);
+        //}
+        //else
+        //{
+        //    this.GetComponent<Button>().interactable = true;
+        //    this.transform.Find("Icon").GetComponent<Image>().color = new Color(this.transform.Find("Icon").GetComponent<Image>().color.r,
+        //        this.transform.Find("Icon").GetComponent<Image>().color.g,
+        //        this.transform.Find("Icon").GetComponent<Image>().color.b,
+        //        1f);
+        //}
         if (followingMouse) { 
             draggable.transform.position = new Vector3(Input.mousePosition.x - 20, Input.mousePosition.y + 15, 0) ;
             OnHover(false);
         }
 }
 
-    public void Initialize(Item item, List<Action<Item>> buttonFunctions)
+    public void Initialize(Item item, Inventory referenceInventory, List<Action<Item>> buttonFunctions)
     {
         this.item = item;
+        this.referenceInventory = referenceInventory;
         this.transform.FindChild("Icon").GetComponent<Image>().sprite = item.icon;
         foreach (Action<Item> function in buttonFunctions)
         {

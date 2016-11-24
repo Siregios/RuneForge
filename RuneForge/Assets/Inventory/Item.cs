@@ -68,26 +68,3 @@ public class Item
         this.icon = copyItem.icon;
     }
 }
-
-//public class Rune : Product
-//{
-//    public bool isMaster = false;
-
-//    public Rune() : base() { }
-
-//    public Rune(Product product) : base(product)
-//    {
-//        if (this.name.Substring(this.name.Length - 2) == "MC")
-//            isMaster = true;
-//    }
-//}
-
-//public class Product : Item
-//{
-//    [XmlElement("Attribute1")]
-//    public int attribute1;
-
-//    public Product() : base() { }
-
-//    public Product(Item item) : base(item) { }
-//}

@@ -29,7 +29,7 @@ public class WorkboardManager : MonoBehaviour {
 
     public void CompleteOrder(WorkOrder order)
     {
-        PlayerInventory.inventory.AddItem(order.item.name);
+        PlayerInventory.inventory.AddItem(order.item);
         workorderList.RemoveAt(order.orderNumber - 1);
         for (int i = 0; i < workorderList.Count; i++)
         {

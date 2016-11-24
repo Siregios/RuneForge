@@ -16,7 +16,8 @@ public class MenuBar : MonoBehaviour {
 
     void Update()
     {
-        moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
+        //moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
+        moneyText.text = PlayerInventory.money.ToString();
         dayText.text = "Day: " + MasterGameManager.instance.actionClock.Day;
 
         actionText.text = string.Format("Actions: {0}/{1}", MasterGameManager.instance.actionClock.ActionCount, MasterGameManager.instance.actionClock.ActionsPerDay);

@@ -9,6 +9,10 @@ public class ItemListUI : MonoBehaviour
 {
     public GameObject itemButton;
     public string defaultFilter = "ALL";
+    public bool displayZeroCountItems = true;
+    public Inventory.InventoryType inventoryType;
+    Inventory referenceInventory;
+    
     public float padX = 10, padY = 20;
     List<Item> defaultList = new List<Item>();
     List<Action<Item>> buttonClickFunctions = new List<Action<Item>>();
@@ -30,6 +34,15 @@ public class ItemListUI : MonoBehaviour
 
     void Awake()
     {
+        switch (inventoryType)
+        {
+            case Inventory.InventoryType.PLAYER:
+                referenceInventory = PlayerInventory.inventory;
+                break;
+            case Inventory.InventoryType.SHOP:
+                referenceInventory = ShopInventory.inventory;
+                break;
+        }
         searchInput = this.transform.FindChild("SearchInput").GetComponent<InputField>();
         previousPageButton = this.transform.FindChild("PreviousPageButton").GetComponent<Button>();
         nextPageButton = this.transform.FindChild("NextPageButton").GetComponent<Button>();
@@ -73,15 +86,27 @@ public class ItemListUI : MonoBehaviour
     {
         ClearPage();
 
-        //List<Item> filteredItems = ItemCollection.FilterItemList(filter);
         List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
+        List<Item> itemList = new List<Item>();
+        if (!displayZeroCountItems)
+        {
+            foreach (Item item in filteredItems)
+            {
+                if (referenceInventory.GetItemCount(item) > 0)
+                    itemList.Add(item);
+            }
+        }
+        else
+        {
+            itemList = filteredItems;
+        }
 
         for (int i = 0; i < buttonsPerPage; i++)
         {
-            if ((page * buttonsPerPage) + i >= filteredItems.Count)
+            if ((page * buttonsPerPage) + i >= itemList.Count)
                 return;
 
-            string itemID = filteredItems[(page * buttonsPerPage) + i].name;
+            string itemID = itemList[(page * buttonsPerPage) + i].name;
 
             float xPos = (i % columns) * (buttonWidth + padX);
             float yPos = -(i / columns) * (buttonHeight + padY);
@@ -100,7 +125,7 @@ public class ItemListUI : MonoBehaviour
         newItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPos, 0);
 
         ItemButton button = newItemButton.GetComponent<ItemButton>();
-        button.Initialize(item, buttonClickFunctions);
+        button.Initialize(item, referenceInventory, buttonClickFunctions);
 
         return button;
     }
@@ -113,6 +138,11 @@ public class ItemListUI : MonoBehaviour
         }
 
         buttonList.Clear();
+    }
+
+    public void RefreshPage()
+    {
+        DisplayPage(currentPage, filterString);
     }
 
     public void ClickPreviousPage()

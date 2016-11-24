@@ -4,6 +4,7 @@ using System.Collections;
 
 public class TransactionBoard : MonoBehaviour {
     private AudioManager AudioManager;
+    private ShopUIManager shopManager;
 
     public Item item;
     public ShopUIManager.TransactionType transactionMode;
@@ -18,6 +19,7 @@ public class TransactionBoard : MonoBehaviour {
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        shopManager = this.transform.parent.GetComponent<ShopUIManager>();
     }
 
     void Update()
@@ -25,9 +27,9 @@ public class TransactionBoard : MonoBehaviour {
         if (item != null)
         {
             if (transactionMode == ShopUIManager.TransactionType.SELL)
-                sellButton.interactable = !(PlayerInventory.inventory.GetItemCount(item.name) <= 0);
+                sellButton.interactable = !(PlayerInventory.inventory.GetItemCount(item) <= 0);
             if (transactionMode == ShopUIManager.TransactionType.BUY)
-                buyButton.interactable = !(ShopInventory.inventory.GetItemCount(item.name) <= 0);
+                buyButton.interactable = !(ShopInventory.inventory.GetItemCount(item) <= 0);
         }
     }
 
@@ -78,12 +80,16 @@ public class TransactionBoard : MonoBehaviour {
     public void ClickBuy()
     {
         TradeManager.BuyItem(item, transactionQuanitity.quantity);
+        shopManager.buyItemList.RefreshPage();
+        shopManager.sellItemList.RefreshPage();
         AudioManager.PlaySound(6);
     }
 
     public void ClickSell()
     {
         TradeManager.SellItem(item, transactionQuanitity.quantity);
+        shopManager.buyItemList.RefreshPage();
+        shopManager.sellItemList.RefreshPage();
         AudioManager.PlaySound(5);
     }
 }

@@ -3057,6 +3057,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RecipeCancelButton
       objectReference: {fileID: 0}
+    - target: {fileID: 224000013262727788, guid: afc244fe76008db40a7d97e7f51cdf92,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afc244fe76008db40a7d97e7f51cdf92, type: 2}
   m_IsPrefabParent: 0
@@ -6822,16 +6827,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Enable
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1469965840}
     - target: {fileID: 114000012623647406, guid: 702e5d6228254d94c99fa6d13a301d63,
         type: 2}
       propertyPath: menuBar
