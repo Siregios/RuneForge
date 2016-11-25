@@ -1413,6 +1413,16 @@ Prefab:
       propertyPath: m_Name
       value: MinigamePage
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010380168658, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1538915074}
+    - target: {fileID: 114000010380168658, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayMinigame
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012874681496, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
