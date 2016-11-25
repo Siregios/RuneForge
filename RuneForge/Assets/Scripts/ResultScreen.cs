@@ -17,7 +17,7 @@ public class ResultScreen : MonoBehaviour {
 
         int score;
         int.TryParse(scoreText.Split(' ')[1], out score);
-        foreach (WorkOrder order in MasterGameManager.instance.workboard.currentWorkOrders)
+        foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, score);
         }

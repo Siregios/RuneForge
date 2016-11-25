@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WorkboardManager : MonoBehaviour {
+public class WorkOrderManager : MonoBehaviour {
     public int maxWorkOrders = 5;
     public List<WorkOrder> workorderList = new List<WorkOrder>();
     public List<WorkOrder> currentWorkOrders = new List<WorkOrder>();   // The Work Orders that are loaded into the current minigame.

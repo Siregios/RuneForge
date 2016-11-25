@@ -17,7 +17,7 @@ public class MinigamePageUI : MonoBehaviour {
 
     void Update()
     {
-        if (MasterGameManager.instance.workboard.currentWorkOrders.Count > 0)
+        if (MasterGameManager.instance.workOrderManager.currentWorkOrders.Count > 0)
             playButton.interactable = true;
         else
             playButton.interactable = false;
@@ -25,7 +25,7 @@ public class MinigamePageUI : MonoBehaviour {
 
     public void DisplayPage(string minigame)
     {
-        MasterGameManager.instance.workboard.currentWorkOrders.Clear();
+        MasterGameManager.instance.workOrderManager.currentWorkOrders.Clear();
         SetMinigame(minigame);
         Enable(true);
     }

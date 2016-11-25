@@ -67,7 +67,7 @@ public class WorkOrderButton : MonoBehaviour {
 
     public void MinigameClick()
     {
-        MasterGameManager.instance.workboard.WorkOnOrder(this.order);
+        MasterGameManager.instance.workOrderManager.WorkOnOrder(this.order);
         this.GetComponent<Button>().interactable = false;
     }
 }

@@ -44,7 +44,7 @@ public class WorkOrder {
         if (currentStage == requiredStages)
         {
             Debug.LogFormat("Work Order #{0}) {1} has been completed! Score: {2}", orderNumber, item.name, this.score);
-            MasterGameManager.instance.workboard.CompleteOrder(this);
+            MasterGameManager.instance.workOrderManager.CompleteOrder(this);
         }
     }
 

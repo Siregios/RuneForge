@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WorkboardUI : MonoBehaviour {
+public class ClipboardUI : MonoBehaviour {
     public GameObject workOrderButton;
     public float startY = 100;
     public List<WorkOrderButton> buttonList = new List<WorkOrderButton>();
@@ -24,7 +24,7 @@ public class WorkboardUI : MonoBehaviour {
         ClearButtonList();
 
         float yPos = startY;
-        foreach (WorkOrder order in MasterGameManager.instance.workboard.workorderList)
+        foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.workorderList)
         {
             GameObject newOrderObject = (GameObject)Instantiate(workOrderButton, this.transform.position, Quaternion.identity);
             newOrderObject.transform.SetParent(this.transform);

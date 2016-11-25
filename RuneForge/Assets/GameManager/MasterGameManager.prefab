@@ -90,7 +90,7 @@ MonoBehaviour:
   orderGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
   interactionManager: {fileID: 114000013970403354}
-  workboard: {fileID: 114000013118490888}
+  workOrderManager: {fileID: 114000013118490888}
   uiManager: {fileID: 114000011377930820}
 --- !u!114 &114000011377930820
 MonoBehaviour:

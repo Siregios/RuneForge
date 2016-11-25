@@ -55,7 +55,7 @@ public class RecipeUI : MonoBehaviour {
     
     void Update()
     {
-        if (isRecipeMet() && !MasterGameManager.instance.workboard.IsFull())
+        if (isRecipeMet() && !MasterGameManager.instance.workOrderManager.IsFull())
         {
             pinSelectButton.interactable = true;
             pinRandomButton.interactable = true;
@@ -106,7 +106,7 @@ public class RecipeUI : MonoBehaviour {
 
     public void CreateWorkOrder(bool isRandom)
     {
-        MasterGameManager.instance.workboard.CreateWorkOrder(productItem, isRandom);
+        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, isRandom);
         RemoveAllIngredients(false);
         if(isRandom)
             AudioManager.PlaySound(4);
