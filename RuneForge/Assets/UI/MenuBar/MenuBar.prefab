@@ -40,7 +40,7 @@ GameObject:
   - 114: {fileID: 114000013253423920}
   - 114: {fileID: 114000014264467656}
   m_Layer: 5
-  m_Name: WorkboardButton
+  m_Name: ClipboardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15765b64e97de841adb225320f81907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyText: {fileID: 114000013850452080}
+  dayText: {fileID: 114000011125710248}
+  actionText: {fileID: 114000011535349380}
+  clockHand: {fileID: 114000013557230524}
 --- !u!114 &114000011125710248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,7 +378,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114000014208541810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Enable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000013253423920
@@ -610,7 +625,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Workboard
+  m_Text: Clipboard
 --- !u!114 &114000014264467656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -651,8 +666,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+        m_MethodName: DisplayClipboard
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -748,7 +763,7 @@ RectTransform:
   m_Children:
   - {fileID: 224000012213612542}
   m_Father: {fileID: 224000012005418600}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -160, y: -0.00001170754}
@@ -808,8 +823,8 @@ RectTransform:
   - {fileID: 224000011934323080}
   - {fileID: 224000012339988762}
   - {fileID: 224000012931481552}
-  - {fileID: 224000013045310908}
   - {fileID: 224000010262447990}
+  - {fileID: 224000013045310908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -921,7 +936,7 @@ RectTransform:
   m_Children:
   - {fileID: 224000013322288588}
   m_Father: {fileID: 224000012005418600}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -81.2, y: 0}

@@ -42,10 +42,10 @@ public class WorkOrderButton : MonoBehaviour {
         switch (uiType)
         {
             case UIType.Workboard:
-                workOrderPanel = this.transform.root.Find("Book - Workboard/WorkOrderPanel").GetComponent<WorkOrderPageUI>();
+                workOrderPanel = GameObject.Find("WorkOrderPanel").GetComponent<WorkOrderPageUI>();
                 break;
             case UIType.Minigame:
-                minigamePanel = this.transform.root.Find("Book - Minigame/MinigamePanel").GetComponent<MinigamePageUI>();
+                minigamePanel = GameObject.Find("MinigamePage").GetComponent<MinigamePageUI>();
 
                 string minigame = minigamePanel.minigame;
                 if (!this.order.isRandom && this.order.MinigameListContains(minigame))

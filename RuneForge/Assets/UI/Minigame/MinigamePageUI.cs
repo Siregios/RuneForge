@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 public class MinigamePageUI : MonoBehaviour {
     public string minigame;
-    Image minigameThumbnail;
     public Button playButton;
+    public Image minigameThumbnail;
 
-    void OnEnable()
+    public void Enable(bool active)
     {
-        MasterGameManager.instance.uiManager.uiOpen = true;
-    }
-
-    void OnDisable()
-    {
-        MasterGameManager.instance.uiManager.uiOpen = false;
+        this.gameObject.SetActive(active);
+        MasterGameManager.instance.uiManager.uiOpen = active;
+        MasterGameManager.instance.interactionManager.canInteract = !active;
     }
 
     void Update()
@@ -30,18 +27,19 @@ public class MinigamePageUI : MonoBehaviour {
     {
         MasterGameManager.instance.workboard.currentWorkOrders.Clear();
         SetMinigame(minigame);
-        this.transform.parent.gameObject.SetActive(true);
+        Enable(true);
     }
 
     void SetMinigame(string minigame)
     {
         this.minigame = minigame;
         Sprite thumbnail = Resources.Load<Sprite>(string.Format("MinigameThumbnails/{0}Thumbnail", minigame));
-        this.transform.Find("MinigameThumb").GetComponent<Image>().sprite = thumbnail;
+        minigameThumbnail.sprite = thumbnail;
     }
 
     public void PlayMinigame()
     {
+        Debug.Log(this.minigame);
         if (!MasterGameManager.instance.sceneManager.loadingScene)
         {
             MasterGameManager.instance.actionClock.SpendAction();

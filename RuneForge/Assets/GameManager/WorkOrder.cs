@@ -36,7 +36,6 @@ public class WorkOrder {
             this.minigameList.Add(new KeyValuePair<string, int>(minigame, score));
         else
         {
-            Debug.LogWarningFormat("Not adding minigame - {0} - to Work Order #{1}) {2} because it is randomized", minigame, orderNumber, item.name);
             this.minigameList[currentStage] = new KeyValuePair<string, int>(minigame, score);
         }
 

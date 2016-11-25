@@ -31,7 +31,6 @@ public class ShopUIManager : MonoBehaviour {
 
     void Update()
     {
-        //moneyText.text = PlayerInventory.inventory.GetItemCount("Money").ToString();
         moneyText.text = PlayerInventory.money.ToString();
     }
     

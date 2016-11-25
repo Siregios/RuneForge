@@ -15,6 +15,7 @@ public class InteractionManager : MonoBehaviour {
 
     void Update()
     {
+        canInteract = !MasterGameManager.instance.uiManager.uiOpen;
         if (canInteract)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
