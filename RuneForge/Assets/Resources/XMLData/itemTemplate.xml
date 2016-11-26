@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<AllItems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ItemList>
+    <Item name="aName">
+      <Price>0</Price>
+      <Class>aClass</Class>
+      <IngredientType>aIngredientType</IngredientType>
+      <ProvidedAttributes>aProvidedAttributes</ProvidedAttributes>
+      <Recipe>aRecipe</Recipe>
+      <MinigamesRequired>aMinigamesRequired</MinigamesRequired>
+      <RequiredAttributes>aRequiredAttributes</RequiredAttributes>
+    </Item>
+    <Item name = "bName">
+      <Price>1</Price>
+      <Class>bClass</Class>
+      <IngredientType>bIngredientType</IngredientType>
+      <ProvidedAttributes>bProvidedAttributes</ProvidedAttributes>
+      <Recipe>bRecipe</Recipe>
+      <MinigamesRequired>bMinigamesRequired</MinigamesRequired>
+      <RequiredAttributes>bRequiredAttributes</RequiredAttributes>
+    </Item>
+  </ItemList>
+</AllItems>

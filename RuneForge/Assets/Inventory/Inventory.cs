@@ -27,8 +27,6 @@ public class Inventory
         if (isInfinite(item))
             return;
         inventoryDict[item]++;
-        //if (!inventoryList.Contains(item))
-        //    inventoryList.Add(item);
     }
 
     //Increment the item count by a specific count
@@ -37,8 +35,6 @@ public class Inventory
         if (isInfinite(item))
             return;
         inventoryDict[item] += count;
-        //if (!inventoryList.Contains(item))
-        //    inventoryList.Add(item);
     }
 
     //Decrement the item count by 1
@@ -47,8 +43,6 @@ public class Inventory
         if (isInfinite(item))
             return;
         inventoryDict[item]--;
-        //if (inventoryDict[item] <= 0)
-        //    inventoryList.Remove(item);
     }
 
     //Decrement the item count by a specific count
@@ -57,8 +51,6 @@ public class Inventory
         if (isInfinite(item))
             return;
         inventoryDict[item] -= count;
-        //if (inventoryDict[item] <= 0)
-        //    inventoryList.Remove(item);
     }
 
     //Set the item count to a specific count
@@ -67,10 +59,6 @@ public class Inventory
         if (isInfinite(item))
             return;
         inventoryDict[item] = count;
-        //if (count > 0 && !inventoryList.Contains(item))
-        //    inventoryList.Add(item);
-        //if (count <= 0 && inventoryList.Contains(item))
-        //    inventoryList.Remove(item);
     }
 
     public int GetItemCount(Item item)

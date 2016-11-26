@@ -11,11 +11,9 @@ public class Order {
         List<Item> productList = ItemCollection.FilterItemList("product");
         int randomIndex = Random.Range(0, productList.Count);
         this.item = productList[randomIndex];
-        if (item.type == "BasicRune")
-            deadlineDate = MasterGameManager.instance.actionClock.Day + 1;
-        else if (item.type == "CombinationRune")
+        if (item.Class == "Rune")
             deadlineDate = MasterGameManager.instance.actionClock.Day + 2;
-        else if (item.type == "FinalProduct")
+        else if (item.Class == "Product")
             deadlineDate = MasterGameManager.instance.actionClock.Day + 5;
     }
 }

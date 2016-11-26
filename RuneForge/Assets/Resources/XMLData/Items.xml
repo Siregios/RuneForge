@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AllItems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ItemList>
+		<Item name="Air Rune">
+			<Price>350</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Air: 3</ProvidedAttributes>
+			<Recipe>Stone: 1, Monster Part: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Air: 2</RequiredAttributes>
+		</Item>
+		<Item name="Fire Rune">
+			<Price>350</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Fire: 3</ProvidedAttributes>
+			<Recipe>Stone: 1, Monster Part: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Fire: 2</RequiredAttributes>
+		</Item>
+		<Item name="Earth Rune">
+			<Price>350</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Earth: 3</ProvidedAttributes>
+			<Recipe>Stone: 1, Monster Part: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Earth: 2</RequiredAttributes>
+		</Item>
+		<Item name="Water Rune">
+			<Price>350</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Water: 3</ProvidedAttributes>
+			<Recipe>Stone: 1, Monster Part: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Water: 2</RequiredAttributes>
+		</Item>
+		<Item name="Lava Rune">
+			<Price>900</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Fire: 4, Earth: 4</ProvidedAttributes>
+			<Recipe>Rune/Fire: 1, Rune/Earth: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Fire: 4, Earth: 4</RequiredAttributes>
+		</Item>
+		<Item name="Mist Rune">
+			<Price>900</Price>
+			<Class>Rune</Class>
+			<IngredientType>Rune</IngredientType>
+			<ProvidedAttributes>Water: 4, Air: 4</ProvidedAttributes>
+			<Recipe>Rune/Water: 1, Rune/Air: 1</Recipe>
+			<MinigamesRequired>3</MinigamesRequired>
+			<RequiredAttributes>Water: 4, Air: 4</RequiredAttributes>
+		</Item>
+		<Item name="Enchanted Weapon">
+			<Price>1000</Price>
+			<Class>Product</Class>
+			<IngredientType>Weapon</IngredientType>
+			<Recipe>Weapon: 1, Rune: 1</Recipe>
+			<MinigamesRequired>4</MinigamesRequired>
+			<RequiredAttributes>Fire: 4, Earth: 1</RequiredAttributes>
+		</Item>
+		<Item name="Slime Gel">
+			<Price>10</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Monster Part</IngredientType>
+		</Item>
+		<Item name="Fin, Tail, Whisker, Scale">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Monster Part</IngredientType>
+			<ProvidedAttributes>Water: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Harpy's Feather">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Monster Part</IngredientType>
+			<ProvidedAttributes>Air: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Salamander's Claw">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Monster Part</IngredientType>
+			<ProvidedAttributes>Fire: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Bone, Stone Heart">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Monster Part</IngredientType>
+			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Magic Stone">
+			<Price>10</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Stone</IngredientType>
+		</Item>
+		<Item name="Obsidian">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Stone</IngredientType>
+			<ProvidedAttributes>Earth: 1, Fire: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Sphere">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Stone</IngredientType>
+			<ProvidedAttributes>Water: 1, Air: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Sword">
+			<Price>400</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Weapon</IngredientType>
+		</Item>
+		<Item name="Purified Water">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Liquid</IngredientType>
+			<ProvidedAttributes>Water: 1</ProvidedAttributes>
+		</Item>
+		<Item name="Iron Ingot">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Metal</IngredientType>
+		</Item>
+		<Item name="Oak Log">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Wood</IngredientType>
+		</Item>
+		<Item name="Opal">
+			<Price>100</Price>
+			<Class>Ingredient</Class>
+			<IngredientType>Gem</IngredientType>
+		</Item>
+	</ItemList>
+</AllItems>

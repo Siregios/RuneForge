@@ -61,16 +61,6 @@ public class ItemListUI : MonoBehaviour
         DisplayNewFilter(filterString);
     }
 
-    void OnEnable()
-    {
-        //MasterGameManager.instance.uiManager.uiOpen = true;
-    }
-
-    void OnDisable()
-    {
-        MasterGameManager.instance.uiManager.uiOpen = false;
-    }
-
     void LateUpdate()
     {
         previousPageButton.interactable = (currentPage > 0);

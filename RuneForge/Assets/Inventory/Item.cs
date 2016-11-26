@@ -9,17 +9,22 @@ public class Item
     [XmlAttribute("name")]
     public string name;
 
-    [XmlElement("Type")]
-    public string type;
+    //[XmlElement("Type")]
+    //public string type;
 
     [XmlElement("Price")]
     public int price;
 
-    [XmlElement("isIngredient")]
-    public bool isIngredient;
+    //[XmlElement("isIngredient")]
+    //public bool isIngredient;
 
-    [XmlElement("isProduct")]
-    public bool isProduct;
+    //[XmlElement("isProduct")]
+    //public bool isProduct;
+    [XmlElement("Class")]
+    public string Class;
+
+    [XmlElement("IngredientType")]
+    public string ingredientType;
 
     [XmlElement("ProvidedAttributes")]
     public string provtAttrStr;
@@ -57,10 +62,9 @@ public class Item
     public Item(Item copyItem)
     {
         this.name = copyItem.name;
-        this.type = copyItem.type;
         this.price = copyItem.price;
-        this.isIngredient = copyItem.isIngredient;
-        this.isProduct = copyItem.isProduct;
+        this.Class = copyItem.Class;
+        this.ingredientType = copyItem.ingredientType;
         this.providedAttributes = copyItem.providedAttributes;
         this.recipe = copyItem.recipe;
         this.minigamesRequired = copyItem.minigamesRequired;

@@ -58,7 +58,7 @@ public class TransactionBoard : MonoBehaviour {
         }
 
         //This needs to be refactored
-        if (item.isIngredient)
+        if (item.Class == "Ingredient" || item.Class == "Rune")
         {
             fireAttribute.gameObject.SetActive(true);
             waterAttribute.gameObject.SetActive(true);
