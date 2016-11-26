@@ -36,15 +36,15 @@ public class QuestBoardUI : MonoBehaviour {
             return;
 
         int objCount = 0;
-        foreach(Order order in MasterGameManager.instance.orderGenerator.todaysOrders)
+        foreach(Quest quest in MasterGameManager.instance.questGenerator.todaysQuests)
         {
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
             newQuest.transform.SetParent(this.transform);
             newQuest.transform.localScale = Vector3.one;
             float yPosNew = yPos + (padY * objCount);
             newQuest.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
-            newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = order.item.icon;
-            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need One: " + order.item.name;
+            newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.item.icon;
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need One: " + quest.item.name;
             objCount++;
         }
         //foreach (Order order in MasterGameManager.instance.orderGenerator.todaysOrders)

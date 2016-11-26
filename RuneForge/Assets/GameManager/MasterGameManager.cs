@@ -10,7 +10,7 @@ public class MasterGameManager : MonoBehaviour
     public List<string> minigameList = new List<string>();
 
     public ActionClock actionClock;
-    public OrderGenerator orderGenerator;
+    public QuestGenerator questGenerator;
     public SceneManagerWrapper sceneManager;
     public InteractionManager interactionManager;
     public WorkOrderManager workOrderManager;

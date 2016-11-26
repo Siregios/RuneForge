@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Order {
+public class Quest {
     public Item item;
+    public int amount;
     public int deadlineDate;
 
-    public Order()
+    public Quest()
     {
         List<Item> productList = ItemCollection.FilterItemList("product");
         int randomIndex = Random.Range(0, productList.Count);
