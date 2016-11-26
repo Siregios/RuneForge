@@ -7,18 +7,15 @@ public class IngredientButton : MonoBehaviour {
 
     RecipeUIManager recipeUI;
 
-    public void Initialize(Item item)
+    public void Initialize(Item item, RecipeUIManager recipeUI)
     {
-        recipeUI = this.transform.parent.parent.parent.GetComponent<RecipeUIManager>();
         this.item = item;
+        this.recipeUI = recipeUI;
         this.GetComponent<Image>().sprite = item.icon;
     }
 
     public void RemoveButton()
     {
-        //if (restockInventory)
-        //    PlayerInventory.inventory.AddItem(this.item.name);
         recipeUI.RemoveIngredient(this.transform.parent.GetComponent<IngredientEntry>(), true);
-        //Destroy(this.gameObject);
     }
 }

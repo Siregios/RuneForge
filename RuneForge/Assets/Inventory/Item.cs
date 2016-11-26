@@ -37,9 +37,6 @@ public class Item
     public Dictionary<string, int> providedAttributes;
 
     [XmlIgnoreAttribute]
-    public List<string> ingrTypeList;
-
-    [XmlIgnoreAttribute]
     public Dictionary<string, int> recipe;
 
     [XmlIgnoreAttribute]
@@ -50,7 +47,6 @@ public class Item
     public Item()
     {
         providedAttributes = new Dictionary<string, int>();
-        ingrTypeList = new List<string>();
         recipe = new Dictionary<string, int>();
         requiredAttributes = new Dictionary<string, int>();
     }
@@ -62,7 +58,6 @@ public class Item
         this.Class = copyItem.Class;
         this.ingredientType = copyItem.ingredientType;
         this.providedAttributes = copyItem.providedAttributes;
-        this.ingrTypeList = copyItem.ingrTypeList;
         this.recipe = copyItem.recipe;
         this.minigamesRequired = copyItem.minigamesRequired;
         this.requiredAttributes = copyItem.requiredAttributes;

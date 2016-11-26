@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 
-public static class ItemCollection{
+public static class ItemCollection
+{
     static Items items = XmlReader<Items>.Load("XMLData/Items");
 
     public static List<Item> itemList = new List<Item>();
@@ -22,8 +23,18 @@ public static class ItemCollection{
                 {
                     var pair = pairString.Trim().Split(':');
                     string attribute = pair[0].Trim();
-                    item.providedAttributes.Add(attribute, int.Parse(pair[1].Trim()));
-                    item.ingrTypeList.Add(string.Format("{0}/{1}", item.ingredientType, attribute));
+                    int value = int.Parse(pair[1].Trim());
+                    if (attribute == "ALL")
+                    {
+                        item.providedAttributes.Add("Fire", value);
+                        item.providedAttributes.Add("Water", value);
+                        item.providedAttributes.Add("Earth", value);
+                        item.providedAttributes.Add("Air", value);
+                    }
+                    else
+                    {
+                        item.providedAttributes.Add(attribute, int.Parse(pair[1].Trim()));
+                    }
                 }
             }
 
@@ -37,7 +48,7 @@ public static class ItemCollection{
                         item.recipe.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
                     }
                 }
-                
+
                 if (item.reqAttrStr != null)
                 {
                     foreach (string pairString in item.reqAttrStr.Trim().Split(','))
@@ -79,16 +90,8 @@ public static class ItemCollection{
                 result.Add(item);
             else if (lowerFilter == "rune" && item.Class == "Rune")
                 result.Add(item);
-            else
-            {
-                List<string> lowerAttrTypes = new List<string>();
-                foreach (string attrType in item.ingrTypeList)
-                {
-                    lowerAttrTypes.Add(attrType.ToLower());
-                }
-                if (item.name.ToLower().Contains(lowerFilter) || item.ingredientType.ToLower().Contains(lowerFilter) || lowerAttrTypes.Contains(lowerFilter))
-                    result.Add(item);
-            }
+            else if (item.name.ToLower().Contains(lowerFilter) || item.ingredientType.ToLower().Contains(lowerFilter))
+                result.Add(item);
         }
         return result;
     }

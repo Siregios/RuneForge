@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class BookUI : MonoBehaviour {
+    private AudioManager audioManager;
     public enum BookSection
     {
         CLIPBOARD,
@@ -12,12 +13,21 @@ public class BookUI : MonoBehaviour {
     public GameObject clipboard;
     public GameObject menuBar;
 
-    void Enable(bool active)
+    void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
+    public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.uiOpen = active;
         MasterGameManager.instance.interactionManager.canInteract = !active;
         menuBar.SetActive(!active);
+        if (active)
+            audioManager.PlaySound(7);
+        else
+            audioManager.PlaySound(8);
     }
 
     public void DisplaySection(BookSection section)

@@ -42,7 +42,7 @@
 			<Class>Rune</Class>
 			<IngredientType>Rune</IngredientType>
 			<ProvidedAttributes>Fire: 4, Earth: 4</ProvidedAttributes>
-			<Recipe>Rune/Fire: 1, Rune/Earth: 1</Recipe>
+			<Recipe>Rune: 2</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Fire: 4, Earth: 4</RequiredAttributes>
 		</Item>
@@ -51,7 +51,7 @@
 			<Class>Rune</Class>
 			<IngredientType>Rune</IngredientType>
 			<ProvidedAttributes>Water: 4, Air: 4</ProvidedAttributes>
-			<Recipe>Rune/Water: 1, Rune/Air: 1</Recipe>
+			<Recipe>Rune: 2</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Water: 4, Air: 4</RequiredAttributes>
 		</Item>
@@ -64,11 +64,12 @@
 			<RequiredAttributes>Fire: 4, Earth: 1</RequiredAttributes>
 		</Item>
 		<Item name="Slime Gel">
-			<Price>10</Price>
+			<Price>500</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Monster Part</IngredientType>
+			<ProvidedAttributes>ALL: 1</ProvidedAttributes>
 		</Item>
-		<Item name="Fin, Tail, Whisker, Scale">
+		<Item name="Devilfish Scale">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Monster Part</IngredientType>
@@ -86,16 +87,17 @@
 			<IngredientType>Monster Part</IngredientType>
 			<ProvidedAttributes>Fire: 1</ProvidedAttributes>
 		</Item>
-		<Item name="Bone, Stone Heart">
+		<Item name="Scropion Carapace">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Monster Part</IngredientType>
 			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
 		</Item>
 		<Item name="Magic Stone">
-			<Price>10</Price>
+			<Price>500</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Stone</IngredientType>
+			<ProvidedAttributes>ALL: 1</ProvidedAttributes>
 		</Item>
 		<Item name="Obsidian">
 			<Price>100</Price>
@@ -113,6 +115,7 @@
 			<Price>400</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Weapon</IngredientType>
+			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
 		</Item>
 		<Item name="Purified Water">
 			<Price>100</Price>
@@ -124,16 +127,19 @@
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Metal</IngredientType>
+			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
 		</Item>
 		<Item name="Oak Log">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Wood</IngredientType>
+			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
 		</Item>
-		<Item name="Opal">
+		<Item name="Sapphire">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Gem</IngredientType>
+			<ProvidedAttributes>Water: 1</ProvidedAttributes>
 		</Item>
 	</ItemList>
 </AllItems>

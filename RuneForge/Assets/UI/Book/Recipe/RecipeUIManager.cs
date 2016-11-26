@@ -26,10 +26,6 @@ public class RecipeUIManager : MonoBehaviour {
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.uiOpen = active;
         MasterGameManager.instance.interactionManager.canInteract = !active;
-        if (active)
-            AudioManager.PlaySound(7);
-        else
-            AudioManager.PlaySound(8);
     }
 
     void Start()
@@ -103,17 +99,17 @@ public class RecipeUIManager : MonoBehaviour {
     void AddIngredient(Item item)
     {
         if (PlayerInventory.inventory.GetItemCount(item) > 0 &&
-            productItem.recipe.ContainsKey(item.name) &&
-            addedIngredients[item.name] < productItem.recipe[item.name])
+            productItem.recipe.ContainsKey(item.ingredientType) &&
+            addedIngredients[item.ingredientType] < productItem.recipe[item.ingredientType])
         {
             PlayerInventory.inventory.SubtractItem(item);
-            addedIngredients[item.name]++;
+            addedIngredients[item.ingredientType]++;
             AudioManager.PlaySound(2);
             foreach (IngredientEntry entry in ingredientEntryList)
             {
                 if (entry.loadedButton == null)
                 {
-                    entry.SpawnIngredientButton(item);
+                    entry.SpawnIngredientButton(item, this);
                     return;
                 }
             }
@@ -127,7 +123,7 @@ public class RecipeUIManager : MonoBehaviour {
 
         Item item = entry.loadedButton.item;
 
-        addedIngredients[item.name]--;
+        addedIngredients[item.ingredientType]--;
         if (restockInventory)
             PlayerInventory.inventory.AddItem(item);
         Destroy(entry.loadedButton.gameObject);

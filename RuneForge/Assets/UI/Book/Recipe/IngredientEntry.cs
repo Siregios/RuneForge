@@ -7,7 +7,7 @@ public class IngredientEntry : MonoBehaviour {
     
     public IngredientButton loadedButton = null;
 
-    public void SpawnIngredientButton(Item item)
+    public void SpawnIngredientButton(Item item, RecipeUIManager recipeUI)
     {
         GameObject newButton = (GameObject)Instantiate(ingredientButton, this.transform.position, Quaternion.identity);
         newButton.transform.SetParent(this.transform);
@@ -15,16 +15,7 @@ public class IngredientEntry : MonoBehaviour {
         newButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
 
         IngredientButton newIngredientButton = newButton.GetComponent<IngredientButton>();
-        newIngredientButton.Initialize(item);
-        //this.ingredientLoaded = true;
+        newIngredientButton.Initialize(item, recipeUI);
         this.loadedButton = newIngredientButton;
     }
-
-    //public void ClearButton(bool restockInventory)
-    //{
-    //    if (loadedButton != null)
-    //    {
-    //        loadedButton.RemoveButton(restockInventory);
-    //    }
-    //}
 }
