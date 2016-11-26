@@ -8,5 +8,10 @@ public static class PlayerInventory {
     static PlayerInventory()
     {
         //inventory.SetItemCount("Money", 600);
+        //Testing
+        foreach (Item item in ItemCollection.itemList)
+        {
+            inventory.SetItemCount(item, int.MaxValue);
+        }
     }
 }

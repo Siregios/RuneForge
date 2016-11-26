@@ -6,20 +6,15 @@ using System.Xml.Serialization;
 
 public class Item
 {
+    [XmlIgnoreAttribute]
+    public static int maxAttributeLevel = 10;
+
     [XmlAttribute("name")]
     public string name;
-
-    //[XmlElement("Type")]
-    //public string type;
 
     [XmlElement("Price")]
     public int price;
 
-    //[XmlElement("isIngredient")]
-    //public bool isIngredient;
-
-    //[XmlElement("isProduct")]
-    //public bool isProduct;
     [XmlElement("Class")]
     public string Class;
 
@@ -39,10 +34,10 @@ public class Item
     public string reqAttrStr;
 
     [XmlIgnoreAttribute]
-    public static int maxAttributeLevel = 10;
+    public Dictionary<string, int> providedAttributes;
 
     [XmlIgnoreAttribute]
-    public Dictionary<string, int> providedAttributes;
+    public List<string> ingrTypeList;
 
     [XmlIgnoreAttribute]
     public Dictionary<string, int> recipe;
@@ -55,6 +50,7 @@ public class Item
     public Item()
     {
         providedAttributes = new Dictionary<string, int>();
+        ingrTypeList = new List<string>();
         recipe = new Dictionary<string, int>();
         requiredAttributes = new Dictionary<string, int>();
     }
@@ -66,6 +62,7 @@ public class Item
         this.Class = copyItem.Class;
         this.ingredientType = copyItem.ingredientType;
         this.providedAttributes = copyItem.providedAttributes;
+        this.ingrTypeList = copyItem.ingrTypeList;
         this.recipe = copyItem.recipe;
         this.minigamesRequired = copyItem.minigamesRequired;
         this.requiredAttributes = copyItem.requiredAttributes;

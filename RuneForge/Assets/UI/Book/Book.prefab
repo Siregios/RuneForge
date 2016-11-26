@@ -162,7 +162,7 @@ GameObject:
   - 114: {fileID: 114000013560673602}
   - 114: {fileID: 114000010994219180}
   m_Layer: 5
-  m_Name: CreateOrderRandom
+  m_Name: PinOrder (Random)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ GameObject:
   - 114: {fileID: 114000013654765816}
   - 114: {fileID: 114000012324760208}
   m_Layer: 5
-  m_Name: CreateOrder
+  m_Name: PinOrder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -656,7 +656,7 @@ GameObject:
   - 114: {fileID: 114000011484451016}
   - 114: {fileID: 114000010362857840}
   m_Layer: 5
-  m_Name: CancelButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Create Work Order
+  m_Text: Pin to Clipboard
 --- !u!114 &114000010299102710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1217,8 +1217,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RecipeCancelButton
+      - m_Target: {fileID: 114000010544269354}
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114000010544269354}
         m_MethodName: CreateWorkOrder
         m_Mode: 6
         m_Arguments:
@@ -2526,7 +2526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2593,7 +2593,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114000010544269354}
         m_MethodName: CreateWorkOrder
         m_Mode: 6
         m_Arguments:
@@ -2760,7 +2760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cancel
+  m_Text: Back
 --- !u!114 &114000012757514052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3050,7 +3050,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Create Work Order (Random Minigames)
+  m_Text: Pin to Clipboard (Random Minigames)
 --- !u!114 &114000013080823100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4167,7 +4167,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 56.75, y: 175}
+  m_AnchoredPosition: {x: -225, y: 175}
   m_SizeDelta: {x: 75, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011339968048
