@@ -5,7 +5,8 @@ using System.Collections;
 public class QuestBoardUI : MonoBehaviour {
     public GameObject questNote;
     [HideInInspector]
-    public int currentDisplayedDay = 0;    
+    public int currentDisplayedDay = 0;
+    public GameObject menuBar;
 
 //    RectTransform rectTransform;
     float xPos, yPos, padY;
@@ -13,7 +14,7 @@ public class QuestBoardUI : MonoBehaviour {
     void Awake()
     {
         //rectTransform = this.GetComponent<RectTransform>();
-        xPos = -205;
+        xPos = 175;
         yPos = 150;
         padY = -70;
     }
@@ -43,8 +44,11 @@ public class QuestBoardUI : MonoBehaviour {
             newQuest.transform.localScale = Vector3.one;
             float yPosNew = yPos + (padY * objCount);
             newQuest.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
-            newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.item.icon;
-            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need One: " + quest.item.name;
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;
+            newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.product.icon;
+            newQuest.transform.FindChild("QuestGold").transform.FindChild("GoldInfo").GetComponent<Text>().text = "x" + quest.gold;
+            newQuest.transform.FindChild("QuestIngredient").GetComponent<Image>().sprite = quest.ingredient.icon;
+            newQuest.transform.FindChild("QuestIngredient").transform.FindChild("IngredientInfo").GetComponent<Text>().text = "x" + quest.amountIngredient;
             objCount++;
         }
         //foreach (Order order in MasterGameManager.instance.orderGenerator.todaysOrders)
@@ -63,5 +67,13 @@ public class QuestBoardUI : MonoBehaviour {
         //    //newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
         //}
         currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
+    }
+
+    public void Enable(bool active)
+    {
+        this.gameObject.SetActive(active);
+        MasterGameManager.instance.uiManager.uiOpen = active;
+        MasterGameManager.instance.interactionManager.canInteract = !active;
+        menuBar.SetActive(!active);
     }
 }

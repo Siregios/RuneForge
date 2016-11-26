@@ -87,7 +87,7 @@ MonoBehaviour:
   - Hook
   - Rhythm
   actionClock: {fileID: 114000010917058700}
-  orderGenerator: {fileID: 114000013663129980}
+  questGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
   interactionManager: {fileID: 114000013970403354}
   workOrderManager: {fileID: 114000013118490888}
