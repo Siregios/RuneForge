@@ -5,16 +5,14 @@ using UnityEngine.EventSystems;
 
 public class QuestNote : MonoBehaviour {
     public GameObject eventSystem;
-    public void OnMouseDown()
-    {
-
-    }
+    public Quest q;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<Image>().sprite == gameObject.transform.Find("QuestIcon").GetComponent<Image>().sprite)
         {
-            Debug.Log("YOLO");
+            transform.parent.GetComponent<QuestBoardUI>().turnInQuest(gameObject, other.gameObject.transform.parent.gameObject);
+            other.transform.parent.GetComponent<ItemButton>().OnMouseRelease();
         }
     }
 

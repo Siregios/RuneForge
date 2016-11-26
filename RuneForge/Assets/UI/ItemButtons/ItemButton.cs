@@ -83,7 +83,7 @@ public class ItemButton : MonoBehaviour
             {
                 if (LastClicked.transform.Find("QuestIcon").GetComponent<Image>().sprite == gameObject.transform.Find("Icon").GetComponent<Image>().sprite)
                 {
-                    Debug.Log("YOLOTWO");
+                    GameObject.Find("QuestPanel").GetComponent<QuestBoardUI>().turnInQuest(LastClicked, gameObject);
                     LastClicked = null;
                 }
             }
@@ -115,6 +115,9 @@ public class ItemButton : MonoBehaviour
 
     void DragCopy()
     {
+        //Used to bring UI element to the front.
+        gameObject.transform.SetAsLastSibling();
+        //Then drag object.
         followingMouse = true;
         draggable = (GameObject)Instantiate(dragObject, this.transform.position, Quaternion.identity);
         draggable.transform.SetParent(gameObject.transform, false);

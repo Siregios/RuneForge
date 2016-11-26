@@ -9,9 +9,9 @@ public static class PlayerInventory {
     {
         //inventory.SetItemCount("Money", 600);
         //Testing
-        foreach (Item item in ItemCollection.itemList)
-        {
-            inventory.SetItemCount(item, int.MaxValue);
-        }
+        //foreach (Item item in ItemCollection.itemList)
+        //{
+        //    inventory.SetItemCount(item, int.MaxValue);
+        //}
     }
 }

@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class QuestBoardUI : MonoBehaviour {
     public GameObject questNote;
     [HideInInspector]
     public int currentDisplayedDay = 0;
     public GameObject menuBar;
-
-//    RectTransform rectTransform;
+    public List<GameObject> questCurrent;
     float xPos, yPos, padY;
-
+    int objCount;
     void Awake()
     {
         //rectTransform = this.GetComponent<RectTransform>();
@@ -36,15 +36,18 @@ public class QuestBoardUI : MonoBehaviour {
         if (currentDisplayedDay == MasterGameManager.instance.actionClock.Day)
             return;
 
-        int objCount = 0;
+        objCount = 0;
         foreach(Quest quest in MasterGameManager.instance.questGenerator.todaysQuests)
-        {
+        {            
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
+            newQuest.GetComponent<QuestNote>().q = quest;
+            questCurrent.Add(newQuest);
             newQuest.transform.SetParent(this.transform);
             newQuest.transform.localScale = Vector3.one;
+            newQuest.transform.SetAsFirstSibling();
             float yPosNew = yPos + (padY * objCount);
             newQuest.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
-            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;           
             newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.product.icon;
             newQuest.transform.FindChild("QuestGold").transform.FindChild("GoldInfo").GetComponent<Text>().text = "x" + quest.gold;
             newQuest.transform.FindChild("QuestIngredient").GetComponent<Image>().sprite = quest.ingredient.icon;
@@ -75,5 +78,29 @@ public class QuestBoardUI : MonoBehaviour {
         MasterGameManager.instance.uiManager.uiOpen = active;
         MasterGameManager.instance.interactionManager.canInteract = !active;
         menuBar.SetActive(!active);
+    }
+
+    public void turnInQuest(GameObject quest, GameObject item)
+    {
+        Quest qValues = quest.GetComponent<QuestNote>().q;
+        if (PlayerInventory.inventory.GetItemCount(item.GetComponent<ItemButton>().item) >= qValues.amountProduct)
+        {
+            objCount = 0;
+            questCurrent.Remove(quest);
+            foreach (GameObject q in questCurrent)
+            {
+                float yPosNew = yPos + (padY * objCount);
+                q.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
+                objCount++;
+            }
+            PlayerInventory.inventory.AddItem(qValues.ingredient, qValues.amountIngredient);
+            PlayerInventory.inventory.SubtractItem(item.GetComponent<ItemButton>().item, qValues.amountProduct);
+            PlayerInventory.money += qValues.gold;
+            Destroy(quest);
+        }
+        else
+        {
+            Debug.Log(false);
+        }
     }
 }
