@@ -6081,6 +6081,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DisplayClipboard
       objectReference: {fileID: 0}
+    - target: {fileID: 224000012931481552, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -260
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
   m_IsPrefabParent: 0
@@ -6675,6 +6680,26 @@ Prefab:
       propertyPath: menuBar
       value: 
       objectReference: {fileID: 165569158}
+    - target: {fileID: 224000013411574138, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013634725434, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011882941184, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011198853826, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f573761fbfb8ad49ba40b940dd658b3, type: 2}
   m_IsPrefabParent: 0
