@@ -3,21 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class RecipeUI : MonoBehaviour {
+public class RecipeUIManager : MonoBehaviour {
     Item productItem;
     private AudioManager AudioManager;
 
-
-    public Button cancelButton, pinSelectButton, pinRandomButton;
     public ItemListUI productItemList, ingredientItemList;
-    Text productName;
-    Image productIcon;
-    Text recipeText;
+    public RecipePage recipePage;
+    public Button cancelButton, pinSelectButton, pinRandomButton;
 
-    //Refactor this later?
-    //Roldan: Yes
-    //Peter & Efren: Same
-    //Edwin: FUCK
     public List<IngredientEntry> ingredientEntryList;
     Dictionary<string, int> addedIngredients = new Dictionary<string, int>();
 
@@ -25,46 +18,29 @@ public class RecipeUI : MonoBehaviour {
     {
         productItemList.AddButtonFunction(AddProduct);
         ingredientItemList.AddButtonFunction(AddIngredient);
-
-        productName = this.transform.Find("ProductName").GetComponent<Text>();
-        productIcon = this.transform.Find("ProductIconPanel/ProductIcon").GetComponent<Image>();
-        recipeText = this.transform.Find("Recipe").GetComponent<Text>();
-
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-
-        //invListUI.ModifyAllButtons(ProductButtonBehavior);
     }
 
-    void OnEnable()
+    public void Enable(bool active)
     {
-        MasterGameManager.instance.uiManager.uiOpen = true;
-        AudioManager.PlaySound(7);
-
-    }
-
-    void OnDisable()
-    {
-        MasterGameManager.instance.uiManager.uiOpen = false;
-        AudioManager.PlaySound(8);
+        this.gameObject.SetActive(active);
+        MasterGameManager.instance.uiManager.uiOpen = active;
+        MasterGameManager.instance.interactionManager.canInteract = !active;
+        if (active)
+            AudioManager.PlaySound(7);
+        else
+            AudioManager.PlaySound(8);
     }
 
     void Start()
     {
         ImportProductMode();
     }
-    
-    void Update()
+
+    void EnablePinButtons(bool active)
     {
-        if (isRecipeMet() && !MasterGameManager.instance.workOrderManager.IsFull())
-        {
-            pinSelectButton.interactable = true;
-            pinRandomButton.interactable = true;
-        }
-        else
-        {
-            pinSelectButton.interactable = false;
-            pinRandomButton.interactable = false;
-        }
+        pinSelectButton.interactable = active;
+        pinRandomButton.interactable = active;
     }
 
     public void ImportProductMode()
@@ -72,37 +48,34 @@ public class RecipeUI : MonoBehaviour {
         ingredientItemList.gameObject.SetActive(false);
         
         productItemList.gameObject.SetActive(true);
-        productItemList.DisplayNewFilter("product");
+        productItemList.DisplayNewFilter("Product");
         productItem = null;
-        productName.text = "";
-        productIcon.color = Color.clear;
-        recipeText.text = "";
+        recipePage.Clear();
         RemoveAllIngredients(true);
-
+        EnablePinButtons(false);
         cancelButton.gameObject.SetActive(false);
     }
 
     public void ImportIngredientMode()
     {
-        AudioManager.PlaySound(1);
         productItemList.gameObject.SetActive(false);
         ingredientItemList.gameObject.SetActive(true);
-        ingredientItemList.DisplayNewFilter("ingredient");
+        ingredientItemList.DisplayNewFilter("Ingredient");
+        EnablePinButtons(!MasterGameManager.instance.workOrderManager.IsFull());
         cancelButton.gameObject.SetActive(true);
     }
 
-    bool isRecipeMet()
-    {
-        if (productItem == null)
-            return false;
-        foreach (string ingredient in productItem.recipe.Keys)
-        {
-            if (addedIngredients[ingredient] < productItem.recipe[ingredient])
-                return false;
-        }
-
-        return true;
-    }
+    //bool isRecipeMet()
+    //{
+    //    if (productItem == null)
+    //        return false;
+    //    foreach (string ingredient in productItem.recipe.Keys)
+    //    {
+    //        if (addedIngredients[ingredient] < productItem.recipe[ingredient])
+    //            return false;
+    //    }
+    //    return true;
+    //}
 
     public void CreateWorkOrder(bool isRandom)
     {
@@ -115,28 +88,15 @@ public class RecipeUI : MonoBehaviour {
         ImportProductMode();
     }
 
-    string ParseRecipe(Dictionary<string, int> recipe)
-    {
-        string result = "";
-        foreach (var kvp in recipe)
-        {
-            result += string.Format("{0} x{1}\n", kvp.Key, kvp.Value);
-            addedIngredients.Add(kvp.Key, 0);
-        }
-
-        result.Trim();
-
-        return result;
-    }
-
     void AddProduct(Item item)
     {
+        AudioManager.PlaySound(1);
         productItem = item;
-        productName.text = productItem.name;
-        productIcon.color = Color.white;
-        productIcon.sprite = productItem.icon;
-        recipeText.text = ParseRecipe(productItem.recipe);
-
+        foreach (var kvp in item.recipe)
+        {
+            addedIngredients.Add(kvp.Key, 0);
+        }
+        recipePage.SetProduct(item);
         ImportIngredientMode();
     }
 
@@ -183,19 +143,9 @@ public class RecipeUI : MonoBehaviour {
         addedIngredients.Clear();
     }
 
-    public void RecipeCancelButton() 
+    public void BackButton() 
     {
         AudioManager.PlaySound(0);
         ImportProductMode();
     }
-
-    //void ProductButtonBehavior(InventoryButton invButton)
-    //{
-    //    invButton.ClickFunction = AddProduct;
-    //}
-
-    //void IngredientButtonBehavior(InventoryButton invButton)
-    //{
-    //    invButton.ClickFunction = AddIngredient;
-    //}
 }

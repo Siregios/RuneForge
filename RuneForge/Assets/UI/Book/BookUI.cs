@@ -7,11 +7,12 @@ public class BookUI : MonoBehaviour {
         CLIPBOARD,
         RECIPE
     }
-    public BookSection currentDisplay = BookSection.CLIPBOARD;
-    public GameObject recipe, clipboard;
+    public BookSection currentSection = BookSection.CLIPBOARD;
+    public RecipeUIManager recipe;
+    public GameObject clipboard;
     public GameObject menuBar;
 
-    public void Enable(bool active)
+    void Enable(bool active)
     {
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.uiOpen = active;
@@ -19,13 +20,15 @@ public class BookUI : MonoBehaviour {
         menuBar.SetActive(!active);
     }
 
-    public void ClickTab(BookSection section)
+    public void DisplaySection(BookSection section)
     {
         switch (section)
         {
             case BookSection.CLIPBOARD:
+                DisplayRecipe();
                 break;
             case BookSection.RECIPE:
+                DisplayClipboard();
                 break;
         }
     }
@@ -33,14 +36,16 @@ public class BookUI : MonoBehaviour {
     public void DisplayRecipe()
     {
         Enable(true);
-        recipe.SetActive(true);
+        recipe.Enable(true);
         clipboard.SetActive(false);
+        currentSection = BookSection.RECIPE;
     }
 
     public void DisplayClipboard()
     {
         Enable(true);
-        recipe.SetActive(false);
+        recipe.Enable(false);
         clipboard.SetActive(true);
+        currentSection = BookSection.CLIPBOARD;
     }
 }

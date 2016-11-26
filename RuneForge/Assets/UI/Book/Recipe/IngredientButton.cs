@@ -5,11 +5,11 @@ using System.Collections;
 public class IngredientButton : MonoBehaviour {
     public Item item;
 
-    RecipeUI recipeUI;
+    RecipeUIManager recipeUI;
 
     public void Initialize(Item item)
     {
-        recipeUI = this.transform.parent.parent.parent.GetComponent<RecipeUI>();
+        recipeUI = this.transform.parent.parent.parent.GetComponent<RecipeUIManager>();
         this.item = item;
         this.GetComponent<Image>().sprite = item.icon;
     }

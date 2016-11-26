@@ -92,6 +92,7 @@ GameObject:
   - 224: {fileID: 224000011234939646}
   - 222: {fileID: 222000013943595692}
   - 114: {fileID: 114000011182216962}
+  - 114: {fileID: 114000010544269354}
   m_Layer: 5
   m_Name: Recipe
   m_TagString: Untagged
@@ -391,9 +392,9 @@ GameObject:
   - 224: {fileID: 224000014276721680}
   - 222: {fileID: 222000011787207324}
   - 114: {fileID: 114000012220680006}
-  - 114: {fileID: 114000010427263202}
+  - 114: {fileID: 114000012240273044}
   m_Layer: 5
-  m_Name: RecipePanel
+  m_Name: RecipePage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1216,7 +1217,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000010427263202}
+      - m_Target: {fileID: 0}
         m_MethodName: RecipeCancelButton
         m_Mode: 1
         m_Arguments:
@@ -1256,29 +1257,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000010427263202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011388366228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9bcd7ed50c07d4b8ea00db06899c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cancelButton: {fileID: 114000010362857840}
-  pinSelectButton: {fileID: 114000012324760208}
-  pinRandomButton: {fileID: 114000010994219180}
-  productItemList: {fileID: 114000011613131716}
-  ingredientItemList: {fileID: 114000011955474778}
-  ingredientEntryList:
-  - {fileID: 114000010047985556}
-  - {fileID: 114000011244836482}
-  - {fileID: 114000011484500174}
-  - {fileID: 114000012201885608}
-  - {fileID: 114000010038306698}
-  - {fileID: 114000011665544110}
 --- !u!114 &114000010429110514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1339,6 +1317,30 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000010544269354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010593277862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9bcd7ed50c07d4b8ea00db06899c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productItemList: {fileID: 114000011613131716}
+  ingredientItemList: {fileID: 114000011955474778}
+  recipePage: {fileID: 114000012240273044}
+  cancelButton: {fileID: 114000010362857840}
+  pinSelectButton: {fileID: 114000012324760208}
+  pinRandomButton: {fileID: 114000010994219180}
+  ingredientEntryList:
+  - {fileID: 114000010047985556}
+  - {fileID: 114000011244836482}
+  - {fileID: 114000011484500174}
+  - {fileID: 114000012201885608}
+  - {fileID: 114000010038306698}
+  - {fileID: 114000011665544110}
 --- !u!114 &114000010604968768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,7 +1660,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000010427263202}
+      - m_Target: {fileID: 0}
         m_MethodName: CreateWorkOrder
         m_Mode: 6
         m_Arguments:
@@ -2062,8 +2064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21dab67d7bf9669469cb36dca3c70ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDisplay: 0
-  recipe: {fileID: 1000010593277862}
+  currentSection: 0
+  recipe: {fileID: 114000010544269354}
   clipboard: {fileID: 1000012584999040}
   menuBar: {fileID: 0}
 --- !u!114 &114000011552050258
@@ -2538,6 +2540,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000012240273044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011388366228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7d1be0bf886a34ea025f3031a4fd0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productName: {fileID: 114000010429110514}
+  productIcon: {fileID: 114000011080070082}
+  recipeText: {fileID: 114000011128906664}
 --- !u!114 &114000012324760208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2577,7 +2593,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000010427263202}
+      - m_Target: {fileID: 0}
         m_MethodName: CreateWorkOrder
         m_Mode: 6
         m_Arguments:
@@ -3826,7 +3842,7 @@ RectTransform:
   - {fileID: 224000014126677362}
   - {fileID: 224000012337417900}
   m_Father: {fileID: 224000011234939646}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000015258789}
@@ -3924,7 +3940,7 @@ RectTransform:
   m_Children:
   - {fileID: 224000012481452476}
   m_Father: {fileID: 224000014276721680}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -37.5, y: -130}
@@ -4124,6 +4140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000011099874290}
+  - {fileID: 224000011261174434}
   - {fileID: 224000014276721680}
   - {fileID: 224000012379786874}
   - {fileID: 224000010157869798}
@@ -4140,17 +4157,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012765796190}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000011092373480}
-  m_Father: {fileID: 224000014276721680}
-  m_RootOrder: 4
+  m_Father: {fileID: 224000011234939646}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85, y: 175}
+  m_AnchoredPosition: {x: 56.75, y: 175}
   m_SizeDelta: {x: 75, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011339968048
@@ -4278,7 +4295,7 @@ RectTransform:
   - {fileID: 224000010165823216}
   - {fileID: 224000013692375116}
   m_Father: {fileID: 224000011234939646}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000004654801}
@@ -4543,7 +4560,7 @@ RectTransform:
   m_Children:
   - {fileID: 224000010295090686}
   m_Father: {fileID: 224000014276721680}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 37.499992, y: -130}
@@ -4745,11 +4762,10 @@ RectTransform:
   - {fileID: 224000011177936650}
   - {fileID: 224000013830926154}
   - {fileID: 224000010022428646}
-  - {fileID: 224000011261174434}
   - {fileID: 224000010489273446}
   - {fileID: 224000013315133302}
   m_Father: {fileID: 224000011234939646}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
