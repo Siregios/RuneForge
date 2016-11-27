@@ -57,28 +57,28 @@ public class NoteTracker : MonoBehaviour {
         }
 
         //Checks for input when note is on hitbox and key pressed
-        if (Input.GetKeyDown(KeyCode.W) && trigW && !switchOver && canDie)
+        if (Input.GetKeyDown(KeyCode.W) && indexNote == 0 && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.S) && trigS && !switchOver && canDie)
+        if (Input.GetKeyDown(KeyCode.S) && indexNote == 2 && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.A) && trigA && !switchOver && canDie)
+        if (Input.GetKeyDown(KeyCode.A) && indexNote == 1 && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
             if (!switchOver)
                 Destroy(gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.D) && trigD && !switchOver && canDie)
+        if (Input.GetKeyDown(KeyCode.D) && indexNote == 3 && !switchOver && canDie)
         {
             checkAccuracy();
             DoubleSpawn();
@@ -108,11 +108,10 @@ public class NoteTracker : MonoBehaviour {
         }
 
         //Timing is key
-        if (other.gameObject.name != "hitbox")
-            accuracy++;
+        accuracy++;
 
         //Otherwise you miss
-        if (accuracy == 4)
+        if (accuracy == 5)
         {
             scriptNote.miss++;
             Destroy(gameObject);
@@ -150,17 +149,23 @@ public class NoteTracker : MonoBehaviour {
     {
         if (accuracy == 0)
         {
+            scriptNote.miss++;
+            Destroy(gameObject);
+            scriptNote.hitText.text = "Miss!";
+        }
+        if (accuracy == 1)
+        {
             scriptNote.hitText.text = "Good?";
             scriptNote.good++;
             scriptNote.score++;
         }
-        else if (accuracy == 1 || accuracy == 3)
+        else if (accuracy == 2 || accuracy == 4)
         {
             scriptNote.hitText.text = "Great.";
             scriptNote.great++;
             scriptNote.score += 2;
         }
-        else if (accuracy == 2)
+        else if (accuracy == 3)
         {
             scriptNote.hitText.text = "Perfect!";
             scriptNote.perfect++;
@@ -214,7 +219,7 @@ public class NoteTracker : MonoBehaviour {
             if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.003f)
             {
                 transform.position = keyLoc.transform.position;
-                accuracy = 3;
+                accuracy = 4;
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
                 {
@@ -225,7 +230,7 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 8);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
             if (transform.position.y <= 0.3f)
             {
                 if (Input.GetKeyDown(input))

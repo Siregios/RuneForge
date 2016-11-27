@@ -11,6 +11,7 @@ public class RandomSpawnNote : MonoBehaviour
     public GameObject[] spawnObject;
     public List<List<GameObject>> keyNotes;
     public int randomInt;
+    int dubRandom = 6;
     //private BeatObserver beatObserver;
     //private int beatCounter;
 
@@ -94,6 +95,13 @@ public class RandomSpawnNote : MonoBehaviour
     void spawnRandomNote()
     {
         randomInt = Random.Range(0, 4);
+        if (randomInt == dubRandom)
+        {
+            randomInt -= 1;
+            if (randomInt == -1)
+                randomInt = 3;
+            dubRandom = 5;
+        }
         GameObject note = (GameObject)Instantiate(spawnObject[randomInt], spawnObject[randomInt].transform.position, Quaternion.identity);
         note.GetComponent<NoteTracker>().indexNote = randomInt;
         keyNotes[randomInt].Add(note);
@@ -104,6 +112,9 @@ public class RandomSpawnNote : MonoBehaviour
     void spawnRandomDouble()
     {
         randomInt = Random.Range(0, 4);
+        dubRandom = randomInt - 1;
+        if (dubRandom == -1)
+            dubRandom = 3;
         GameObject note = (GameObject)Instantiate(spawnObject[randomInt + 4], spawnObject[randomInt + 4].transform.position, Quaternion.identity);
         note.GetComponent<NoteTracker>().indexNote = randomInt;
         keyNotes[randomInt].Add(note);
