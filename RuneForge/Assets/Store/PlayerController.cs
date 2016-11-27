@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         //If mouse click, move rigidbody 
         if (mouseClick)
         {
-            Vector3 direction = (targetClick - playerPosition).normalized * speed;
+            Vector3 direction = (targetClick - playerPosition).normalized * (speed/3f);
             rigidBody.velocity = direction;
             if (Mathf.Abs(playerPosition.x - targetClick.x) < 2f)
             {

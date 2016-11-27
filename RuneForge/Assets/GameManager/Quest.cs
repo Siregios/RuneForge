@@ -18,7 +18,7 @@ public class Quest {
         //Produces random product and random ingredient reward
         List<Item> productList = ItemCollection.FilterItemList("product");
         int randomProduct = Random.Range(0, productList.Count);        
-        List<Item> ingredientList = ItemCollection.FilterItemList("ingredient");
+        List<Item> ingredientList = ItemCollection.FilterItemList("material");
         int randomIngredient = Random.Range(0, ingredientList.Count);
 
         //Sets the variables now.

@@ -144,7 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8289ce6ec5d869b46a79270993367020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 14
+  playerPosition: {x: 0, y: 0, z: 0}
+  mouseClick: 0
+  targetClick: {x: 0, y: 0, z: 0}
+  bound: 0
 --- !u!212 &212000014122804990
 SpriteRenderer:
   m_ObjectHideFlags: 1
