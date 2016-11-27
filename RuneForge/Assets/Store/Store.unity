@@ -6370,7 +6370,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1679626974
 BoxCollider2D:
@@ -6399,11 +6399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8289ce6ec5d869b46a79270993367020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 14
-  playerPosition: {x: 0, y: 0, z: 0}
-  mouseClick: 0
-  targetClick: {x: 0, y: 0, z: 0}
-  bound: 0
+  speed: 5
 --- !u!4 &1679626976
 Transform:
   m_ObjectHideFlags: 0

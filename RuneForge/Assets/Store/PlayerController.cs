@@ -1,109 +1,155 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
+    [HideInInspector]
+    public Direction.DIRECTION movingDirection;
 
     public float speed = 1f;
 
     Rigidbody2D rigidBody;
-    private Door door;
-    public Vector3 playerPosition;
-    //For left click movement    
-    public bool mouseClick = false;
-    public Vector3 targetClick;
-    public bool bound = false;
+    bool moveByMouse = false;
+    Vector3 targetClick;
+
+    PointerEventData pointer = new PointerEventData(EventSystem.current);
+    System.Collections.Generic.List<RaycastResult> results = new System.Collections.Generic.List<RaycastResult>();
 
     void Awake()
     {
         rigidBody = this.GetComponent<Rigidbody2D>();
     }
 
-	void Update () {
-        //Update the player position erryday
-        playerPosition = transform.position;
-        if (door != null)
-        {
-            MasterGameManager.instance.sceneManager.LoadScene(door.nextScene);
-        }
+    /// <summary>
+    /// TODO : Find a way to only open interactable when player reaches that destination
+    /// Also deal with never being able to reach that interactable if something is in the way (e.g. Quest Board)
+    /// </summary>
+    //RaycastHit2D hit;
+    //Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //hit = Physics2D.Raycast(clickPos, Vector2.zero);
+    //if (hit && hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+    //    Debug.Log(hit.collider.gameObject.layer);
 
-        //If key is A or D, move player that direction
-        //mouseclick false and velocity zero in case player tries to click and use keys at the same time, keys take priority.
-        if (Input.GetKey(KeyCode.A))
-        {            
-            rigidBody.MovePosition(playerPosition + new Vector3(-speed * Time.deltaTime, 0, 0));
-            rigidBody.velocity = Vector3.zero;
-            mouseClick = false;
-        }
-        if (Input.GetKey(KeyCode.D))
+    void Update()
+    {
+        if (!MasterGameManager.instance.uiManager.uiOpen)
         {
-            rigidBody.MovePosition(playerPosition + new Vector3(speed * Time.deltaTime, 0, 0));
-            rigidBody.velocity = Vector3.zero;
-            mouseClick = false;
+            CheckForMove();
         }
-        if (!MasterGameManager.instance.uiManager.uiOpen &&
-            Input.GetKeyDown(KeyCode.Mouse0) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
-        {
-            targetClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            targetClick = new Vector3(targetClick.x, playerPosition.y, playerPosition.z);
-            mouseClick = true;
-        }
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    if (door != null)
-        //    {
-        //        //Bring up UI to select different rooms in the house
-        //        MasterGameManager.instance.sceneManager.LoadScene(door.nextScene);
-        //        //Vector2 nextLocation = door.nextDoor.transform.position;
-        //        //rigidBody.MovePosition(nextLocation);
-        //        //Camera.main.transform.position = new Vector3(door.nextDoor.cameraLocation.x, door.nextDoor.cameraLocation.y, -10);
-        //    }
-        //}
     }
 
     void FixedUpdate()
     {
-        //If mouse click, move rigidbody 
-        if (mouseClick)
+        Vector3 playerPosition = transform.position;
+        if (moveByMouse)
         {
-            Vector3 direction = (targetClick - playerPosition).normalized * (speed/3f);
-            rigidBody.velocity = direction;
-            if (Mathf.Abs(playerPosition.x - targetClick.x) < 2f)
+            if (Mathf.Abs(playerPosition.x - targetClick.x) > 0.1f)
+                this.transform.position = Vector2.MoveTowards(playerPosition, targetClick, speed * Time.deltaTime);
+            else
             {
-                rigidBody.velocity = Vector3.zero;
-                playerPosition = targetClick;
-                mouseClick = false;
+                movingDirection = Direction.DIRECTION.NONE;
+                moveByMouse = false;
+            }
+        }
+        else
+        {
+            switch (movingDirection)
+            {
+                case Direction.DIRECTION.LEFT:
+                    rigidBody.MovePosition(playerPosition + new Vector3(-speed * Time.deltaTime, 0, 0));
+                    break;
+                case Direction.DIRECTION.RIGHT:
+                    rigidBody.MovePosition(playerPosition + new Vector3(speed * Time.deltaTime, 0, 0));
+                    break;
             }
         }
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (col.CompareTag("Door"))
-            door = col.GetComponent<Door>();
+        if (other.CompareTag("Door"))
+            MasterGameManager.instance.sceneManager.LoadScene(other.GetComponent<Door>().nextScene);
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    void CheckForMove()
     {
-        if (col.CompareTag("Door"))
-            door = null;
-    }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            movingDirection = Direction.DIRECTION.LEFT;
+            moveByMouse = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.A) && movingDirection == Direction.DIRECTION.LEFT)
+            movingDirection = Direction.DIRECTION.NONE;
 
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            movingDirection = Direction.DIRECTION.RIGHT;
+            moveByMouse = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.D) && movingDirection == Direction.DIRECTION.RIGHT)
+            movingDirection = Direction.DIRECTION.NONE;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+        {
+            pointer.position = Input.mousePosition;
+            results.Clear();
+            EventSystem.current.RaycastAll(pointer, results);
+            if (results.Count == 0)
+            {
+                moveByMouse = true;
+                Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                targetClick = new Vector2(clickPos.x, this.transform.position.y);
+                movingDirection = (clickPos.x < this.transform.position.x) ? Direction.DIRECTION.LEFT : Direction.DIRECTION.RIGHT;
+            }
+        }
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "VerticalBounds")
-        {            
-            mouseClick = false;
-            rigidBody.velocity = Vector3.zero;
-            bound = true;
+        {
+            moveByMouse = false;
+            movingDirection = Direction.DIRECTION.NONE;
         }
-    }    
-
-
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "VerticalBounds")
-            bound = false;
     }
-
 }
+
+///Deprecated
+//void Update()
+//{
+//    //Update the player position erryday
+//    //if (door != null)
+//    //{
+//    //    MasterGameManager.instance.sceneManager.LoadScene(door.nextScene);
+//    //}
+
+//    //If key is A or D, move player that direction
+//    //mouseclick false and velocity zero in case player tries to click and use keys at the same time, keys take priority.
+//    if (Input.GetKeyDown(KeyCode.A))
+//    {
+//        movingDirection = Direction.DIRECTION.LEFT;
+//        //this.transform.Translate(-speed * Time.deltaTime, 0, 0);
+//        //rigidBody.position = (playerPosition + new Vector3(-speed * Time.deltaTime, 0, 0));
+//        //rigidBody.velocity = Vector3.zero;
+//        //mouseClick = false;
+//    }
+//    else if (Input.GetKeyUp(KeyCode.A) && movingDirection == Direction.DIRECTION.LEFT)
+//        movingDirection = Direction.DIRECTION.NONE;
+//    if (Input.GetKeyDown(KeyCode.D))
+//    {
+//        movingDirection = Direction.DIRECTION.RIGHT;
+//        //this.transform.Translate(speed * Time.deltaTime, 0, 0);
+//        //rigidBody.MovePosition(playerPosition + new Vector3(speed * Time.deltaTime, 0, 0));
+//        //rigidBody.velocity = Vector3.zero;
+//        //mouseClick = false;
+//    }
+//    else if (Input.GetKeyUp(KeyCode.D) && movingDirection == Direction.DIRECTION.RIGHT)
+//        movingDirection = Direction.DIRECTION.NONE;
+//    //if (!MasterGameManager.instance.uiManager.uiOpen &&
+//    //    Input.GetKeyDown(KeyCode.Mouse0) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+//    //{
+//    //    targetClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//    //    targetClick = new Vector3(targetClick.x, playerPosition.y, playerPosition.z);
+//    //    mouseClick = true;
+//    //}
+//}
