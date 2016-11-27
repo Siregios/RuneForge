@@ -7,7 +7,7 @@ public class TracerManager : MonoBehaviour {
     public GameObject trailRenderer = null;
 
     private AudioManager AudioManager;
-
+    private AudioSource music;
     //Number of maps that exist in Assets/TraceMaps
     public int traceMapCount = 4;
     int currentMap = 4;
@@ -24,12 +24,14 @@ public class TracerManager : MonoBehaviour {
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        music = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
     {
         CreateNewTrail();
         Cursor.visible = false;
+        music.Play();
     }
 
     void Update()
