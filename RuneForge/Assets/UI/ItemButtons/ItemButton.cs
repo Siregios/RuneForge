@@ -56,7 +56,8 @@ public class ItemButton : MonoBehaviour
         }
         if (countText != null)
             SetText();
-        setAttributes();
+        if (attribute1 != null || attribute2 != null)
+            setAttributes();
     }
 
     public void OnHover(bool active)
@@ -126,6 +127,14 @@ public class ItemButton : MonoBehaviour
     }
     void setAttributes()
     {
+        if (attribute1 != null && item.provtAttrStr.Contains("ALL"))
+        {
+            attribute1.sprite = Resources.Load<Sprite>("ItemSprites/Charms/all_attr_charm");
+            int value = item.providedAttributes["Fire"];    //Not very clean, but simple - just get the value of fire and it'll be the value for all
+            attribute1.transform.Find("Text").GetComponent<Text>().text = value.ToString();
+            return;
+        }
+
         KeyValuePair<string, int> mainItemAttribute = new KeyValuePair<string, int>("", 0);
         KeyValuePair<string, int> secondaryItemAttribute = new KeyValuePair<string, int>("", 0);
         Dictionary<string, string> attributeToColor = new Dictionary<string, string>()
@@ -133,7 +142,7 @@ public class ItemButton : MonoBehaviour
             { "Fire", "red" },
             { "Water", "blue" },
             { "Earth", "yellow" },
-            { "Air", "green" }
+            { "Air", "green" },
         };
 
         //Should only be two things in providedAttributes
