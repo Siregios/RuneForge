@@ -2082,7 +2082,7 @@ MonoBehaviour:
   defaultFilter: Product
   displayZeroCountItems: 1
   inventoryType: 0
-  padX: 10
+  padX: 20
   padY: 20
 --- !u!114 &114000011632349158
 MonoBehaviour:
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   defaultFilter: Ingredient
   displayZeroCountItems: 0
   inventoryType: 0
-  padX: 10
+  padX: 20
   padY: 20
 --- !u!114 &114000012014514372
 MonoBehaviour:
@@ -4068,7 +4068,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.5, y: 0}
-  m_SizeDelta: {x: 195, y: 240}
+  m_SizeDelta: {x: 185, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011552673882
 RectTransform:

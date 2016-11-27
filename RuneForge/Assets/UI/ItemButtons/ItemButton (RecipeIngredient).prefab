@@ -386,6 +386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHover: 1
+  typeCharm: {fileID: 114000010191432450, guid: 4f0d47ca0dbb92547add24e0bcca7fe3,
+    type: 2}
   attribute1: {fileID: 114000010700733742}
   attribute2: {fileID: 114000013574021200}
   countText: {fileID: 114000011831550606}

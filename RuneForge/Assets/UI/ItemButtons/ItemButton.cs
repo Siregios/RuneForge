@@ -11,6 +11,7 @@ public class ItemButton : MonoBehaviour
 
     public bool showHover = true;
     bool followingMouse = false;
+    public Image typeCharm;
     public Image attribute1;
     public Image attribute2;
     public Text countText;
@@ -58,6 +59,8 @@ public class ItemButton : MonoBehaviour
             SetText();
         if (attribute1 != null || attribute2 != null)
             setAttributes();
+        if (typeCharm != null)
+            setType();
     }
 
     public void OnHover(bool active)
@@ -125,9 +128,11 @@ public class ItemButton : MonoBehaviour
         draggable.GetComponent<Image>().sprite = gameObject.transform.Find("Icon").GetComponent<Image>().sprite;
         gameObject.GetComponent<Button>().interactable = false;
     }
+
+    //REFACTOR : Use instatiation rather than set GameObjects
     void setAttributes()
     {
-        if (attribute1 != null && item.provtAttrStr.Contains("ALL"))
+        if (attribute1 != null && item.provtAttrStr != null && item.provtAttrStr.Contains("ALL"))
         {
             attribute1.sprite = Resources.Load<Sprite>("ItemSprites/Charms/all_attr_charm");
             int value = item.providedAttributes["Fire"];    //Not very clean, but simple - just get the value of fire and it'll be the value for all
@@ -167,5 +172,13 @@ public class ItemButton : MonoBehaviour
             attribute2.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0}_circle", attributeToColor[secondaryItemAttribute.Key]));
             attribute2.transform.Find("Text").GetComponent<Text>().text = secondaryItemAttribute.Value.ToString();
         }
+    }
+
+    void setType()
+    {
+        Image newImage = (Image)Instantiate(typeCharm, this.transform);
+        newImage.rectTransform.localScale = Vector3.one;
+        newImage.rectTransform.anchoredPosition = Vector3.zero;
+        newImage.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0} Charm", item.ingredientType));
     }
 }

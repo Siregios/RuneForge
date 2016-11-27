@@ -347,8 +347,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHover: 1
-  attribute1: {fileID: 114000014007431976}
-  attribute2: {fileID: 114000010150975540}
+  typeCharm: {fileID: 0}
+  attribute1: {fileID: 0}
+  attribute2: {fileID: 0}
   countText: {fileID: 0}
   dragObject: {fileID: 0}
 --- !u!114 &114000013489666586
