@@ -8,7 +8,7 @@ public class ShopUIManager : MonoBehaviour {
         BUY,
         SELL
     }
-    private AudioManager AudioManager;
+    private AudioManager audioManager;
     public ItemListUI buyItemList, sellItemList;
     public TransactionBoard transactionBoard;
     public Text moneyText;
@@ -18,7 +18,7 @@ public class ShopUIManager : MonoBehaviour {
     {
         buyItemList.AddButtonFunction(BuyShopItemButton);
         sellItemList.AddButtonFunction(SellShopItemButton);
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Enable(bool active)
@@ -27,6 +27,10 @@ public class ShopUIManager : MonoBehaviour {
         MasterGameManager.instance.uiManager.uiOpen = active;
         MasterGameManager.instance.interactionManager.canInteract = !active;
         menuBar.SetActive(!active);
+        if (active)
+            audioManager.PlaySound(9);
+        else
+            audioManager.PlaySound(10);
     }
 
     void Update()
@@ -36,7 +40,7 @@ public class ShopUIManager : MonoBehaviour {
     
     void ClickItemButton(Item item, TransactionType transactionType)
     {
-        AudioManager.PlaySound(1);
+        audioManager.PlaySound(1);
         transactionBoard.DisplayItem(item, transactionType);
     }
 
