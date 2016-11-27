@@ -14,6 +14,7 @@ public class WorkOrder {
     public int currentStage;
     public int score;
     public bool isRandom = false;
+    public bool isComplete = false;
     public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
     public WorkOrder(Item item, int orderNumber, bool isRandom)
@@ -44,7 +45,7 @@ public class WorkOrder {
         if (currentStage == requiredStages)
         {
             Debug.LogFormat("Work Order #{0}) {1} has been completed! Score: {2}", orderNumber, item.name, this.score);
-            MasterGameManager.instance.workOrderManager.CompleteOrder(this);
+            isComplete = true;
         }
     }
 
