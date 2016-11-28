@@ -17,9 +17,11 @@ public class StackingGameManager : MonoBehaviour
 
     public Sprite[] stackSprites;
 
+    private int stackNum;
 	// Use this for initialization
 	void Start ()
     {
+        stackNum = 0;
         spawnStackable();
         spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
 	}
@@ -40,6 +42,7 @@ public class StackingGameManager : MonoBehaviour
     void spawnStackable()
     {
         GameObject newStack = (GameObject)Instantiate(refStackObj, new Vector2(Random.Range(leftSpawnBound, rightSpawnBound), spawnStartY), Quaternion.identity);
+        newStack.name = string.Format("Stackable {0:0}", stackNum++);
         newStack.GetComponent<SpriteRenderer>().sprite = stackSprites[(int)Random.Range(0, stackSprites.Length)];
         newStack.GetComponent<StackableBehvior>().Drop();
     }
