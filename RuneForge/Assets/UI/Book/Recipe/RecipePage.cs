@@ -15,14 +15,14 @@ public class RecipePage : MonoBehaviour {
         productName.text = item.name;
         productIcon.color = Color.white;
         productIcon.sprite = item.icon;
-        recipeText.text = RecipeToString(item.recipe);
+        //recipeText.text = RecipeToString(item.recipe);
     }
 
     public void Clear()
     {
         productName.text = "";
         productIcon.color = Color.clear;
-        recipeText.text = "";
+        //recipeText.text = "";
     }
 
     string RecipeToString(Dictionary<string, int> recipe)
