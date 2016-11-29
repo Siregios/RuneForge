@@ -17,3 +17,13 @@ EditorBuildSettings:
     path: Assets/Minigames/Hooking/Hook.unity
   - enabled: 1
     path: Assets/Minigames/Rhythm/Rhythm.unity
+  - enabled: 1
+    path: Assets/Minigames/RuneCharge/RuneCharge.unity
+  - enabled: 1
+    path: Assets/Minigames/SortGame/Sorting.unity
+  - enabled: 1
+    path: Assets/Minigames/Lane/Lane.unity
+  - enabled: 1
+    path: Assets/Minigames/GolemFetch/GolemFetch.unity
+  - enabled: 1
+    path: Assets/Minigames/Stacking/Stacking.unity

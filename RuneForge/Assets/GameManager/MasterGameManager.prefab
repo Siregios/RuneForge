@@ -86,6 +86,11 @@ MonoBehaviour:
   - Alchemy
   - Hook
   - Rhythm
+  - RuneCharge
+  - Sorting
+  - Lane
+  - GolemFetch
+  - Stacking
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
