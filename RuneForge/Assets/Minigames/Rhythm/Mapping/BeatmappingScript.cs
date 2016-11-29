@@ -29,12 +29,12 @@ public class BeatmappingScript : MonoBehaviour {
         //ALL WRITING STUFF
         if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
         {
-            Debug.Log(Time.time);
             currentBeat = Time.time;
             beatDrop = true;
         }
         if (Input.GetKeyDown(KeyCode.Space) && beatDrop)
         {
+            Debug.Log(Time.time);
             if (Time.time - currentBeat < 0.2f)
                 timeList.Add(currentBeat);
             beatDrop = false;
@@ -49,7 +49,8 @@ public class BeatmappingScript : MonoBehaviour {
 
             if (!written)
             {
-                System.IO.File.WriteAllText("C:/Users/DavidTruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
+                //System.IO.File.WriteAllText("C:/Users/DavidTruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
+                System.IO.File.WriteAllText("C:/Users/Peter Truong/Documents/GitHub/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
                 written = true;
             }
         }

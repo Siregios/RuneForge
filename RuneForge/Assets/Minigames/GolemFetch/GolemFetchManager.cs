@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class GolemFetchManager : MonoBehaviour
 {
     public Timer timer;
+    public Score score;
+    int scoreTemp;
     public GolemController golem;
     public GameObject spawn;
     public GameObject cellObject;
@@ -38,8 +40,6 @@ public class GolemFetchManager : MonoBehaviour
     };
     List<Vector2> bookList = new List<Vector2>();
 
-    int score, totalScore;
-    public UnityEngine.UI.Text scoreText;
     int numberOfBooks = 2;
 
     void Awake()
@@ -67,15 +67,14 @@ public class GolemFetchManager : MonoBehaviour
                 }
                 else if (cell.type == Cell.CellType.BOOK)
                 {
-                    score++;
+                    scoreTemp++;
                     grid[(int)cell.x][(int)cell.y].transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = null;
                 }
                 else if (cell.type == Cell.CellType.END)
                 {
-                    totalScore += score * 100;
-                    numberOfBooks += score;
-                    scoreText.text = string.Format("Score: {0}", totalScore);
-                    score = 0;
+                    score.addScore(scoreTemp * 100);
+                    numberOfBooks += scoreTemp;
+                    scoreTemp = 0;
                     ClearGrid();
                     InitializePuzzle();
                 }
@@ -125,7 +124,7 @@ public class GolemFetchManager : MonoBehaviour
         golem.movingDirection = Direction.OppositeDirection(entranceWall);
 
         //Temporary
-        score = 0;
+        scoreTemp = 0;
         foreach (Vector2 cell in bookList)
         {
             grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.BOOK);

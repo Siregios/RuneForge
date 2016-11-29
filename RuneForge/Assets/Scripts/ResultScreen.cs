@@ -15,14 +15,13 @@ public class ResultScreen : MonoBehaviour {
         //Start to fade into result screen
         StartCoroutine("FadeIn");
         //Find final score text
-        string scoreText = GameObject.Find("Score").GetComponent<Text>().text;        
-        transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final " + scoreText;
-        int score;
-        int.TryParse(scoreText.Split(' ')[1], out score);
+        string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
+        transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final Score: " + scoreText;
+
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
-            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, score);
+            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, GameObject.Find("Score").GetComponent<Score>().s);
             
             //If complete, show work order score and rune completed.
             if (order.isComplete)

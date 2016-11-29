@@ -26,9 +26,7 @@ public class RandomSpawnNote : MonoBehaviour
     public bool songStart = false;
 
     //UI Text
-    public Text scoreText;
-    [HideInInspector]
-    public int score = 0;
+    public Score score;
     public Text hitText;
     public Text track;
     [HideInInspector]
@@ -59,7 +57,6 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Score: " + score.ToString();
         track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
         if (counter >= readTime.Count && !GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
         {

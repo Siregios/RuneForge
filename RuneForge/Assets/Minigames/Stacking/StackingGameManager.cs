@@ -4,6 +4,7 @@ using System.Collections;
 public class StackingGameManager : MonoBehaviour
 {
     public Timer timer;
+    public Score score;
     public float leftSpawnBound = -7.5f;
     public float rightSpawnBound = 7.5f;
     public float spawnStartY = 6.0f;
@@ -17,7 +18,7 @@ public class StackingGameManager : MonoBehaviour
 
     public Sprite[] stackSprites;
 
-    private int stackNum;
+    public int stackNum;
 	// Use this for initialization
 	void Start ()
     {
@@ -29,6 +30,7 @@ public class StackingGameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        score.s = stackNum * 100;
         if (timer.timeEnd)
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         spawnTimer -= Time.deltaTime;

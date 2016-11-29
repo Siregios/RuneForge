@@ -12,13 +12,9 @@ public class HookManager : MonoBehaviour {
     float cooldown;
 
     public Text textRemaining;
-    public Text scoreText;
     public int remainingHooks = 5;
     [HideInInspector]
     public bool endGame = false;
-
-    [HideInInspector]
-    public int score = 0;
 
     [HideInInspector]
     public int neg = 0;
@@ -39,7 +35,6 @@ public class HookManager : MonoBehaviour {
     {
         textRemaining.text = "Hooks Remaining: " + remainingHooks.ToString();
         cooldown -= Time.deltaTime;
-        scoreText.text = "Score: " + score.ToString();
 
         if (cooldown <= 0 && currentObjects < maxObjects)
         {

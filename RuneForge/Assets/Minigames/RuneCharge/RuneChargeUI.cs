@@ -10,7 +10,6 @@ public class RuneChargeUI : MonoBehaviour {
     public Timer timer;
 
     public Text timeInfo;   //The text used for the time left in each mode, also tells which mode game is currently in
-    public Text scoreInfo;  //The text used for all scoring information
 
     public GameObject selectorObj;
 
@@ -18,8 +17,6 @@ public class RuneChargeUI : MonoBehaviour {
 	void Start () {
         selectorInfo = selectorObj.GetComponent<ChargeSelector>();
         timeInfo.text = String.Format("{0}!\n{1:0}", selectorInfo.getMode(), selectorInfo.getTimeRemaining());
-        scoreInfo.text = String.Format("Score: {0:0}", selectorInfo.getScore());
-
     }
 	
 	// Update is called once per frame
@@ -30,7 +27,6 @@ public class RuneChargeUI : MonoBehaviour {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
         timeInfo.text = String.Format("{0}!\n{1:0}", selectorInfo.getMode(), selectorInfo.getTimeRemaining());
-        scoreInfo.text = String.Format("Score: {0:0}", selectorInfo.getScore());
 
     }
 }

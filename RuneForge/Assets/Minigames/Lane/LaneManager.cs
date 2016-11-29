@@ -9,13 +9,11 @@ public class LaneManager : MonoBehaviour {
     public GameObject[] otherLanes;
     public GameObject[] other;
     public int lane = 1;
-    public Text scoreText;
+    public Score score;
     public Timer timer;
-    int score;
     float startTime;
 	// Use this for initialization
 	void Start () {
-        score = 0;
         startTime = Time.time;
 	}
 	
@@ -38,8 +36,6 @@ public class LaneManager : MonoBehaviour {
             startTime = Time.time;
             Instantiate(other[Random.Range(0, other.Length)], otherLanes[Random.Range(0,otherLanes.Length)].transform.position, Quaternion.identity);
         }
-
-        scoreText.text = "Score: " + score;
     }
 
     void OnTriggerEnter2D(Collider2D collide)
@@ -47,14 +43,14 @@ public class LaneManager : MonoBehaviour {
         if(collide.tag == "Blue")
         {
             Destroy(collide.gameObject);
-            score += 50;
+            score.addScore(50);
         }
         if(collide.tag == "Red")
         {
             Destroy(collide.gameObject);
-            score -= 10;
-            if (score < 0)
-                score = 0;
+            score.subScore(10);
+            if (score.s < 0)
+                score.s = 0;
         }
     }
 }

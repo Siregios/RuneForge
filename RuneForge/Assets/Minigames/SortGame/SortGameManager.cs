@@ -25,8 +25,7 @@ public class SortGameManager : MonoBehaviour {
     float time;
 
     public Timer timer;
-    public int score;
-    public Text scoreText;
+    public Score score;
 
 	void Start () {
         time = 0;
@@ -34,7 +33,6 @@ public class SortGameManager : MonoBehaviour {
     }
 		
 	void Update () {
-        scoreText.text = "Score: " + score.ToString();
 
         if (timer.timeEnd)
         {

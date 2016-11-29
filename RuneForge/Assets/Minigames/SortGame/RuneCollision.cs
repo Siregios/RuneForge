@@ -30,7 +30,7 @@ public class RuneCollision : MonoBehaviour {
     IEnumerator Animation(Collider2D other)
     {
         //This code will allocate score first and reset cursor and object position.
-        managerScript.score += 10;
+        managerScript.score.addScore(25);
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);

@@ -11,6 +11,7 @@ public class fishPlayerScript : MonoBehaviour {
     GameObject FishManager;
     public GameObject target;
     FishManager fishScript;
+    public Score score;
 
     void Start () {
 	    player = this.GetComponent<Rigidbody2D>();
@@ -40,12 +41,12 @@ public class fishPlayerScript : MonoBehaviour {
         if(other.gameObject.tag == "Projectile")
         {
             Destroy(other.gameObject);
-            fishScript.score += damage;
+            score.addScore(damage);
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        fishScript.score += 1;
+        score.addScore(1);
     }
 }

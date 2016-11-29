@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class HookMovement : MonoBehaviour {
 
     HookManager addScore;
-
+    public Score score;
     [HideInInspector]
     public List<GameObject> grabbed;
     [HideInInspector]
@@ -38,17 +38,17 @@ public class HookMovement : MonoBehaviour {
             other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             if (other.gameObject.name == "mercy(Clone)")
             {
-                addScore.score += 20;
+                score.addScore(20);
                 AudioManager.PlaySound(2);
             }
             else if (other.gameObject.name == "lucio(Clone)")
             {
-                addScore.score += 100;
+                score.addScore(100);
                 AudioManager.PlaySound(3);
             }
             else if (other.gameObject.name == "mei(Clone)")
             {
-                addScore.score += -40;
+                score.subScore(40);
                 AudioManager.PlaySound(1);
             }
             aiTag = true;

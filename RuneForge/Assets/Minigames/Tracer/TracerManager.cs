@@ -16,8 +16,7 @@ public class TracerManager : MonoBehaviour {
     public float spawnInterval = 1f;
     int count = 1;
 
-    [HideInInspector]
-    public int score = 0;
+    public Score score;
 
     GameObject currentTrail = null;
 
@@ -44,7 +43,7 @@ public class TracerManager : MonoBehaviour {
     {
         AudioManager.PlaySound(0);
 
-        score += 10;
+        score.addScore(10);
         
         currentTrail.GetComponent<TrailRenderer>().time += .01f;
         

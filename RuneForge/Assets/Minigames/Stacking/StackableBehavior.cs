@@ -9,6 +9,7 @@ public class StackableBehavior : MonoBehaviour
     private bool isFalling;
     protected bool isTop;
     public GameObject player;
+    public StackingGameManager stack;
 
 	// Use this for initialization
 	void Start ()
@@ -43,6 +44,7 @@ public class StackableBehavior : MonoBehaviour
     if (other.name == "Kill Barrier")
         {
             Destroy(this.gameObject);
+            stack.stackNum--;
             return;
         }
         //Deprecated non physics way

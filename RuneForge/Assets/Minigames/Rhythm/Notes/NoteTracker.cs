@@ -115,7 +115,7 @@ public class NoteTracker : MonoBehaviour {
         {
             scriptNote.miss++;
             Destroy(gameObject);
-            scriptNote.score += -5;
+            scriptNote.score.subScore(5);
             scriptNote.hitText.text = "Miss!";
         }        
     }
@@ -157,19 +157,19 @@ public class NoteTracker : MonoBehaviour {
         {
             scriptNote.hitText.text = "Good?";
             scriptNote.good++;
-            scriptNote.score++;
+            scriptNote.score.addScore(2);
         }
         else if (accuracy == 2 || accuracy == 4)
         {
             scriptNote.hitText.text = "Great.";
             scriptNote.great++;
-            scriptNote.score += 2;
+            scriptNote.score.addScore(5);
         }
         else if (accuracy == 3)
         {
             scriptNote.hitText.text = "Perfect!";
             scriptNote.perfect++;
-            scriptNote.score += 4;
+            scriptNote.score.addScore(10);
         }
     }
 
@@ -225,7 +225,7 @@ public class NoteTracker : MonoBehaviour {
                 {
                     scriptNote.miss++;
                     Destroy(gameObject);
-                    scriptNote.score += -5;
+                    scriptNote.score.subScore(5);
                     scriptNote.hitText.text = "Miss!";
                 }
             }
@@ -252,7 +252,7 @@ public class NoteTracker : MonoBehaviour {
                 {
                     scriptNote.miss++;
                     Destroy(gameObject);
-                    scriptNote.score += -5;
+                    scriptNote.score.subScore(5);
                     scriptNote.hitText.text = "Miss!";
                 }
             }
