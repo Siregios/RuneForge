@@ -545,7 +545,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 5.123077, y: 4.5538464}
+  m_Size: {x: 5.1578946, y: 4.805263}
 --- !u!212 &674844336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -575,7 +575,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 21479191
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2c774f9744e23442a7000c2cb4364b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39df8374f6febd1478b22ed4449ffaa1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1286,7 +1286,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 5.123077, y: 4.5538464}
+  m_Size: {x: 5.061111, y: 4.8777776}
 --- !u!212 &970092899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1316,7 +1316,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 21479191
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2c774f9744e23442a7000c2cb4364b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb44dd2ecc7e7034b9600cb3b67294dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1402,7 +1402,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 5.123077, y: 4.5538464}
+  m_Size: {x: 5.47, y: 4.565}
 --- !u!212 &1053624304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1432,7 +1432,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 21479191
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2c774f9744e23442a7000c2cb4364b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1590e8cedcf39364f993e474e50adb83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1657,7 +1657,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 5.123077, y: 4.5538464}
+  m_Size: {x: 5.15, y: 4.595}
 --- !u!212 &1323466591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1687,7 +1687,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 21479191
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2c774f9744e23442a7000c2cb4364b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e64c4e4b27a2be546a3b0a930f8a7a58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2516,7 +2516,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 5.123077, y: 4.5538464}
+  m_Size: {x: 4.8631577, y: 4.8421054}
 --- !u!212 &2091107311
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2546,7 +2546,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 21479191
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2c774f9744e23442a7000c2cb4364b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45caa2dafcdd6a040b4e2120192b742c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
