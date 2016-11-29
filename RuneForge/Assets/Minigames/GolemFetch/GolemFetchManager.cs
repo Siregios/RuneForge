@@ -36,14 +36,13 @@ public class GolemFetchManager : MonoBehaviour
         new Vector2(2, 13), new Vector2(8, 13), new Vector2(14, 13),
         new Vector2(2, 14), new Vector2(3, 14), new Vector2(5, 14), new Vector2(8, 14), new Vector2(11, 14), new Vector2(13, 14), new Vector2(14, 14)
     };
-    List<Vector2> bookList = new List<Vector2>()
-    {
-        new Vector2(6, 8), new Vector2(10, 11)
-    };
+    List<Vector2> bookList = new List<Vector2>();
+
     int score, totalScore;
     public float initialTime;
     float timer;
     public UnityEngine.UI.Text scoreText, timerText;
+    public int numberOfBooks = 2;
 
     void Awake()
     {
@@ -101,6 +100,27 @@ public class GolemFetchManager : MonoBehaviour
         }
     }
 
+    List<Vector2> ValidBookLocations()
+    {
+        List<Vector2> result = new List<Vector2>();
+        for (int c = 2; c < gridSize - 2; c++)
+        {
+            for (int r = 2; r < gridSize - 2; r++)
+            {
+                if (!CornerCell(c, r))
+                    result.Add(new Vector2(c, r));
+            }
+        }
+
+        return result;
+    }
+
+    bool CornerCell(int x, int y)
+    {
+        return grid[x][y].type == Cell.CellType.NONE && 
+            !((grid[x - 1][y].type == Cell.CellType.NONE && grid[x + 1][y].type == Cell.CellType.NONE) || (grid[x][y - 1].type == Cell.CellType.NONE && grid[x][y + 1].type == Cell.CellType.NONE));
+    }
+
     void SpawnGolem()
     {
         traversing = false;
@@ -113,7 +133,7 @@ public class GolemFetchManager : MonoBehaviour
         score = 0;
         foreach (Vector2 cell in bookList)
         {
-            grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
+            grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.BOOK);
         }
     }
 
@@ -179,25 +199,34 @@ public class GolemFetchManager : MonoBehaviour
             {
                 GameObject newCellObject = (GameObject)Instantiate(cellObject, new Vector2(c, r), Quaternion.identity);
                 Cell newCell = newCellObject.GetComponent<Cell>();
+                newCell.Initialize(this);
                 grid[c].Add(newCell);
             }
         }
-        grid[Mathf.FloorToInt(startCell.x)][Mathf.FloorToInt(startCell.y)].Initialize(Cell.CellType.SPAWN);
-        SpawnGolem();
+        grid[Mathf.FloorToInt(startCell.x)][Mathf.FloorToInt(startCell.y)].SetType(Cell.CellType.SPAWN);
 
         //Temporary
         foreach (Vector2 cell in obstacleList)
         {
             int c = Mathf.FloorToInt(cell.x);
             int r = Mathf.FloorToInt(cell.y);
-            //grid[c][r].type = Cell.CellType.OBSTACLE;
-            grid[c][r].Initialize(Cell.CellType.OBSTACLE);
+            grid[c][r].SetType(Cell.CellType.OBSTACLE);
         }
-        foreach (Vector2 cell in bookList)
+        List<Vector2> possibleBookCells = ValidBookLocations();
+        Debug.Log(possibleBookCells.Count);
+        for (int i = 0; i < numberOfBooks; i++)
         {
-            grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
+            int randomCell = Random.Range(0, possibleBookCells.Count);
+            bookList.Add(possibleBookCells[randomCell]);
+            possibleBookCells.RemoveAt(randomCell);
         }
-        grid[gridSize - 1][0].Initialize(Cell.CellType.END);
+        //foreach (Vector2 cell in bookList)
+        //{
+        //    grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
+        //}
+        grid[gridSize - 1][0].SetType(Cell.CellType.END);
+
+        SpawnGolem();
     }
 
     bool IsValidCell(int x, int y)

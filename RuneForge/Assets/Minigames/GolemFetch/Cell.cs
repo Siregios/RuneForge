@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Cell : MonoBehaviour {
+    private GolemFetchManager golemFetchGM;
+
     public Sprite bottomLeft, bottomRight, topRight, topLeft;
     public Sprite spawn, book, obstacle, end;
     public enum CellOrientation
@@ -57,18 +59,34 @@ public class Cell : MonoBehaviour {
         typeSprites.Add(CellType.END, end);
     }
 
-    public void Initialize(CellType type)
+    public void Initialize(GolemFetchManager golemFetchGM)
+    {
+        //SetType(type);
+        this.golemFetchGM = golemFetchGM;
+    }
+
+    public void SetType(CellType type)
     {
         this.type = type;
         if (type != CellType.NONE)
             childSprite.sprite = typeSprites[type];
     }
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
-        if (type == CellType.NONE)
+        if (!golemFetchGM.traversing && type == CellType.NONE)
         {
-            orientationInt = (orientationInt + 1) % 5;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                orientationInt = (orientationInt + 1) % 5;
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                if (orientationInt == 0)
+                    orientationInt = 4;
+                else
+                    orientationInt = (orientationInt - 1) % 5;
+            }
             childSprite.sprite = orientationSprites[orientation];
             //Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
         }
