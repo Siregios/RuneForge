@@ -90,6 +90,11 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &72365573 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011118262342, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1538915070}
 --- !u!1001 &117867887
 Prefab:
   m_ObjectHideFlags: 0
@@ -1930,6 +1935,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012874681496, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+    - {fileID: 114000013680041434, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1538915071 stripped
@@ -1980,9 +1986,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15250b046bf6a044aa3f828a02dbe910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clipboard: {fileID: 0}
   minigame: 
   playButton: {fileID: 207400361}
   minigameThumbnail: {fileID: 1843523011}
+--- !u!114 &1538915075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538915072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25beafac6c5271b4b8671c716c2bc257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workOrderButton: {fileID: 1000012994315844, guid: cc3d2249a59a0524d902d8a55bd231a2,
+    type: 2}
+  startY: 100
+  buttonList: []
+  clipboardArea: {fileID: 72365573}
 --- !u!1001 &1549269514
 Prefab:
   m_ObjectHideFlags: 0
