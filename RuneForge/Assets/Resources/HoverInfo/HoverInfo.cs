@@ -48,6 +48,13 @@ public class HoverInfo : MonoBehaviour {
         StartCoroutine(PositionPanel(itemButton.GetComponent<RectTransform>(), TOP_LEFT, TOP_RIGHT, TOP_RIGHT, TOP_LEFT));
     }
 
+    public void DisplayText(GameObject gameObject, string text)
+    {
+        this.text.text = text;
+
+        StartCoroutine(PositionPanel(gameObject.GetComponent<RectTransform>(), TOP_LEFT, TOP_RIGHT, TOP_RIGHT, TOP_LEFT));
+    }
+
     public void Hide()
     {
         rectTrans.gameObject.SetActive(false);
