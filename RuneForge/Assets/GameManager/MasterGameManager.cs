@@ -7,7 +7,14 @@ public class MasterGameManager : MonoBehaviour
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static MasterGameManager instance = null;
 
-    public List<string> minigameList = new List<string>();
+    [System.Serializable]
+    public class minigames
+    {
+        public string Name;
+        public List<int> scores = new List<int>(2); //Element 0 = HQ, Element 1 = MC
+    }
+
+    public List<minigames> minigameList = new List<minigames>();
 
     public ActionClock actionClock;
     public QuestGenerator questGenerator;
