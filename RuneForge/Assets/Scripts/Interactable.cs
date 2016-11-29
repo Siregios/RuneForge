@@ -21,4 +21,14 @@ public class Interactable : MonoBehaviour {
     {
         MasterGameManager.instance.interactionManager.canInteract = active;
     }
+
+    public void EnableGlow()
+    {
+        GetComponentInChildren<SpriteGlow>().enabled = true;
+    }
+
+    public void DisableGlow()
+    {
+        GetComponentInChildren<SpriteGlow>().enabled = false;
+    }
 }
