@@ -11,7 +11,8 @@ public class MasterGameManager : MonoBehaviour
     public class minigames
     {
         public string Name;
-        public List<int> scores = new List<int>(2); //Element 0 = HQ, Element 1 = MC
+        public int HQ = 400;
+        public int MC = 500;
     }
 
     public List<minigames> minigameList = new List<minigames>();
