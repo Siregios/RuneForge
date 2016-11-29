@@ -11,6 +11,7 @@ public class MasterGameManager : MonoBehaviour
     public class minigames
     {
         public string Name;
+        public int SD = 50;
         public int HQ = 400;
         public int MC = 500;
     }

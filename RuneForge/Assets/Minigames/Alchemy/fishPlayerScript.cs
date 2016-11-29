@@ -39,6 +39,8 @@ public class fishPlayerScript : MonoBehaviour {
         {
             Destroy(other.gameObject);
             fishScript.score -= damage;
+            if (fishScript.score < 0)
+                fishScript.score = 0;
         }
     }
 
