@@ -15,6 +15,7 @@ public class WorkOrder {
     public int score;
     public bool isRandom = false;
     public bool isComplete = false;
+    public float multiplier = 1f;
     public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
     public WorkOrder(Item item, int orderNumber, bool isRandom)
@@ -26,12 +27,15 @@ public class WorkOrder {
         this.score = 0;
         this.isRandom = isRandom;
         if (isRandom)
+        {
             SetRandomMinigames();
+            multiplier += 0.5f;
+        }
     }
 
     public void UpdateOrder(string minigame, int score)
     {
-        this.score += score;
+        this.score += Mathf.RoundToInt(score * multiplier);
 
         if (!isRandom)
             this.minigameList.Add(new KeyValuePair<string, int>(minigame, score));

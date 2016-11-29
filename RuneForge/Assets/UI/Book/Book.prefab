@@ -583,10 +583,8 @@ GameObject:
   - 224: {fileID: 224000011552673882}
   - 222: {fileID: 222000010127992636}
   - 114: {fileID: 114000012589935746}
-  - 114: {fileID: 114000013893372618}
-  - 114: {fileID: 114000010874538314}
   m_Layer: 5
-  m_Name: ClipboardPanel
+  m_Name: ClipboardArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,6 +618,7 @@ GameObject:
   - 224: {fileID: 224000012582725880}
   - 222: {fileID: 222000012530650384}
   - 114: {fileID: 114000010752955988}
+  - 114: {fileID: 114000011612961626}
   m_Layer: 5
   m_Name: Clipboard
   m_TagString: Untagged
@@ -1510,18 +1509,6 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
---- !u!114 &114000010874538314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012535074092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf797eb95a5a8d541b085b53bd121954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxWorkOrders: 5
 --- !u!114 &114000010885862738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1978,7 +1965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSection: 0
   recipe: {fileID: 114000010544269354}
-  clipboard: {fileID: 1000012584999040}
+  clipboard: {fileID: 114000011612961626}
   menuBar: {fileID: 0}
 --- !u!114 &114000011552050258
 MonoBehaviour:
@@ -2040,6 +2027,22 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114000011612961626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012584999040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25beafac6c5271b4b8671c716c2bc257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workOrderButton: {fileID: 1000012994315844, guid: f9c56fc157ed9d242a1d1c3cad22c1b8,
+    type: 2}
+  startY: 100
+  buttonList: []
+  clipboardArea: {fileID: 1000012535074092}
 --- !u!114 &114000011613131716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3323,21 +3326,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: X
---- !u!114 &114000013893372618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012535074092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25beafac6c5271b4b8671c716c2bc257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  workOrderButton: {fileID: 1000012994315844, guid: f9c56fc157ed9d242a1d1c3cad22c1b8,
-    type: 2}
-  startY: 100
-  buttonList: []
 --- !u!114 &114000014016523810
 MonoBehaviour:
   m_ObjectHideFlags: 1

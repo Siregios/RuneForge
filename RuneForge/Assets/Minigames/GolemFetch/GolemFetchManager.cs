@@ -40,7 +40,7 @@ public class GolemFetchManager : MonoBehaviour
 
     int score, totalScore;
     public UnityEngine.UI.Text scoreText;
-    public int numberOfBooks = 2;
+    int numberOfBooks = 2;
 
     void Awake()
     {
@@ -73,6 +73,7 @@ public class GolemFetchManager : MonoBehaviour
                 else if (cell.type == Cell.CellType.END)
                 {
                     totalScore += score * 100;
+                    numberOfBooks += score;
                     scoreText.text = string.Format("Score: {0}", totalScore);
                     score = 0;
                     ClearGrid();
@@ -207,8 +208,9 @@ public class GolemFetchManager : MonoBehaviour
             int r = Mathf.FloorToInt(cell.y);
             grid[c][r].SetType(Cell.CellType.OBSTACLE);
         }
+
         List<Vector2> possibleBookCells = ValidBookLocations();
-        Debug.Log(possibleBookCells.Count);
+        bookList.Clear();
         for (int i = 0; i < numberOfBooks; i++)
         {
             int randomCell = Random.Range(0, possibleBookCells.Count);

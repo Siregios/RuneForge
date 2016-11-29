@@ -10,7 +10,7 @@ public class BookUI : MonoBehaviour {
     }
     public BookSection currentSection = BookSection.CLIPBOARD;
     public RecipeUIManager recipe;
-    public GameObject clipboard;
+    public ClipboardUI clipboard;
     public GameObject menuBar;
 
     void Awake()
@@ -47,7 +47,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         recipe.Enable(true);
-        clipboard.SetActive(false);
+        clipboard.Enable(false);
         currentSection = BookSection.RECIPE;
     }
 
@@ -55,7 +55,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         recipe.Enable(false);
-        clipboard.SetActive(true);
+        clipboard.Enable(true);
         currentSection = BookSection.CLIPBOARD;
     }
 }

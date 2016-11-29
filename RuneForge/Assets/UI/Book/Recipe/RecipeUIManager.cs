@@ -24,8 +24,6 @@ public class RecipeUIManager : MonoBehaviour {
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
-        MasterGameManager.instance.uiManager.uiOpen = active;
-        MasterGameManager.instance.interactionManager.canInteract = !active;
     }
 
     void Start()

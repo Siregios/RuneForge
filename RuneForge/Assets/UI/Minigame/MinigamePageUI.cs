@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MinigamePageUI : MonoBehaviour {
+    public ClipboardUI clipboard;
     public string minigame;
     public Button playButton;
     public Image minigameThumbnail;
@@ -11,6 +12,7 @@ public class MinigamePageUI : MonoBehaviour {
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
+        clipboard.Enable(active);
         MasterGameManager.instance.uiManager.uiOpen = active;
         MasterGameManager.instance.interactionManager.canInteract = !active;
     }
