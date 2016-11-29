@@ -15,7 +15,7 @@ public class MasterGameManager : MonoBehaviour
         public int MC = 500;
     }
 
-    public List<minigames> minigameList = new List<minigames>();
+    public List<minigames> minigameList;
 
     public ActionClock actionClock;
     public QuestGenerator questGenerator;

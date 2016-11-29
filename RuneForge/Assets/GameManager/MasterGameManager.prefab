@@ -82,15 +82,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameList:
-  - Tracer
-  - Alchemy
-  - Hook
-  - Rhythm
-  - RuneCharge
-  - Sorting
-  - Lane
-  - GolemFetch
-  - Stacking
+  - Name: Tracer
+    HQ: 400
+    MC: 500
+  - Name: Sorting
+    HQ: 400
+    MC: 500
+  - Name: Lane
+    HQ: 400
+    MC: 500
+  - Name: Alchemy
+    HQ: 400
+    MC: 500
+  - Name: GolemFetch
+    HQ: 400
+    MC: 500
+  - Name: Hook
+    HQ: 400
+    MC: 500
+  - Name: Rhythm
+    HQ: 400
+    MC: 500
+  - Name: RuneCharge
+    HQ: 400
+    MC: 500
+  - Name: Stacking
+    HQ: 400
+    MC: 500
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
