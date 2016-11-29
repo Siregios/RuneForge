@@ -107,7 +107,7 @@ public class GolemFetchManager : MonoBehaviour
         {
             for (int r = 2; r < gridSize - 2; r++)
             {
-                if (!CornerCell(c, r))
+                if (grid[c][r].type == Cell.CellType.NONE && !CornerCell(c, r))
                     result.Add(new Vector2(c, r));
             }
         }
@@ -117,8 +117,7 @@ public class GolemFetchManager : MonoBehaviour
 
     bool CornerCell(int x, int y)
     {
-        return grid[x][y].type == Cell.CellType.NONE && 
-            !((grid[x - 1][y].type == Cell.CellType.NONE && grid[x + 1][y].type == Cell.CellType.NONE) || (grid[x][y - 1].type == Cell.CellType.NONE && grid[x][y + 1].type == Cell.CellType.NONE));
+        return !((grid[x - 1][y].type == Cell.CellType.NONE && grid[x + 1][y].type == Cell.CellType.NONE) || (grid[x][y - 1].type == Cell.CellType.NONE && grid[x][y + 1].type == Cell.CellType.NONE));
     }
 
     void SpawnGolem()
