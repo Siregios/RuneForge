@@ -10,6 +10,7 @@ public class LaneManager : MonoBehaviour {
     public GameObject[] other;
     public int lane = 1;
     public Text scoreText;
+    public Timer timer;
     int score;
     float startTime;
 	// Use this for initialization
@@ -20,8 +21,9 @@ public class LaneManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-	    if(Input.GetKeyDown(KeyCode.A) && lane > 0)
+        if (timer.timeEnd)
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.A) && lane > 0)
         {
             lane--;
         }
@@ -31,7 +33,7 @@ public class LaneManager : MonoBehaviour {
         }
         player.transform.position = playerLanes[lane].transform.position;
 
-        if(Time.time - startTime > 3)
+        if(Time.time - startTime > 1)
         {
             startTime = Time.time;
             Instantiate(other[Random.Range(0, other.Length)], otherLanes[Random.Range(0,otherLanes.Length)].transform.position, Quaternion.identity);
@@ -45,12 +47,14 @@ public class LaneManager : MonoBehaviour {
         if(collide.tag == "Blue")
         {
             Destroy(collide.gameObject);
-            score += 10;
+            score += 50;
         }
         if(collide.tag == "Red")
         {
             Destroy(collide.gameObject);
             score -= 10;
+            if (score < 0)
+                score = 0;
         }
     }
 }

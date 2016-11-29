@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StackableBehvior : MonoBehaviour
+public class StackableBehavior : MonoBehaviour
 {
     public float fallSpeed = 10f;
     //this is set by the manager to be true

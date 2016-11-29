@@ -736,7 +736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  damage: 100
+  damage: 50
+  target: {fileID: 1858421437}
 --- !u!50 &1066085448
 Rigidbody2D:
   serializedVersion: 2
@@ -1225,9 +1226,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.09305764, y: -0.0019370638}
+  m_Offset: {x: -0.01, y: -0.001}
   serializedVersion: 2
-  m_Size: {x: 6.808264, y: 2.6790614}
+  m_Size: {x: 6.8, y: 1.75}
 --- !u!50 &1858421442
 Rigidbody2D:
   serializedVersion: 2
@@ -1256,9 +1257,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.09305764, y: 0.09306068}
+  m_Offset: {x: -0.01, y: 0.01}
   serializedVersion: 2
-  m_Size: {x: 6.808264, y: 1.7290913}
+  m_Size: {x: 6.8, y: 1.7}
 --- !u!1 &2142522782
 GameObject:
   m_ObjectHideFlags: 0

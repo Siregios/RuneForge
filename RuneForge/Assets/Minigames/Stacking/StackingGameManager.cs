@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StackingGameManager : MonoBehaviour
 {
-
+    public Timer timer;
     public float leftSpawnBound = -7.5f;
     public float rightSpawnBound = 7.5f;
     public float spawnStartY = 6.0f;
@@ -29,6 +29,8 @@ public class StackingGameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (timer.timeEnd)
+            GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {
@@ -44,6 +46,6 @@ public class StackingGameManager : MonoBehaviour
         GameObject newStack = (GameObject)Instantiate(refStackObj, new Vector2(Random.Range(leftSpawnBound, rightSpawnBound), spawnStartY), Quaternion.identity);
         newStack.name = string.Format("Stackable {0:0}", stackNum++);
         newStack.GetComponent<SpriteRenderer>().sprite = stackSprites[(int)Random.Range(0, stackSprites.Length)];
-        newStack.GetComponent<StackableBehvior>().Drop();
+        newStack.GetComponent<StackableBehavior>().Drop();
     }
 }

@@ -23,38 +23,37 @@ public class playerHookScript : MonoBehaviour {
 
     //Decrements HookManager
     HookManager decrement;
-    public float timer;
-    private float timerDec;
-    public Text timerText;
+    public Timer timer;
+    public float timerTime;
 
     private AudioManager AudioManager;
 
     void Start () {
+        timerTime = timer.time;
 	    hookTransform = GetComponent<Transform>();
         hookPos = this.transform.position;
         hook = GameObject.Find("hookMove");
         hookMovement = hook.GetComponent<HookMovement>();
         visible = hook.GetComponent<SpriteRenderer>();
         decrement = GameObject.Find("GameManager").GetComponent<HookManager>();
-        timerDec = timer;
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
     }
 
     void Update()
     {
-        if (!hookOut && decrement.remainingHooks > 0)
-        {
-            timerText.text = Mathf.FloorToInt(timerDec).ToString();
-            timerDec -= Time.deltaTime;
-        }
+        //if (!hookOut && decrement.remainingHooks > 0)
+        //{
+        //    timer.stopTimer = false;
+        //}
 
         //If inputted and hook isn't out already, THEN GO MY HOOK THAT I WILL CALL EDDIE WIN
-        if (((Input.GetKeyDown(KeyCode.Space) || timerDec <= .90f) && hookOut == false) && decrement.remainingHooks > 0)
+        if (((Input.GetKeyDown(KeyCode.Space) || timer.timeEnd) && hookOut == false) && decrement.remainingHooks > 0)
         {
             hookOut = true;
             AudioManager.PlaySound(0);
             visible.enabled = true;
+            timer.stopTimer = true;
             hook.transform.rotation = this.transform.rotation;
             decrement.remainingHooks--;
         }
@@ -72,7 +71,9 @@ public class playerHookScript : MonoBehaviour {
                 hook.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 hookMovement.boundTag = false;
                 hook.GetComponent<Collider2D>().enabled = true;
-                timerDec = timer;
+                timer.time = timerTime;
+                timer.stopTimer = false;
+                timer.timeEnd = false;
                 if (decrement.remainingHooks == 0)
                 {
                     decrement.endGame = true;

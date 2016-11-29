@@ -9,10 +9,12 @@ public class fishPlayerScript : MonoBehaviour {
     //private Vector2 velocity;    
     Rigidbody2D player;
     GameObject FishManager;
+    public GameObject target;
     FishManager fishScript;
 
     void Start () {
 	    player = this.GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), target.GetComponent<Collider2D>());
         //velocity = new Vector2(0, speed);
         FishManager = GameObject.Find("GameManager");
         fishScript = FishManager.GetComponent<FishManager>();
@@ -38,23 +40,12 @@ public class fishPlayerScript : MonoBehaviour {
         if(other.gameObject.tag == "Projectile")
         {
             Destroy(other.gameObject);
-            fishScript.score -= damage;
-            if (fishScript.score < 0)
-                fishScript.score = 0;
+            fishScript.score += damage;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         fishScript.score += 1;
-    }
-
-    //Ignore the fish's rigidbody2d.
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "AI")
-        {
-            Physics2D.IgnoreCollision(other.collider, this.GetComponent<Collider2D>());
-        }
     }
 }

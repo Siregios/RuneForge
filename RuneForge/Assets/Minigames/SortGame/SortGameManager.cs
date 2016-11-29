@@ -24,8 +24,7 @@ public class SortGameManager : MonoBehaviour {
     float timeToSpawn = 1f;
     float time;
 
-    public float timer = 30f;
-    public Text timerText;
+    public Timer timer;
     public int score;
     public Text scoreText;
 
@@ -35,11 +34,9 @@ public class SortGameManager : MonoBehaviour {
     }
 		
 	void Update () {
-        timer -= Time.deltaTime;
-        timerText.text = "Time: " + Mathf.FloorToInt(timer).ToString();
         scoreText.text = "Score: " + score.ToString();
 
-        if (timer < 0.01f)
+        if (timer.timeEnd)
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
