@@ -9,19 +9,11 @@ public class ProjectileSpawner : MonoBehaviour {
     //when to start and end spawning
     public int t1 = 5;
     public int t2 = 30;
-    int timer;
-    public float timeRemaining;
 
 	void Start () {
         start = Time.time;
-        timeRemaining = t2;
 	}
 	
-    void Update()
-    {
-        timeRemaining -= Time.deltaTime;
-        manager.timer.text = "Time Left: " + Mathf.FloorToInt(timeRemaining).ToString();
-    }
     void FixedUpdate()
     {
         

@@ -5,8 +5,9 @@ using System.Collections;
 public class FishManager : MonoBehaviour
 {
     public int score = 0;
+    public Timer timer;
     public Text scoreText;
-    public Text timer;
+
     // Use this for initialization
     void Start()
     {
@@ -16,7 +17,7 @@ public class FishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("ProjectileSpawner").GetComponent<ProjectileSpawner>().timeRemaining <= 0.95f)
+        if (timer.time <= 0f)
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         scoreText.text = "Score: " + score.ToString();
     }

@@ -41,7 +41,7 @@ public class MinigameCountdown : MonoBehaviour {
         {
             foreach (Transform child in a.transform)
             {
-                if (child.GetComponent<MonoBehaviour>() != null)
+                if (child.GetComponent<MonoBehaviour>() != null && child.GetComponent<Text>() == null)
                     child.GetComponent<MonoBehaviour>().enabled = set;
             }
             foreach (MonoBehaviour s in a.GetComponents<MonoBehaviour>())

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // TODO : When generating a new map/puzzle, make sure to call ClearGrid()
 public class GolemFetchManager : MonoBehaviour
 {
-
+    public Timer timer;
     public GolemController golem;
     public GameObject spawn;
     public GameObject cellObject;
@@ -39,15 +39,12 @@ public class GolemFetchManager : MonoBehaviour
     List<Vector2> bookList = new List<Vector2>();
 
     int score, totalScore;
-    public float initialTime;
-    float timer;
-    public UnityEngine.UI.Text scoreText, timerText;
+    public UnityEngine.UI.Text scoreText;
     public int numberOfBooks = 2;
 
     void Awake()
     {
         InitializePuzzle();
-        timer = initialTime;
     }
 
     void Update()
@@ -91,10 +88,7 @@ public class GolemFetchManager : MonoBehaviour
 
     void Countdown()
     {
-        if (!traversing)
-            timer -= Time.deltaTime;
-        timerText.text = string.Format("Timer: {0}", (int)timer);
-        if (timer <= 0)
+        if (timer.time <= 0)
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
@@ -123,6 +117,7 @@ public class GolemFetchManager : MonoBehaviour
 
     void SpawnGolem()
     {
+        timer.stopTimer = false;
         traversing = false;
         golem.canMove = false;
         golem.transform.position = startCell;
@@ -181,6 +176,7 @@ public class GolemFetchManager : MonoBehaviour
     {
         golem.canMove = true;
         traversing = true;
+        timer.stopTimer = true;
     }
 
     void InitializePuzzle()
