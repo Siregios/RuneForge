@@ -32,6 +32,7 @@ public class SceneManagerWrapper : MonoBehaviour {
         }
 
         //Don't know if we should keep this here, but it'll work for now. Allow interactions after loading scene.
+        MasterGameManager.instance.uiManager.uiOpen = false;
         MasterGameManager.instance.interactionManager.canInteract = true;
     }
 
