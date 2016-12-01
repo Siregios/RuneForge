@@ -13,29 +13,35 @@ public class WorkOrder {
     public int requiredStages;
     public int currentStage;
     public int score;
+    public bool isEnhanced = false;
     public bool isRandom = false;
     public bool isComplete = false;
     public float multiplier = 1f;
     public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
-    public WorkOrder(Item item, int orderNumber, bool isRandom)
+    public WorkOrder(Item item, int orderNumber, bool isEnhanced, bool isRandom)
     {
         this.item = item;
         this.orderNumber = orderNumber;
         this.requiredStages = item.minigamesRequired;
         this.currentStage = 0;
         this.score = 0;
+        this.isEnhanced = isEnhanced;
         this.isRandom = isRandom;
+        if (isEnhanced)
+        {
+            multiplier += 0.5f;
+        }
         if (isRandom)
         {
             SetRandomMinigames();
-            multiplier += 0.5f;
+            multiplier += 0.2f;
         }
     }
 
-    public void UpdateOrder(string minigame, int score)
+    public void UpdateOrder(string minigame, int scoreUpdate)
     {
-        this.score += Mathf.RoundToInt(score * multiplier);
+        this.score += Mathf.RoundToInt(scoreUpdate * multiplier);
 
         if (!isRandom)
             this.minigameList.Add(new KeyValuePair<string, int>(minigame, score));

@@ -20,18 +20,6 @@ public class WorkOrderPageUI : MonoBehaviour {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    //void OnEnable()
-    //{
-    //    MasterGameManager.instance.uiManager.uiOpen = true;
-    //    AudioManager.PlaySound(7);
-    //}
-
-    //void OnDisable()
-    //{
-    //    MasterGameManager.instance.uiManager.uiOpen = false;
-    //    AudioManager.PlaySound(8);
-    //}
-
     public void LoadOrder(WorkOrder order)
     {
         this.order = order;

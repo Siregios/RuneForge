@@ -14,11 +14,11 @@ public class WorkOrderManager : MonoBehaviour {
         //CreateWorkOrder(ItemCollection.itemDict["Water Rune"], true);
     }
 
-    public void CreateWorkOrder(Item item, bool isRandom)
+    public void CreateWorkOrder(Item item, bool isEnhanced, bool isRandom)
     {
         if (!IsFull())
         {
-            workorderList.Add(new WorkOrder(item, workorderList.Count + 1, isRandom));
+            workorderList.Add(new WorkOrder(item, workorderList.Count + 1, isEnhanced, isRandom));
         }
     }
 

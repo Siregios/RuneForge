@@ -85,15 +85,16 @@ public class RecipeUIManager : MonoBehaviour {
 
     public void CreateWorkOrder(bool isRandom)
     {
+        bool enhanced = false;
         if (AttributesMet())
         {
-            Debug.LogWarning("TODO : Product pinned with filled attributes");
+            enhanced = true;
         }
         else
         {
             Debug.Log("TODO : Product pinned without filled attributes. Should only pop up if ingredients added");
         }
-        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, isRandom);
+        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, enhanced, isRandom);
         RemoveAllIngredients(false);
         if(isRandom)
             AudioManager.PlaySound(4);
