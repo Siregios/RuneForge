@@ -23,11 +23,6 @@ public class TransactionBoard : MonoBehaviour {
         shopManager = this.transform.parent.GetComponent<ShopUIManager>();
     }
 
-    void Start()
-    {
-        //attributeBars.Clear();
-    }
-
     void Update()
     {
         if (item != null)
@@ -69,6 +64,7 @@ public class TransactionBoard : MonoBehaviour {
             attributeBars.Clear();
             foreach (var kvp in item.providedAttributes)
             {
+                Debug.LogFormat("{0}: {1}", kvp.Key, kvp.Value);
                 attributeBars.SetBar(kvp.Key, kvp.Value);
                 attributeBars.SetText(kvp.Key, kvp.Value.ToString());
             }

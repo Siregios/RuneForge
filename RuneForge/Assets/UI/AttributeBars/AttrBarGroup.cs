@@ -15,6 +15,10 @@ public class AttrBarGroup : MonoBehaviour {
             { "Earth", earthBar },
             { "Air", airBar }
         };
+    }
+
+    void Start()
+    {
         Clear();
     }
 
