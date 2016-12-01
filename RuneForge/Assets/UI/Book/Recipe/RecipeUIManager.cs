@@ -71,20 +71,28 @@ public class RecipeUIManager : MonoBehaviour {
         cancelButton.gameObject.SetActive(true);
     }
 
-    //bool isRecipeMet()
-    //{
-    //    if (productItem == null)
-    //        return false;
-    //    foreach (string ingredient in productItem.recipe.Keys)
-    //    {
-    //        if (addedIngredients[ingredient] < productItem.recipe[ingredient])
-    //            return false;
-    //    }
-    //    return true;
-    //}
+    bool AttributesMet()
+    {
+        if (productItem == null)
+            return false;
+        foreach (string attribute in productItem.requiredAttributes.Keys)
+        {
+            if (providedAttributes[attribute] < productItem.requiredAttributes[attribute])
+                return false;
+        }
+        return true;
+    }
 
     public void CreateWorkOrder(bool isRandom)
     {
+        if (AttributesMet())
+        {
+            Debug.LogWarning("TODO : Product pinned with filled attributes");
+        }
+        else
+        {
+            Debug.Log("TODO : Product pinned without filled attributes. Should only pop up if ingredients added");
+        }
         MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, isRandom);
         RemoveAllIngredients(false);
         if(isRandom)
