@@ -29,7 +29,8 @@ public class ResultScreen : MonoBehaviour {
                 transform.Find("Actions").gameObject.SetActive(false);
                 transform.Find("Final Score").gameObject.SetActive(false);
                 transform.Find("CompletedOrder").gameObject.SetActive(true);
-                transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = "Completed Rune: " + order.item.name + "\nQuality: Standard\nTotal Score: " + order.score.ToString();
+                transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
+                    string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", order.item.name, "Standard", order.score.ToString());
                 MasterGameManager.instance.workOrderManager.CompleteOrder(order);
             }
         }
