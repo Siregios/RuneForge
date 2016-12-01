@@ -162,12 +162,12 @@ public class ItemButton : MonoBehaviour
                 secondaryItemAttribute = kvp;
         }
 
-        if (attribute1 != null && mainItemAttribute.Key != "")
+        if (attribute1 != null && mainItemAttribute.Key != "" && mainItemAttribute.Value != 0)
         {
             attribute1.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0}_circle", attributeToColor[mainItemAttribute.Key]));
             attribute1.transform.Find("Text").GetComponent<Text>().text = mainItemAttribute.Value.ToString();
         }
-        if (attribute2 != null && secondaryItemAttribute.Key != "")
+        if (attribute2 != null && secondaryItemAttribute.Key != "" && secondaryItemAttribute.Value != 0)
         {
             attribute2.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0}_circle", attributeToColor[secondaryItemAttribute.Key]));
             attribute2.transform.Find("Text").GetComponent<Text>().text = secondaryItemAttribute.Value.ToString();

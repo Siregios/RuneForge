@@ -19,6 +19,11 @@ public static class ItemCollection
 
             if ((item.Class == "Ingredient" || item.Class == "Rune") && item.provtAttrStr != null)
             {
+                item.providedAttributes.Add("Fire", 0);
+                item.providedAttributes.Add("Water", 0);
+                item.providedAttributes.Add("Earth", 0);
+                item.providedAttributes.Add("Air", 0);
+
                 foreach (string pairString in item.provtAttrStr.Trim().Split(','))
                 {
                     var pair = pairString.Trim().Split(':');
@@ -26,14 +31,14 @@ public static class ItemCollection
                     int value = int.Parse(pair[1].Trim());
                     if (attribute == "ALL")
                     {
-                        item.providedAttributes.Add("Fire", value);
-                        item.providedAttributes.Add("Water", value);
-                        item.providedAttributes.Add("Earth", value);
-                        item.providedAttributes.Add("Air", value);
+                        item.providedAttributes["Fire"] = value;
+                        item.providedAttributes["Water"] = value;
+                        item.providedAttributes["Earth"] = value;
+                        item.providedAttributes["Air"] = value;
                     }
                     else
                     {
-                        item.providedAttributes.Add(attribute, int.Parse(pair[1].Trim()));
+                        item.providedAttributes[attribute] = int.Parse(pair[1].Trim());
                     }
                 }
             }
@@ -51,10 +56,15 @@ public static class ItemCollection
 
                 if (item.reqAttrStr != null)
                 {
+                    item.requiredAttributes.Add("Fire", 0);
+                    item.requiredAttributes.Add("Water", 0);
+                    item.requiredAttributes.Add("Earth", 0);
+                    item.requiredAttributes.Add("Air", 0);
+
                     foreach (string pairString in item.reqAttrStr.Trim().Split(','))
                     {
                         var pair = pairString.Trim().Split(':');
-                        item.requiredAttributes.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
+                        item.requiredAttributes[pair[0].Trim()] = int.Parse(pair[1].Trim());
                     }
                 }
             }

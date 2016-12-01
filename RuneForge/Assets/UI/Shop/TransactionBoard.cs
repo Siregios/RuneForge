@@ -7,19 +7,25 @@ public class TransactionBoard : MonoBehaviour {
     private ShopUIManager shopManager;
 
     public Item item;
-    public ShopUIManager.TransactionType transactionMode;
+    public ShopUIManager.TransactionType transactionMode = ShopUIManager.TransactionType.BUY;
 
     public Text transactionItemName;
     public Image transactionItemImage;
     public Text transactionPrice;
     public TransactionQuanitity transactionQuanitity;
-    public AttributeBarUI fireAttribute, waterAttribute, earthAttribute, airAttribute;
+    public AttrBarGroup attributeBars;
+    //public AttributeBarUI fireAttribute, waterAttribute, earthAttribute, airAttribute;
     public Button sellButton, buyButton;
 
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         shopManager = this.transform.parent.GetComponent<ShopUIManager>();
+    }
+
+    void Start()
+    {
+        //attributeBars.Clear();
     }
 
     void Update()
@@ -43,6 +49,7 @@ public class TransactionBoard : MonoBehaviour {
         this.transactionMode = transactionType;
         transactionItemName.text = item.name;
         transactionItemImage.sprite = item.icon;
+        transactionItemImage.color = Color.white;
         transactionPrice.text = item.price.ToString();
         transactionQuanitity.SetQuantity(1);
         switch (transactionType)
@@ -57,27 +64,14 @@ public class TransactionBoard : MonoBehaviour {
                 break;
         }
 
-        //This needs to be refactored
         if (item.Class == "Ingredient" || item.Class == "Rune")
         {
-            fireAttribute.gameObject.SetActive(true);
-            waterAttribute.gameObject.SetActive(true);
-            earthAttribute.gameObject.SetActive(true);
-            airAttribute.gameObject.SetActive(true);
-
-            int level, value;
-
-            level = (item.providedAttributes.TryGetValue("Fire", out value)) ? value : 0;
-            fireAttribute.RefreshBar(level);
-
-            level = (item.providedAttributes.TryGetValue("Water", out value)) ? value : 0;
-            waterAttribute.RefreshBar(level);
-
-            level = (item.providedAttributes.TryGetValue("Earth", out value)) ? value : 0;
-            earthAttribute.RefreshBar(level);
-
-            level = (item.providedAttributes.TryGetValue("Air", out value)) ? value : 0;
-            airAttribute.RefreshBar(level);
+            attributeBars.Clear();
+            foreach (var kvp in item.providedAttributes)
+            {
+                attributeBars.SetBar(kvp.Key, kvp.Value);
+                attributeBars.SetText(kvp.Key, kvp.Value.ToString());
+            }
         }
     }
 
@@ -96,5 +90,15 @@ public class TransactionBoard : MonoBehaviour {
         if (PlayerInventory.inventory.GetItemCount(item) == 0)
             shopManager.sellItemList.RefreshPage();
         AudioManager.PlaySound(5);
+    }
+
+    public void Clear()
+    {
+        this.item = null;
+        transactionItemName.text = "";
+        transactionItemImage.color = Color.clear;
+        transactionPrice.text = "";
+        transactionQuanitity.quantity = 0;
+        attributeBars.Clear();
     }
 }

@@ -23,6 +23,12 @@ public class HoverInfo : MonoBehaviour {
         screenCanvasRatio = new Vector2(canvasWidth / Screen.width, canvasHeight / Screen.height);
     }
 
+    void Update()
+    {
+        if (!MasterGameManager.instance.uiManager.uiOpen)
+            Hide();
+    }
+
     public static void Load()
     {
         if (instance == null)

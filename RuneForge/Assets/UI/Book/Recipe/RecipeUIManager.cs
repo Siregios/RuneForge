@@ -13,6 +13,13 @@ public class RecipeUIManager : MonoBehaviour {
 
     public List<IngredientEntry> ingredientEntryList;
     Dictionary<string, int> addedIngredients = new Dictionary<string, int>();
+    Dictionary<string, int> providedAttributes = new Dictionary<string, int>()
+    {
+        { "Fire", 0 },
+        { "Water", 0 },
+        { "Earth", 0 },
+        { "Air", 0 }
+    };
 
     void Awake()
     {
@@ -24,6 +31,11 @@ public class RecipeUIManager : MonoBehaviour {
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
+    }
+
+    void OnDisable()
+    {
+        ImportProductMode();
     }
 
     void Start()
@@ -44,8 +56,8 @@ public class RecipeUIManager : MonoBehaviour {
         productItemList.gameObject.SetActive(true);
         productItemList.DisplayNewFilter("Product");
         productItem = null;
-        recipePage.Clear();
         RemoveAllIngredients(true);
+        recipePage.Clear();
         EnablePinButtons(false);
         cancelButton.gameObject.SetActive(false);
     }
@@ -102,6 +114,12 @@ public class RecipeUIManager : MonoBehaviour {
         {
             PlayerInventory.inventory.SubtractItem(item);
             addedIngredients[item.ingredientType]++;
+            foreach (var kvp in item.providedAttributes)
+            {
+                providedAttributes[kvp.Key] += kvp.Value;
+            }
+            recipePage.ProvideToAttrBars(providedAttributes);
+
             AudioManager.PlaySound(2);
             foreach (IngredientEntry entry in ingredientEntryList)
             {
@@ -122,6 +140,11 @@ public class RecipeUIManager : MonoBehaviour {
         Item item = entry.loadedButton.item;
 
         addedIngredients[item.ingredientType]--;
+        foreach (var kvp in item.providedAttributes)
+        {
+            providedAttributes[kvp.Key] -= kvp.Value;
+        }
+        recipePage.ProvideToAttrBars(providedAttributes);
         if (restockInventory)
             PlayerInventory.inventory.AddItem(item);
         Destroy(entry.loadedButton.gameObject);

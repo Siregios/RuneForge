@@ -87,12 +87,12 @@
 			<IngredientType>Monster Part</IngredientType>
 			<ProvidedAttributes>Fire: 1</ProvidedAttributes>
 		</Item>
-		<Item name="Scropion Carapace">
+		<!--<Item name="Scropion Carapace">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Monster Part</IngredientType>
 			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
-		</Item>
+		</Item>-->
 		<Item name="Magic Stone">
 			<Price>500</Price>
 			<Class>Ingredient</Class>
@@ -123,7 +123,7 @@
 			<IngredientType>Liquid</IngredientType>
 			<ProvidedAttributes>Water: 1</ProvidedAttributes>
 		</Item>
-		<Item name="Iron Ingot">
+		<!--<Item name="Iron Ingot">
 			<Price>100</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Metal</IngredientType>
@@ -134,7 +134,7 @@
 			<Class>Ingredient</Class>
 			<IngredientType>Wood</IngredientType>
 			<ProvidedAttributes>Earth: 1</ProvidedAttributes>
-		</Item>
+		</Item>-->
 		<Item name="Sapphire">
 			<Price>100</Price>
 			<Class>Ingredient</Class>

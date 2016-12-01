@@ -4,7 +4,7 @@ using System.Collections;
 
 public class AttributeBarUI : MonoBehaviour {
     public Text level;
-    public RectTransform bar;
+    public RectTransform bar, placeholderBar;
     float barMaxWidth;
 
     void Awake()
@@ -12,9 +12,18 @@ public class AttributeBarUI : MonoBehaviour {
         barMaxWidth = bar.rect.width;
     }
 
-    public void RefreshBar(int attributeLevel)
+    public void SetBar(int attributeLevel)
     {
-        level.text = attributeLevel.ToString();
         bar.sizeDelta = new Vector2(barMaxWidth * ((float)attributeLevel / Item.maxAttributeLevel), bar.rect.height);
+    }
+
+    public void SetPlaceholderBar(int level)
+    {
+        placeholderBar.sizeDelta = new Vector2(barMaxWidth * ((float)level / Item.maxAttributeLevel), bar.rect.height);
+    }
+
+    public void SetText(string text)
+    {
+        level.text = text;
     }
 }
