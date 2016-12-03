@@ -29,7 +29,6 @@ public class SortGameManager : MonoBehaviour {
 
 	void Start () {
         time = 0;
-        GetComponent<AudioSource>().Play();
     }
 		
 	void Update () {
@@ -148,9 +147,9 @@ public class SortGameManager : MonoBehaviour {
                 characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);            
                 characters[randomChar].transform.parent = bubbles[i].transform;
             }
-            while (Mathf.Abs(characters[randomChar].transform.position.y) - 4 > 0.1f)
+            while (Mathf.Abs(characters[randomChar].transform.position.y) - 3.5f > 0.1f)
             {
-                characters[randomChar].transform.position = Vector3.MoveTowards(characters[randomChar].transform.position, new Vector3(bubbles[i].transform.position.x, -4, 0), Time.deltaTime);
+                characters[randomChar].transform.position = Vector3.MoveTowards(characters[randomChar].transform.position, new Vector3(bubbles[i].transform.position.x, -3.5f, 0), Time.deltaTime);
             }
         }
     }
