@@ -18,11 +18,14 @@ public class StackingGameManager : MonoBehaviour
 
     public Sprite[] stackSprites;
 
-    public int stackNum;
+    public int spawnNum;
+    public int stackSize;
+
 	// Use this for initialization
 	void Start ()
     {
-        stackNum = 0;
+        spawnNum = 0;
+        stackSize = 0;
         spawnStackable();
         spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
 	}
@@ -30,7 +33,7 @@ public class StackingGameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        score.s = stackNum * 100;
+        score.s = stackSize * 100;
         if (timer.timeEnd)
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         spawnTimer -= Time.deltaTime;
@@ -46,7 +49,7 @@ public class StackingGameManager : MonoBehaviour
     void spawnStackable()
     {
         GameObject newStack = (GameObject)Instantiate(refStackObj, new Vector2(Random.Range(leftSpawnBound, rightSpawnBound), spawnStartY), Quaternion.identity);
-        newStack.name = string.Format("Stackable {0:0}", stackNum++);
+        newStack.name = string.Format("Stackable {0:0}", spawnNum++);
         newStack.GetComponent<SpriteRenderer>().sprite = stackSprites[(int)Random.Range(0, stackSprites.Length)];
         newStack.GetComponent<StackableBehavior>().Drop();
     }
