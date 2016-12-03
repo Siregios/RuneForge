@@ -39,9 +39,10 @@ public class WorkOrder {
         }
     }
 
-    public void UpdateOrder(string minigame, int scoreUpdate)
+    public void UpdateOrder(string minigame, int score)
     {
-        this.score += Mathf.RoundToInt(scoreUpdate * multiplier);
+        score = Mathf.RoundToInt(score * multiplier);
+        this.score += score;
 
         if (!isRandom)
             this.minigameList.Add(new KeyValuePair<string, int>(minigame, score));
