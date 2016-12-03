@@ -27,7 +27,7 @@ public class WorkOrderManager : MonoBehaviour {
         return workorderList.Count >= maxWorkOrders;
     }
 
-    public void CompleteOrder(WorkOrder order)
+    public Item CompleteOrder(WorkOrder order)
     {
         PlayerInventory.inventory.AddItem(order.item);
         workorderList.RemoveAt(order.orderNumber - 1);
@@ -35,6 +35,8 @@ public class WorkOrderManager : MonoBehaviour {
         {
             workorderList[i].orderNumber = i + 1;
         }
+
+        return order.item;
     }
 
     public void WorkOnOrder(WorkOrder order)

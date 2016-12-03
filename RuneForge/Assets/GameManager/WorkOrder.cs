@@ -57,6 +57,7 @@ public class WorkOrder {
         {
             Debug.LogFormat("Work Order #{0}) {1} has been completed! Score: {2}", orderNumber, item.name, this.score);
             isComplete = true;
+            DetermineQuality();
         }
     }
 
@@ -79,7 +80,7 @@ public class WorkOrder {
     void SetRandomMinigames()
     {
         List<string> tempMinigameList = new List<string>();
-        for(int i = 0; i < MasterGameManager.instance.minigameList.Count; i++)//string minigame in MasterGameManager.instance.minigameList)
+        for(int i = 0; i < MasterGameManager.instance.minigameList.Count; i++)
             tempMinigameList.Add(MasterGameManager.instance.minigameList[i].Name);
 
         for (int i = 0; i < requiredStages; i++)
@@ -88,5 +89,55 @@ public class WorkOrder {
             minigameList.Add(new KeyValuePair < string, int >(tempMinigameList[randomIndex], int.MinValue));
             tempMinigameList.RemoveAt(randomIndex);
         }
+    }
+
+    void DetermineQuality()
+    {
+        int standard = 0, highQuality = 0, masterCraft = 0;
+        foreach (var kvp in minigameList)
+        {
+            MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameDict[kvp.Key];
+            standard += minigame.SD;
+            highQuality += minigame.HQ;
+            masterCraft += minigame.MC;
+        }
+
+        bool successfulRoll;
+        if (this.score <= standard) //Roll for Standard
+        {
+            successfulRoll = WeightedCoinFlip(this.score, standard);
+            if (successfulRoll)
+                Debug.Log("Rolled for Standard - Got Standard");
+            else
+                Debug.Log("Rolled for Standard - Failed");
+        }
+        else if (standard < score && score <= highQuality)  //Roll for HQ
+        {
+            successfulRoll = WeightedCoinFlip(score - standard, highQuality - standard);
+            if (successfulRoll)
+            {
+                Debug.Log("Rolled for HQ - Got HQ");
+                this.item = ItemCollection.itemDict[item.name + " (HQ)"];
+            }
+            else
+                Debug.Log("Rolled for HQ - Got Standard");
+        }
+        else if (score > highQuality)   //Roll for MC
+        {
+            successfulRoll = WeightedCoinFlip(score - highQuality, masterCraft - highQuality);
+            if (successfulRoll)
+            {
+                Debug.Log("Rolled for MC - Got MC");
+                this.item = ItemCollection.itemDict[item.name + " (MC)"];
+            }
+            else
+                Debug.Log("Rolled for MC - Got HQ");
+        }
+    }
+
+    bool WeightedCoinFlip(int success, int upperBound)
+    {
+        int randomInt = Random.Range(0, upperBound + 1);
+        return (randomInt <= success);
     }
 }

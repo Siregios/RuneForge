@@ -57,10 +57,10 @@ public class Item
         this.price = copyItem.price;
         this.Class = copyItem.Class;
         this.ingredientType = copyItem.ingredientType;
-        this.providedAttributes = copyItem.providedAttributes;
-        this.recipe = copyItem.recipe;
+        this.providedAttributes = new Dictionary<string, int>(copyItem.providedAttributes);
+        this.recipe = new Dictionary<string, int>(copyItem.recipe);
         this.minigamesRequired = copyItem.minigamesRequired;
-        this.requiredAttributes = copyItem.requiredAttributes;
+        this.requiredAttributes = new Dictionary<string, int>(copyItem.minigamesRequired);
         this.icon = copyItem.icon;
     }
 }

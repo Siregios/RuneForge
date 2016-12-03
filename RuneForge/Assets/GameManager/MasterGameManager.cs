@@ -8,7 +8,7 @@ public class MasterGameManager : MonoBehaviour
     public static MasterGameManager instance = null;
 
     [System.Serializable]
-    public class minigames
+    public class Minigame
     {
         public string Name;
         public int SD = 50;
@@ -16,7 +16,8 @@ public class MasterGameManager : MonoBehaviour
         public int MC = 500;
     }
 
-    public List<minigames> minigameList;
+    public List<Minigame> minigameList;
+    public Dictionary<string, Minigame> minigameDict = new Dictionary<string, Minigame>();
 
     public ActionClock actionClock;
     public QuestGenerator questGenerator;
@@ -31,7 +32,17 @@ public class MasterGameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(this.gameObject);
-
+        
         DontDestroyOnLoad(this.gameObject);
+
+        SetMinigameDict();
+    }
+
+    void SetMinigameDict()
+    {
+        foreach (Minigame minigame in minigameList)
+        {
+            minigameDict[minigame.Name] = minigame;
+        }
     }
 }
