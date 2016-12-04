@@ -19,6 +19,7 @@ public class Score : MonoBehaviour {
 
     public void subScore(int sub)
     {
-        s -= sub;
+        if (s - sub >= 0)
+            s -= sub;        
     }
 }

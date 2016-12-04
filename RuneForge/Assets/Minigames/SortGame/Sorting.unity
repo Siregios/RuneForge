@@ -943,6 +943,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  timerSet: 3
+  GameManager: {fileID: 1222740965}
+  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
 --- !u!1 &879703765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  timerSet: 3
+  GameManager: {fileID: 1222740965}
+  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
 --- !u!1001 &985641162
 Prefab:
   m_ObjectHideFlags: 0
@@ -1375,6 +1381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  timerSet: 3
+  GameManager: {fileID: 1222740965}
+  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
 --- !u!1 &1133436005
 GameObject:
   m_ObjectHideFlags: 0

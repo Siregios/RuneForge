@@ -6,14 +6,9 @@ public class RuneCollision : MonoBehaviour {
     public GameObject GameManager;
     public GameObject matched;
     SortGameManager managerScript;
-	// Use this for initialization
+
 	void Start () {
         managerScript = GameManager.GetComponent<SortGameManager>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
     
     void OnTriggerEnter2D(Collider2D other)
@@ -67,6 +62,7 @@ public class RuneCollision : MonoBehaviour {
     IEnumerator Animation_Failure(Collider2D other)
     {
         //Literally same as above code but without adding score and fail animation
+        managerScript.score.subScore(5);
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
