@@ -26,8 +26,9 @@ public class StackableBehavior : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(isFalling)
+        if (isFalling)
             transform.position -= transform.up * fallSpeed * Time.deltaTime;
+        Debug.Log(this.GetComponent<Rigidbody2D>().velocity.magnitude);
 
     }
 
@@ -48,6 +49,12 @@ public class StackableBehavior : MonoBehaviour
                 return;
             }
             transform.parent = player.transform;
+            //Failed 2D joint code that I may need to come back to later
+            //FixedJoint2D stackConnection = this.gameObject.AddComponent<FixedJoint2D>();
+            //stackConnection.connectedBody = other.rigidbody;
+            ////stackConnection.enableCollision = true;
+            //stackConnection.dampingRatio = 0.5f;
+            //stackConnection.breakForce = 50;
         }
         isFalling = false;
         GetComponent<Rigidbody2D>().gravityScale = 1;
