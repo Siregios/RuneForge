@@ -80,9 +80,12 @@ public class SortGameManager : MonoBehaviour {
         {
             if (hit.collider.tag == "Red" || hit.collider.tag == "Yellow" || hit.collider.tag == "Blue" || hit.collider.tag == "Green")
             {
-                grabbed = true;
-                drag = hit.collider.gameObject;
-                oldPos = hit.collider.gameObject.transform.position;
+                if (hit.collider.gameObject.transform.parent.name == "ItemSet")
+                {
+                    grabbed = true;
+                    drag = hit.collider.gameObject;
+                    oldPos = hit.collider.gameObject.transform.position;
+                }
             }
 
         }
@@ -122,10 +125,17 @@ public class SortGameManager : MonoBehaviour {
             {
                 check = false;
                 bubbles[randomInt].SetActive(true);
+                //Sets invisible
+                Color tmp = bubbles[randomInt].GetComponent<SpriteRenderer>().color;
+                tmp.a = 0f;
+                bubbles[randomInt].GetComponent<SpriteRenderer>().color = tmp;
+
+                //Spawns rune
                 time = timeToSpawn;
                 int randomRune = Random.Range(0, 4);
                 GameObject spawnedRune = (GameObject)Instantiate(runes[randomRune], bubbles[randomInt].transform.position, Quaternion.identity);
                 spawnedRune.transform.parent = bubbles[randomInt].transform;
+                spawnedRune.SetActive(false);
                 currentSpawn++;
 
                 //Placeholder to fit the object in bubble
@@ -144,12 +154,9 @@ public class SortGameManager : MonoBehaviour {
             if (characters[randomChar].transform.position.y == charY)
             {
                 check = false;
-                characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);            
+                characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);
+                characters[randomChar].GetComponent<SortMove>().moveUp = true;
                 characters[randomChar].transform.parent = bubbles[i].transform;
-            }
-            while (Mathf.Abs(characters[randomChar].transform.position.y) - 3.5f > 0.1f)
-            {
-                characters[randomChar].transform.position = Vector3.MoveTowards(characters[randomChar].transform.position, new Vector3(bubbles[i].transform.position.x, -3.5f, 0), Time.deltaTime);
             }
         }
     }

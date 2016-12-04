@@ -23,6 +23,10 @@ public class RuneCollision : MonoBehaviour {
         {            
             StartCoroutine(Animation_Success(other));            
         }
+        else if (other.gameObject.transform.parent.name != "ItemSet")
+        {
+            StartCoroutine(Animation_Failure(other));
+        }
     }
 
     IEnumerator Animation_Success(Collider2D other)
@@ -32,23 +36,24 @@ public class RuneCollision : MonoBehaviour {
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
+
+        //Play animation
         foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
         {
             if (child.gameObject.tag == "Character")
             {
                 child.GetComponent<Animator>().SetBool("Success", true);
-                //child.transform.Translate(Vector3.down * Time.deltaTime * 5f);
             }
         }
         //After wait, reset the character n such.
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.8f);
 
         //Reset character
         foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
         {
             if (child.gameObject.tag == "Character")
             {
-                child.transform.position = new Vector3(0, managerScript.charY, 0);
+                child.GetComponent<SortMove>().moveDown = true;
             }
         }
         //Allocate score and subtract current spawn, remove children and destroy rune object            
@@ -59,8 +64,31 @@ public class RuneCollision : MonoBehaviour {
         other.gameObject.transform.parent.DetachChildren();
     }
 
-    IEnumerator Animation_Failure()
+    IEnumerator Animation_Failure(Collider2D other)
     {
-        yield return new WaitForSeconds(1f);
+        //Literally same as above code but without adding score and fail animation
+        managerScript.resetPosition();
+        other.gameObject.SetActive(false);
+        GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
+        foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.tag == "Character")
+            {
+                child.GetComponent<Animator>().SetBool("Fail", true);
+            }
+        }
+        yield return new WaitForSeconds(.8f);
+        foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.tag == "Character")
+            {
+                child.GetComponent<SortMove>().moveDown = true;
+            }
+        }
+        managerScript.currentSpawn--;
+        other.gameObject.transform.parent.gameObject.SetActive(false);
+        Destroy(other.gameObject);
+        Destroy(delMatch);
+        other.gameObject.transform.parent.DetachChildren();
     }
 }
