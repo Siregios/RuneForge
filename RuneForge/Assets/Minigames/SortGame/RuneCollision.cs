@@ -27,7 +27,7 @@ public class RuneCollision : MonoBehaviour {
     IEnumerator Animation_Success(Collider2D other)
     {
         //This code will allocate score first and reset cursor and object position.
-        managerScript.score.addScore(25);
+        managerScript.score.addScore(25);        
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
@@ -38,6 +38,7 @@ public class RuneCollision : MonoBehaviour {
             if (child.gameObject.tag == "Character")
             {
                 child.GetComponent<Animator>().SetBool("Success", true);
+                child.GetComponent<SortMove>().timer = child.GetComponent<SortMove>().timerSet;
             }
         }
         //After wait, reset the character n such.
@@ -71,6 +72,7 @@ public class RuneCollision : MonoBehaviour {
             if (child.gameObject.tag == "Character")
             {
                 child.GetComponent<Animator>().SetBool("Fail", true);
+                child.GetComponent<SortMove>().timer = child.GetComponent<SortMove>().timerSet;
             }
         }
         yield return new WaitForSeconds(.8f);

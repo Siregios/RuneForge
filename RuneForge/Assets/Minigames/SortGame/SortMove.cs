@@ -7,7 +7,7 @@ public class SortMove : MonoBehaviour {
     public bool moveUp;
     public bool moveDown;    
     public float timerSet = 3f;
-    float timer;    
+    public float timer;    
     public GameObject GameManager;
     public GameObject matched;
     SortGameManager managerScript;
