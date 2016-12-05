@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1222740965}
   matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!50 &227736726
 Rigidbody2D:
   serializedVersion: 4
@@ -815,7 +816,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013274963222, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 200
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 4000013274963222, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -840,6 +841,26 @@ Prefab:
     - target: {fileID: 4000013274963222, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011873293148, guid: 335125f53f0bb3448ac591ed7d5ca76e,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011873293148, guid: 335125f53f0bb3448ac591ed7d5ca76e,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014149511106, guid: 335125f53f0bb3448ac591ed7d5ca76e,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014149511106, guid: 335125f53f0bb3448ac591ed7d5ca76e,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
@@ -943,9 +964,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  changeColor: 1
   timerSet: 3
+  timer: 0
   GameManager: {fileID: 1222740965}
-  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!1 &879703765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1222740965}
   matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!50 &879703770
 Rigidbody2D:
   serializedVersion: 4
@@ -1163,9 +1187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  changeColor: 1
   timerSet: 3
+  timer: 0
   GameManager: {fileID: 1222740965}
-  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!1001 &985641162
 Prefab:
   m_ObjectHideFlags: 0
@@ -1381,9 +1407,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveUp: 0
   moveDown: 0
+  changeColor: 1
   timerSet: 3
+  timer: 0
   GameManager: {fileID: 1222740965}
-  matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!1 &1133436005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1222740965}
   matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!50 &1136832050
 Rigidbody2D:
   serializedVersion: 4
@@ -1865,6 +1894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1222740965}
   matched: {fileID: 1000013571748966, guid: 232190cac8cf88f4d9dca76961774138, type: 2}
+  unmatched: {fileID: 1532323131446616, guid: 75e04cfe692f7db4797493156d2327d6, type: 2}
 --- !u!50 &1947389243
 Rigidbody2D:
   serializedVersion: 4

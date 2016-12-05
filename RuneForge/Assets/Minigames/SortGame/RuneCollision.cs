@@ -5,9 +5,11 @@ public class RuneCollision : MonoBehaviour {
 
     public GameObject GameManager;
     public GameObject matched;
+    public GameObject unmatched;
     SortGameManager managerScript;
+    float timeToDel = 0.8f;
 
-	void Start () {
+    void Start () {
         managerScript = GameManager.GetComponent<SortGameManager>();
 	}
     
@@ -39,10 +41,11 @@ public class RuneCollision : MonoBehaviour {
             {
                 child.GetComponent<Animator>().SetBool("Success", true);
                 child.GetComponent<SortMove>().timer = child.GetComponent<SortMove>().timerSet;
+                child.GetComponent<SortMove>().changeColor = false;
             }
         }
         //After wait, reset the character n such.
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(timeToDel);
 
         //Reset character
         foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
@@ -66,16 +69,17 @@ public class RuneCollision : MonoBehaviour {
         managerScript.score.subScore(5);
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
-        GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
+        GameObject delMatch = (GameObject)Instantiate(unmatched, other.transform.position, Quaternion.identity);
         foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
         {
             if (child.gameObject.tag == "Character")
             {
                 child.GetComponent<Animator>().SetBool("Fail", true);
                 child.GetComponent<SortMove>().timer = child.GetComponent<SortMove>().timerSet;
+                child.GetComponent<SortMove>().changeColor = false;
             }
         }
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(timeToDel);
         foreach (Transform child in other.gameObject.transform.parent.GetComponentsInChildren<Transform>())
         {
             if (child.gameObject.tag == "Character")
