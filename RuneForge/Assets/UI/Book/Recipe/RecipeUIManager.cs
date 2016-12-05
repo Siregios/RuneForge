@@ -54,7 +54,6 @@ public class RecipeUIManager : MonoBehaviour {
         ingredientItemList.gameObject.SetActive(false);
         
         productItemList.gameObject.SetActive(true);
-        productItemList.DisplayNewFilter("Product");
         productItem = null;
         RemoveAllIngredients(true);
         recipePage.Clear();
@@ -66,7 +65,6 @@ public class RecipeUIManager : MonoBehaviour {
     {
         productItemList.gameObject.SetActive(false);
         ingredientItemList.gameObject.SetActive(true);
-        ingredientItemList.DisplayNewFilter("Ingredient");
         EnablePinButtons(!MasterGameManager.instance.workOrderManager.IsFull());
         cancelButton.gameObject.SetActive(true);
     }

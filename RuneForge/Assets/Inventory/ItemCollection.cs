@@ -83,14 +83,20 @@ public static class ItemCollection
         highQuality.price *= 2;
         highQuality.Class = "ImprovedProduct";
         foreach (var kvp in product.providedAttributes)
-            highQuality.providedAttributes[kvp.Key] = kvp.Value + 1;
+        {
+            if (highQuality.providedAttributes[kvp.Key] > 0)
+                highQuality.providedAttributes[kvp.Key] = kvp.Value + 1;
+        }
 
         Item masterCraft = new Item(product);
         masterCraft.name = string.Format("{0} (MC)", product.name);
         masterCraft.price *= 3;
         masterCraft.Class = "ImprovedProduct";
         foreach (var kvp in product.providedAttributes)
-            masterCraft.providedAttributes[kvp.Key] = kvp.Value + 2;
+        {
+            if (masterCraft.providedAttributes[kvp.Key] > 0)
+                masterCraft.providedAttributes[kvp.Key] = kvp.Value + 2;
+        }
 
         itemList.Add(highQuality);
         itemDict.Add(highQuality.name, highQuality);
@@ -118,7 +124,9 @@ public static class ItemCollection
         {
             if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
                 result.Add(item);
-            else if (lowerFilter.Contains("product") && (item.Class == "Product" || item.Class == "Rune"))
+            else if (lowerFilter.Contains("baseproducts") && (item.Class == "Product" || item.Class == "Rune"))
+                result.Add(item);
+            else if (lowerFilter.Contains("allproducts") && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
                 result.Add(item);
             else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
                 result.Add(item);

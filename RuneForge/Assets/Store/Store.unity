@@ -292,6 +292,16 @@ Prefab:
       propertyPath: menuBar
       value: 
       objectReference: {fileID: 165569158}
+    - target: {fileID: 114000011613131716, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: defaultFilter
+      value: BaseProducts
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011613131716, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: displayZeroCountItems
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_IsPrefabParent: 0
@@ -8647,6 +8657,16 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012736444942, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: defaultFilter
+      value: AllProducts
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012736444942, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: displayZeroCountItems
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f573761fbfb8ad49ba40b940dd658b3, type: 2}
