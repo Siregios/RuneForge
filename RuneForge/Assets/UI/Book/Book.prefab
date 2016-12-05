@@ -2566,7 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1000011658806744, guid: 8ea9509a5dabf504f86bae4a0ee12db5, type: 2}
-  defaultFilter: Product
+  defaultFilter: BaseProducts
   displayZeroCountItems: 1
   inventoryType: 0
   padX: 20
