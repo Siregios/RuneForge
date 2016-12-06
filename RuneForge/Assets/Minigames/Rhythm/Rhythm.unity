@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 145
-  startDelay: 2.416
+  startDelay: 2
   CenterMap: {fileID: 0}
 --- !u!1001 &2018292581
 Prefab:

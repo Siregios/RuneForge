@@ -34,25 +34,34 @@ public class NoteTracker : MonoBehaviour {
         //Checks for double note
         if (switchOver)
         {
+            scriptNote.keyNotes[indexNote].Remove(gameObject);
             if (ws && noteSprite.sprite == doubleSprite[1])
             {
                 GameObject aKey = GameObject.Find("a_key");
+                indexNote = 1;
+                scriptNote.keyNotes[indexNote].Insert(0, gameObject);
                 doubleNoteEvent(aKey, KeyCode.A);
             }
             else if (ws && noteSprite.sprite == doubleSprite[0])
             {
                 GameObject aKey = GameObject.Find("d_key");
-                doubleNoteEvent(aKey, KeyCode.D);
+                indexNote = 3;
+                scriptNote.keyNotes[indexNote].Insert(0, gameObject);
+                doubleNoteEvent(aKey, KeyCode.D);                
             }
             else if (ad && noteSprite.sprite == doubleSprite[0])
             {
                 GameObject wKey = GameObject.Find("w_key");
-                doubleNoteEvent(wKey, KeyCode.W);
+                indexNote = 0;
+                scriptNote.keyNotes[indexNote].Insert(0, gameObject);
+                doubleNoteEvent(wKey, KeyCode.W);               
             }
             else if (ad && noteSprite.sprite == doubleSprite[1])
             {
                 GameObject sKey = GameObject.Find("s_key");
-                doubleNoteEvent(sKey, KeyCode.S);
+                indexNote = 2;
+                scriptNote.keyNotes[indexNote].Insert(0, gameObject);
+                doubleNoteEvent(sKey, KeyCode.S);               
             }
         }
 
@@ -227,16 +236,18 @@ public class NoteTracker : MonoBehaviour {
                     Destroy(gameObject);
                     scriptNote.score.subScore(5);
                     scriptNote.hitText.text = "Miss!";
+                    scriptNote.dub--;
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 4);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
             if (transform.position.y <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
                 {
                     accuracy = 3;
                     checkAccuracy();
+                    scriptNote.dub--;
                     Destroy(gameObject);
                 }
             }
@@ -254,16 +265,18 @@ public class NoteTracker : MonoBehaviour {
                     Destroy(gameObject);
                     scriptNote.score.subScore(5);
                     scriptNote.hitText.text = "Miss!";
+                    scriptNote.dub--;
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 4);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
             if (transform.position.x <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
                 {
                     accuracy = 3;
                     checkAccuracy();
+                    scriptNote.dub--;
                     Destroy(gameObject);
                 }
             }

@@ -24,6 +24,7 @@ public class RandomSpawnNote : MonoBehaviour
     public string songName;
     private float startTime;
     public bool songStart = false;
+    public int dub = 0;
 
     //UI Text
     public Score score;
@@ -70,12 +71,15 @@ public class RandomSpawnNote : MonoBehaviour
             {
                 if (counter + 1 < readTime.Count)
                 {
-                    if (readTime[counter + 1] - readTime[counter] < 0.2f)
+                    if (readTime[counter + 1] - readTime[counter] < 0.5f)
                     {
-                        if (Random.Range(1, 3) == 1)                        
-                            spawnRandomDouble();                        
-                        else                        
-                            spawnRandomNote();                        
+                        if (Random.Range(1, 3) == 1 && dub < 1)
+                        {
+                            spawnRandomDouble();
+                            dub++;
+                        }
+                        else
+                            spawnRandomNote();
                     }
                     else                   
                         spawnRandomNote();                   
