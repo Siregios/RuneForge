@@ -3,7 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class SortGameManager : MonoBehaviour {
-    
+
+    private AudioManager AudioManager;
+    private AudioSource music;
+
     //Draggable runes and bubble spawns
     public GameObject[] runes;
     public GameObject[] bubbles;
@@ -27,8 +30,15 @@ public class SortGameManager : MonoBehaviour {
     public Timer timer;
     public Score score;
 
-	void Start () {
+    void Awake()
+    {
+        //AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        music = this.gameObject.GetComponent<AudioSource>();
+    }
+
+    void Start () {
         time = 0;
+        music.Play();
     }
 		
 	void Update () {
