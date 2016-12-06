@@ -29,6 +29,7 @@ public class MinigameCountdown : MonoBehaviour {
             else
                 GetComponent<Text>().text = count.ToString();
             count--;
+            yield return new WaitForSeconds(1);
         }
         StartGame(true);
         gameObject.SetActive(false);
