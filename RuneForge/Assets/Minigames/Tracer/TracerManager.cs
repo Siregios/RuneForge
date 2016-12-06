@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class TracerManager : MonoBehaviour {
     public GameObject lineRenderer = null;
     public GameObject trailRenderer = null;
+    public GameObject burst;
+    public GameObject nextMapBurst;
+    Vector3 currentPos;
 
     private AudioManager AudioManager;
     private AudioSource music;
@@ -42,11 +45,16 @@ public class TracerManager : MonoBehaviour {
     public void DotTouched(GameObject dot)
     {
         AudioManager.PlaySound(0);
-
+       
         score.addScore(10);
         
         currentTrail.GetComponent<TrailRenderer>().time += .01f;
-        
+
+        currentPos = dot.transform.position;
+
+        if (dot.GetComponent<Mapper>().next != null || count < mapsPerPlay)
+            Destroy((GameObject)Instantiate(burst, currentPos, Quaternion.identity), 0.2f);
+
         SpawnDot(dot);
     }
 
@@ -58,7 +66,7 @@ public class TracerManager : MonoBehaviour {
     public void SpawnDot(GameObject dot)
     {
         if (dot.GetComponent<Mapper>().next != null)
-        {
+        {            
             dot.GetComponent<Mapper>().next.SetActive(true);
         }
         else {
@@ -71,12 +79,9 @@ public class TracerManager : MonoBehaviour {
                     Debug.Log(randomMapNumber);
                 } while (randomMapNumber == currentMap);
                 currentMap = randomMapNumber;
-
                 Debug.LogFormat("Spawning Map{0}", randomMapNumber);
-                Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
-                AudioManager.PlaySound(1);
-                Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
-                count++;
+                Destroy((GameObject)Instantiate(nextMapBurst, new Vector3(0, 0, 0), Quaternion.identity), 0.8f);
+                StartCoroutine(Wait(randomMapNumber));
             }
             else
             {
@@ -89,6 +94,14 @@ public class TracerManager : MonoBehaviour {
         }
     }
 
+    IEnumerator Wait(int randomMapNumber)
+    {
+        yield return new WaitForSeconds(0.65f);
+        Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
+        Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
+        AudioManager.PlaySound(1);
+        count++;
+    }
     void CreateNewTrail()
     {
         currentTrail = (GameObject)Instantiate(trailRenderer);
