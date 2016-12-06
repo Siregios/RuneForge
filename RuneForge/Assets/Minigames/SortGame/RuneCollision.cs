@@ -18,6 +18,7 @@ public class RuneCollision : MonoBehaviour {
         //Check to see if correct collision with right rune
         if (gameObject.tag == other.gameObject.tag)
         {            
+
             StartCoroutine(Animation_Success(other));            
         }
         else if (other.gameObject.transform.parent.name != "ItemSet")
@@ -28,6 +29,7 @@ public class RuneCollision : MonoBehaviour {
 
     IEnumerator Animation_Success(Collider2D other)
     {
+        managerScript.AudioManager.PlaySound((int)Random.Range(0, 2));
         //This code will allocate score first and reset cursor and object position.
         managerScript.score.addScore(25);        
         managerScript.resetPosition();
@@ -65,6 +67,7 @@ public class RuneCollision : MonoBehaviour {
 
     IEnumerator Animation_Failure(Collider2D other)
     {
+        managerScript.AudioManager.PlaySound((int)Random.Range(3, 6));
         //Literally same as above code but without adding score and fail animation
         managerScript.score.subScore(5);
         managerScript.resetPosition();

@@ -8,7 +8,8 @@ public class SortMove : MonoBehaviour {
     public bool moveDown;
     public bool changeColor = true;
     public float timerSet = 3f;
-    public float timer;    
+    public float timer;
+    private bool soundPlayed;
     public GameObject GameManager;
     public GameObject unmatched;
     bool matchedOn = true;
@@ -22,6 +23,7 @@ public class SortMove : MonoBehaviour {
         timer = timerSet;
         managerScript = GameManager.GetComponent<SortGameManager>();
         spriteColor = GetComponent<SpriteRenderer>().color;
+        soundPlayed = false;
     }
 
     void Update () {
@@ -38,6 +40,11 @@ public class SortMove : MonoBehaviour {
         //When timer is below 0 start the animation and all
         if (timer < 0)
         {
+            if (!soundPlayed)
+            {
+                managerScript.AudioManager.PlaySound((int)Random.Range(3, 6));
+                soundPlayed = true;
+            }
             GetComponent<SpriteRenderer>().color = spriteColor;
             GetComponent<Animator>().SetBool("Fail", true);
             foreach (Transform child in transform.parent.GetComponentsInChildren<Transform>())
@@ -61,6 +68,7 @@ public class SortMove : MonoBehaviour {
                 transform.parent.DetachChildren();
                 matchedOn = true;
                 timer = timerSet;
+                soundPlayed = false;
             }
         }
 
