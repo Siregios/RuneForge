@@ -240,8 +240,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
-            if (transform.position.y <= 0.3f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 7);
+            if (transform.position.y <= 0.4f)
             {
                 if (Input.GetKeyDown(input))
                 {
@@ -269,8 +269,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
-            if (transform.position.x <= 0.3f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 7);
+            if (transform.position.x <= 0.4f)
             {
                 if (Input.GetKeyDown(input))
                 {
