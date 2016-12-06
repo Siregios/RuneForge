@@ -54,8 +54,9 @@ public class HookManager : MonoBehaviour {
     {
         cooldown = spawnInterval;
         //This makes less mei's spawn.    
-        GameObject instantiatedObj = spawner.SpawnObject();        
-        if (instantiatedObj.name == "mei(Clone)")
+        GameObject instantiatedObj = spawner.SpawnObject();
+        //instantiatedObj.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        if (instantiatedObj.name == "bad(Clone)")
         {
             if (neg >= 3)
             {                

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 198636072724507062}
   - component: {fileID: 199431868754152630}
   m_Layer: 0
-  m_Name: lucio
+  m_Name: great
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

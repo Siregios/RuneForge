@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61000012309662226}
   - component: {fileID: 114000011459150610}
   m_Layer: 0
-  m_Name: mei
+  m_Name: bad
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114000010931019494}
   - component: {fileID: 50000010602961162}
   m_Layer: 0
-  m_Name: mercy
+  m_Name: good
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
