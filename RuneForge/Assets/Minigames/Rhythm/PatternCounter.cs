@@ -11,7 +11,7 @@ public class PatternCounter : MonoBehaviour {
 
 	public BeatValue[] beatValues;
 	public int beatScalar = 1;
-	public float loopTime = 30f;
+	public float loopTime = 0f;
 	public AudioSource audioSource;
 	public GameObject[] observers;
 	
@@ -92,7 +92,7 @@ public class PatternCounter : MonoBehaviour {
 				sequenceIndex = (++sequenceIndex == beatValues.Length ? 0 : sequenceIndex);
 			}
 
-			yield return new WaitForSeconds(loopTime / 1000f);
+			yield return new WaitForFixedUpdate();
 		}
 	}
 

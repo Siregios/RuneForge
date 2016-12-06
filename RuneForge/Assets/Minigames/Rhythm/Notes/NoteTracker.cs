@@ -219,7 +219,7 @@ public class NoteTracker : MonoBehaviour {
             if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.003f)
             {
                 transform.position = keyLoc.transform.position;
-                accuracy = 4;
+                //accuracy = 3;
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
                 {
@@ -230,12 +230,12 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 6);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 4);
             if (transform.position.y <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
                 {
-                    accuracy = 2;
+                    accuracy = 3;
                     checkAccuracy();
                     Destroy(gameObject);
                 }
@@ -246,7 +246,7 @@ public class NoteTracker : MonoBehaviour {
             if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.003f)
             {
                 transform.position = keyLoc.transform.position;
-                accuracy = 3;
+                //accuracy = 3;
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
                 {
@@ -257,12 +257,12 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 8);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 4);
             if (transform.position.x <= 0.3f)
             {
                 if (Input.GetKeyDown(input))
                 {
-                    accuracy = 2;
+                    accuracy = 3;
                     checkAccuracy();
                     Destroy(gameObject);
                 }

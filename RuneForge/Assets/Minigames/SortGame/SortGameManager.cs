@@ -41,7 +41,7 @@ public class SortGameManager : MonoBehaviour {
     }
 		
 	void Update () {
-        if(!musicOn)
+        if (!musicOn)
         {
             music.Play();
             musicOn = true;
