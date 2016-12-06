@@ -36,17 +36,17 @@ public class HookMovement : MonoBehaviour {
         {
             grabbed.Add(other.gameObject);            
             other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            if (other.gameObject.name == "mercy(Clone)")
+            if (other.gameObject.name == "good(Clone)")
             {
                 score.addScore(20);
                 AudioManager.PlaySound(2);
             }
-            else if (other.gameObject.name == "lucio(Clone)")
+            else if (other.gameObject.name == "great(Clone)")
             {
                 score.addScore(100);
                 AudioManager.PlaySound(3);
             }
-            else if (other.gameObject.name == "mei(Clone)")
+            else if (other.gameObject.name == "bad(Clone)")
             {
                 score.subScore(40);
                 AudioManager.PlaySound(1);

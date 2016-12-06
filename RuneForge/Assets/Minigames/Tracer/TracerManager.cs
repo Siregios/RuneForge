@@ -52,6 +52,7 @@ public class TracerManager : MonoBehaviour {
 
         currentPos = dot.transform.position;
 
+        //This makes the last dot not spawn burst prefab
         if (dot.GetComponent<Mapper>().next != null || count < mapsPerPlay)
             Destroy((GameObject)Instantiate(burst, currentPos, Quaternion.identity), 0.2f);
 
@@ -80,6 +81,7 @@ public class TracerManager : MonoBehaviour {
                 } while (randomMapNumber == currentMap);
                 currentMap = randomMapNumber;
                 Debug.LogFormat("Spawning Map{0}", randomMapNumber);
+                //Instantiate prefab transition and give it time to run
                 Destroy((GameObject)Instantiate(nextMapBurst, new Vector3(0, 0, 0), Quaternion.identity), 0.8f);
                 StartCoroutine(Wait(randomMapNumber));
             }
@@ -94,6 +96,7 @@ public class TracerManager : MonoBehaviour {
         }
     }
 
+    //This works after 0.65 seconds to let the particle animation run
     IEnumerator Wait(int randomMapNumber)
     {
         yield return new WaitForSeconds(0.65f);

@@ -85,7 +85,7 @@ public class playerHookScript : MonoBehaviour {
                     {
                         Destroy(obj);
                         decrement.currentObjects--;
-                        if (obj.name == "mei(Clone)")
+                        if (obj.name == "bad(Clone)")
                             decrement.neg--;
                     }
                     hookMovement.grabbed.Clear();
