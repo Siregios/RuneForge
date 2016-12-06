@@ -37,7 +37,6 @@ public class RandomSpawnNote : MonoBehaviour
         keyNotes = new List<List<GameObject>>();
         for (int i = 0; i < 4; i++)
             keyNotes.Add(new List<GameObject>());
-        Screen.SetResolution(Screen.width, Screen.width, false);
         startTime = Time.time;
         //beatObserver = GetComponent<BeatObserver>();
         //beatCounter = 0;
