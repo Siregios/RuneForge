@@ -34,7 +34,7 @@ public class StackableBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if ((!isTop && !other.gameObject.GetComponent<StackableBehavior>().isTop) || collisionRegistered)
+        if ((!isTop && (other.gameObject.GetComponent<StackableBehavior>() != null && !other.gameObject.GetComponent<StackableBehavior>().isTop)) || collisionRegistered)
             return;
         if (other.gameObject.name == "Player" && this.gameObject.name == "Stackable 0")
             transform.parent = other.transform;
