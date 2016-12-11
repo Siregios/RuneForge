@@ -40,6 +40,11 @@ public class Cell : MonoBehaviour {
 
     int orientationInt = 0;
     SpriteRenderer childSprite;
+    public SpriteRenderer sprite    //childSprite known internally, but known externally as "sprite"
+    {
+        get { return childSprite; }
+        set { childSprite = value; }
+    }
     Dictionary<CellOrientation, Sprite> orientationSprites = new Dictionary<CellOrientation, Sprite>();
     Dictionary<CellType, Sprite> typeSprites = new Dictionary<CellType, Sprite>();
 
@@ -61,7 +66,6 @@ public class Cell : MonoBehaviour {
 
     public void Initialize(GolemFetchManager golemFetchGM)
     {
-        //SetType(type);
         this.golemFetchGM = golemFetchGM;
     }
 
@@ -88,7 +92,6 @@ public class Cell : MonoBehaviour {
                     orientationInt = (orientationInt - 1) % 5;
             }
             childSprite.sprite = orientationSprites[orientation];
-            //Debug.LogFormat("Clicked me: ({0}, {1}) - {2}", x, y, orientation.ToString());
         }
     }
 }

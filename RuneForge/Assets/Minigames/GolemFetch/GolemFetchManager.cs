@@ -9,35 +9,16 @@ public class GolemFetchManager : MonoBehaviour
     public Timer timer;
     public Score score;
     int scoreTemp;
+
+    public GolemGrid Grid;
     public GolemController golem;
     public GameObject spawn;
-    public GameObject cellObject;
-    public int gridSize = 17;
     [HideInInspector]
     public bool traversing = false;
     [HideInInspector]
     public Direction.DIRECTION entranceWall;
     public Vector2 startCell;
 
-    public List<List<Cell>> grid = new List<List<Cell>>();
-
-    //Temporary
-    List<Vector2> obstacleList = new List<Vector2>()
-    {
-        new Vector2(2, 2), new Vector2(3, 2), new Vector2(5, 2), new Vector2(8, 2), new Vector2(11, 2), new Vector2(13, 2), new Vector2(14, 2),
-        new Vector2(2, 3), new Vector2(8, 3), new Vector2(14, 3),
-        new Vector2(5, 4), new Vector2(7, 4), new Vector2(8, 4), new Vector2(9, 4), new Vector2(11, 4),
-        new Vector2(2, 5), new Vector2(4, 5), new Vector2(12, 5), new Vector2(14, 5),
-        new Vector2(6, 6), new Vector2(7, 6), new Vector2(9, 6), new Vector2(10, 6),
-        new Vector2(4, 7), new Vector2(6, 7), new Vector2(10, 7), new Vector2(12, 7),
-        new Vector2(2, 8), new Vector2(3, 8), new Vector2(4, 8), new Vector2(8, 8), new Vector2(12, 8), new Vector2(13, 8), new Vector2(14, 8),
-        new Vector2(4, 9), new Vector2(6, 9), new Vector2(10, 9), new Vector2(12, 9),
-        new Vector2(6, 10), new Vector2(7, 10), new Vector2(9, 10), new Vector2(10, 10),
-        new Vector2(2, 11), new Vector2(4, 11), new Vector2(12, 11), new Vector2(14, 11),
-        new Vector2(5, 12), new Vector2(7, 12), new Vector2(8, 12), new Vector2(9, 12), new Vector2(11, 12),
-        new Vector2(2, 13), new Vector2(8, 13), new Vector2(14, 13),
-        new Vector2(2, 14), new Vector2(3, 14), new Vector2(5, 14), new Vector2(8, 14), new Vector2(11, 14), new Vector2(13, 14), new Vector2(14, 14)
-    };
     List<Vector2> bookList = new List<Vector2>();
 
     int numberOfBooks = 2;
@@ -50,16 +31,16 @@ public class GolemFetchManager : MonoBehaviour
     void Update()
     {
         Countdown();
-        if (IsValidCell(golem.gridX, golem.gridY))
+        if (Grid.IsValidCell(golem.gridX, golem.gridY))
         {
             if (golem.EnteredNewCell())
             {
-                Cell cell = grid[golem.gridX][golem.gridY];
+                Cell cell = Grid.grid[golem.gridX][golem.gridY];
                 if (cell.type == Cell.CellType.NONE && cell.orientation != Cell.CellOrientation.NONE)
                 {
-                    Debug.LogFormat("{0} oriented cell at ({1}, {2})", grid[golem.gridX][golem.gridY].orientation, golem.gridX, golem.gridY);
+                    Debug.LogFormat("{0} oriented cell at ({1}, {2})", Grid.grid[golem.gridX][golem.gridY].orientation, golem.gridX, golem.gridY);
                     golem.SnapToGrid();
-                    TurnGolem(grid[golem.gridX][golem.gridY].orientation);
+                    TurnGolem(Grid.grid[golem.gridX][golem.gridY].orientation); //Not sure if this should just be "cell"
                 }
                 else if (cell.type == Cell.CellType.OBSTACLE)
                 {
@@ -68,14 +49,14 @@ public class GolemFetchManager : MonoBehaviour
                 else if (cell.type == Cell.CellType.BOOK)
                 {
                     scoreTemp++;
-                    grid[(int)cell.x][(int)cell.y].transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = null;
+                    Grid.grid[(int)cell.x][(int)cell.y].sprite.sprite = null;
                 }
                 else if (cell.type == Cell.CellType.END)
                 {
                     score.addScore(scoreTemp * 100);
                     numberOfBooks += scoreTemp;
                     scoreTemp = 0;
-                    ClearGrid();
+                    Grid.Clear();
                     InitializePuzzle();
                 }
             }
@@ -97,21 +78,16 @@ public class GolemFetchManager : MonoBehaviour
     List<Vector2> ValidBookLocations()
     {
         List<Vector2> result = new List<Vector2>();
-        for (int c = 2; c < gridSize - 2; c++)
+        for (int c = 2; c < Grid.size - 2; c++)
         {
-            for (int r = 2; r < gridSize - 2; r++)
+            for (int r = 2; r < Grid.size - 2; r++)
             {
-                if (grid[c][r].type == Cell.CellType.NONE && !CornerCell(c, r))
+                if (Grid.grid[c][r].type == Cell.CellType.NONE && !Grid.IsCornerCell(c, r))
                     result.Add(new Vector2(c, r));
             }
         }
 
         return result;
-    }
-
-    bool CornerCell(int x, int y)
-    {
-        return !((grid[x - 1][y].type == Cell.CellType.NONE && grid[x + 1][y].type == Cell.CellType.NONE) || (grid[x][y - 1].type == Cell.CellType.NONE && grid[x][y + 1].type == Cell.CellType.NONE));
     }
 
     void SpawnGolem()
@@ -127,7 +103,7 @@ public class GolemFetchManager : MonoBehaviour
         scoreTemp = 0;
         foreach (Vector2 cell in bookList)
         {
-            grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.BOOK);
+            Grid.grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.BOOK);
         }
     }
 
@@ -180,33 +156,17 @@ public class GolemFetchManager : MonoBehaviour
 
     void InitializePuzzle()
     {
-        Camera.main.orthographicSize = (float)gridSize / 2;
-        Camera.main.transform.position = new Vector3((float)gridSize / 2, (float)gridSize / 2, -10);
+        Camera.main.orthographicSize = (float)Grid.size / 2;
+        Camera.main.transform.position = new Vector3((float)Grid.size / 2, (float)Grid.size / 2, -10);
 
         entranceWall = PickEntranceWall();
         startCell = PickStartCell();
         spawn.transform.position = startCell;
 
-        for (int c = 0; c < gridSize; c++)
-        {
-            grid.Add(new List<Cell>());
-            for (int r = 0; r < gridSize; r++)
-            {
-                GameObject newCellObject = (GameObject)Instantiate(cellObject, new Vector2(c, r), Quaternion.identity);
-                Cell newCell = newCellObject.GetComponent<Cell>();
-                newCell.Initialize(this);
-                grid[c].Add(newCell);
-            }
-        }
-        grid[Mathf.FloorToInt(startCell.x)][Mathf.FloorToInt(startCell.y)].SetType(Cell.CellType.SPAWN);
+        Grid.CreateGrid(this);
+        Grid.SetCellType((int)startCell.x, (int)startCell.y, Cell.CellType.SPAWN);
 
         //Temporary
-        foreach (Vector2 cell in obstacleList)
-        {
-            int c = Mathf.FloorToInt(cell.x);
-            int r = Mathf.FloorToInt(cell.y);
-            grid[c][r].SetType(Cell.CellType.OBSTACLE);
-        }
 
         List<Vector2> possibleBookCells = ValidBookLocations();
         bookList.Clear();
@@ -216,18 +176,9 @@ public class GolemFetchManager : MonoBehaviour
             bookList.Add(possibleBookCells[randomCell]);
             possibleBookCells.RemoveAt(randomCell);
         }
-        //foreach (Vector2 cell in bookList)
-        //{
-        //    grid[(int)cell.x][(int)cell.y].Initialize(Cell.CellType.BOOK);
-        //}
-        grid[gridSize - 1][0].SetType(Cell.CellType.END);
+        Grid.grid[Grid.size - 1][0].SetType(Cell.CellType.END);
 
         SpawnGolem();
-    }
-
-    bool IsValidCell(int x, int y)
-    {
-        return (0 <= x && x < gridSize) && (0 <= y && y < gridSize);
     }
 
     Direction.DIRECTION PickEntranceWall()
@@ -238,32 +189,19 @@ public class GolemFetchManager : MonoBehaviour
 
     Vector2 PickStartCell()
     {
-        int randomPos = Random.Range(2, gridSize - 3);
+        int randomPos = Random.Range(2, Grid.size - 2);
         switch (entranceWall)
         {
             case Direction.DIRECTION.LEFT:
                 return new Vector2(0, randomPos);
             case Direction.DIRECTION.RIGHT:
-                return new Vector2(gridSize - 1, randomPos);
+                return new Vector2(Grid.size - 1, randomPos);
             case Direction.DIRECTION.DOWN:
                 return new Vector2(randomPos, 0);
             case Direction.DIRECTION.UP:
-                return new Vector2(randomPos, gridSize - 1);
+                return new Vector2(randomPos, Grid.size - 1);
             default:
                 return new Vector2(2, 0);
         }
-    }
-
-    void ClearGrid()
-    {
-        for (int c = 0; c < gridSize; c++)
-        {
-            for (int r = 0; r < gridSize; r++)
-            {
-                Destroy(grid[c][r].gameObject);
-            }
-            grid[c].Clear();
-        }
-        grid.Clear();
-    }
+    }   
 }
