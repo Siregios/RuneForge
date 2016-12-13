@@ -262,6 +262,8 @@ MonoBehaviour:
   Grid: {fileID: 280741004}
   golem: {fileID: 834737538}
   spawn: {fileID: 137876145}
+  Maps:
+  - {fileID: 4900000, guid: 3f3d9fe8207f63e44816c0fcbac870ed, type: 3}
   traversing: 0
   entranceWall: 0
   startCell: {x: 0, y: 0}
@@ -290,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90d50de87c3c2a429fe89e631fd0053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  golemGM: {fileID: 280741002}
   cellObject: {fileID: 1000011528779084, guid: 69cbf5795795ff545a8e3af21157ff32, type: 2}
-  map: {fileID: 4900000, guid: 3f3d9fe8207f63e44816c0fcbac870ed, type: 3}
-  size: 17
+  size: 0
 --- !u!1 &643957572
 GameObject:
   m_ObjectHideFlags: 0

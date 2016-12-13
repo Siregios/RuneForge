@@ -1,25 +1,22 @@
 ﻿using UnityEngine;
-//using System;
 using System.Collections;
 using System.Collections.Generic;
 
-// TODO : When generating a new map/puzzle, make sure to call ClearGrid()
 public class GolemFetchManager : MonoBehaviour
 {
     public Timer timer;
     public Score score;
-    int scoreTemp;
+    int collectedBooks;
 
     public GolemGrid Grid;
     public GolemController golem;
     public GameObject spawn;
+    public TextAsset[] Maps;
     [HideInInspector]
     public bool traversing = false;
     [HideInInspector]
     public Direction.DIRECTION entranceWall;
     public Vector2 startCell;
-
-    List<Vector2> bookList = new List<Vector2>();
 
     int numberOfBooks = 2;
 
@@ -48,15 +45,14 @@ public class GolemFetchManager : MonoBehaviour
                 }
                 else if (cell.type == Cell.CellType.BOOK)
                 {
-                    scoreTemp++;
-                    Grid.grid[(int)cell.x][(int)cell.y].sprite.sprite = null;
+                    collectedBooks++;
+                    Grid.grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.NONE);
                 }
                 else if (cell.type == Cell.CellType.END)
                 {
-                    score.addScore(scoreTemp * 100);
-                    numberOfBooks += scoreTemp;
-                    scoreTemp = 0;
-                    Grid.Clear();
+                    score.addScore(collectedBooks * 100);
+                    numberOfBooks += collectedBooks;
+                    collectedBooks = 0;
                     InitializePuzzle();
                 }
             }
@@ -99,12 +95,8 @@ public class GolemFetchManager : MonoBehaviour
         golem.SnapToGrid();
         golem.movingDirection = Direction.OppositeDirection(entranceWall);
 
-        //Temporary
-        scoreTemp = 0;
-        foreach (Vector2 cell in bookList)
-        {
-            Grid.grid[(int)cell.x][(int)cell.y].SetType(Cell.CellType.BOOK);
-        }
+        collectedBooks = 0;
+        Grid.SetBooks();
     }
 
     void TurnGolem(Cell.CellOrientation cellOrientation)
@@ -156,6 +148,8 @@ public class GolemFetchManager : MonoBehaviour
 
     void InitializePuzzle()
     {
+        Grid.CreateNewGrid(Maps[0], numberOfBooks);
+
         Camera.main.orthographicSize = (float)Grid.size / 2;
         Camera.main.transform.position = new Vector3((float)Grid.size / 2, (float)Grid.size / 2, -10);
 
@@ -163,19 +157,7 @@ public class GolemFetchManager : MonoBehaviour
         startCell = PickStartCell();
         spawn.transform.position = startCell;
 
-        Grid.CreateGrid(this);
         Grid.SetCellType((int)startCell.x, (int)startCell.y, Cell.CellType.SPAWN);
-
-        //Temporary
-
-        List<Vector2> possibleBookCells = ValidBookLocations();
-        bookList.Clear();
-        for (int i = 0; i < numberOfBooks; i++)
-        {
-            int randomCell = Random.Range(0, possibleBookCells.Count);
-            bookList.Add(possibleBookCells[randomCell]);
-            possibleBookCells.RemoveAt(randomCell);
-        }
         Grid.grid[Grid.size - 1][0].SetType(Cell.CellType.END);
 
         SpawnGolem();

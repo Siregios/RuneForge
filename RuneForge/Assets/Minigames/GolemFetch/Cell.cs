@@ -74,6 +74,8 @@ public class Cell : MonoBehaviour {
         this.type = type;
         if (type != CellType.NONE)
             childSprite.sprite = typeSprites[type];
+        else
+            childSprite.sprite = null;
     }
 
     void OnMouseOver()
