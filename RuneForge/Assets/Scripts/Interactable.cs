@@ -9,6 +9,8 @@ public class Interactable : MonoBehaviour {
 
     [HideInInspector]
     public bool hovering = false;
+    [HideInInspector]
+    public bool active = true;
 
     void Start()
     {

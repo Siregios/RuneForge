@@ -23,17 +23,20 @@ public class InteractionManager : MonoBehaviour {
             if (hit)
             {
                 Interactable interactScript = hit.collider.GetComponent<Interactable>();
-                if (currentInteractable != null && currentInteractable != interactScript)
+                if (interactScript.active)
                 {
-                    currentInteractable.MouseExit.Invoke();
-                }
-                currentInteractable = interactScript;
-                currentInteractable.MouseHover.Invoke();
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    currentInteractable.MouseClick.Invoke();
-                    currentInteractable.MouseExit.Invoke();
-                }
+                    if (currentInteractable != null && currentInteractable != interactScript)
+                    {
+                        currentInteractable.MouseExit.Invoke();
+                    }
+                    currentInteractable = interactScript;
+                    currentInteractable.MouseHover.Invoke();
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        currentInteractable.MouseClick.Invoke();
+                        currentInteractable.MouseExit.Invoke();
+                    }
+                }   
             }
             else if (currentInteractable != null)
             {
