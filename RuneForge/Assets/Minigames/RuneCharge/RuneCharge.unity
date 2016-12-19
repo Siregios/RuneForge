@@ -1303,8 +1303,8 @@ MonoBehaviour:
   aimTime: 5
   chargeTime: 5
   randTime: 1
-  greenWidth: 0.35
-  yellowWidth: 0.5
+  greenWidth: 0.4
+  yellowWidth: 0.55
 --- !u!114 &1643386719 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000012887882570, guid: 092aec5fbb4e565488286dafd190cf01,
