@@ -20,4 +20,9 @@ public class TargetMovment : MonoBehaviour {
     {
         transform.position = new Vector2(Random.Range(leftBound, rightBound), transform.position.y);
     }
+
+    public float getCenterX()
+    {
+        return transform.position.x;
+    }
 }

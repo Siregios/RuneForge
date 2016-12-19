@@ -13,6 +13,7 @@ public class ChargeSelector : MonoBehaviour {
     private float lastSpeed;
     private float timeRemaining;
     private bool randomize = false;
+    private float targetCenter;
     public Score score;
 
     public float startXPos = -6.5f;
@@ -22,6 +23,8 @@ public class ChargeSelector : MonoBehaviour {
     public float aimTime = 5.0f;
     public float chargeTime = 5.0f;
     public float randTime = 5.0f;
+    public float greenWidth = .3f;
+    public float yellowWidth = .45f;
 
 
     private TargetMovment target;
@@ -35,6 +38,8 @@ public class ChargeSelector : MonoBehaviour {
         timeRemaining = aimTime;
 
         target = GameObject.Find("Target").GetComponent<TargetMovment>();
+        targetCenter = target.getCenterX();
+        
         movement = this.GetComponent<movementAI>();
         lastSpeed = movement.minSpeed;
 
@@ -112,9 +117,18 @@ public class ChargeSelector : MonoBehaviour {
     void checkForScore()
     {
         stopMarker();
+        targetCenter = target.getCenterX();
         lightning[0].enabled = true;
         if (inSelection)
         {
+            //is the target in the green?
+            //Debug.Log(transform.position.x);
+            //Debug.Log(targetCenter);
+            if (this.transform.position.x > (targetCenter - greenWidth) && this.transform.position.x < (targetCenter + greenWidth))
+            {
+                score.addScore(50);
+                Debug.Log("Perfect!");
+            }
             score.addScore(50);
             Debug.Log("RIDE THE LIGHTNING!");
             buttonMash = true;
@@ -230,5 +244,6 @@ public class ChargeSelector : MonoBehaviour {
     {
         for (int i = 0; i < 15; i++)
             target.changePosition();
+        targetCenter = target.getCenterX();
     }
 }
