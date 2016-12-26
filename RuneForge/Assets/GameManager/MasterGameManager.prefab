@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114000013970403354}
   - component: {fileID: 114000013118490888}
   - component: {fileID: 114000011377930820}
+  - component: {fileID: 114708393808190650}
   m_Layer: 0
   m_Name: MasterGameManager
   m_TagString: Untagged
@@ -171,3 +172,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
+--- !u!114 &114708393808190650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013527338524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94048813fbf536b4e98f99fb0328e8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 0}
+  dialogueScript: {fileID: 0}
