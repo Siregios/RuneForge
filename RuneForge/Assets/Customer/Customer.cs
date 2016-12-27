@@ -11,25 +11,19 @@ public class Customer : MonoBehaviour {
     [HideInInspector]
     public Item item;
     [HideInInspector]
-    public int count;
-
-    void Awake()
-    {
-        SetItem(ItemCollection.itemDict["Water Rune"], 1);
-    }
-    
+    public int count;    
 
     void Start()
     {
         fadeEffect.FadeIn();
     }
 
-    public void SetItem(Item item, int count)
+    public void SetItem(Quest quest)
     {
-        this.item = item;
-        this.count = count;
-        string s = (count > 1) ? "s" : "";
-        text.text = string.Format("Can you make me {0} {1}{2}", count, item.name, s);
+        item = quest.product;
+        count = quest.amountProduct;
+        string plural = (count > 1) ? "s" : "";
+        text.text = string.Format("Can you make me {0} {1}{2}", count, item.name, plural);
     }
 
     public void Leave()
