@@ -18,10 +18,16 @@ public class DialogueManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            dialogueUI.SetActive(true);
-            dialogueScript.GetComponent<DialogueHandler>().LoadTextAsset(0);
-            dialogueScript.enabled = true;
-            dialogueScript.SetBackground("Temp");
+            ActivateDialogue(0);
         }
     }
+
+    public void ActivateDialogue(int index)
+    {
+        dialogueUI.SetActive(true);
+        dialogueScript.GetComponent<DialogueHandler>().LoadTextAsset(index);
+        dialogueScript.enabled = true;
+        dialogueScript.SetBackground("");
+    }
+
 }

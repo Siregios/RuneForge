@@ -433,8 +433,11 @@ public class DialogueHandler : MonoBehaviour {
 
     public void SetBackground (string name)
     {
-        if(name != "" && bgDict.ContainsKey(name))
+        backgroundImage.SetActive(true);
+        if (name != "" && bgDict.ContainsKey(name))
             backgroundImage.GetComponent<Image>().sprite = bgDict[name];
+        if (name == "")
+            backgroundImage.SetActive(false);
     }
 
     void ShowItem(string name)
