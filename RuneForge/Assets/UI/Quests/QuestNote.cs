@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class QuestNote : MonoBehaviour {
     public GameObject eventSystem;
-    public Quest q;
+    public Quest quest;
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -6,11 +6,12 @@ using System.Collections.Generic;
 public class QuestBoardUI : MonoBehaviour {
     public GameObject questNote;
     [HideInInspector]
-    public int currentDisplayedDay = 0;
-    public GameObject menuBar;
-    public List<GameObject> questCurrent;
+    public int currentDisplayedDay = 0;    
+    public List<GameObject> questObjects;
     float xPos, yPos, padY;
     int objCount;
+    public ItemListUI productList;
+
     void Awake()
     {
         //rectTransform = this.GetComponent<RectTransform>();
@@ -32,16 +33,16 @@ public class QuestBoardUI : MonoBehaviour {
 
     public void DisplayBoard()
     {
-        this.gameObject.SetActive(true);
-        if (currentDisplayedDay == MasterGameManager.instance.actionClock.Day)
-            return;
+        //if (currentDisplayedDay == MasterGameManager.instance.actionClock.Day)
+        //    return;
 
         objCount = 0;
-        foreach(Quest quest in MasterGameManager.instance.questGenerator.todaysQuests)
+        Debug.Log(MasterGameManager.instance.questGenerator.currentQuests.Count);
+        foreach(Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
         {            
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
-            newQuest.GetComponent<QuestNote>().q = quest;
-            questCurrent.Add(newQuest);
+            newQuest.GetComponent<QuestNote>().quest = quest;
+            questObjects.Add(newQuest);
             newQuest.transform.SetParent(this.transform);
             newQuest.transform.localScale = Vector3.one;
             newQuest.transform.SetAsFirstSibling();
@@ -69,25 +70,25 @@ public class QuestBoardUI : MonoBehaviour {
 
         //    //newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
         //}
-        currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
+        //currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
     }
 
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.uiOpen = active;
-        MasterGameManager.instance.interactionManager.canInteract = !active;
-        menuBar.SetActive(!active);
+        MasterGameManager.instance.interactionManager.canInteract = !active;        
     }
 
     public void turnInQuest(GameObject quest, GameObject item)
     {
-        Quest qValues = quest.GetComponent<QuestNote>().q;
+        Quest qValues = quest.GetComponent<QuestNote>().quest;
         if (PlayerInventory.inventory.GetItemCount(item.GetComponent<ItemButton>().item) >= qValues.amountProduct)
         {
-            objCount = 0;
-            questCurrent.Remove(quest);
-            foreach (GameObject q in questCurrent)
+            objCount = 0;            
+            questObjects.Remove(quest);
+            MasterGameManager.instance.questGenerator.currentQuests.Remove(quest.GetComponent<QuestNote>().quest);
+            foreach (GameObject q in questObjects)
             {
                 float yPosNew = yPos + (padY * objCount);
                 q.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
@@ -97,6 +98,8 @@ public class QuestBoardUI : MonoBehaviour {
             PlayerInventory.inventory.SubtractItem(item.GetComponent<ItemButton>().item, qValues.amountProduct);
             PlayerInventory.money += qValues.gold;
             Destroy(quest);
+            productList.RefreshPage();
+            Debug.Log(true);
         }
         else
         {

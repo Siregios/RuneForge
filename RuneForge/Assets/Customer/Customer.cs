@@ -8,10 +8,7 @@ public class Customer : MonoBehaviour {
     public Interactable interactScript;
     public Text text;
 
-    [HideInInspector]
-    public Item item;
-    [HideInInspector]
-    public int count;    
+    public Quest quest;
 
     void Start()
     {
@@ -20,12 +17,16 @@ public class Customer : MonoBehaviour {
 
     public void SetItem(Quest quest)
     {
-        item = quest.product;
-        count = quest.amountProduct;
-        string plural = (count > 1) ? "s" : "";
-        text.text = string.Format("Can you make me {0} {1}{2}", count, item.name, plural);
+        this.quest = quest;
+        string plural = (quest.amountProduct > 1) ? "s" : "";
+        text.text = string.Format("Can you make me {0} {1}{2}", quest.amountProduct, quest.product.name, plural);
     }
 
+    public void AcceptQuest()
+    {
+        MasterGameManager.instance.questGenerator.currentQuests.Add(quest);
+        Leave();
+    }
     public void Leave()
     {
         interactScript.active = false;

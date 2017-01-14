@@ -27,7 +27,7 @@ public class Quest {
             deadlineDate = MasterGameManager.instance.actionClock.Day + 2;
         else if (product.Class == "Product")
             deadlineDate = MasterGameManager.instance.actionClock.Day + 5;
-        this.amountProduct = Random.Range(1, 3);        
+        this.amountProduct = Random.Range(1, 1);        
         this.gold = Mathf.FloorToInt((product.price * amountProduct * 1.25f)/10) * 10;
         this.ingredient = ingredientList[randomIngredient];
         this.amountIngredient = Random.Range(1, 6);
