@@ -8129,35 +8129,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012472985286, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1876109773}
     - target: {fileID: 114000014264467656, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1876109773}
-    - target: {fileID: 114000012472985286, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+    - target: {fileID: 114392254471247156, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisplayRecipe
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014264467656, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisplayClipboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012931481552, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -260
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011917629910, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1876109773}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
   m_IsPrefabParent: 0

@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class ActionClock : MonoBehaviour {
-    private int maxActionsPerDay = 12;
-    private int currentActionCount = 12;
-    private int day = 10;
+    private int maxActionsPerDay = 1;
+    private int currentActionCount = 1;
+    private int day = 1;
 
     public int ActionsPerDay
     {
@@ -26,8 +26,7 @@ public class ActionClock : MonoBehaviour {
 
     public void EndDay()
     {
-        day++;
-        currentActionCount = maxActionsPerDay;
+        StartCoroutine(endCoroutine());
     }
 
     public void SpendAction()
@@ -36,5 +35,13 @@ public class ActionClock : MonoBehaviour {
             currentActionCount--;
         else
             Debug.LogError("Cannot perform action, not enough time today");
+    }
+
+    IEnumerator endCoroutine()
+    {
+        MasterGameManager.instance.sceneManager.LoadScene("Store");
+        yield return new WaitForSeconds(.01f);  //This is small because loadscene sets timescale to 0
+        day++;
+        currentActionCount = maxActionsPerDay;
     }
 }
