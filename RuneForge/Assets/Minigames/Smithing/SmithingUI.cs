@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 //using System.Collections;
 
-public class RuneChargeUI : MonoBehaviour {
+public class SmithingUI : MonoBehaviour {
 
     private ChargeSelector selectorInfo;
 
