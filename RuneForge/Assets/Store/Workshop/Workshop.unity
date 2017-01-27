@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 1053624303}
   - component: {fileID: 1053624302}
   m_Layer: 9
-  m_Name: RuneChargeInteract
+  m_Name: SmithingInteract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,7 +1408,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RuneCharge
+          m_StringArgument: Smithing
           m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
@@ -1470,7 +1470,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1590e8cedcf39364f993e474e50adb83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb6f40314aa268b4e86a0bac733b965c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
