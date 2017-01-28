@@ -23,13 +23,13 @@ public class MinigameCountdown : MonoBehaviour {
         while (count > -1)
         {
             if (count == 3)
-                GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime);
             if (count == 0)
                 GetComponent<Text>().text = "Go!";
             else
                 GetComponent<Text>().text = count.ToString();
             count--;
-            yield return new WaitForSeconds(0.85f);
+            yield return new WaitForSeconds(1f);
         }
         StartGame(true);
         gameObject.SetActive(false);

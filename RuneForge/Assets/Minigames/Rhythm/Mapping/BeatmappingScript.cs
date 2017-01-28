@@ -1,41 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using SynchronizerData;
 
 public class BeatmappingScript : MonoBehaviour {
 
     //write with these
     private string writer;
     private bool written = false;
-    public List<float> timeList;
+    public List<double> timeList;
     public string songName;
     float currentBeat;
     bool beatDrop = false;
 
-    private BeatObserver beatObserver;
-//    private int beatCounter;
 
     void Start()
     {
         //writing stuff
-        timeList = new List<float>();
-        beatObserver = GetComponent<BeatObserver>();
-        //beatCounter = 0;
+        timeList = new List<double>();
+        timeList.Add(AudioSettings.dspTime);
     }
 
     void Update()
     {
         //ALL WRITING STUFF
-        if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentBeat = Time.time;
-            beatDrop = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && beatDrop)
-        {
-            Debug.Log(Time.time);            
-            timeList.Add(currentBeat);
+            Debug.Log(AudioSettings.dspTime);            
+            timeList.Add(AudioSettings.dspTime);
             beatDrop = false;
         }
 
@@ -48,8 +41,8 @@ public class BeatmappingScript : MonoBehaviour {
 
             if (!written)
             {
-                System.IO.File.WriteAllText("C:/Users/DavidTruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
-                //System.IO.File.WriteAllText("C:/Users/Peter Truong/Documents/GitHub/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
+                //System.IO.File.WriteAllText("C:/Users/DavidTruong/Desktop/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
+                System.IO.File.WriteAllText("C:/Users/Peter Truong/Documents/GitHub/RuneForge/RuneForge/Assets/Resources/Beatmaps/" + songName + ".txt", writer + "\n");
                 written = true;
             }
         }

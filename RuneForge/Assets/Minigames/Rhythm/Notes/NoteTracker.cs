@@ -68,30 +68,34 @@ public class NoteTracker : MonoBehaviour {
         //Checks for input when note is on hitbox and key pressed
         if (Input.GetKeyDown(KeyCode.W) && indexNote == 0 && !switchOver && canDie)
         {
-            checkAccuracy();
-            DoubleSpawn();
-            if (!switchOver)
+            checkAccuracy();          
+            if (accuracy != 0)  
+                DoubleSpawn();
+            if (!switchOver && accuracy != 0)
                 Destroy(gameObject);
         }
         if (Input.GetKeyDown(KeyCode.S) && indexNote == 2 && !switchOver && canDie)
         {
             checkAccuracy();
-            DoubleSpawn();
-            if (!switchOver)
+            if (accuracy != 0)
+                DoubleSpawn();
+            if (!switchOver && accuracy != 0)
                 Destroy(gameObject);
         }
         if (Input.GetKeyDown(KeyCode.A) && indexNote == 1 && !switchOver && canDie)
         {
             checkAccuracy();
-            DoubleSpawn();
-            if (!switchOver)
+            if (accuracy != 0)
+                DoubleSpawn();
+            if (!switchOver && accuracy != 0)
                 Destroy(gameObject);
         }
         if (Input.GetKeyDown(KeyCode.D) && indexNote == 3 && !switchOver && canDie)
         {
             checkAccuracy();
-            DoubleSpawn();
-            if (!switchOver)
+            if (accuracy != 0)
+                DoubleSpawn();
+            if (!switchOver && accuracy != 0)
                 Destroy(gameObject);
         }
 
@@ -120,7 +124,7 @@ public class NoteTracker : MonoBehaviour {
         accuracy++;
 
         //Otherwise you miss
-        if (accuracy == 5)
+        if (accuracy == 3)
         {
             scriptNote.miss++;
             Destroy(gameObject);
@@ -159,22 +163,15 @@ public class NoteTracker : MonoBehaviour {
         if (accuracy == 0)
         {
             scriptNote.miss++;
-            Destroy(gameObject);
             scriptNote.hitText.text = "Miss!";
         }
-        if (accuracy == 1)
-        {
-            scriptNote.hitText.text = "Good?";
-            scriptNote.good++;
-            scriptNote.score.addScore(2);
-        }
-        else if (accuracy == 2 || accuracy == 4)
+        else if (accuracy == 1)
         {
             scriptNote.hitText.text = "Great.";
             scriptNote.great++;
             scriptNote.score.addScore(5);
         }
-        else if (accuracy == 3)
+        else if (accuracy == 2)
         {
             scriptNote.hitText.text = "Perfect!";
             scriptNote.perfect++;
@@ -225,7 +222,7 @@ public class NoteTracker : MonoBehaviour {
         //if w or s key
         if (ws)
         {
-            if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.003f)
+            if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.01f)
             {
                 transform.position = keyLoc.transform.position;
                 //accuracy = 3;
@@ -240,12 +237,12 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 7);
-            if (transform.position.y <= 0.4f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
+            if (transform.position.y <= 0.1f)
             {
                 if (Input.GetKeyDown(input))
                 {
-                    accuracy = 3;
+                    accuracy = 2;
                     checkAccuracy();
                     scriptNote.dub--;
                     Destroy(gameObject);
@@ -254,7 +251,7 @@ public class NoteTracker : MonoBehaviour {
         }
         else if (ad)
         {
-            if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.003f)
+            if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.01f)
             {
                 transform.position = keyLoc.transform.position;
                 //accuracy = 3;
@@ -269,12 +266,12 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, (Time.time - startSlerp) / speed * 7);
-            if (transform.position.x <= 0.4f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
+            if (transform.position.x <= 0.1f)
             {
                 if (Input.GetKeyDown(input))
                 {
-                    accuracy = 3;
+                    accuracy = 2;
                     checkAccuracy();
                     scriptNote.dub--;
                     Destroy(gameObject);

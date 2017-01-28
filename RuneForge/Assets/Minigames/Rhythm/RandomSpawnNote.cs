@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using SynchronizerData;
 using System.IO;
 using System.Text;
 using UnityEngine.UI;
@@ -15,17 +14,17 @@ public class RandomSpawnNote : MonoBehaviour
     //private BeatObserver beatObserver;
     //private int beatCounter;
 
-
+    public double musicSync;
+    private double offset;
     //Read with these
     [HideInInspector]
     public TextAsset beatTime;
     private int counter = 0;
-    private List<float> readTime;
+    private List<double> readTime;
     public string songName;
-    private float startTime;
     public bool songStart = false;
     public int dub = 0;
-
+    
     //UI Text
     public Score score;
     public Text hitText;
@@ -38,36 +37,34 @@ public class RandomSpawnNote : MonoBehaviour
         keyNotes = new List<List<GameObject>>();
         for (int i = 0; i < 4; i++)
             keyNotes.Add(new List<GameObject>());
-        startTime = Time.time;
-        //beatObserver = GetComponent<BeatObserver>();
-        //beatCounter = 0;
         songName = "monkeyClap";
 
         //reading stuff
-        readTime = new List<float>();
+        readTime = new List<double>();
         beatTime = Resources.Load("Beatmaps/" + songName, typeof(TextAsset)) as TextAsset;
 
         foreach (string f in beatTime.text.Split())
         {
-            float num;
-            if (float.TryParse(f, out num))
+            double num;
+            if (double.TryParse(f, out num))
                 readTime.Add(num);
         }
+        offset = AudioSettings.dspTime - readTime[0];
+        counter++;        
+        GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime + musicSync);
     }
 
     void Update()
-    {
+    {       
         track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
-        if (counter >= readTime.Count && !GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
+        if (counter >= readTime.Count && !GetComponent<AudioSource>().isPlaying)
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
 
         if (counter < readTime.Count)
         {
-            if (counter >= 1)
-                songStart = true;
-            if (Time.time > readTime[counter] + startTime)
+            if (AudioSettings.dspTime - offset >= readTime[counter])
             {
                 if (counter + 1 < readTime.Count)
                 {
