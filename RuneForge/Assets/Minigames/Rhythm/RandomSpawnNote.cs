@@ -23,6 +23,7 @@ public class RandomSpawnNote : MonoBehaviour
     private List<double> readTime;
     public string songName;
     public bool songStart = false;
+    [HideInInspector]
     public int dub = 0;
     
     //UI Text
@@ -50,12 +51,13 @@ public class RandomSpawnNote : MonoBehaviour
                 readTime.Add(num);
         }
         offset = AudioSettings.dspTime - readTime[0];
-        counter++;        
+        counter++;
+        GetComponent<AudioSource>().enabled = true;
         GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime + musicSync);
     }
 
     void Update()
-    {       
+    {
         track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
         if (counter >= readTime.Count && !GetComponent<AudioSource>().isPlaying)
         {
@@ -68,7 +70,6 @@ public class RandomSpawnNote : MonoBehaviour
             {
                 if (counter + 1 < readTime.Count)
                 {
-                    Debug.Log(readTime[counter + 1] - readTime[counter]);
                     if (readTime[counter + 1] - readTime[counter] < 0.25f)
                     {
                         if (Random.Range(1, 3) == 1 && dub < 1)

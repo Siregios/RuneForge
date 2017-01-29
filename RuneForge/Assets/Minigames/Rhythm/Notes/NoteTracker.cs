@@ -243,7 +243,7 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.75f);
             if (transform.position.x <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
@@ -270,7 +270,7 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.75f);
             if (transform.position.y <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
