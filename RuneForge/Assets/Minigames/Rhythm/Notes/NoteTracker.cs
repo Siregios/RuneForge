@@ -13,7 +13,7 @@ public class NoteTracker : MonoBehaviour {
     //ALL FOR DOUBLE NOTES
     public Sprite[] doubleSprite;
     float startSlerp;
-    float timerDouble = 0.1f;
+    float timerDouble = 0.2f;
     SpriteRenderer noteSprite;
 
 
@@ -244,7 +244,7 @@ public class NoteTracker : MonoBehaviour {
             }
             else            
                 transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
-            if (transform.position.x <= 0.15f)
+            if (transform.position.x <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
                 {
@@ -271,7 +271,7 @@ public class NoteTracker : MonoBehaviour {
             }
             else
                 transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
-            if (transform.position.y <= 0.15f)
+            if (transform.position.y <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
                 {

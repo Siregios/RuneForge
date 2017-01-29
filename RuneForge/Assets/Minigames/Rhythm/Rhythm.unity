@@ -479,7 +479,7 @@ MonoBehaviour:
   - {fileID: 1000013872886826, guid: cacfebd5d3dcfdb409bdbf65d41e197a, type: 2}
   - {fileID: 1000011510921030, guid: 5d8b50d6c490bbf4ebbd424299aa9e30, type: 2}
   randomInt: 0
-  musicSync: 2.35
+  musicSync: 2.3
   beatTime: {fileID: 0}
   songName: monkeyClap
   songStart: 0
