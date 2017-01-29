@@ -58,6 +58,7 @@ public class ItemListUI : MonoBehaviour
     void Start()
     {
         defaultList = ItemCollection.FilterItemList(defaultFilter);
+        filterString = defaultFilter;
         DisplayNewFilter(filterString);
     }
 
@@ -165,7 +166,7 @@ public class ItemListUI : MonoBehaviour
         }
         else
         {
-            this.filterString = "ALL";
+            this.filterString = defaultFilter;
         }
 
         DisplayNewFilter(this.filterString);

@@ -127,7 +127,10 @@ public static class ItemCollection
             else if (lowerFilter.Contains("baseproducts") && (item.Class == "Product" || item.Class == "Rune"))
                 result.Add(item);
             else if (lowerFilter.Contains("allproducts") && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
+            {
                 result.Add(item);
+                Debug.Log("Here");
+            }
             else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
                 result.Add(item);
             else if (lowerFilter == "rune" && item.ingredientType.Contains("Rune"))
