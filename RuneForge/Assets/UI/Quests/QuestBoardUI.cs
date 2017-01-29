@@ -20,22 +20,28 @@ public class QuestBoardUI : MonoBehaviour {
         padY = -70;
     }
 
-    void OnEnable()
+    public void Enable(bool active)
     {
-        DisplayBoard();
-        MasterGameManager.instance.uiManager.uiOpen = true;
+        this.gameObject.SetActive(active);
+        MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
+        //MasterGameManager.instance.uiManager.uiOpen = active;
+        //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
+        //MasterGameManager.instance.interactionManager.canInteract = !active;
     }
 
-    void OnDisable()
-    {
-        MasterGameManager.instance.uiManager.uiOpen = false;
-    }
+    //void OnEnable()
+    //{
+    //    DisplayBoard();
+    //    MasterGameManager.instance.uiManager.uiOpen = true;
+    //}
+
+    //void OnDisable()
+    //{
+    //    MasterGameManager.instance.uiManager.uiOpen = false;
+    //}
 
     public void DisplayBoard()
     {
-        //if (currentDisplayedDay == MasterGameManager.instance.actionClock.Day)
-        //    return;
-
         objCount = 0;
         Debug.Log(MasterGameManager.instance.questGenerator.currentQuests.Count);
         foreach(Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
@@ -71,13 +77,6 @@ public class QuestBoardUI : MonoBehaviour {
         //    //newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
         //}
         //currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
-    }
-
-    public void Enable(bool active)
-    {
-        this.gameObject.SetActive(active);
-        MasterGameManager.instance.uiManager.uiOpen = active;
-        MasterGameManager.instance.interactionManager.canInteract = !active;        
     }
 
     public void turnInQuest(GameObject quest, GameObject item)

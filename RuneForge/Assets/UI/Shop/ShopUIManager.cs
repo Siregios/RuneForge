@@ -24,9 +24,10 @@ public class ShopUIManager : MonoBehaviour {
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
-        MasterGameManager.instance.uiManager.uiOpen = active;
-        MasterGameManager.instance.interactionManager.canInteract = !active;
-        menuBar.SetActive(!active);
+        MasterGameManager.instance.uiManager.Enable(this.gameObject, active, true);
+        //MasterGameManager.instance.uiManager.uiOpen = active;
+        //MasterGameManager.instance.interactionManager.canInteract = !active;
+        //menuBar.SetActive(!active);
         if (active)
             audioManager.PlaySound(9);
         else

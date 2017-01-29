@@ -13,8 +13,10 @@ public class MinigamePageUI : MonoBehaviour {
     {
         this.gameObject.SetActive(active);
         clipboard.Enable(active);
-        MasterGameManager.instance.uiManager.uiOpen = active;
-        MasterGameManager.instance.interactionManager.canInteract = !active;
+        MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
+        //MasterGameManager.instance.uiManager.uiOpen = active;
+        //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
+        //MasterGameManager.instance.interactionManager.canInteract = !active;
     }
 
     void Update()

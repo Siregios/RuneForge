@@ -8393,12 +8393,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1721997685 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012736444942, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1843394425}
-  m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
 --- !u!1 &1764055253
 GameObject:
   m_ObjectHideFlags: 0
@@ -8763,51 +8757,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011846593552, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: menuBar
-      value: 
-      objectReference: {fileID: 165569158}
-    - target: {fileID: 224000013411574138, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013634725434, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011882941184, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011198853826, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012736444942, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: defaultFilter
-      value: AllProducts
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012736444942, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: displayZeroCountItems
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014211784770, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011846593552, guid: 4f573761fbfb8ad49ba40b940dd658b3,
-        type: 2}
-      propertyPath: productList
-      value: 
-      objectReference: {fileID: 1721997685}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f573761fbfb8ad49ba40b940dd658b3, type: 2}
   m_IsPrefabParent: 0
