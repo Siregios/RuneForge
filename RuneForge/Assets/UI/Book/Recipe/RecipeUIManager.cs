@@ -28,17 +28,7 @@ public class RecipeUIManager : MonoBehaviour {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    public void Enable(bool active)
-    {
-        this.gameObject.SetActive(active);
-    }
-
-    void OnDisable()
-    {
-        ImportProductMode();
-    }
-
-    void Start()
+    void OnEnable()
     {
         ImportProductMode();
     }
@@ -52,7 +42,6 @@ public class RecipeUIManager : MonoBehaviour {
     public void ImportProductMode()
     {
         ingredientItemList.gameObject.SetActive(false);
-        
         productItemList.gameObject.SetActive(true);
         productItem = null;
         RemoveAllIngredients(true);

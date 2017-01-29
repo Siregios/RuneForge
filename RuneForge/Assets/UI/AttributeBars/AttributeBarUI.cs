@@ -14,12 +14,14 @@ public class AttributeBarUI : MonoBehaviour {
 
     public void SetBar(int attributeLevel)
     {
-        bar.sizeDelta = new Vector2(barMaxWidth * ((float)attributeLevel / Item.maxAttributeLevel), bar.rect.height);
+        float barWidth = Mathf.Min(barMaxWidth * ((float)attributeLevel / Item.maxAttributeLevel), barMaxWidth);
+        bar.sizeDelta = new Vector2(barWidth, bar.rect.height);
     }
 
     public void SetPlaceholderBar(int level)
     {
-        placeholderBar.sizeDelta = new Vector2(barMaxWidth * ((float)level / Item.maxAttributeLevel), bar.rect.height);
+        float barWidth = Mathf.Min(barMaxWidth * ((float)level / Item.maxAttributeLevel), barMaxWidth);
+        placeholderBar.sizeDelta = new Vector2(barWidth, bar.rect.height);
     }
 
     public void SetText(string text)

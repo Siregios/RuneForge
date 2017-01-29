@@ -4,17 +4,14 @@ using System.Collections.Generic;
 
 public class AttrBarGroup : MonoBehaviour {
     public AttributeBarUI fireBar, waterBar, earthBar, airBar;
-    Dictionary<string, AttributeBarUI> barDict;
+    Dictionary<string, AttributeBarUI> barDict = new Dictionary<string, AttributeBarUI>();
 
     void Awake()
     {
-        barDict = new Dictionary<string, AttributeBarUI>()
-        {
-            { "Fire", fireBar },
-            { "Water", waterBar },
-            { "Earth", earthBar },
-            { "Air", airBar }
-        };
+        barDict["Fire"] = fireBar;
+        barDict["Water"] = waterBar;
+        barDict["Earth"] = earthBar;
+        barDict["Air"] = airBar;
     }
 
     void Start()

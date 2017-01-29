@@ -10,11 +10,11 @@ public class ClipboardUI : MonoBehaviour
     public List<WorkOrderButton> buttonList = new List<WorkOrderButton>();
     public GameObject clipboardArea;
 
-    //void OnEnable()
-    //{
-    //    DisplayBoard();
-    //    MasterGameManager.instance.uiManager.uiOpen = true;
-    //}
+    void OnEnable()
+    {
+        DisplayBoard();
+        //MasterGameManager.instance.uiManager.uiOpen = true;
+    }
 
     //void OnDisable()
     //{
@@ -25,12 +25,12 @@ public class ClipboardUI : MonoBehaviour
     //{
     //    DisplayBoard();
     //}
-    public void Enable(bool active)
-    {
-        this.gameObject.SetActive(active);
-        if (active)
-            DisplayBoard();
-    }
+    //public void Enable(bool active)
+    //{
+    //    this.gameObject.SetActive(active);
+    //    if (active)
+    //        DisplayBoard();
+    //}
 
     void DisplayBoard()
     {

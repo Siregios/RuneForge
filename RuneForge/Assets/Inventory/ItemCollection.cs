@@ -17,7 +17,7 @@ public static class ItemCollection
         {
             item.icon = Resources.Load<Sprite>("ItemSprites/" + item.name);
 
-            if ((item.Class == "Ingredient" || item.Class == "Rune") && item.provtAttrStr != null)
+            if (/*(item.Class == "Ingredient" || item.Class == "Rune") && */item.provtAttrStr != null)
             {
                 item.providedAttributes.Add("Fire", 0);
                 item.providedAttributes.Add("Water", 0);
@@ -43,36 +43,38 @@ public static class ItemCollection
                 }
             }
 
-            if (item.Class == "Product" || item.Class == "Rune")
+
+            if (item.recipeString != null)
             {
-                if (item.recipeString != null)
+                foreach (string pairString in item.recipeString.Trim().Split(','))
                 {
-                    foreach (string pairString in item.recipeString.Trim().Split(','))
-                    {
-                        var pair = pairString.Trim().Split(':');
-                        item.recipe.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
-                    }
+                    var pair = pairString.Trim().Split(':');
+                    item.recipe.Add(pair[0].Trim(), int.Parse(pair[1].Trim()));
                 }
-
-                if (item.reqAttrStr != null)
-                {
-                    item.requiredAttributes.Add("Fire", 0);
-                    item.requiredAttributes.Add("Water", 0);
-                    item.requiredAttributes.Add("Earth", 0);
-                    item.requiredAttributes.Add("Air", 0);
-
-                    foreach (string pairString in item.reqAttrStr.Trim().Split(','))
-                    {
-                        var pair = pairString.Trim().Split(':');
-                        item.requiredAttributes[pair[0].Trim()] = int.Parse(pair[1].Trim());
-                    }
-                }
-
-                CreateImprovedProducts(item);
             }
+
+            if (item.reqAttrStr != null)
+            {
+                item.requiredAttributes.Add("Fire", 0);
+                item.requiredAttributes.Add("Water", 0);
+                item.requiredAttributes.Add("Earth", 0);
+                item.requiredAttributes.Add("Air", 0);
+
+                foreach (string pairString in item.reqAttrStr.Trim().Split(','))
+                {
+                    var pair = pairString.Trim().Split(':');
+                    item.requiredAttributes[pair[0].Trim()] = int.Parse(pair[1].Trim());
+                }
+            }
+            
 
             itemList.Add(item);
             itemDict.Add(item.name, item);
+
+            if (item.Class == "Product" || item.Class == "Rune")
+            {
+                CreateImprovedProducts(item);
+            }
         }
     }
 
@@ -116,7 +118,7 @@ public static class ItemCollection
 
     public static List<Item> FilterSpecificList(List<Item> specificList, string filter)
     {
-        string lowerFilter = filter.Trim().ToLower();
+        string lowerFilter = filter.Trim().ToLower().Replace(" ", string.Empty);
 
         if (lowerFilter.Contains("all"))
             return itemList;
@@ -127,9 +129,11 @@ public static class ItemCollection
         {
             if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
                 result.Add(item);
-            else if (lowerFilter.Contains("baseproducts") && (item.Class == "Product" || item.Class == "Rune"))
+            else if (lowerFilter.Contains("baseproduct") && (item.Class == "Product" || item.Class == "Rune"))
                 result.Add(item);
-            else if (lowerFilter.Contains("allproducts") && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
+            else if (lowerFilter.Contains("improvedproduct") && (item.Class == "ImprovedProduct"))
+                result.Add(item);
+            else if (lowerFilter == "product" && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
                 result.Add(item);
             else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
                 result.Add(item);

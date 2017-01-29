@@ -22,6 +22,7 @@ public class QuestBoardUI : MonoBehaviour {
 
     public void Enable(bool active)
     {
+        DisplayBoard();
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
         //MasterGameManager.instance.uiManager.uiOpen = active;
@@ -47,13 +48,13 @@ public class QuestBoardUI : MonoBehaviour {
         foreach(Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
         {            
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
-            newQuest.GetComponent<QuestNote>().quest = quest;
-            questObjects.Add(newQuest);
             newQuest.transform.SetParent(this.transform);
             newQuest.transform.localScale = Vector3.one;
-            newQuest.transform.SetAsFirstSibling();
             float yPosNew = yPos + (padY * objCount);
             newQuest.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
+            newQuest.GetComponent<QuestNote>().quest = quest;
+            questObjects.Add(newQuest);
+            //newQuest.transform.SetAsFirstSibling();
             newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;           
             newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.product.icon;
             newQuest.transform.FindChild("QuestGold").transform.FindChild("GoldInfo").GetComponent<Text>().text = "x" + quest.gold;

@@ -47,16 +47,16 @@ public class BookUI : MonoBehaviour {
     public void DisplayRecipe()
     {
         Enable(true);
-        recipe.Enable(true);
-        clipboard.Enable(false);
+        recipe.gameObject.SetActive(true);
+        clipboard.gameObject.SetActive(false);
         currentSection = BookSection.RECIPE;
     }
 
     public void DisplayClipboard()
     {
         Enable(true);
-        recipe.Enable(false);
-        clipboard.Enable(true);
+        recipe.gameObject.SetActive(false);
+        clipboard.gameObject.SetActive(true);
         currentSection = BookSection.CLIPBOARD;
     }
 }

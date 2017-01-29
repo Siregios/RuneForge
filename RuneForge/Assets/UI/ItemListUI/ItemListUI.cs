@@ -15,6 +15,7 @@ public class ItemListUI : MonoBehaviour
     
     public float padX = 10, padY = 20;
     List<Item> defaultList = new List<Item>();
+    List<Item> itemList = new List<Item>();
     List<Action<Item>> buttonClickFunctions = new List<Action<Item>>();
 
     InputField searchInput;
@@ -65,7 +66,8 @@ public class ItemListUI : MonoBehaviour
     void LateUpdate()
     {
         previousPageButton.interactable = (currentPage > 0);
-        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage < buttonList.Count);
+        nextPageButton.interactable = ((currentPage + 1) * buttonsPerPage <= itemList.Count);
+        //Debug.Log(buttonList.Count);
     }
 
     public void AddButtonFunction(Action<Item> clickFunction)
@@ -73,31 +75,16 @@ public class ItemListUI : MonoBehaviour
         buttonClickFunctions.Add(clickFunction);
     }
 
-    void DisplayPage(int page, string filter)
+    void DisplayPage(string filter)
     {
         ClearPage();
 
-        List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
-        List<Item> itemList = new List<Item>();
-        if (!displayZeroCountItems)
-        {
-            foreach (Item item in filteredItems)
-            {
-                if (referenceInventory.GetItemCount(item) > 0)
-                    itemList.Add(item);
-            }
-        }
-        else
-        {
-            itemList = filteredItems;
-        }
-
         for (int i = 0; i < buttonsPerPage; i++)
         {
-            if ((page * buttonsPerPage) + i >= itemList.Count)
+            if ((currentPage * buttonsPerPage) + i >= itemList.Count)
                 return;
 
-            string itemID = itemList[(page * buttonsPerPage) + i].name;
+            string itemID = itemList[(currentPage * buttonsPerPage) + i].name;
 
             float xPos = (i % columns) * (buttonWidth + padX);
             float yPos = -(i / columns) * (buttonHeight + padY);
@@ -133,29 +120,27 @@ public class ItemListUI : MonoBehaviour
 
     public void RefreshPage()
     {
-        DisplayPage(currentPage, filterString);
+        DisplayPage(filterString);
     }
 
     public void ClickPreviousPage()
     {
         currentPage--;
-        DisplayPage(currentPage, filterString);
+        DisplayPage(filterString);
     }
 
     public void ClickNextPage()
     {
         currentPage++;
-        DisplayPage(currentPage, filterString);
+        DisplayPage(filterString);
     }
 
     public void ClickFilterButton(FilterInventoryButton filterButton)
     {
         filterToggles[filterButton.filterString] = filterButton;
-
         if (filterButton.isPressed)
         {
             this.filterString = filterButton.filterString;
-
             foreach (KeyValuePair<string, FilterInventoryButton> kvp in filterToggles)
             {
                 if (kvp.Key != filterString)
@@ -168,22 +153,36 @@ public class ItemListUI : MonoBehaviour
         {
             this.filterString = defaultFilter;
         }
-
         DisplayNewFilter(this.filterString);
-        
     }
 
     public void OnSearchSubmit()
     {
-        //this.filterString = searchInput.text;
         DisplayNewFilter(searchInput.text);
     }
 
-    public void DisplayNewFilter(string filter)
+    void DisplayNewFilter(string filter)
     {
         this.filterString = filter;
+
+        List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
+        itemList.Clear();
+
+        if (!displayZeroCountItems)
+        {
+            foreach (Item item in filteredItems)
+            {
+                if (referenceInventory.GetItemCount(item) > 0)
+                    itemList.Add(item);
+            }
+        }
+        else
+        {
+            itemList = filteredItems;
+        }
+
         currentPage = 0;
-        DisplayPage(currentPage, filterString);
+        DisplayPage(filterString);
         searchInput.text = this.filterString;
     }
 }

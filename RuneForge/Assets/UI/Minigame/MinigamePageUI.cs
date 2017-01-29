@@ -12,7 +12,7 @@ public class MinigamePageUI : MonoBehaviour {
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
-        clipboard.Enable(active);
+        clipboard.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
         //MasterGameManager.instance.uiManager.uiOpen = active;
         //MasterGameManager.instance.uiManager.EnableMenuBar(!active);

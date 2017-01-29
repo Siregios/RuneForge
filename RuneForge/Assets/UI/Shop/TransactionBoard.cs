@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TransactionBoard : MonoBehaviour {
+public class TransactionBoard : MonoBehaviour
+{
     private AudioManager AudioManager;
     private ShopUIManager shopManager;
 
@@ -59,15 +60,12 @@ public class TransactionBoard : MonoBehaviour {
                 break;
         }
 
-        if (item.Class == "Ingredient" || item.Class == "Rune")
+        attributeBars.Clear();
+        foreach (var kvp in item.providedAttributes)
         {
-            attributeBars.Clear();
-            foreach (var kvp in item.providedAttributes)
-            {
-                Debug.LogFormat("{0}: {1}", kvp.Key, kvp.Value);
-                attributeBars.SetBar(kvp.Key, kvp.Value);
-                attributeBars.SetText(kvp.Key, kvp.Value.ToString());
-            }
+            Debug.LogFormat("{0}: {1}", kvp.Key, kvp.Value);
+            attributeBars.SetBar(kvp.Key, kvp.Value);
+            attributeBars.SetText(kvp.Key, kvp.Value.ToString());
         }
     }
 
