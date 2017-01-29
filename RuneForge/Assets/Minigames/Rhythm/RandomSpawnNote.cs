@@ -64,11 +64,12 @@ public class RandomSpawnNote : MonoBehaviour
 
         if (counter < readTime.Count)
         {
-            if (AudioSettings.dspTime - offset >= readTime[counter])
+            if (Mathf.Abs((float)AudioSettings.dspTime - (float)offset) >= readTime[counter])
             {
                 if (counter + 1 < readTime.Count)
                 {
-                    if (readTime[counter + 1] - readTime[counter] < 0.5f)
+                    Debug.Log(readTime[counter + 1] - readTime[counter]);
+                    if (readTime[counter + 1] - readTime[counter] < 0.25f)
                     {
                         if (Random.Range(1, 3) == 1 && dub < 1)
                         {

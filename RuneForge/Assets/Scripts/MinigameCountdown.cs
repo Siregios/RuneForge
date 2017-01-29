@@ -7,14 +7,9 @@ public class MinigameCountdown : MonoBehaviour {
     int max = 3;
     int count;
     public GameObject[] activate;
-    
 	void Start () {
         StartGame(false);
         StartCoroutine(Countdown(max));
-	}
-	
-
-	void Update () {	    
 	}
 
     IEnumerator Countdown(int seconds)
@@ -23,7 +18,7 @@ public class MinigameCountdown : MonoBehaviour {
         while (count > -1)
         {
             if (count == 3)
-                GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime);
+                GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime+0.25f);
             if (count == 0)
                 GetComponent<Text>().text = "Go!";
             else

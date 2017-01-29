@@ -30,6 +30,10 @@ public class NoteTracker : MonoBehaviour {
         {
             canDie = true;
         }
+        else
+        {
+            canDie = false;
+        }
 
         //Checks for double note
         if (switchOver)
@@ -44,10 +48,10 @@ public class NoteTracker : MonoBehaviour {
             }
             else if (ws && noteSprite.sprite == doubleSprite[0])
             {
-                GameObject aKey = GameObject.Find("d_key");
+                GameObject dKey = GameObject.Find("d_key");
                 indexNote = 3;
                 scriptNote.keyNotes[indexNote].Insert(0, gameObject);
-                doubleNoteEvent(aKey, KeyCode.D);                
+                doubleNoteEvent(dKey, KeyCode.D);                
             }
             else if (ad && noteSprite.sprite == doubleSprite[0])
             {
@@ -61,6 +65,10 @@ public class NoteTracker : MonoBehaviour {
                 GameObject sKey = GameObject.Find("s_key");
                 indexNote = 2;
                 scriptNote.keyNotes[indexNote].Insert(0, gameObject);
+                if (gameObject == scriptNote.keyNotes[indexNote][0])
+                {
+                    Debug.Log("yes");
+                }
                 doubleNoteEvent(sKey, KeyCode.S);               
             }
         }
@@ -224,8 +232,6 @@ public class NoteTracker : MonoBehaviour {
         {
             if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.01f)
             {
-                transform.position = keyLoc.transform.position;
-                //accuracy = 3;
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
                 {
@@ -237,8 +243,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
-            if (transform.position.y <= 0.1f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
+            if (transform.position.x <= 0.15f)
             {
                 if (Input.GetKeyDown(input))
                 {
@@ -253,8 +259,6 @@ public class NoteTracker : MonoBehaviour {
         {
             if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.01f)
             {
-                transform.position = keyLoc.transform.position;
-                //accuracy = 3;
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
                 {
@@ -266,8 +270,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
-            if (transform.position.x <= 0.1f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.5f);
+            if (transform.position.y <= 0.15f)
             {
                 if (Input.GetKeyDown(input))
                 {
