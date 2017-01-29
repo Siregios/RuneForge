@@ -18,7 +18,6 @@ public class RuneCollision : MonoBehaviour {
         //Check to see if correct collision with right rune
         if (gameObject.tag == other.gameObject.tag)
         {            
-
             StartCoroutine(Animation_Success(other));            
         }
         else if (other.gameObject.transform.parent.name != "ItemSet")
@@ -58,7 +57,6 @@ public class RuneCollision : MonoBehaviour {
             }
         }
         //Allocate score and subtract current spawn, remove children and destroy rune object            
-        managerScript.currentSpawn--;
         other.gameObject.transform.parent.gameObject.SetActive(false);
         Destroy(other.gameObject);
         Destroy(delMatch);
@@ -90,7 +88,6 @@ public class RuneCollision : MonoBehaviour {
                 child.GetComponent<SortMove>().moveDown = true;
             }
         }
-        managerScript.currentSpawn--;
         other.gameObject.transform.parent.gameObject.SetActive(false);
         Destroy(other.gameObject);
         Destroy(delMatch);

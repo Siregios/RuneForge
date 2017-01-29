@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SortMove : MonoBehaviour {
 
-    public bool moveUp;
-    public bool moveDown;
+    public bool moveUp = false;
+    public bool moveDown = false;
     public bool changeColor = true;
     public float timerSet = 3f;
     public float timer;
@@ -63,7 +63,6 @@ public class SortMove : MonoBehaviour {
             {                
                 managerScript.score.subScore(5);
                 moveDown = true;
-                managerScript.currentSpawn--;
                 transform.parent.gameObject.SetActive(false);
                 transform.parent.DetachChildren();
                 matchedOn = true;
@@ -99,6 +98,11 @@ public class SortMove : MonoBehaviour {
                 changeColor = true;
                 moveDown = false;
                 transform.position = new Vector3(transform.position.x, -7f, 0);
+                managerScript.currentSpawn--;
+                managerScript.characterSpawn.Add(managerScript.WAKEMEUPINSIDE[1]);
+                managerScript.WAKEMEUPINSIDE.RemoveAt(1);
+                managerScript.bubbleSpawn.Add(managerScript.WAKEMEUPINSIDE[0]);
+                managerScript.WAKEMEUPINSIDE.RemoveAt(0);
             }
         }
 

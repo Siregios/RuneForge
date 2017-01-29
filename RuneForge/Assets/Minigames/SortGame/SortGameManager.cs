@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class SortGameManager : MonoBehaviour {
@@ -24,8 +25,17 @@ public class SortGameManager : MonoBehaviour {
     Vector3 oldPos;
     
     //Intervals to how fast bubbles will spawn    
-    float timeToSpawn = 1f;
+    float timeToSpawn = 1.5f;
     float time;
+    public List<int> WAKEMEUPINSIDE = new List<int>();
+    [HideInInspector]
+    public List<int> bubbleSpawn = new List<int>();
+    [HideInInspector]
+    public List<int> characterSpawn = new List<int>();
+    bool again = false;
+    bool againSame = false;
+    bool loopOnce = false;
+    bool running = false;
 
     public Timer timer;
     public Score score;
@@ -38,6 +48,11 @@ public class SortGameManager : MonoBehaviour {
 
     void Start () {
         time = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            bubbleSpawn.Add(i);
+            characterSpawn.Add(i);
+        }
     }
 		
 	void Update () {
@@ -46,22 +61,34 @@ public class SortGameManager : MonoBehaviour {
             music.Play();
             musicOn = true;
         }
+
+        if (timer.time <= 20)        
+            timeToSpawn = 2f;
+        if (timer.time <= 10)
+            timeToSpawn = 2.25f;
+
         if (timer.timeEnd)
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
+
         //Check if any characters are requesting an item.
-        if (currentSpawn < 3 && time <= 0)
+        if (currentSpawn < 3 && time <= 0 && !running)
         {
+            running = true;
             spawnTarget();
         }
 
         //Otherwise subtract timer while we still needa spawn more stuff OKAY EFREN JESUS I WAS JUST TRYING TO EXPLAIN THIS PART TO YOU OKAY?
-        if (currentSpawn < 3)
+        else if (currentSpawn < 3 && time > 0)
         {
             time -= Time.deltaTime;
         }
 
+        else if (currentSpawn == 3 && time <= 0)
+        {
+            time = timeToSpawn;
+        }
 
 
         //On click, check if you clicked on rune by tag and if so then grab it.
@@ -128,49 +155,79 @@ public class SortGameManager : MonoBehaviour {
     }
 
     public void spawnTarget()
-    {
-        int randomInt = 0;
-        bool check = true;
-        while (check)
-        {        
-            randomInt = Random.Range(0, 3);
-            if (bubbles[randomInt].activeSelf == false)
+    {        
+        if (bubbleSpawn.Count > 0 && currentSpawn < 3)
+        {
+            int randomInt = bubbleSpawn[Random.Range(0, bubbleSpawn.Count)];
+            bubbles[randomInt].SetActive(true);
+            bubbleSpawn.Remove(randomInt);
+            WAKEMEUPINSIDE.Add(randomInt);
+
+            //Sets invisible
+            Color tmp = bubbles[randomInt].GetComponent<SpriteRenderer>().color;
+            tmp.a = 0f;
+            bubbles[randomInt].GetComponent<SpriteRenderer>().color = tmp;
+
+            //Spawns rune
+            time = timeToSpawn;
+            int randomRune = Random.Range(0, 4);
+            GameObject spawnedRune = (GameObject)Instantiate(runes[randomRune], bubbles[randomInt].transform.position, Quaternion.identity);
+            spawnedRune.transform.parent = bubbles[randomInt].transform;
+            spawnedRune.SetActive(false);                
+
+            //Placeholder to fit the object in bubble
+            spawnedRune.transform.position = new Vector3(spawnedRune.transform.position.x, spawnedRune.transform.position.y + 0.5f, spawnedRune.transform.position.z);
+            spawnCharacter(randomInt);
+            if (timer.time <= 20 && timer.time > 10 && !loopOnce)
             {
-                check = false;
-                bubbles[randomInt].SetActive(true);
-                //Sets invisible
-                Color tmp = bubbles[randomInt].GetComponent<SpriteRenderer>().color;
-                tmp.a = 0f;
-                bubbles[randomInt].GetComponent<SpriteRenderer>().color = tmp;
-
-                //Spawns rune
-                time = timeToSpawn;
-                int randomRune = Random.Range(0, 4);
-                GameObject spawnedRune = (GameObject)Instantiate(runes[randomRune], bubbles[randomInt].transform.position, Quaternion.identity);
-                spawnedRune.transform.parent = bubbles[randomInt].transform;
-                spawnedRune.SetActive(false);
-                currentSpawn++;
-
-                //Placeholder to fit the object in bubble
-                spawnedRune.transform.position = new Vector3(spawnedRune.transform.position.x, spawnedRune.transform.position.y + 0.5f, spawnedRune.transform.position.z);
+                again = true;
+                loopOnce = true;
+            }
+            else if (timer.time <= 10 && !loopOnce)
+            {
+                again = true;
+                againSame = true;
+                loopOnce = true;
             }
         }
-        spawnCharacter(randomInt);        
+        else
+        {
+            again = false;
+            againSame = false;
+            running = false;
+            loopOnce = false;
+        }
     }
 
     void spawnCharacter(int i)
     {
-        bool check = true;
-        while (check)
+        if (characterSpawn.Count > 0 && currentSpawn < 3)
         {
-            int randomChar = Random.Range(0, 3);
+            int randomChar = characterSpawn[Random.Range(0, characterSpawn.Count)];
             if (characters[randomChar].transform.position.y == charY)
             {
-                check = false;
+                characterSpawn.Remove(randomChar);
+                WAKEMEUPINSIDE.Add(randomChar);
+                currentSpawn++;
                 characters[randomChar].transform.position = new Vector3(bubbles[i].transform.position.x, charY, 0);
                 characters[randomChar].GetComponent<SortMove>().moveUp = true;
                 characters[randomChar].transform.parent = bubbles[i].transform;
+                if (again)
+                {
+                    spawnTarget();
+                    again = false;
+                }
+                else if (againSame)
+                {
+                    spawnTarget();
+                    againSame = false;
+                }
             }
+        }
+        if (!again && !againSame)
+        {
+            running = false;
+            loopOnce = false;
         }
     }
 }

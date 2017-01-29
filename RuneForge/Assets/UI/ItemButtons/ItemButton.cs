@@ -92,11 +92,11 @@ public class ItemButton : MonoBehaviour
                 }
             }
 
-            else {
+            else if (!followingMouse){
                 DragCopy();              
             }
         }
-        else {
+        else if (!followingMouse){
             DragCopy();
         }
     }
