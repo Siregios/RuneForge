@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RuneCollision : MonoBehaviour {
+public class RuneCollision : MonoBehaviour
+{
 
     public GameObject GameManager;
     public GameObject matched;
@@ -9,16 +10,18 @@ public class RuneCollision : MonoBehaviour {
     SortGameManager managerScript;
     float timeToDel = 0.8f;
 
-    void Start () {
+    void Start()
+    {
         managerScript = GameManager.GetComponent<SortGameManager>();
-	}
-    
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         //Check to see if correct collision with right rune
         if (gameObject.tag == other.gameObject.tag)
-        {            
-            StartCoroutine(Animation_Success(other));            
+        {
+
+            StartCoroutine(Animation_Success(other));
         }
         else if (other.gameObject.transform.parent.name != "ItemSet")
         {
@@ -30,7 +33,7 @@ public class RuneCollision : MonoBehaviour {
     {
         managerScript.AudioManager.PlaySound((int)Random.Range(0, 2));
         //This code will allocate score first and reset cursor and object position.
-        managerScript.score.addScore(25);        
+        managerScript.score.addScore(25);
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);
@@ -57,6 +60,7 @@ public class RuneCollision : MonoBehaviour {
             }
         }
         //Allocate score and subtract current spawn, remove children and destroy rune object            
+        managerScript.currentSpawn--;
         other.gameObject.transform.parent.gameObject.SetActive(false);
         Destroy(other.gameObject);
         Destroy(delMatch);
@@ -88,6 +92,7 @@ public class RuneCollision : MonoBehaviour {
                 child.GetComponent<SortMove>().moveDown = true;
             }
         }
+        managerScript.currentSpawn--;
         other.gameObject.transform.parent.gameObject.SetActive(false);
         Destroy(other.gameObject);
         Destroy(delMatch);
