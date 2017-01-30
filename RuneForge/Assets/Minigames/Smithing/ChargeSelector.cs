@@ -12,7 +12,6 @@ public class ChargeSelector : MonoBehaviour {
     private int mashCount = 0;
     private float lastSpeed;
     private float timeRemaining;
-    private bool randomize = false;
     private float targetCenter;
     public Score score;
 
@@ -29,9 +28,8 @@ public class ChargeSelector : MonoBehaviour {
 
     private TargetMovment target;
     private movementAI movement;
+    private SmithingBlacksmithAnimations blacksmith;
 
-    //These will all be replaced with an animation or particle affect at some point
-    private SpriteRenderer[] lightning;
 
 	// Use this for initialization
 	void Start () {
@@ -43,11 +41,7 @@ public class ChargeSelector : MonoBehaviour {
         movement = this.GetComponent<movementAI>();
         lastSpeed = movement.minSpeed;
 
-        //to be replaced
-        lightning = new SpriteRenderer[3];
-        lightning[0] = GameObject.Find("LIGHTNING").GetComponent<SpriteRenderer>();
-        lightning[1] = GameObject.Find("MORE LIGHTNING").GetComponent<SpriteRenderer>();
-        lightning[2] = GameObject.Find("EVEN MORE LIGHTNING").GetComponent<SpriteRenderer>();
+        blacksmith = GameObject.Find("Blacksmith").GetComponent<SmithingBlacksmithAnimations>();
 
 
     }
@@ -59,29 +53,20 @@ public class ChargeSelector : MonoBehaviour {
         else
             timeRemaining -= Time.deltaTime;
 
-        if (randomize)
-        {
-            randomizeTarget();
-            if (timeRemaining <= 0)
-            {
-                randomize = false;
-                resetMarker();
-            }
-            else
-                return;
-        }
-        //Debug.Log(timeRemaining);
         if (timeRemaining <= 0)
         {
             if (buttonMash)
             {
-                if(isPlaying)
-                    StartCoroutine(waitForLightning());
+                if (isPlaying)
+                {
+                    StartCoroutine(waitForAnimation());
+                    resetMarker();
+                    blacksmith.stopHammering();
+                }
 
             }
             else
-                if(isPlaying)   //need this becaus of a bug where update runs before coroutine sets the wait
-                    resetMarker();
+                resetMarker();
         }
 
         if (selectButtonDown() && isPlaying)
@@ -118,7 +103,8 @@ public class ChargeSelector : MonoBehaviour {
     {
         stopMarker();
         targetCenter = target.getCenterX();
-        lightning[0].enabled = true;
+        //lightning[0].enabled = true;
+        blacksmith.startHammering();
         if (inSelection)
         {
             //is the target in the green?
@@ -127,18 +113,17 @@ public class ChargeSelector : MonoBehaviour {
             if (this.transform.position.x > (targetCenter - greenWidth) && this.transform.position.x < (targetCenter + greenWidth))
             {
                 score.addScore(50);
-                Debug.Log("Perfect!");
+                //Debug.Log("Perfect!");
             }
             score.addScore(50);
-            Debug.Log("RIDE THE LIGHTNING!");
+            //Debug.Log("RIDE THE LIGHTNING!");
             buttonMash = true;
             timeRemaining = chargeTime;
         }
         else
         {
-            Debug.Log("MISS!");
-            //to be replaced
-            StartCoroutine(waitForLightning());
+            //Debug.Log("MISS!");
+            StartCoroutine(waitForAnimation());
         }
 
 
@@ -154,11 +139,9 @@ public class ChargeSelector : MonoBehaviour {
         if (((float)mashCount / 25) * 100 > 50)
         {
             score.addScore(3);
-            lightning[1].enabled = true;
         }
         if (((float)mashCount / 25) * 100 > 75)
         {
-            lightning[2].enabled = true;
             score.addScore(5);
         }
 
@@ -201,32 +184,26 @@ public class ChargeSelector : MonoBehaviour {
     }
 
     //may be replaced
-    IEnumerator waitForLightning()
+    IEnumerator waitForAnimation()
     {
         isPlaying = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         //to be replaced
-        for (int i = 0; i < 3; i++)
-            lightning[i].enabled = false;
         isPlaying = true;
         if (!buttonMash)
         {
             resetMarker();
+            blacksmith.stopHammering();
         }
         else
         {
             buttonMash = false;
             mashCount = 0;
-            randomize = true;
-            timeRemaining = randTime;
-            transform.position = new Vector2(startXPos, startYPos);
         }
     }
 
     public float getTimeRemaining()
     {
-        if (randomize)
-            return 0;
         return timeRemaining;
     }
 
@@ -238,12 +215,5 @@ public class ChargeSelector : MonoBehaviour {
     public string getMode()
     {
         return buttonMash ? "Fire" : "Aim";
-    }
-
-    private void randomizeTarget()
-    {
-        for (int i = 0; i < 15; i++)
-            target.changePosition();
-        targetCenter = target.getCenterX();
     }
 }
