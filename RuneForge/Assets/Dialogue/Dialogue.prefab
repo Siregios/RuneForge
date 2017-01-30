@@ -942,9 +942,9 @@ MonoBehaviour:
   dialogueUIText: {fileID: 114160825518872984}
   skipUIPanel: {fileID: 1192130381163890}
   dialogueText:
-  - {fileID: 4900000, guid: bdc723483b635314386ab2b60d78031d, type: 3}
-  - {fileID: 4900000, guid: bdc723483b635314386ab2b60d78031d, type: 3}
-  - {fileID: 4900000, guid: bdc723483b635314386ab2b60d78031d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spritePorts:
   - name: Player
     img: {fileID: 21300000, guid: a223a58f9e5cab64dba847458f734c01, type: 3}

@@ -233,7 +233,6 @@ public class DialogueHandler : MonoBehaviour {
 
     //Types line to be displayed
    public void TypingLine(){
-        Debug.Log(textShown);
         int length = dialogueArray[currentLine].Length;
         textShown += 1;
         textShown = Math.Min(length, textShown);

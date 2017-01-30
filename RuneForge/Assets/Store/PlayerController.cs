@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!MasterGameManager.instance.uiManager.uiOpen)
+        if (!MasterGameManager.instance.uiManager.uiOpen && MasterGameManager.instance.inputActive)
         {
             CheckForMove();
         }

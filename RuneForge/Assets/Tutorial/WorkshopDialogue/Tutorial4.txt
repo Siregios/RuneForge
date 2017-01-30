@@ -1,0 +1,3 @@
+[RPort:Fairy, RName:Minamo]
+
+This is the mini-game interface. Here you will select runes to work on. The rune is automatically selected so just hit Play!

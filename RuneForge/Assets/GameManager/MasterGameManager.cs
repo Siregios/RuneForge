@@ -26,6 +26,8 @@ public class MasterGameManager : MonoBehaviour
     public WorkOrderManager workOrderManager;
     public UIManager uiManager;
 
+    public bool inputActive = true;
+
     void Awake()
     {
         if (instance == null)

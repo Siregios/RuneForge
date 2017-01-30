@@ -1,0 +1,12 @@
+[]
+
+... (Press C to advance, or Enter to skip the cutscene: WARNING, you will skip important tutorial information)
+
+
+[LSpeaking:F, RSpeaking:T, RPort:Player, RName:Mom]
+
+Mom: Good morning [playerName]. Can you help me finish this [runetype] rune? It just needs a few more enchantments.
+
+[LPort:Player, LName:[playerName], LSpeaking:T]
+
+-Nods in agreement-

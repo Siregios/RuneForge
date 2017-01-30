@@ -1,0 +1,13 @@
+[LSpeaking:F, RSpeaking:T, LPort:Player, RPort:Player, RName:Mom]
+
+Mom: Great! Let’s get started.
+
+[Clear]
+
+[RPort:Fairy, RName:Minamo]
+
+Hi! My name is Minamo and I'll be here to help you navigate through the shop!
+
+[RName:Minamo]
+
+The rune your mom gave you is almost complete! It just needs a few more etchings.
