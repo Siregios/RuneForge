@@ -1,0 +1,23 @@
+[Clear]
+
+To select a minigame to play, click on the icon.
+
+In the menu, choose which crafting object you want to work on, then hit play.
+
+
+(Sorting Tutorial)
+
+Your golems are helping you assemble the materials needed to craft, but they need a little help getting what they need.
+
+Golems will appear with an object they desire. Drag the object from the shelf to the golem before they get upset and run off. They aren't always the most patient.
+
+You get points for every correct object you give to the golems in the alloted time.
+
+(Tracer Tutorial)
+
+Crafting magical items requires a quick and precise hand to carve out the magical symbols.
+
+You will get points by pointing the mouse towards the correct spot on the object that you are carving.
+
+
+
