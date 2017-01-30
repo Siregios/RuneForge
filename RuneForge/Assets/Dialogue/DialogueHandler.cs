@@ -209,8 +209,8 @@ public class DialogueHandler : MonoBehaviour {
 
     //Loads text to be read to current dialogue 
     public void LoadTextAsset(int index){
-        //dialogueUI.SetActive(true);
-        MasterGameManager.instance.uiManager.Enable(dialogueUI, true);
+        dialogueUI.SetActive(true);
+        //MasterGameManager.instance.uiManager.Enable(dialogueUI, true);
         currentAsset = index;
         dialogueArray = dialogueText[index].ToString().Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
         BeginRead();
@@ -359,8 +359,8 @@ public class DialogueHandler : MonoBehaviour {
     //Ends current dialogue display
     public void EndDialogue(){
         Reset();
-        //dialogueUI.SetActive(false);
-        MasterGameManager.instance.uiManager.Enable(dialogueUI, false);
+        dialogueUI.SetActive(false);
+        //MasterGameManager.instance.uiManager.Enable(dialogueUI, false);
     }
 
     /*

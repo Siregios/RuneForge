@@ -37,7 +37,7 @@ public class TutorialFairy : MonoBehaviour
         }
         waypointIndex++;
         isMoving = false;
-        dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex);
+        dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
     }
 
 }

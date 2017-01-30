@@ -12,6 +12,7 @@ public class TutorialDialogue : MonoBehaviour
     public List<int> movementIndex = new List<int>();
     public TutorialFairy fairyScript;
     public int dialogueIndex = 0;
+    bool disableOnce = false;
 
     void Start()
     {
@@ -19,31 +20,36 @@ public class TutorialDialogue : MonoBehaviour
         dialogueUI = dialogueScript.dialogueUI;
 
         dialogueUI.SetActive(false);
-        ActivateDialogue(dialogueIndex);
+        ActivateDialogue(dialogueIndex, true);
         MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
     }
 
     void Update()
     {
-        if (dialogueUI.activeSelf == false && movementIndex.Contains(dialogueIndex) && !fairyScript.isMoving)
+        if (dialogueUI.activeSelf == false && !fairyScript.isMoving)
         {
-            dialogueIndex++;
-            fairyScript.moveFairy();            
-        }
-
-        else if (dialogueUI.activeSelf == false && !fairyScript.isMoving)
-        {
-            MasterGameManager.instance.inputActive = true;
-            MasterGameManager.instance.uiManager.uiOpen = false;
-            foreach (Button button in menuButtons)
+            if (movementIndex.Contains(dialogueIndex))
             {
-                button.interactable = true;
+                dialogueIndex++;
+                fairyScript.moveFairy();
+            }
+            else if (disableOnce)
+            {
+                MasterGameManager.instance.inputActive = true;
+                MasterGameManager.instance.uiManager.uiOpen = false;
+                foreach (Button button in menuButtons)
+                {
+                    button.interactable = true;
+                }
+                disableOnce = false;
             }
         }
     }
 
-    public void ActivateDialogue(int index)
+
+    public void ActivateDialogue(int index, bool disableAfter)
     {
+        disableOnce = disableAfter;
         MasterGameManager.instance.inputActive = false;
         MasterGameManager.instance.uiManager.uiOpen = true;
         foreach (Button button in menuButtons)
@@ -56,4 +62,9 @@ public class TutorialDialogue : MonoBehaviour
         dialogueScript.SetBackground("");
     }
 
+    //Button Use
+    public void ButtonActivate(int index)
+    {
+        ActivateDialogue(index, false);
+    }
 }
