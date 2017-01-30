@@ -1388,9 +1388,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.019761324, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.6555921, y: 2}
 --- !u!50 &1604584644
 Rigidbody2D:
   serializedVersion: 4
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   chargeTime: 5
   randTime: 1
   greenWidth: 0.6
-  yellowWidth: 1
+  yellowWidth: 0.8
 --- !u!114 &1643386719 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000012887882570, guid: 092aec5fbb4e565488286dafd190cf01,

@@ -57,5 +57,16 @@ public class SmithingBlacksmithAnimations : MonoBehaviour {
         animator.SetBool("Hammering", false);
         hammering = false;
         reset = true;
+        //resetSpeed();
+    }
+
+    public void increaseSpeed()
+    {
+        animator.speed += .1f;
+    }
+
+    public void resetSpeed()
+    {
+        animator.speed = 1f;
     }
 }

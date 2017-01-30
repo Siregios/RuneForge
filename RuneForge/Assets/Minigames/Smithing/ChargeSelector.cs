@@ -62,6 +62,7 @@ public class ChargeSelector : MonoBehaviour {
                     StartCoroutine(waitForAnimation());
                     resetMarker();
                     blacksmith.stopHammering();
+                    blacksmith.resetSpeed();
                 }
 
             }
@@ -135,7 +136,7 @@ public class ChargeSelector : MonoBehaviour {
     {
         //Debug.Log(mashCount);
         mashCount++;
-
+        blacksmith.increaseSpeed();
         score.addScore(2);
         //to be replaced
         if (((float)mashCount / 25) * 100 > 50)
