@@ -1,4 +1,4 @@
-[LSpeaking:F, RSpeaking:T, LPort:Player, RPort:Player, RName:Mom]
+[LSpeaking:F, RSpeaking:T, LPort:Player, RPort:MomSphereOut, RName:Mom]
 
 Mom: Great! Let’s get started.
 
