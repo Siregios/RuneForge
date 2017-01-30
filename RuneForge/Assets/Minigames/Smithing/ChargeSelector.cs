@@ -107,6 +107,7 @@ public class ChargeSelector : MonoBehaviour {
         blacksmith.startHammering();
         if (inSelection)
         {
+            blacksmith.hit = true;
             //is the target in the green?
             //Debug.Log(transform.position.x);
             //Debug.Log(targetCenter);
@@ -123,6 +124,7 @@ public class ChargeSelector : MonoBehaviour {
         else
         {
             //Debug.Log("MISS!");
+            blacksmith.hit = false;
             StartCoroutine(waitForAnimation());
         }
 
