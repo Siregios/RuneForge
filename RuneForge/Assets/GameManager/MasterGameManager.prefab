@@ -110,11 +110,15 @@ MonoBehaviour:
     SD: 30
     HQ: 270
     MC: 300
-  - Name: RuneCharge
+  - Name: Smithing
     SD: 50
     HQ: 1100
     MC: 1400
   - Name: Stacking
+    SD: 50
+    HQ: 400
+    MC: 500
+  - Name: TracerTutorial
     SD: 50
     HQ: 400
     MC: 500

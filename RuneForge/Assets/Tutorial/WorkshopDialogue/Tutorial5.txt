@@ -1,0 +1,18 @@
+[RPort:Mom, RName:Mom]
+
+How are you two doing?
+
+[RPort:Fairy, RName:Minamo]
+
+Great! We just finished the rune actually!
+[RPort:Mom, RName:Mom]
+
+Let me see.
+
+Hmmm not bad. Try making some more, but with different techniques than the last one.
+
+Come up front once you finish 2 new runes.
+
+[RPort:MomSphereOut, RName:Mom]
+
+Have at it!

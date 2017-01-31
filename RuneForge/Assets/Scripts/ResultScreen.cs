@@ -8,6 +8,8 @@ public class ResultScreen : MonoBehaviour {
     float time = 1.5f;
     float transition = 3f;
 
+    public string nextScene = "Workshop";
+
     void Start() {
         //Fade
         fade = GetComponent<CanvasGroup>();
@@ -78,7 +80,7 @@ public class ResultScreen : MonoBehaviour {
             transition -= Time.unscaledDeltaTime / time;
             yield return null;
         }
-        MasterGameManager.instance.sceneManager.LoadScene("Workshop");
+        MasterGameManager.instance.sceneManager.LoadScene(nextScene);
     }
 }
 

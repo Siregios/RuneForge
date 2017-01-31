@@ -5,8 +5,6 @@
 
 [LSpeaking:F, RSpeaking:T, RPort:Mom, RName:Mom]
 
-Mom: Good morning [playerName]. Can you help me finish this [runetype] rune? It just needs a few more enchantments.
+Good morning [playerName]. I'm, gonna need some help with the finishing touches on this rune.
 
-[LPort:Player, LName:[playerName], LSpeaking:T]
-
--Nods in agreement-
+Minamo!

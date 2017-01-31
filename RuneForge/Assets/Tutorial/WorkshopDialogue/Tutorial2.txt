@@ -1,6 +1,6 @@
-[LSpeaking:F, RSpeaking:T, LPort:Player, RPort:MomSphereOut, RName:Mom]
+[LSpeaking:F, RSpeaking:T, RPort:MomSphereOut, RName:Mom]
 
-Mom: Great! Let’s get started.
+Minamo will show you around and take you where you need to go to finish this rune.
 
 [Clear]
 
