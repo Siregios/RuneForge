@@ -22,6 +22,7 @@ public class TutorialDialogue : MonoBehaviour
         dialogueUI.SetActive(false);
         ActivateDialogue(dialogueIndex, true);
         MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
+        MasterGameManager.instance.workOrderManager.workorderList[0].requiredStages = 1;
     }
 
     void Update()
