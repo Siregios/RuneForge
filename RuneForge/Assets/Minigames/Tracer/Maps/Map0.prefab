@@ -1336,6 +1336,7 @@ MonoBehaviour:
   currentDot: 0
   sphere: {fileID: 212762091249392792}
   magicCircle: {fileID: 212855462720896554}
+  goalColor: {r: 1, g: 0.49264705, b: 0.49264705, a: 0}
 --- !u!114 &114241608827086422
 MonoBehaviour:
   m_ObjectHideFlags: 1

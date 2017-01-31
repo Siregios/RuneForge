@@ -11,8 +11,6 @@ public class TracerManager : MonoBehaviour {
 
     private AudioManager AudioManager;
     private AudioSource music;
-    //Number of maps that exist in Assets/TraceMaps
-    //public int traceMapCount = 4;
     public List<TraceMap> traceMaps;
     int currentMapIndex = -1;
     TraceMap currentMap;
@@ -42,58 +40,53 @@ public class TracerManager : MonoBehaviour {
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //currentTrail.transform.position = mousePos;        
         currentTrail.transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
     }
 
     public void DotTouched(GameObject dot)
     {
-        AudioManager.PlaySound(0);
-       
         score.addScore(10);
-        
-        currentTrail.GetComponent<TrailRenderer>().time += .01f;
 
         currentPos = dot.transform.position;
 
         //This makes the last dot not spawn burst prefab
-        //if (dot.GetComponent<Mapper>().next != null || count < mapsPerPlay)
         if (!currentMap.onLastDot || count < mapsPerPlay)
             Destroy((GameObject)Instantiate(burst, currentPos, Quaternion.identity), 0.2f);
 
         SpawnDot(dot);
+        
+        //Aesthetics polish
+        AudioManager.PlaySound(0);
+        currentTrail.GetComponent<TrailRenderer>().time += .01f;
+        currentMap.AdvanceSprites();
     }
 
     public void DotMissed(GameObject dot)
     {
+        currentTrail.GetComponent<TrailRenderer>().time = .01f;
         SpawnDot(dot);
     }
 
     public void SpawnDot(GameObject dot)
     {
-        //if (dot.GetComponent<Mapper>().next != null)
-        //{            
-        //    dot.GetComponent<Mapper>().next.SetActive(true);
-        //}
         if (!currentMap.onLastDot)
         {
             currentMap.ActivateNextDot();
         }
         else {
+            //If there's still more maps to go, continue by spawning next map
             if (count < mapsPerPlay)
             {
-                
                 //Instantiate prefab transition and give it time to run
                 Destroy((GameObject)Instantiate(nextMapBurst, new Vector3(0, 0, 0), Quaternion.identity), 0.8f);
                 StartCoroutine(NextMap());
             }
+            //If played enough maps this playthrough, end the minigame and show results
             else
             {
-                //Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
                 Destroy(currentMap.gameObject);
                 currentTrail.SetActive(false);
                 Cursor.visible = true;
-                //Should show results screen here first.
                 GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
             }
         }
@@ -110,7 +103,6 @@ public class TracerManager : MonoBehaviour {
         currentMapIndex = randomMapNumber;
         Debug.LogFormat("Spawning Map{0}", randomMapNumber);
 
-        //GameObject newTraceMap = (GameObject)Instantiate(Resources.Load("TraceMaps/Map" + randomMapNumber));
         GameObject newTraceMap = (GameObject)Instantiate(traceMaps[randomMapNumber].gameObject);
         return newTraceMap.GetComponent<TraceMap>();
     }
@@ -120,8 +112,6 @@ public class TracerManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.65f);
 
-        
-        //Destroy(GameObject.FindGameObjectWithTag("TraceMap"));
         Destroy(currentMap.gameObject);
         currentMap = CreateNewMap();
         AudioManager.PlaySound(1);

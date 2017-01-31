@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TraceMap : MonoBehaviour {
+public class TraceMap : MonoBehaviour
+{
     public List<DotController> dots;
     public int currentDot = 0;
     public bool onLastDot { get { return (currentDot == dots.Count - 1); } }
 
     public SpriteRenderer sphere, magicCircle;
+    public Color goalColor;
 
     void Awake()
     {
@@ -17,21 +19,37 @@ public class TraceMap : MonoBehaviour {
         }
     }
 
+    void Start()
+    {
+        magicCircle.color = new Color(1, 1, 1, (float)1 / (dots.Count - 1));
+    }
+
     public void ActivateNextDot()
     {
-        //sphere.color = Color.Lerp(sphere.color, Color.red, 1 / dots.Count);
-        //sphere.color -= new Color(0, 1.0f / dots.Count, 1.0f / dots.Count, 1);
-        //Color goalColor = new Color(sphere.color.r, 1 - ((float)currentDot / (dots.Count - 1)), 1 - ((float)currentDot / (dots.Count - 1)));
-        Color colorStep = ColorStep(Color.cyan);
-        sphere.color = colorStep;
-        //StartCoroutine(LerpColor(goalColor, .02f, .01f));
+        
+
         currentDot++;
+
+        //AdvanceSprites();
         dots[currentDot].gameObject.SetActive(true);
+
+    }
+
+    public void AdvanceSprites()
+    {
+        sphere.color = ColorStep(goalColor);
+        magicCircle.color = AlphaStep();
     }
 
     Color ColorStep(Color goalColor)
     {
         float step = (float)currentDot / (dots.Count - 1);
-        return new Color(1 - (1 - goalColor.r)*step, 1 - (1 - goalColor.g)*step, 1 - (1 - goalColor.b)*step);
+        return new Color(1 - (1 - goalColor.r) * step, 1 - (1 - goalColor.g) * step, 1 - (1 - goalColor.b) * step);
+    }
+
+    Color AlphaStep()
+    {
+        float step = (float)currentDot / (dots.Count - 1);
+        return new Color(1, 1, 1, step);
     }
 }
