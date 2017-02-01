@@ -16,6 +16,7 @@ public class ResultScreen : MonoBehaviour {
         
         //Start to fade into result screen
         StartCoroutine("FadeIn");
+
         //Find final score text
         string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
         transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final Score: " + scoreText;
@@ -62,16 +63,16 @@ public class ResultScreen : MonoBehaviour {
         Time.timeScale = 1;
     }
 
-    IEnumerator FadeOut()    
-    {
-        Time.timeScale = 0;
-        while (fade.alpha > 0)
-        {
-            fade.alpha -= Time.unscaledDeltaTime / time;
-            yield return null;
-        }
-        Time.timeScale = 1;
-    }   
+    //IEnumerator FadeOut()    
+    //{
+    //    Time.timeScale = 0;
+    //    while (fade.alpha > 0)
+    //    {
+    //        fade.alpha -= Time.unscaledDeltaTime / time;
+    //        yield return null;
+    //    }
+    //    Time.timeScale = 1;
+    //}   
 
     IEnumerator Workshop()
     {
