@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346927826}
   - component: {fileID: 346927827}
+  - component: {fileID: 346927828}
   m_Layer: 0
   m_Name: Minigame Room
   m_TagString: Untagged
@@ -302,6 +303,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &346927828
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 346927825}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97949c31b4d66b94eb3d55de43c55cc9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &378825897 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011917629910, guid: 3013588e6f6cfa445a4902bc37d9c4b1,

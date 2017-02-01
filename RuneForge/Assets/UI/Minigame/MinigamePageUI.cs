@@ -8,6 +8,7 @@ public class MinigamePageUI : MonoBehaviour {
     public string minigame;
     public Button playButton;
     public Image minigameThumbnail;
+    public Animator animator;
 
     public void Enable(bool active)
     {
@@ -32,6 +33,7 @@ public class MinigamePageUI : MonoBehaviour {
         MasterGameManager.instance.workOrderManager.currentWorkOrders.Clear();
         SetMinigame(minigame);
         Enable(true);
+        animator.SetBool(minigame, true);
     }
 
     void SetMinigame(string minigame)

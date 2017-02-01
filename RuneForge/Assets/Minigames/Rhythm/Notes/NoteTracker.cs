@@ -65,10 +65,6 @@ public class NoteTracker : MonoBehaviour {
                 GameObject sKey = GameObject.Find("s_key");
                 indexNote = 2;
                 scriptNote.keyNotes[indexNote].Insert(0, gameObject);
-                if (gameObject == scriptNote.keyNotes[indexNote][0])
-                {
-                    Debug.Log("yes");
-                }
                 doubleNoteEvent(sKey, KeyCode.S);               
             }
         }

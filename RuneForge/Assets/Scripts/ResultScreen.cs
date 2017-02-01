@@ -6,7 +6,7 @@ public class ResultScreen : MonoBehaviour {
 
     CanvasGroup fade;
     float time = 1.5f;
-    float transition = 3f;
+    float transition = 1.5f;
 
     public string nextScene = "Workshop";
 
@@ -18,8 +18,8 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine("FadeIn");
 
         //Find final score text
-        string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
-        transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final Score: " + scoreText;
+        //string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
+        //transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final Score: " + scoreText;
 
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
@@ -49,7 +49,6 @@ public class ResultScreen : MonoBehaviour {
                     string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
             }
         }
-        StartCoroutine("Workshop");
     }
 
     IEnumerator FadeIn()
@@ -74,13 +73,19 @@ public class ResultScreen : MonoBehaviour {
     //    Time.timeScale = 1;
     //}   
 
-    IEnumerator Workshop()
+    //IEnumerator Workshop()
+    //{
+    //    while (transition >= 0)
+    //    {
+    //        transition -= Time.unscaledDeltaTime / time;
+    //        yield return null;
+    //    }
+    //    Debug.Log("true");
+    //    MasterGameManager.instance.sceneManager.LoadScene(nextScene);
+    //}
+
+    public  void LoadScene()
     {
-        while (transition >= 0)
-        {
-            transition -= Time.unscaledDeltaTime / time;
-            yield return null;
-        }
         MasterGameManager.instance.sceneManager.LoadScene(nextScene);
     }
 }
