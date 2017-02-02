@@ -90,22 +90,10 @@ MonoBehaviour:
     SD: 30
     HQ: 240
     MC: 280
-  - Name: Lane
-    SD: 100
-    HQ: 750
-    MC: 1000
-  - Name: Alchemy
-    SD: 50
-    HQ: 700
-    MC: 1000
   - Name: GolemFetch
     SD: 100
     HQ: 1000
     MC: 1500
-  - Name: Hook
-    SD: 50
-    HQ: 1200
-    MC: 1600
   - Name: Rhythm
     SD: 30
     HQ: 270
@@ -114,10 +102,6 @@ MonoBehaviour:
     SD: 50
     HQ: 1100
     MC: 1400
-  - Name: Stacking
-    SD: 50
-    HQ: 400
-    MC: 500
   - Name: TracerTutorial
     SD: 50
     HQ: 400

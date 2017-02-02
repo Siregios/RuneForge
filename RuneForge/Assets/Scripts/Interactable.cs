@@ -33,4 +33,14 @@ public class Interactable : MonoBehaviour {
     {
         GetComponentInChildren<SpriteGlow>().enabled = false;
     }
+
+    public void EnableHoverAnim()
+    {
+        gameObject.GetComponent<Animator>().SetBool("MouseHover", true);
+    }
+
+    public void DisableHoverAnim()
+    {
+        gameObject.GetComponent<Animator>().SetBool("MouseHover", false);
+    }
 }
