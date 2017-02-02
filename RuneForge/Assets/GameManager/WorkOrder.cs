@@ -80,8 +80,12 @@ public class WorkOrder {
     void SetRandomMinigames()
     {
         List<string> tempMinigameList = new List<string>();
-        for(int i = 0; i < MasterGameManager.instance.minigameList.Count; i++)
-            tempMinigameList.Add(MasterGameManager.instance.minigameList[i].Name);
+        for (int i = 0; i < MasterGameManager.instance.minigameList.Count; i++)
+        {
+            MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameList[i];
+            if (!minigame.isTutorial)
+                tempMinigameList.Add(MasterGameManager.instance.minigameList[i].Name);
+        }
 
         for (int i = 0; i < requiredStages; i++)
         {

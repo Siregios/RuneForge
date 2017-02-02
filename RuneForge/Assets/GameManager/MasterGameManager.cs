@@ -14,6 +14,7 @@ public class MasterGameManager : MonoBehaviour
         public int SD = 50;
         public int HQ = 400;
         public int MC = 500;
+        public bool isTutorial = false;
     }
 
     public List<Minigame> minigameList;
