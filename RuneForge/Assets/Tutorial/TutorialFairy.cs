@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialFairy : MonoBehaviour
+public class TutorialFairy : CutsceneMovement
 {
 
     public bool isMoving = false;
@@ -19,7 +19,7 @@ public class TutorialFairy : MonoBehaviour
 
     }
 
-    public void moveFairy()
+    public override void cutsceneMove()
     {
         if (waypointIndex < waypointList.Count)
         {

@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 846941986}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3819975c0eeb00c408c1337689967ec6, type: 3}
   m_Name: 
@@ -1678,6 +1678,9 @@ MonoBehaviour:
   - {fileID: 172553187}
   - {fileID: 1355556242}
   movementIndex: 0000000001000000
+  characterMovments:
+  - TutorialFairy
+  - TutorialFairy
   fairyScript: {fileID: 823689360}
   dialogueIndex: 0
 --- !u!4 &1153268382
@@ -2888,6 +2891,11 @@ Prefab:
     - target: {fileID: 212000014122804990, guid: 732d1141156ccc344848c8894155295e,
         type: 2}
       propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000010876747456, guid: 732d1141156ccc344848c8894155295e,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
