@@ -24,7 +24,7 @@ public class ResultScreen : MonoBehaviour {
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
-            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, GameObject.Find("Score").GetComponent<Score>().s);
+            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, GameObject.Find("Score").GetComponent<Score>().score);
             
             //If complete, show work order score and rune completed.
             if (order.isComplete)

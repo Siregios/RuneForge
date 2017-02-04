@@ -33,7 +33,7 @@ public class StackingGameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        score.s = stackSize * 100;
+        score.score = stackSize * 100;
         if (timer.timeEnd)
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         spawnTimer -= Time.deltaTime;

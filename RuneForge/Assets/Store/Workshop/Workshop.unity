@@ -2152,6 +2152,11 @@ Prefab:
       propertyPath: m_Name
       value: MinigamePage
       objectReference: {fileID: 0}
+    - target: {fileID: 224000014044810298, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_IsPrefabParent: 0

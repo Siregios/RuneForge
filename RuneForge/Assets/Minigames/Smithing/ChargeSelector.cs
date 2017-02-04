@@ -212,7 +212,7 @@ public class ChargeSelector : MonoBehaviour {
 
     public int getScore()
     {
-        return score.s;
+        return score.score;
     }
 
     public string getMode()

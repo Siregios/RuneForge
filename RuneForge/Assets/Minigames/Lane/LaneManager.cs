@@ -49,8 +49,8 @@ public class LaneManager : MonoBehaviour {
         {
             Destroy(collide.gameObject);
             score.subScore(10);
-            if (score.s < 0)
-                score.s = 0;
+            if (score.score < 0)
+                score.score = 0;
         }
     }
 }
