@@ -20,6 +20,7 @@ public class MasterGameManager : MonoBehaviour
     public List<Minigame> minigameList;
     public Dictionary<string, Minigame> minigameDict = new Dictionary<string, Minigame>();
 
+    public PlayerStats playerStats;
     public ActionClock actionClock;
     public QuestGenerator questGenerator;
     public SceneManagerWrapper sceneManager;

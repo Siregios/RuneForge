@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010763975146}
   - component: {fileID: 114000011362478716}
+  - component: {fileID: 114740248611132830}
   - component: {fileID: 114000010917058700}
   - component: {fileID: 114000013663129980}
   - component: {fileID: 114000010453328266}
@@ -112,6 +113,7 @@ MonoBehaviour:
     HQ: 400
     MC: 500
     isTutorial: 1
+  playerStats: {fileID: 114740248611132830}
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}
   sceneManager: {fileID: 114000010453328266}
@@ -166,3 +168,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
+--- !u!114 &114740248611132830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013527338524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3589e30ac0ac145b6db660dbf51781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
