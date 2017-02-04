@@ -12,10 +12,11 @@ public class TutorialDialogue : MonoBehaviour
 
     public List<int> movementIndex = new List<int>();       //List of which dialoguee indexes initiate movement
 
-    public List<string> characterMovments;                  //List for which characters we want moved in what order, separated by commas (you could also make
+    public List<string> characterMovements;                  //List for which characters we want moved in what order, separated by commas (you could also make
                                                             //this a double list, but I think it saves more space making that second list locally later on)
 
     private Dictionary<int, string> movementDict = new Dictionary<int, string>();       //Dictionary of movement indexes corresponding to which characters move on that index
+    public int actorsMoving = 0;
     public TutorialFairy fairyScript;
     public int dialogueIndex = 0;
     bool disableOnce = false;
@@ -32,13 +33,13 @@ public class TutorialDialogue : MonoBehaviour
 
         for (int i = 0; i<movementIndex.Capacity; i++)
         {
-            movementDict[movementIndex[i]] = characterMovments[i];
+            movementDict[movementIndex[i]] = characterMovements[i];
         }
     }
 
     void Update()
     {
-        if (dialogueUI.activeSelf == false && !fairyScript.isMoving)
+        if (dialogueUI.activeSelf == false && actorsMoving == 0)
         {
             if (movementIndex.Contains(dialogueIndex))
             {

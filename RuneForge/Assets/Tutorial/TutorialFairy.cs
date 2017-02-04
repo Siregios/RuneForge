@@ -5,7 +5,6 @@ using UnityEngine;
 public class TutorialFairy : CutsceneMovement
 {
 
-    public bool isMoving = false;
 
     //Locations of fairy
     public List<GameObject> waypointList;
@@ -29,15 +28,16 @@ public class TutorialFairy : CutsceneMovement
 
     IEnumerator fairyMovement()
     {
-        isMoving = true;
+        dialogueScript.actorsMoving++;
         while (Vector2.Distance(transform.position, waypointList[waypointIndex].transform.position) > 0.2f)
         {
             transform.position = Vector2.MoveTowards(transform.position, waypointList[waypointIndex].transform.position, Time.deltaTime * speed);
             yield return new WaitForEndOfFrame();
         }
         waypointIndex++;
-        isMoving = false;
-        dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
+        dialogueScript.actorsMoving--;
+        if(dialogueScript.actorsMoving == 0)
+            dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
     }
 
 }
