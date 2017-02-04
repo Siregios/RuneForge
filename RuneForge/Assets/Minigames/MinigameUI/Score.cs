@@ -24,10 +24,6 @@ public class Score : MonoBehaviour {
 
     void Update()
     {
-        if (int.Parse(scoreText.text) < score)
-        {
-            StartCoroutine(pulseScore());
-        }
         scoreText.text = score.ToString();
 
         MoveScoreCursor();
@@ -36,6 +32,7 @@ public class Score : MonoBehaviour {
     public void addScore(int add)
     {
         score += add;
+        StartCoroutine(pulseScore());
     }
 
     public void subScore(int sub)
@@ -76,6 +73,6 @@ public class Score : MonoBehaviour {
             percentage = 3;
         }
 
-        scoreCursor.anchoredPosition = new Vector2(0f, percentage * (maxHeight / 3));
+        scoreCursor.anchoredPosition = Vector2.Lerp(scoreCursor.anchoredPosition, new Vector2(0f, percentage * (maxHeight / 3)), Time.deltaTime);
     }
 }

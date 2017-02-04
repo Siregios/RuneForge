@@ -375,7 +375,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -411,7 +411,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1056288963}
+  - {fileID: 1987441757}
   - {fileID: 1766172840}
   - {fileID: 776861061}
   - {fileID: 1253108994}
@@ -562,9 +562,9 @@ Camera:
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.22
+    x: 0
     y: 0
-    width: 0.5625
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -833,7 +833,7 @@ MonoBehaviour:
   songName: monkeyClap
   songStart: 0
   dub: 0
-  score: {fileID: 1056288964}
+  score: {fileID: 1398968243}
   hitText: {fileID: 1766172841}
   track: {fileID: 776861062}
   good: 0
@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &754627900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,8 +1174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182, y: -84}
-  m_SizeDelta: {x: 160, y: 70}
+  m_AnchoredPosition: {x: 182, y: -114.8}
+  m_SizeDelta: {x: 160, y: 131.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776861062
 MonoBehaviour:
@@ -1198,16 +1198,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Miss: 0
 
@@ -1752,17 +1752,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38a4a755ad3e5ee488c9d37c7bc8d797, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &1056288963 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
-    type: 2}
-  m_PrefabInternal: {fileID: 2018292581}
---- !u!114 &1056288964 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012887882570, guid: 092aec5fbb4e565488286dafd190cf01,
-    type: 2}
-  m_PrefabInternal: {fileID: 2018292581}
-  m_Script: {fileID: 11500000, guid: ec5fc5458c08c5845a76f9389cf4ad05, type: 3}
 --- !u!1 &1140512102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2020,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1275068214}
+--- !u!114 &1398968243 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012887882570, guid: 092aec5fbb4e565488286dafd190cf01,
+    type: 2}
+  m_PrefabInternal: {fileID: 1987441756}
+  m_Script: {fileID: 11500000, guid: ec5fc5458c08c5845a76f9389cf4ad05, type: 3}
 --- !u!1 &1444429073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,8 +2443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -2.9}
+  m_SizeDelta: {x: 160, y: 35.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766172841
 MonoBehaviour:
@@ -2472,7 +2467,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2490,7 +2485,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1766172839}
---- !u!1001 &2018292581
+--- !u!1001 &1987441756
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2540,12 +2535,12 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 225
+      value: -532.3
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 80
+      value: -255
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
@@ -2555,7 +2550,7 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
@@ -2585,18 +2580,13 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 092aec5fbb4e565488286dafd190cf01, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1987441757 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
+    type: 2}
+  m_PrefabInternal: {fileID: 1987441756}
