@@ -18,6 +18,7 @@ TagManager:
   - Green
   - Character
   - DialogueUI
+  - Cutscene
   layers:
   - Default
   - TransparentFX

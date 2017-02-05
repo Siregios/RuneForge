@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
 
     Rigidbody2D rigidBody;
-    bool moveByMouse = false;
+    public bool moveByMouse = false;
     Vector3 targetClick;
 
     PointerEventData pointer = new PointerEventData(EventSystem.current);

@@ -1,13 +1,9 @@
-[LSpeaking:F, RSpeaking:T, RPort:MomSphereOut, RName:Mom]
+[LSpeaking:F, RSpeaking:T, RPort:Mom, RName:Mom]
 
-Minamo will show you around and take you where you need to go to finish this rune.
+(Player Name)! Can you come help me with something over here?
 
 [Clear]
 
-[RPort:Fairy, RName:Minamo]
+Press A and D to move.
 
-Hi! My name is Minamo and I'll be here to help you navigate through the shop!
-
-[RName:Minamo]
-
-The rune your mom gave you is almost complete! It just needs a few more etchings.
+[Clear]

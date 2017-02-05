@@ -20,6 +20,16 @@ public class TutorialPlayer : CutsceneMovement {
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Cutscene")) {
+            playerController.movingDirection = Direction.DIRECTION.NONE;
+            dialogueScript.dialogueIndex++;
+            dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
+            playerController.moveByMouse = false;
+            other.enabled = false;
+        }
+    }
+
     IEnumerator playerMovement() {
         dialogueScript.actorsMoving++;
         //Don't judge me
@@ -27,7 +37,7 @@ public class TutorialPlayer : CutsceneMovement {
         while (Vector2.Distance(transform.position, waypointList[waypointIndex].transform.position) > 0.2f) {
             yield return new WaitForEndOfFrame();
         }
-        playerController.movingDirection = Direction.DIRECTION.NONE;
+        playerController.movingDirection = Direction.DIRECTION.NONE;   
         waypointIndex++;
         dialogueScript.actorsMoving--;
         if(dialogueScript.actorsMoving == 0)

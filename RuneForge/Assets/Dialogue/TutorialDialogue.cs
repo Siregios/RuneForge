@@ -17,7 +17,6 @@ public class TutorialDialogue : MonoBehaviour
 
     private Dictionary<int, string> movementDict = new Dictionary<int, string>();       //Dictionary of movement indexes corresponding to which characters move on that index
     public int actorsMoving = 0;
-    public TutorialFairy fairyScript;
     public int dialogueIndex = 0;
     bool disableOnce = false;
 
@@ -27,7 +26,7 @@ public class TutorialDialogue : MonoBehaviour
         dialogueUI = dialogueScript.dialogueUI;
 
         dialogueUI.SetActive(false);
-        ActivateDialogue(dialogueIndex, true);
+        ActivateDialogue(dialogueIndex, false);
         MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
         MasterGameManager.instance.workOrderManager.workorderList[0].requiredStages = 1;
 
@@ -60,7 +59,6 @@ public class TutorialDialogue : MonoBehaviour
                     button.interactable = true;
                 }
                 disableOnce = false;
-                dialogueIndex++;
             }
         }
     }

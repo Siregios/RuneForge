@@ -1,3 +1,7 @@
-[RPort:Fairy, RName:Minamo]
+[RPort:MomSphereOut, RName:Mom]
 
-This is the mini-game interface. Here you will select runes to work on. The rune is automatically selected so just hit Play!
+I think it's about time I've tested you on all these years of training. Here, take this rune and finish the enchantments on it, I already finished most of it for you.
+
+[Clear]
+
+Click on your mother to add the final enchantments with the "Tracer" minigame.

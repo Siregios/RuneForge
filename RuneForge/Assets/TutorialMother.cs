@@ -25,7 +25,7 @@ public class TutorialMother : CutsceneMovement {
         //Don't judge me
         motherController.enabled = true;
         motherController.movingDirection = (waypointList[waypointIndex].transform.position.x < transform.position.x) ? Direction.DIRECTION.LEFT : Direction.DIRECTION.RIGHT;
-        while (Vector2.Distance(transform.position, waypointList[waypointIndex].transform.position) > 0.2f) {
+        while (Mathf.Abs(transform.position.x - waypointList[waypointIndex].transform.position.x) > 0.1f) {
             yield return new WaitForEndOfFrame();
         }
         motherController.movingDirection = Direction.DIRECTION.NONE;
