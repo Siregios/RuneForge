@@ -1,6 +1,6 @@
 [RPort:MomSphereOut, RName:Mom]
 
-I think it's about time I've tested you on all these years of training. Here, take this rune and finish the enchantments on it, I already finished most of it for you.
+I'm behind on some orders and I could use your help. Here, take this rune and finish the enchantments on it, I already finished most of it for you.
 
 [Clear]
 

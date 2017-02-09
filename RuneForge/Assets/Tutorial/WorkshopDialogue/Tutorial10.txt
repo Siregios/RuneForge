@@ -1,0 +1,3 @@
+[RPort:Fairy, RName:Minamo]
+
+Click on the Recipe icon to view your recipe book.

@@ -1,0 +1,5 @@
+[RPort:Fairy, RName:Minamo]
+
+Hi! My name is Minamo and I'll be here to help you navigate through the shop!
+
+The first thing you need to do is choose which runes you want to work on. 

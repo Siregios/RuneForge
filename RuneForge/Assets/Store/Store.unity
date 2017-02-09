@@ -8430,6 +8430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingDirection: 0
   speed: 5
+  moveByMouse: 0
 --- !u!4 &1679626976
 Transform:
   m_ObjectHideFlags: 0
