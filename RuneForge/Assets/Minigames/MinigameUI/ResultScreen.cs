@@ -31,10 +31,10 @@ public class ResultScreen : MonoBehaviour {
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
-            order.score = 1000;
+            order.score = 400;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
-            silver.fillAmount = Mathf.Clamp(order.score / hq, 0, 1);
-            gold.fillAmount = Mathf.Clamp(order.score / mc - hq, 0, 1);
+            silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
+            gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
             totalScore = order.score;   
@@ -141,20 +141,20 @@ public class ResultScreen : MonoBehaviour {
         if (bronze.fillAmount < Mathf.Clamp((float)totalScore / st, 0f, 1f))
         {
             bronze.fillAmount = Mathf.Lerp(bronze.fillAmount, Mathf.Clamp((float)totalScore / st, 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - bronze.fillAmount <= 0.015f)           
+            if (1 - bronze.fillAmount <= 0.0015f)           
                 bronze.fillAmount = 1;
             
         }
         else if (silver.fillAmount < Mathf.Clamp((float)totalScore / hq, 0f, 1f))
         {
-            silver.fillAmount = Mathf.Lerp(silver.fillAmount, Mathf.Clamp((float)totalScore / hq, 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - silver.fillAmount <= 0.015f)
+            silver.fillAmount = Mathf.Lerp(silver.fillAmount, Mathf.Clamp(((float)totalScore- st) / (hq- st), 0f, 1f), Time.unscaledDeltaTime * 3);
+            if (1 - silver.fillAmount <= 0.0015f)
                 silver.fillAmount = 1;
         }
         else if (gold.fillAmount < Mathf.Clamp((float)totalScore / mc, 0f, 1f))
         {
-            gold.fillAmount = Mathf.Lerp(gold.fillAmount, Mathf.Clamp((float)totalScore / mc, 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - gold.fillAmount <= 0.015f)
+            gold.fillAmount = Mathf.Lerp(gold.fillAmount, Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f), Time.unscaledDeltaTime * 3);
+            if (1 - gold.fillAmount <= 0.0015f)
                 gold.fillAmount = 1;
         }
         else
