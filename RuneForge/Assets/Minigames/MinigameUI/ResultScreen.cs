@@ -31,7 +31,6 @@ public class ResultScreen : MonoBehaviour {
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
-            order.score = 400;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
             gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
@@ -112,7 +111,19 @@ public class ResultScreen : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
+        StartCoroutine(ProgressFade());
+    }
 
+    IEnumerator ProgressFade()
+    {
+        while (progress.GetComponent<CanvasGroup>().alpha < 1)
+        {
+            progress.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
+            yield return new WaitForEndOfFrame();
+        }
+        {
+            yield return new WaitForEndOfFrame();
+        }
     }
     //IEnumerator FadeOut()    
     //{
