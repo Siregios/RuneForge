@@ -3,6 +3,7 @@ using System.Collections;
 
 public class InteractionManager : MonoBehaviour {
     public bool canInteract = true;
+    public bool isHovering = false;
     LayerMask interactableLayer;
     RaycastHit2D hit;
 
@@ -31,6 +32,7 @@ public class InteractionManager : MonoBehaviour {
                     }
                     currentInteractable = interactScript;
                     currentInteractable.MouseHover.Invoke();
+                    isHovering = true;
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         currentInteractable.MouseClick.Invoke();
@@ -42,6 +44,7 @@ public class InteractionManager : MonoBehaviour {
             {
                 currentInteractable.MouseExit.Invoke();
                 currentInteractable = null;
+                isHovering = false;
             }
         }
     }

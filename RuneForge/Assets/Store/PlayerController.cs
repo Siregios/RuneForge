@@ -41,28 +41,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 playerPosition = transform.position;
-        if (moveByMouse)
+        if (!MasterGameManager.instance.uiManager.uiOpen)
         {
-            if (Mathf.Abs(playerPosition.x - targetClick.x) > 0.1f)
-                this.transform.position = Vector2.MoveTowards(playerPosition, targetClick, speed * Time.deltaTime);
-            else
-            {
-                movingDirection = Direction.DIRECTION.NONE;
-                moveByMouse = false;
-            }
+            Move();
         }
         else
         {
-            switch (movingDirection)
-            {
-                case Direction.DIRECTION.LEFT:
-                    rigidBody.MovePosition(playerPosition + new Vector3(-speed * Time.deltaTime, 0, 0));
-                    break;
-                case Direction.DIRECTION.RIGHT:
-                    rigidBody.MovePosition(playerPosition + new Vector3(speed * Time.deltaTime, 0, 0));
-                    break;
-            }
+            movingDirection = Direction.DIRECTION.NONE;
+            moveByMouse = false;
         }
     }
 
@@ -95,7 +81,7 @@ public class PlayerController : MonoBehaviour
             pointer.position = Input.mousePosition;
             results.Clear();
             EventSystem.current.RaycastAll(pointer, results);
-            if (results.Count == 0)
+            if (results.Count == 0 && !MasterGameManager.instance.interactionManager.isHovering)
             {
                 moveByMouse = true;
                 Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -110,6 +96,33 @@ public class PlayerController : MonoBehaviour
         {
             moveByMouse = false;
             movingDirection = Direction.DIRECTION.NONE;
+        }
+    }
+
+    void Move()
+    {
+        Vector3 playerPosition = transform.position;
+        if (moveByMouse)
+        {
+            if (Mathf.Abs(playerPosition.x - targetClick.x) > 0.1f)
+                this.transform.position = Vector2.MoveTowards(playerPosition, targetClick, speed * Time.deltaTime);
+            else
+            {
+                movingDirection = Direction.DIRECTION.NONE;
+                moveByMouse = false;
+            }
+        }
+        else
+        {
+            switch (movingDirection)
+            {
+                case Direction.DIRECTION.LEFT:
+                    rigidBody.MovePosition(playerPosition + new Vector3(-speed * Time.deltaTime, 0, 0));
+                    break;
+                case Direction.DIRECTION.RIGHT:
+                    rigidBody.MovePosition(playerPosition + new Vector3(speed * Time.deltaTime, 0, 0));
+                    break;
+            }
         }
     }
 }
