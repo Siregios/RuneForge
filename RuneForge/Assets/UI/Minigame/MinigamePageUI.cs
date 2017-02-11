@@ -30,7 +30,12 @@ public class MinigamePageUI : MonoBehaviour {
 
     public void DisplayPage(string minigame)
     {
-        MasterGameManager.instance.workOrderManager.currentWorkOrders.Clear();
+        WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
+        orderManager.currentWorkOrders.Clear();
+        if (orderManager.workorderList.Count >= 1)
+        {
+            MasterGameManager.instance.workOrderManager.WorkOnOrder(orderManager.workorderList[0]);
+        }
         SetMinigame(minigame);
         Enable(true);
         animator.SetBool(minigame, true);

@@ -13,6 +13,8 @@ public class WorkOrderButton : MonoBehaviour {
     MinigamePageUI minigamePanel;
 
     WorkOrder order;
+    Button button;
+    bool selected;  // For minigame page
     public Text orderName;
     public Image orderIcon;
     public Text stageText;
@@ -22,6 +24,7 @@ public class WorkOrderButton : MonoBehaviour {
 
     void Awake()
     {
+        button = this.GetComponent<Button>();
         gaugeMaxWidth = gauge.rect.width;
     }
 
@@ -58,7 +61,22 @@ public class WorkOrderButton : MonoBehaviour {
                 }
                 break;
         }
-    }  
+    }
+    
+    void Update()
+    {
+        WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
+        if (orderManager.currentWorkOrders.Contains(this.order))
+        {
+            this.button.targetGraphic.color = this.button.colors.pressedColor;
+            selected = true;
+        }
+        else
+        {
+            this.button.targetGraphic.color = this.button.colors.normalColor;
+            selected = false;
+        }
+    }
 
     public void WorkOrderClick()
     {
@@ -67,7 +85,9 @@ public class WorkOrderButton : MonoBehaviour {
 
     public void MinigameClick()
     {
-        MasterGameManager.instance.workOrderManager.WorkOnOrder(this.order);
-        this.GetComponent<Button>().interactable = false;
+        if (!selected)
+            MasterGameManager.instance.workOrderManager.WorkOnOrder(this.order);
+        else
+            MasterGameManager.instance.workOrderManager.CancelWorkOnOrder(this.order);
     }
 }
