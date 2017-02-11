@@ -230,7 +230,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1855417679
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1f9f9f767abddec47a251a82f82ee465, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2c4c1c7610550840a4602a698001897, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -809,6 +809,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011084955356, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
   m_IsPrefabParent: 0
@@ -1013,6 +1017,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011390501862, guid: 092aec5fbb4e565488286dafd190cf01, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 092aec5fbb4e565488286dafd190cf01, type: 2}
   m_IsPrefabParent: 0
@@ -1079,7 +1087,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1855417679
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 613d6a677cb6a3048bddd6827d9f2815, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d41de4f509ab2c4fa29deae1617efcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1586,7 +1594,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1855417679
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 680aed1ae86ea3e48a3ecad9fcc2e5ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e3aa68c0efe2c74fb14d98bd5ddc090, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1982,7 +1990,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1855417679
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85e61ceb2c9def846a25f9bf45b25ec9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e971a046a77a774897f3193e04b3637, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
