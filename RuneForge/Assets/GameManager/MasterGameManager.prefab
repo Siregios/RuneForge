@@ -104,9 +104,9 @@ MonoBehaviour:
     MC: 300
     isTutorial: 0
   - Name: Smithing
-    SD: 50
-    HQ: 1100
-    MC: 1400
+    SD: 500
+    HQ: 1000
+    MC: 1500
     isTutorial: 0
   - Name: TracerTutorial
     SD: 50
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
+  isHovering: 0
 --- !u!114 &114740248611132830
 MonoBehaviour:
   m_ObjectHideFlags: 1
