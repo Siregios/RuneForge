@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MinigamePageUI : MonoBehaviour {
     public ClipboardUI clipboard;
+    public List<GameObject> recipeShortcuts;
     public string minigame;
     public Button playButton;
     public Image minigameThumbnail;
@@ -35,6 +36,15 @@ public class MinigamePageUI : MonoBehaviour {
         if (orderManager.workorderList.Count >= 1)
         {
             MasterGameManager.instance.workOrderManager.WorkOnOrder(orderManager.workorderList[0]);
+        }
+
+        // Deactivate all the shortcuts before displaying the current one
+        foreach (GameObject recipeShortcut in recipeShortcuts)
+            recipeShortcut.SetActive(false);
+        // Display the current shortcut
+        if (orderManager.workorderList.Count < orderManager.maxWorkOrders)
+        {
+            recipeShortcuts[orderManager.workorderList.Count].SetActive(true);
         }
         SetMinigame(minigame);
         Enable(true);

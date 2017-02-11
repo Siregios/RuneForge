@@ -47,11 +47,6 @@ public class WorkOrderManager : MonoBehaviour {
             return;
         }
         currentWorkOrders.Add(order);
-
-        foreach (WorkOrder boo in currentWorkOrders)
-        {
-            Debug.LogFormat("Order #{0}) {1} being worked on.", boo.orderNumber, boo.item.name);
-        }
     }
 
     public void CancelWorkOnOrder(WorkOrder order)
@@ -59,11 +54,6 @@ public class WorkOrderManager : MonoBehaviour {
         if (currentWorkOrders.Contains(order))
         {
             currentWorkOrders.Remove(order);
-        }
-
-        foreach (WorkOrder boo in currentWorkOrders)
-        {
-            Debug.LogFormat("Order #{0}) {1} being worked on.", boo.orderNumber, boo.item.name);
         }
     }
 }
