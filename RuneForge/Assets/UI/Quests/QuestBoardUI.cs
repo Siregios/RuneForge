@@ -8,21 +8,18 @@ public class QuestBoardUI : MonoBehaviour {
     [HideInInspector]
     public int currentDisplayedDay = 0;    
     public List<GameObject> questObjects;
-    float xPos, yPos, padY;
+    float xPos = 175, yPos = 150, padY = -70;
     int objCount;
     public ItemListUI productList;
 
-    void Awake()
-    {
-        //rectTransform = this.GetComponent<RectTransform>();
-        xPos = 175;
-        yPos = 150;
-        padY = -70;
-    }
-
     public void Enable(bool active)
     {
-        DisplayBoard();
+        if (active)
+            DisplayBoard();
+        else
+        {
+            ClearBoard();
+        }
         this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
         //MasterGameManager.instance.uiManager.uiOpen = active;
@@ -44,9 +41,8 @@ public class QuestBoardUI : MonoBehaviour {
     public void DisplayBoard()
     {
         objCount = 0;
-        Debug.Log(MasterGameManager.instance.questGenerator.currentQuests.Count);
         foreach(Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
-        {            
+        {
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
             newQuest.transform.SetParent(this.transform);
             newQuest.transform.localScale = Vector3.one;
@@ -78,6 +74,15 @@ public class QuestBoardUI : MonoBehaviour {
         //    //newOrderNote.transform.Rotate(Vector3.forward, Random.Range(-15f, 15f));
         //}
         //currentDisplayedDay = MasterGameManager.instance.actionClock.Day;
+    }
+
+    public void ClearBoard()
+    {
+        foreach (GameObject quest in questObjects)
+        {
+            Destroy(quest);
+        }
+        questObjects.Clear();
     }
 
     public void turnInQuest(GameObject quest, GameObject item)
