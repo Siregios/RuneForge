@@ -9,14 +9,16 @@ public class SmithingUI : MonoBehaviour {
 
     public Timer timer;
 
-    public Text timeInfo;   //The text used for the time left in each mode, also tells which mode game is currently in
+
+    public Image clockPointer;
+
+    public Image clockFill;
 
     public GameObject selectorObj;
 
 	// Use this for initialization
 	void Start () {
         selectorInfo = selectorObj.GetComponent<ChargeSelector>();
-        timeInfo.text = String.Format("{0}!\n{1:0}", selectorInfo.getMode(), selectorInfo.getTimeRemaining());
     }
 	
 	// Update is called once per frame
@@ -26,7 +28,20 @@ public class SmithingUI : MonoBehaviour {
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
-        timeInfo.text = String.Format("{0}!\n{1:0}", selectorInfo.getMode(), selectorInfo.getTimeRemaining());
+        string mode = selectorInfo.getMode();
+        if (mode == "Fire") 
+        {
+            clockPointer.GetComponent<RectTransform>().rotation = Quaternion.Euler(new Vector3(0, 0, 360 * selectorInfo.getTimeRemaining() / selectorInfo.chargeTime));
+            clockFill.fillAmount = 1 - (selectorInfo.getTimeRemaining() / selectorInfo.chargeTime);
+            if (selectorInfo.getTimeRemaining() <= 0)
+                clockFill.fillAmount = 0;
+        } 
+        else 
+        {
+            clockFill.fillAmount = 0;
+        }
+
+        //rotation 360*currenttime/maxtime
 
     }
 }

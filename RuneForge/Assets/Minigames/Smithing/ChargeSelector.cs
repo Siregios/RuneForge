@@ -19,7 +19,6 @@ public class ChargeSelector : MonoBehaviour {
     public float startYPos = -2.0f;
     public int maxSpeed = 30;
     public float speedIncrement = 2.0f;
-    public float aimTime = 5.0f;
     public float chargeTime = 5.0f;
     public float randTime = 5.0f;
     public float greenWidth = .3f;
@@ -33,7 +32,7 @@ public class ChargeSelector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        timeRemaining = aimTime;
+        timeRemaining = chargeTime;
 
         target = GameObject.Find("Target").GetComponent<TargetMovment>();
         targetCenter = target.getCenterX();
@@ -48,7 +47,7 @@ public class ChargeSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (timeRemaining < 0)
+        if (timeRemaining <= 0)
             timeRemaining = 0;
         else
             timeRemaining -= Time.deltaTime;
@@ -66,8 +65,8 @@ public class ChargeSelector : MonoBehaviour {
                 }
 
             }
-            else
-                resetMarker();
+            //else
+                //resetMarker();
         }
 
         if (selectButtonDown() && isPlaying)
@@ -147,14 +146,6 @@ public class ChargeSelector : MonoBehaviour {
         {
             score.addScore(5);
         }
-
-        /*if (mashCount == 25)    //After some number/time of button mashing, reset and increase speed
-        {
-            buttonMash = false;
-            mashCount = 0;
-            StartCoroutine(waitForLightning());
-        }
-        */
     }
 
     //stop the marker's movement and save its speed
@@ -183,7 +174,7 @@ public class ChargeSelector : MonoBehaviour {
             movement.speed = lastSpeed;
         }
         target.changePosition();
-        timeRemaining = aimTime;
+        timeRemaining = 0;
     }
 
     //may be replaced

@@ -36,7 +36,7 @@ public class SmithingBlacksmithAnimations : MonoBehaviour {
                 reset = true;
             if (animationIndex >= 10  && reset)
             {
-                Debug.Log("Hammer hit?");
+                //Debug.Log("Hammer hit?");
                 if (hit)
                     AudioManager.PlaySound(0);
                 else
