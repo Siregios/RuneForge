@@ -133,7 +133,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013274963222, guid: 335125f53f0bb3448ac591ed7d5ca76e, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114000013945573990, guid: 335125f53f0bb3448ac591ed7d5ca76e,
         type: 2}
@@ -188,7 +188,7 @@ Prefab:
     - target: {fileID: 224000012993949874, guid: 225482849374ce74abe03093506c3717,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012993949874, guid: 225482849374ce74abe03093506c3717,
         type: 2}
@@ -293,7 +293,7 @@ Prefab:
     - target: {fileID: 224000012882885358, guid: 3a604191afb20aa47aa0b31894ab2f69,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882885358, guid: 3a604191afb20aa47aa0b31894ab2f69,
         type: 2}
@@ -754,6 +754,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &770928452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 770928453}
+  m_Layer: 0
+  m_Name: HammerParticles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &770928453
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 770928452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 152.23753, y: 296.6812, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &785172814 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011084955356, guid: 335125f53f0bb3448ac591ed7d5ca76e,
@@ -1091,11 +1119,11 @@ RectTransform:
   m_Children:
   - {fileID: 1013976811}
   - {fileID: 2009194858}
+  - {fileID: 1844011886}
   - {fileID: 167025427}
   - {fileID: 785172815}
   - {fileID: 1193158043}
   - {fileID: 1462090839}
-  - {fileID: 1844011886}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1194,7 +1222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 785172816}
-  timeInfo: {fileID: 2009194859}
   clockPointer: {fileID: 830991220}
   clockFill: {fileID: 488629112}
   selectorObj: {fileID: 1604584639}
@@ -1256,7 +1283,7 @@ Prefab:
     - target: {fileID: 224000010603578336, guid: 38a4a755ad3e5ee488c9d37c7bc8d797,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224000010603578336, guid: 38a4a755ad3e5ee488c9d37c7bc8d797,
         type: 2}
@@ -1677,7 +1704,6 @@ MonoBehaviour:
   startYPos: -4.1
   maxSpeed: 25
   speedIncrement: 2
-  aimTime: 5
   chargeTime: 5
   randTime: 1
   greenWidth: 0.6
@@ -1847,7 +1873,7 @@ RectTransform:
   - {fileID: 830991219}
   - {fileID: 488629111}
   m_Father: {fileID: 1045395556}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
