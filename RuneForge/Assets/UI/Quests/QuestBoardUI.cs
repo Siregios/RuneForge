@@ -88,9 +88,21 @@ public class QuestBoardUI : MonoBehaviour {
     public void turnInQuest(GameObject quest, GameObject item)
     {
         Quest qValues = quest.GetComponent<QuestNote>().quest;
+        int addIngr = 0;
+        float goldMultiplier = 1f;
         if (PlayerInventory.inventory.GetItemCount(item.GetComponent<ItemButton>().item) >= qValues.amountProduct)
-        {
-            objCount = 0;            
+        {            
+            if (item.GetComponent<ItemButton>().item.name.Contains("(HQ)"))
+            {
+                addIngr++;
+                goldMultiplier = 1.5f;
+            }
+            if (item.GetComponent<ItemButton>().item.name.Contains("(MC)"))
+            {
+                addIngr += 2;
+                goldMultiplier = 2f;
+            }
+            objCount = 0;
             questObjects.Remove(quest);
             MasterGameManager.instance.questGenerator.currentQuests.Remove(quest.GetComponent<QuestNote>().quest);
             foreach (GameObject q in questObjects)
@@ -99,9 +111,9 @@ public class QuestBoardUI : MonoBehaviour {
                 q.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPos, yPosNew, 0);
                 objCount++;
             }
-            PlayerInventory.inventory.AddItem(qValues.ingredient, qValues.amountIngredient);
+            PlayerInventory.inventory.AddItem(qValues.ingredient, qValues.amountIngredient + addIngr);
             PlayerInventory.inventory.SubtractItem(item.GetComponent<ItemButton>().item, qValues.amountProduct);
-            PlayerInventory.money += qValues.gold;
+            PlayerInventory.money += Mathf.RoundToInt(qValues.gold * goldMultiplier);
             Destroy(quest);
             productList.RefreshPage();
             Debug.Log(true);
