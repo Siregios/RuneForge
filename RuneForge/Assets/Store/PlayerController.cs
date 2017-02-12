@@ -42,11 +42,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!MasterGameManager.instance.uiManager.uiOpen)
-        {
-            Move();
-        }
-        else if (tutorial)
+        if (!MasterGameManager.instance.uiManager.uiOpen || tutorial)
         {
             Move();
         }

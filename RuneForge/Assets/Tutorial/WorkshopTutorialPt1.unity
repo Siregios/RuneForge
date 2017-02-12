@@ -2069,6 +2069,8 @@ MonoBehaviour:
   characterMovements:
   - Player
   - Mother
+  Player: {fileID: 1500124371}
+  Mom: {fileID: 139556992}
   actorsMoving: 0
   dialogueIndex: 0
 --- !u!4 &1153268382

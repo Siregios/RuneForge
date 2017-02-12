@@ -13,8 +13,8 @@ public class TutorialDialogue : MonoBehaviour
     public List<int> movementIndex = new List<int>();       //List of which dialoguee indexes initiate movement
 
     public List<string> characterMovements;                  //List for which characters we want moved in what order, separated by commas (you could also make
-                                                            //this a double list, but I think it saves more space making that second list locally later on)
-
+                                                             //this a double list, but I think it saves more space making that second list locally later on)
+    public GameObject Player, Mom;
     private Dictionary<int, string> movementDict = new Dictionary<int, string>();       //Dictionary of movement indexes corresponding to which characters move on that index
     public int actorsMoving = 0;
     public int dialogueIndex = 0;
@@ -45,6 +45,8 @@ public class TutorialDialogue : MonoBehaviour
         {
             if (movementIndex.Contains(dialogueIndex))
             {
+                Mom.GetComponent<PlayerController>().tutorial = true;
+                Player.GetComponent<PlayerController>().tutorial = true;
                 string[] charactersToMove = movementDict[dialogueIndex].Replace(" ", string.Empty).Split(',');
                 foreach (string character in charactersToMove)
                 {
@@ -55,6 +57,8 @@ public class TutorialDialogue : MonoBehaviour
             }
             else if (disableOnce)
             {
+                Mom.GetComponent<PlayerController>().tutorial = false;
+                Player.GetComponent<PlayerController>().tutorial = false;
                 MasterGameManager.instance.inputActive = true;
                 MasterGameManager.instance.uiManager.uiOpen = false;
                 foreach (Button button in menuButtons)

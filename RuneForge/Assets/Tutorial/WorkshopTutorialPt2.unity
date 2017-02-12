@@ -1954,6 +1954,8 @@ MonoBehaviour:
   - Fairy
   - Mother, Fairy
   - Fairy, Mother
+  Player: {fileID: 2070310489}
+  Mom: {fileID: 661937159}
   actorsMoving: 0
   dialogueIndex: 0
 --- !u!4 &1153268382
@@ -3257,6 +3259,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 732d1141156ccc344848c8894155295e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2070310489 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011372493424, guid: 732d1141156ccc344848c8894155295e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2070310488}
 --- !u!1 &2081972892
 GameObject:
   m_ObjectHideFlags: 0
