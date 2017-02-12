@@ -28,6 +28,8 @@ public class movementAI : MonoBehaviour
     public float minTime = 1;
     public float maxTime = 5f;
 
+    public ChargeSelector smithingGameCode;
+
     void Start()
     {
         lastPause = Time.time;

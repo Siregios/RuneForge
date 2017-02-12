@@ -52,6 +52,13 @@ public class ChargeSelector : MonoBehaviour {
         else
             timeRemaining -= Time.deltaTime;
 
+        if (selectButtonDown() && isPlaying) {
+            if (buttonMash)
+                mashUp();
+            else
+                checkForScore();
+        }
+
         if (timeRemaining <= 0)
         {
             if (buttonMash)
@@ -69,13 +76,6 @@ public class ChargeSelector : MonoBehaviour {
                 //resetMarker();
         }
 
-        if (selectButtonDown() && isPlaying)
-        {
-            if (buttonMash)
-                mashUp();
-            else
-                checkForScore();
-        }
 	
 	}
 

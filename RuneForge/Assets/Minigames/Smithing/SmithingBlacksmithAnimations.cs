@@ -10,6 +10,7 @@ public class SmithingBlacksmithAnimations : MonoBehaviour {
     private bool hammering;
     private bool reset;
     public bool hit;
+    public ParticleSystem hammerParticles;
 
 	// Use this for initialization
 	void Start ()
@@ -37,13 +38,18 @@ public class SmithingBlacksmithAnimations : MonoBehaviour {
             if (animationIndex >= 10  && reset)
             {
                 //Debug.Log("Hammer hit?");
-                if (hit)
+                if (hit) 
+                {
                     AudioManager.PlaySound(0);
+                    hammerParticles.Play();
+                }
                 else
                     AudioManager.PlaySound(1);
                 reset = false;
             }
         }
+        else
+            hammerParticles.Stop();
     }
 
     public void startHammering()
