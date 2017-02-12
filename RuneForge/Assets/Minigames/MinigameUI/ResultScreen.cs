@@ -9,11 +9,13 @@ public class ResultScreen : MonoBehaviour {
     public GameObject score;
     public GameObject scoreFill;
     public GameObject progress;
+    public GameObject progressFill;
     public Button done;
     float time = 1.5f;
     int minigameScore, totalScore;
     float st = 500, hq = 1000, mc = 1500;
     Image bronze, silver, gold;
+    int currentStage, requiredStage;
     //float transition = 1.5f;
 
     public string nextScene = "Workshop";
@@ -30,13 +32,16 @@ public class ResultScreen : MonoBehaviour {
 
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
-        {
+        {            
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
             gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
+            progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
-            totalScore = order.score;   
+            requiredStage = order.requiredStages;
+            currentStage = order.currentStage;
+            totalScore = order.score;
 
             //Start to fade into result screen
             StartCoroutine(FadeResultText());
@@ -121,7 +126,14 @@ public class ResultScreen : MonoBehaviour {
             progress.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
+        StartCoroutine(ProgressFill());
+    }
+
+    IEnumerator ProgressFill()
+    {
+        while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
         {
+            progressFill.GetComponent<Image>().fillAmount = Mathf.Lerp(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * 3);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -149,24 +161,27 @@ public class ResultScreen : MonoBehaviour {
 
     bool moveFillAmount()
     {
-        if (bronze.fillAmount < Mathf.Clamp((float)totalScore / st, 0f, 1f))
+        float bronzeFill = Mathf.Clamp((float)totalScore / st, 0f, 1f);
+        float silverFill = Mathf.Clamp(((float)totalScore-st) / (hq- st), 0f, 1f);
+        float goldFill = Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f);
+        if (bronze.fillAmount < bronzeFill)
         {
-            bronze.fillAmount = Mathf.Lerp(bronze.fillAmount, Mathf.Clamp((float)totalScore / st, 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - bronze.fillAmount <= 0.0015f)           
-                bronze.fillAmount = 1;
+            bronze.fillAmount = Mathf.Lerp(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * 3);
+            if (bronzeFill - bronze.fillAmount <= 0.0015f)
+                bronze.fillAmount = bronzeFill;
             
         }
-        else if (silver.fillAmount < Mathf.Clamp((float)totalScore / hq, 0f, 1f))
+        else if (silver.fillAmount < silverFill)
         {
-            silver.fillAmount = Mathf.Lerp(silver.fillAmount, Mathf.Clamp(((float)totalScore- st) / (hq- st), 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - silver.fillAmount <= 0.0015f)
-                silver.fillAmount = 1;
+            silver.fillAmount = Mathf.Lerp(silver.fillAmount, silverFill, Time.unscaledDeltaTime * 3);
+            if (silverFill - silver.fillAmount <= 0.0015f)
+                silver.fillAmount = silverFill;
         }
-        else if (gold.fillAmount < Mathf.Clamp((float)totalScore / mc, 0f, 1f))
+        else if (gold.fillAmount < goldFill)
         {
-            gold.fillAmount = Mathf.Lerp(gold.fillAmount, Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f), Time.unscaledDeltaTime * 3);
-            if (1 - gold.fillAmount <= 0.0015f)
-                gold.fillAmount = 1;
+            gold.fillAmount = Mathf.Lerp(gold.fillAmount, goldFill, Time.unscaledDeltaTime * 3);
+            if (goldFill - gold.fillAmount <= 0.0015f)
+                gold.fillAmount = goldFill;
         }
         else
         {

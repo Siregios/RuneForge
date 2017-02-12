@@ -1190,6 +1190,7 @@ MonoBehaviour:
   score: {fileID: 1166574}
   scoreFill: {fileID: 1745106286}
   progress: {fileID: 829801947}
+  progressFill: {fileID: 1369314049}
   done: {fileID: 175945957}
   nextScene: Workshop
 --- !u!114 &754627902

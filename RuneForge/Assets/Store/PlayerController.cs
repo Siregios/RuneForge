@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     public bool moveByMouse = false;
     Vector3 targetClick;
+    public bool tutorial = false;
 
     PointerEventData pointer = new PointerEventData(EventSystem.current);
     System.Collections.Generic.List<RaycastResult> results = new System.Collections.Generic.List<RaycastResult>();
@@ -42,6 +43,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (!MasterGameManager.instance.uiManager.uiOpen)
+        {
+            Move();
+        }
+        else if (tutorial)
         {
             Move();
         }
@@ -90,7 +95,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.tag == "VerticalBounds")
         {

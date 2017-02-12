@@ -570,6 +570,7 @@ MonoBehaviour:
   movingDirection: 0
   speed: 4
   moveByMouse: 0
+  tutorial: 1
 --- !u!114 &661937161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,6 +3247,11 @@ Prefab:
     - target: {fileID: 212000014122804990, guid: 732d1141156ccc344848c8894155295e,
         type: 2}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012544161468, guid: 732d1141156ccc344848c8894155295e,
+        type: 2}
+      propertyPath: tutorial
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
