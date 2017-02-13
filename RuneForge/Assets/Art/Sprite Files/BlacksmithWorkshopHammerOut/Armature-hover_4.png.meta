@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: d891583aef9da7048bc68a071e536d47
-timeCreated: 1486968475
+timeCreated: 1487005307
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Armature-hover_4_0
+    21300002: Armature-hover_4_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -40,7 +42,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 260
+  spritePixelsToUnits: 250
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -92,7 +94,33 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Armature-hover_4_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 25
+        width: 2304
+        height: 2170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Armature-hover_4_1
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 2193
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
