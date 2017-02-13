@@ -10,17 +10,17 @@ public class ItemButton : MonoBehaviour
     public Item item;
 
     public bool showHover = true;
-    bool followingMouse = false;
+    protected bool followingMouse = false;
     public Image typeCharm;
     public Image attribute1;
     public Image attribute2;
     public Text countText;
-    GameObject LastClicked;
-    Inventory referenceInventory;
+    protected GameObject LastClicked;
+    protected Inventory referenceInventory;
 
     //Drag objects
     public GameObject dragObject;
-    GameObject draggable;
+    protected GameObject draggable;
 
     public int ItemCount
     {
@@ -30,7 +30,7 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    void Update()
+    protected void Update()
     {
         if (EventSystem.current.currentSelectedGameObject != this.gameObject || LastClicked == null)
         {
@@ -63,7 +63,7 @@ public class ItemButton : MonoBehaviour
             setType();
     }
 
-    public void OnHover(bool active)
+    public virtual void OnHover(bool active)
     {
         if (showHover)
         {
@@ -109,7 +109,7 @@ public class ItemButton : MonoBehaviour
         gameObject.GetComponent<Button>().interactable = true;
     }
 
-    void SetText()
+    protected void SetText()
     {
         if (ItemCount == int.MaxValue)
             this.countText.text = "∞";
@@ -117,7 +117,7 @@ public class ItemButton : MonoBehaviour
             this.countText.text = "x" + ItemCount.ToString();
     }
 
-    void DragCopy()
+    protected void DragCopy()
     {
         //Used to bring UI element to the front.
         gameObject.transform.SetAsLastSibling();
@@ -130,7 +130,7 @@ public class ItemButton : MonoBehaviour
     }
 
     //REFACTOR : Use instatiation rather than set GameObjects
-    void setAttributes()
+    protected void setAttributes()
     {
         if (attribute1 != null && item.provtAttrStr != null && item.provtAttrStr.Contains("ALL"))
         {
@@ -174,7 +174,7 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    void setType()
+    protected void setType()
     {
         Image newImage = (Image)Instantiate(typeCharm, this.transform);
         newImage.rectTransform.localScale = Vector3.one;

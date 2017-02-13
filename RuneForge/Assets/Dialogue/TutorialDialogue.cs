@@ -33,7 +33,7 @@ public class TutorialDialogue : MonoBehaviour
             MasterGameManager.instance.workOrderManager.workorderList[0].requiredStages = 1;
         }
 
-        for (int i = 0; i<movementIndex.Capacity; i++)
+        for (int i = 0; i < movementIndex.Capacity; i++)
         {
             movementDict[movementIndex[i]] = characterMovements[i];
         }
@@ -90,5 +90,14 @@ public class TutorialDialogue : MonoBehaviour
     public void ButtonActivate(int index)
     {
         ActivateDialogue(index, false);
+    }
+
+    //due to the nature of prefabricated buttons, this needs to be used to call a separate script
+    //this separate script will handle dialogue based on the info given from the call to this function
+    //OOP: Button Pushed -> ComplexButtonActivate() -> Script calls ButtonActivate(index) where index is determined in the script
+    //Sadly this most likely means that things will need to be hard coded
+    public void ComplexButtonActivate()
+    {
+
     }
 }
