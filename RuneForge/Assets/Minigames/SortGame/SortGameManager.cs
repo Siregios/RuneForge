@@ -100,7 +100,7 @@ public class SortGameManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-        if (hit != false && hit.collider != null)
+        if (hit != false && hit.collider != null && timer.time >= 0)
         {
             if (hit.collider.tag == "Red" || hit.collider.tag == "Yellow" || hit.collider.tag == "Blue" || hit.collider.tag == "Green")
             {
