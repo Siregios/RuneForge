@@ -44,7 +44,7 @@ public class ResultScreen : MonoBehaviour {
             totalScore = order.score;
 
             //Start to fade into result screen
-            StartCoroutine(FadeResultText());
+            StartCoroutine(FadeResults());
 
             //If complete, show work order score and rune completed.
             if (order.isComplete)
@@ -70,16 +70,27 @@ public class ResultScreen : MonoBehaviour {
             }
         }
     }
-
-    IEnumerator FadeResultText()
+    
+    //Fades to black
+    IEnumerator FadeResults()
     {
         Time.timeScale = 0;
         while (GetComponent<Image>().color.a <= 1)
         {
-            Color temp = GetComponent<Image>().color;        
+            Color temp = GetComponent<Image>().color;
             temp.a += Time.unscaledDeltaTime / time;
             GetComponent<Image>().color = temp;
-            temp = result.color;
+            yield return new WaitForEndOfFrame();
+        }
+        StartCoroutine(FadeResultText());
+    }
+
+    //Fades "Results" Text
+    IEnumerator FadeResultText()
+    {
+        while (result.color.a <= 1)
+        {
+            Color temp = result.color;        
             temp.a += Time.unscaledDeltaTime / time;
             result.color = temp;
             yield return new WaitForEndOfFrame();
@@ -87,6 +98,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(FadeProduct());
     }
 
+    //Fades product worked on
     IEnumerator FadeProduct()
     {
         while (product.color.a <= 1)
@@ -99,6 +111,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(FadeScore());
     }
 
+    //Fades score bar
     IEnumerator FadeScore()
     {
         while (score.GetComponent<CanvasGroup>().alpha < 1)
@@ -110,6 +123,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(FadeScoreFill());
     }
 
+    //adds the score fill
     IEnumerator FadeScoreFill()
     {
         while (moveFillAmount())
@@ -119,6 +133,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(ProgressFade());
     }
 
+    //Fades progress bar
     IEnumerator ProgressFade()
     {
         while (progress.GetComponent<CanvasGroup>().alpha < 1)
@@ -129,6 +144,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(ProgressFill());
     }
 
+    //Progress fill
     IEnumerator ProgressFill()
     {
         while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
@@ -141,6 +157,7 @@ public class ResultScreen : MonoBehaviour {
         StartCoroutine(FadeDone());
     }
 
+    //Fades done button
     IEnumerator FadeDone()
     {
         while (done.GetComponent<CanvasGroup>().alpha < 1)
@@ -171,6 +188,7 @@ public class ResultScreen : MonoBehaviour {
     //    MasterGameManager.instance.sceneManager.LoadScene(nextScene);
     //}
 
+    //Moves fill amount for score
     bool moveFillAmount()
     {
         float bronzeFill = Mathf.Clamp((float)totalScore / st, 0f, 1f);
