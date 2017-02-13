@@ -134,6 +134,18 @@ public class ResultScreen : MonoBehaviour {
         while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
         {
             progressFill.GetComponent<Image>().fillAmount = Mathf.Lerp(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * 3);
+            if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.0015f)
+                progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
+            yield return new WaitForEndOfFrame();
+        }
+        StartCoroutine(FadeDone());
+    }
+
+    IEnumerator FadeDone()
+    {
+        while (done.GetComponent<CanvasGroup>().alpha < 1)
+        {
+            done.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
     }
@@ -190,7 +202,7 @@ public class ResultScreen : MonoBehaviour {
         return true;
     }
 
-    public  void LoadScene()
+    public void LoadScene()
     {
         MasterGameManager.instance.sceneManager.LoadScene(nextScene);
     }
