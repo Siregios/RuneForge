@@ -10,12 +10,18 @@ public class TutorialFairy : CutsceneMovement
     public List<GameObject> waypointList;
     public int waypointIndex = 0;
     public TutorialDialogue dialogueScript;
-
-    public float speed;
+    float defaultWidth = Screen.width;
+    float defaultHeight = Screen.height;
+    float speed = ((Screen.width + Screen.height) / 8);
 
     void Update()
     {
-
+        if (Screen.width != defaultWidth || Screen.height != defaultHeight)
+        {
+            speed = ((Screen.width + Screen.height) / 8);
+            defaultWidth = Screen.width;
+            defaultHeight = Screen.height;
+        }
     }
 
     public override void cutsceneMove()
