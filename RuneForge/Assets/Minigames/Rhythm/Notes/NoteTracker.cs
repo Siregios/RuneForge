@@ -8,11 +8,11 @@ public class NoteTracker : MonoBehaviour {
     public RandomSpawnNote scriptNote;
     public GameObject center;
     public bool canDie = false;
-    bool trigW, trigS, trigA, trigD, switchOver, ws, ad = false;
+    bool switchOver, ws, ad = false;
 
     //ALL FOR DOUBLE NOTES
     public Sprite[] doubleSprite;
-    float startSlerp;
+    //float startSlerp;
     float timerDouble = 0.2f;
     SpriteRenderer noteSprite;
 
@@ -71,9 +71,9 @@ public class NoteTracker : MonoBehaviour {
 
         //Checks for input when note is on hitbox and key pressed
         if (Input.GetKeyDown(KeyCode.W) && indexNote == 0 && !switchOver && canDie)
-        {
-            checkAccuracy();          
-            if (accuracy != 0)  
+        {            
+            checkAccuracy();        
+            if (accuracy != 0)
                 DoubleSpawn();
             if (!switchOver && accuracy != 0)
                 Destroy(gameObject);
@@ -112,17 +112,17 @@ public class NoteTracker : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         //Sets up when the note can be dieded
-        if (other.gameObject.name == "hitbox")
-        {
-            if (other.transform.parent.name == "w_key" && canDie)
-                trigW = true;
-            if (other.transform.parent.name == "s_key" && canDie)
-                trigS = true;
-            if (other.transform.parent.name == "a_key" && canDie)
-                trigA = true;
-            if (other.transform.parent.name == "d_key" && canDie)
-                trigD = true;
-        }
+        //if (other.gameObject.name == "hitbox")
+        //{
+        //    if (other.transform.parent.name == "w_key" && canDie)
+        //        trigW = true;
+        //    if (other.transform.parent.name == "s_key" && canDie)
+        //        trigS = true;
+        //    if (other.transform.parent.name == "a_key" && canDie)
+        //        trigA = true;
+        //    if (other.transform.parent.name == "d_key" && canDie)
+        //        trigD = true;
+        //}
 
         //Timing is key
         accuracy++;
@@ -137,29 +137,29 @@ public class NoteTracker : MonoBehaviour {
         }        
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.name == "hitbox")
-        {
-            if (other.transform.parent.name == "w_key" && canDie)
-                trigW = true;
-            if (other.transform.parent.name == "s_key" && canDie)
-                trigS = true;
-            if (other.transform.parent.name == "a_key" && canDie)
-                trigA = true;
-            if (other.transform.parent.name == "d_key" && canDie)
-                trigD = true;
-        }
-    }
+    //void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.gameObject.name == "hitbox")
+    //    {
+    //        if (other.transform.parent.name == "w_key" && canDie)
+    //            trigW = true;
+    //        if (other.transform.parent.name == "s_key" && canDie)
+    //            trigS = true;
+    //        if (other.transform.parent.name == "a_key" && canDie)
+    //            trigA = true;
+    //        if (other.transform.parent.name == "d_key" && canDie)
+    //            trigD = true;
+    //    }
+    //}
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //Once key leaves, you can no longer press (Probably not needed but added for safety)
-        trigW = false;
-        trigS = false;
-        trigA = false;
-        trigD = false;
-    }
+    //void OnTriggerExit2D(Collider2D other)
+    //{
+    //    //Once key leaves, you can no longer press (Probably not needed but added for safety)
+    //    trigW = false;
+    //    trigS = false;
+    //    trigA = false;
+    //    trigD = false;
+    //}
 
     //Checks the score and allocates the amount while updating the UI
     void checkAccuracy()
@@ -215,7 +215,7 @@ public class NoteTracker : MonoBehaviour {
         }
         switchOver = true;                
         accuracy = -999;
-        startSlerp = Time.time;
+        //startSlerp = Time.time;
         
         return switchOver;
     }
@@ -226,7 +226,7 @@ public class NoteTracker : MonoBehaviour {
         //if w or s key
         if (ws)
         {
-            if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.01f)
+            if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) < 0.015f)
             {
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
@@ -239,8 +239,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else            
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.75f);
-            if (transform.position.x <= 0.35f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
+            if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
                 {
@@ -253,7 +253,7 @@ public class NoteTracker : MonoBehaviour {
         }
         else if (ad)
         {
-            if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.01f)
+            if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) < 0.015f)
             {
                 timerDouble -= Time.deltaTime;
                 if (timerDouble <= 0)
@@ -266,8 +266,8 @@ public class NoteTracker : MonoBehaviour {
                 }
             }
             else
-                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3.75f);
-            if (transform.position.y <= 0.35f)
+                transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
+            if (Mathf.Abs(transform.position.y - keyLoc.transform.position.y) <= 0.35f)
             {
                 if (Input.GetKeyDown(input))
                 {

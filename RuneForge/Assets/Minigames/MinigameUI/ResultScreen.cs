@@ -149,7 +149,7 @@ public class ResultScreen : MonoBehaviour {
     {
         while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
         {
-            progressFill.GetComponent<Image>().fillAmount = Mathf.Lerp(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * 3);
+            progressFill.GetComponent<Image>().fillAmount = Mathf.MoveTowards(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * fillSpeed);
             if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.0015f)
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
             yield return new WaitForEndOfFrame();
@@ -196,20 +196,20 @@ public class ResultScreen : MonoBehaviour {
         float goldFill = Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f);
         if (bronze.fillAmount < bronzeFill)
         {
-            bronze.fillAmount = Mathf.Lerp(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * 3);
+            bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
             if (bronzeFill - bronze.fillAmount <= 0.0015f)
                 bronze.fillAmount = bronzeFill;
             
         }
         else if (silver.fillAmount < silverFill)
         {
-            silver.fillAmount = Mathf.Lerp(silver.fillAmount, silverFill, Time.unscaledDeltaTime * 3);
+            silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
             if (silverFill - silver.fillAmount <= 0.0015f)
                 silver.fillAmount = silverFill;
         }
         else if (gold.fillAmount < goldFill)
         {
-            gold.fillAmount = Mathf.Lerp(gold.fillAmount, goldFill, Time.unscaledDeltaTime * 3);
+            gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
             if (goldFill - gold.fillAmount <= 0.0015f)
                 gold.fillAmount = goldFill;
         }

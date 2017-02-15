@@ -10,7 +10,7 @@ public class BeatmappingScript : MonoBehaviour {
     public List<double> timeList;
     public string songName;
     float currentBeat;
-    bool beatDrop = false;
+    //bool beatDrop = false;
 
 
     void Start()
@@ -29,7 +29,7 @@ public class BeatmappingScript : MonoBehaviour {
         {
             Debug.Log(AudioSettings.dspTime);            
             timeList.Add(AudioSettings.dspTime);
-            beatDrop = false;
+            //beatDrop = false;
         }
 
         if (!GameObject.Find("AudioSource").GetComponent<AudioSource>().isPlaying)
