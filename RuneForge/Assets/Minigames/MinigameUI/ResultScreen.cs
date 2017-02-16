@@ -16,6 +16,7 @@ public class ResultScreen : MonoBehaviour {
     float st = 500, hq = 1000, mc = 1500;
     Image bronze, silver, gold;
     int currentStage, requiredStage;
+    float fillSpeed = 0.5f;
     //float transition = 1.5f;
 
     public string nextScene = "Workshop";
