@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WorkOrderButton : MonoBehaviour {
     public enum UIType
@@ -85,9 +86,18 @@ public class WorkOrderButton : MonoBehaviour {
 
     public void MinigameClick()
     {
+        WorkOrderManager workOrderManager = MasterGameManager.instance.workOrderManager;
         if (!selected)
-            MasterGameManager.instance.workOrderManager.WorkOnOrder(this.order);
+        {
+            /// This prevents working on multiple orders at once. We should wrap this in an if so that it stops when the player
+            /// has the upgrade to work on multiples
+            workOrderManager.currentWorkOrders.Clear();
+
+            workOrderManager.WorkOnOrder(this.order);
+        }
         else
+        {
             MasterGameManager.instance.workOrderManager.CancelWorkOnOrder(this.order);
+        }
     }
 }
