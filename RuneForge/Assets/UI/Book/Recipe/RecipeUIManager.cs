@@ -92,7 +92,7 @@ public class RecipeUIManager : MonoBehaviour {
 
     public void CreateWorkOrderTutorial()
     {
-        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, false, false);
+        MasterGameManager.instance.workOrderManager.CreateWorkOrderTutorial(productItem);
         AudioManager.PlaySound(3);
         ImportProductMode();
     }

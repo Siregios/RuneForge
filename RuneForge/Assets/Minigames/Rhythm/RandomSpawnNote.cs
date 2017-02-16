@@ -72,17 +72,17 @@ public class RandomSpawnNote : MonoBehaviour
             {
                 if (counter + 1 < readTime.Count)
                 {
-                    if (readTime[counter + 1] - readTime[counter] < 0.25f)
-                    {
-                        if (Random.Range(1, 3) == 1 && dub < 1)
-                        {
-                            spawnRandomDouble();
-                            dub++;
-                        }
-                        else
-                            spawnRandomNote();
-                    }
-                    else                   
+                    //if (readTime[counter + 1] - readTime[counter] < 0.25f)
+                    //{
+                    //    if (Random.Range(1, 3) == 1 && dub < 1)
+                    //    {
+                    //        spawnRandomDouble();
+                    //        dub++;
+                    //    }
+                    //    else
+                    //        spawnRandomNote();
+                    //}
+                    //else                   
                         spawnRandomNote();                   
                 }
                 else

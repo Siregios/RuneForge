@@ -81,6 +81,7 @@ public class TutorialDialogue : MonoBehaviour
         {
             button.interactable = false;
         }
+
         dialogueScript.GetComponent<DialogueHandler>().LoadTextAsset(index);
         dialogueScript.enabled = true;
         dialogueScript.SetBackground("");

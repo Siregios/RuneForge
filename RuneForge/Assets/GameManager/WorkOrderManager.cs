@@ -23,6 +23,12 @@ public class WorkOrderManager : MonoBehaviour {
         }
     }
 
+    public void CreateWorkOrderTutorial(Item item)
+    {
+        workorderList.Add(new WorkOrder(item, workorderList.Count + 1, false, false));
+        workorderList[workorderList.Count - 1].requiredStages = 1;
+    }
+
     public bool IsFull()
     {
         return workorderList.Count >= maxWorkOrders;

@@ -17,6 +17,7 @@ public class ResultScreen : MonoBehaviour {
     Image bronze, silver, gold;
     int currentStage, requiredStage;
     float fillSpeed = 0.5f;
+    WorkOrder currentOrder;
     //float transition = 1.5f;
 
     public string nextScene = "Workshop";
@@ -33,7 +34,8 @@ public class ResultScreen : MonoBehaviour {
 
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
-        {            
+        {
+            currentOrder = order;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
             gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
@@ -50,24 +52,25 @@ public class ResultScreen : MonoBehaviour {
             //If complete, show work order score and rune completed.
             //if (order.isComplete)
             //{
-            //    transform.Find("Actions").gameObject.SetActive(false);
-            //    transform.Find("Final Score").gameObject.SetActive(false);
-            //    transform.Find("CompletedOrder").gameObject.SetActive(true);
-            //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-            //    string name = completedItem.name;
-            //    string quality = "Standard";
-            //    if (completedItem.name.Contains("(HQ)"))
-            //    {
-            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-            //        quality = "High Quality";
-            //    }
-            //    else if (completedItem.name.Contains("(MC)"))
-            //    {
-            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-            //        quality = "Master Craft";
-            //    }
-            //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
-            //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
+                //Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+                //    transform.Find("Actions").gameObject.SetActive(false);
+                //    transform.Find("Final Score").gameObject.SetActive(false);
+                //    transform.Find("CompletedOrder").gameObject.SetActive(true);
+                //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+                //    string name = completedItem.name;
+                //    string quality = "Standard";
+                //    if (completedItem.name.Contains("(HQ)"))
+                //    {
+                //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+                //        quality = "High Quality";
+                //    }
+                //    else if (completedItem.name.Contains("(MC)"))
+                //    {
+                //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+                //        quality = "Master Craft";
+                //    }
+                //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
+                //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
             //}
         }
     }
@@ -154,6 +157,10 @@ public class ResultScreen : MonoBehaviour {
             if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.0015f)
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
             yield return new WaitForEndOfFrame();
+        }
+        if (currentOrder.isComplete)
+        {
+            Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(currentOrder);
         }
         StartCoroutine(FadeDone());
     }
