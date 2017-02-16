@@ -23,6 +23,7 @@ public class ResultScreen : MonoBehaviour {
     public string nextScene = "Workshop";
 
     void Start() {
+        done.interactable = false;
         //set fills
         bronze = scoreFill.transform.FindChild("Standard").GetComponent<Image>();
         silver = scoreFill.transform.FindChild("High Quality").GetComponent<Image>();
@@ -105,6 +106,7 @@ public class ResultScreen : MonoBehaviour {
     //Fades product worked on
     IEnumerator FadeProduct()
     {
+        product.sprite = currentOrder.item.icon;
         while (product.color.a <= 1)
         {
             Color temp = product.color;
@@ -173,6 +175,7 @@ public class ResultScreen : MonoBehaviour {
             done.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
+        done.interactable = true;
     }
     //IEnumerator FadeOut()    
     //{
