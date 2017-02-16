@@ -10,8 +10,8 @@ public class WorkOrderManager : MonoBehaviour {
     void Awake()
     {
         ////For testing
-        CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
-        WorkOnOrder(workorderList[0]);
+        //CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
+        //WorkOnOrder(workorderList[0]);
         //CreateWorkOrder(ItemCollection.itemDict["Water Rune"], true);
     }
 

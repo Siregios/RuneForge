@@ -48,27 +48,27 @@ public class ResultScreen : MonoBehaviour {
             StartCoroutine(FadeResults());
 
             //If complete, show work order score and rune completed.
-            if (order.isComplete)
-            {
-                transform.Find("Actions").gameObject.SetActive(false);
-                transform.Find("Final Score").gameObject.SetActive(false);
-                transform.Find("CompletedOrder").gameObject.SetActive(true);
-                Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-                string name = completedItem.name;
-                string quality = "Standard";
-                if (completedItem.name.Contains("(HQ)"))
-                {
-                    name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-                    quality = "High Quality";
-                }
-                else if (completedItem.name.Contains("(MC)"))
-                {
-                    name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-                    quality = "Master Craft";
-                }
-                transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
-                    string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
-            }
+            //if (order.isComplete)
+            //{
+            //    transform.Find("Actions").gameObject.SetActive(false);
+            //    transform.Find("Final Score").gameObject.SetActive(false);
+            //    transform.Find("CompletedOrder").gameObject.SetActive(true);
+            //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+            //    string name = completedItem.name;
+            //    string quality = "Standard";
+            //    if (completedItem.name.Contains("(HQ)"))
+            //    {
+            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+            //        quality = "High Quality";
+            //    }
+            //    else if (completedItem.name.Contains("(MC)"))
+            //    {
+            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+            //        quality = "Master Craft";
+            //    }
+            //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
+            //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
+            //}
         }
     }
     

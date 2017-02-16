@@ -2,7 +2,7 @@
 
 public class TutorialItemButton : ItemButton
 {
-    private TutorialDialogue tutorialDilogue;
+    private TutorialDialogue tutorialDialogue;
 
     private void Awake()
     {
@@ -10,13 +10,13 @@ public class TutorialItemButton : ItemButton
         if (!TutorialManager)
             Debug.LogError("TutorialButton created without a TutorialManager");
         else
-            tutorialDilogue = TutorialManager.GetComponent<TutorialDialogue>();
+            tutorialDialogue = TutorialManager.GetComponent<TutorialDialogue>();
     }
 
     public void TutorialPush()
     {
         
-        tutorialDilogue.ComplexButtonActivate(this.item);
+        tutorialDialogue.ComplexButtonActivate(this.item);
     }
 
     override public void OnHover(bool active)

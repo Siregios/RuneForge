@@ -476,7 +476,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014124837080, guid: 1097b33b77309464ab167810e9e1b8fc, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000011312171494, guid: 1097b33b77309464ab167810e9e1b8fc,
         type: 2}
@@ -621,12 +621,12 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -430
+      value: -532.3
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -330
+      value: -255
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
@@ -636,7 +636,7 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
@@ -666,42 +666,7 @@ Prefab:
     - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013035060750, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013088382870, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013088382870, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_FontData.m_MinSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012108702098, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012108702098, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_FontData.m_MinSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013372742894, guid: 092aec5fbb4e565488286dafd190cf01,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 092aec5fbb4e565488286dafd190cf01, type: 2}
@@ -796,7 +761,7 @@ RectTransform:
   - {fileID: 1869324883}
   - {fileID: 1843629773}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -899,7 +864,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1772568225
 GameObject:
@@ -1009,7 +974,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1772568228
 MonoBehaviour:
@@ -1032,6 +997,9 @@ MonoBehaviour:
   - {fileID: 114224428761878828, guid: 577cf05b3a62ed8428ad058898a79e9f, type: 2}
   - {fileID: 114258552567975698, guid: c1682a366da088e48b416badbe9370da, type: 2}
   - {fileID: 114139248889998240, guid: 4235885fa525102409c0b0dce63de4ad, type: 2}
+  - {fileID: 114139248889998240, guid: 608e7b1c3d5233c4f8bcd63a1a410202, type: 2}
+  - {fileID: 114139248889998240, guid: 886a671977c1f2c48916b0db820b22f8, type: 2}
+  - {fileID: 114139248889998240, guid: 827fd33903455834b93f5593950fbbc7, type: 2}
   mapsPerPlay: 5
   spawnInterval: 1
   score: {fileID: 1003792231}

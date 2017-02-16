@@ -90,6 +90,13 @@ public class RecipeUIManager : MonoBehaviour {
         ImportProductMode();
     }
 
+    public void CreateWorkOrderTutorial()
+    {
+        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, false, false);
+        AudioManager.PlaySound(3);
+        ImportProductMode();
+    }
+
     void AddProduct(Item item)
     {
         AudioManager.PlaySound(1);

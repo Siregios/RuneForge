@@ -90,6 +90,7 @@ public class TutorialDialogue : MonoBehaviour
     public void ButtonActivate(int index)
     {
         ActivateDialogue(index, false);
+        dialogueIndex = index + 1;
     }
 
     //due to the nature of prefabricated buttons, this needs to be used to call a separate script

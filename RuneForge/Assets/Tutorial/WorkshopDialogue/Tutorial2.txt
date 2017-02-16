@@ -4,6 +4,6 @@
 
 [Clear]
 
-Press A and D to move.
+Press A and D to move or left click your destination.
 
 [Clear]

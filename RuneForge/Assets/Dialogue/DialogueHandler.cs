@@ -116,8 +116,8 @@ public class DialogueHandler : MonoBehaviour {
         if (!LeftIsAnimating && !RightIsAnimating && dialogueUI.activeSelf && !skipUIPanel.activeSelf){
             WatchForProceed();
         }
-        WatchForCardQueue();
-        WatchForSkipButton();
+        //WatchForCardQueue();
+        //WatchForSkipButton();
     }
 
     void FixedUpdate(){
