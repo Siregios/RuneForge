@@ -30,8 +30,9 @@ public class RandomSpawnNote : MonoBehaviour
     public Score score;
     public Text hitText;
     public Text track;
+    public Text multiplierText;
     [HideInInspector]
-    public int good, great, perfect, miss = 0;
+    public int great, perfect, miss, multiplier = 0;
     
     void Start()
     {
@@ -58,7 +59,8 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-        track.text = "Miss: " + miss.ToString() + "\nGood: " + good.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
+        track.text = "Miss: " + miss.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
+        multiplierText.text = "x" + multiplier.ToString();
         if (counter >= readTime.Count && !GetComponent<AudioSource>().isPlaying)
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
