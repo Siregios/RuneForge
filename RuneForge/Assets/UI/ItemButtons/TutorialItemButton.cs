@@ -16,6 +16,7 @@ public class TutorialItemButton : ItemButton
     public void TutorialPush()
     {
         
+        tutorialDilogue.ComplexButtonActivate(this.item);
     }
 
     override public void OnHover(bool active)

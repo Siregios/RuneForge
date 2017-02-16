@@ -8,6 +8,7 @@ public class TutorialDialogue : MonoBehaviour
 
     public GameObject dialogueUI;
     public DialogueHandler dialogueScript;
+    public UITutorialDialogue UIDialogueHandler;
     public List<Button> menuButtons = new List<Button>();   //List of all interactable menu buttons
 
     public List<int> movementIndex = new List<int>();       //List of which dialoguee indexes initiate movement
@@ -95,8 +96,8 @@ public class TutorialDialogue : MonoBehaviour
     //this separate script will handle dialogue based on the info given from the call to this function
     //OOP: Button Pushed -> ComplexButtonActivate() -> Script calls ButtonActivate(index) where index is determined in the script
     //Sadly this most likely means that things will need to be hard coded
-    public void ComplexButtonActivate()
+    public void ComplexButtonActivate(Item iteminfo)
     {
-
+        UIDialogueHandler.handleButtonPush(iteminfo);
     }
 }

@@ -987,7 +987,6 @@ MonoBehaviour:
   - {fileID: 748863787}
   waypointIndex: 0
   dialogueScript: {fileID: 1153268381}
-  speed: 130
 --- !u!222 &823689361
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1739,6 +1738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153268382}
   - component: {fileID: 1153268381}
+  - component: {fileID: 1153268383}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -1759,6 +1759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 412552890}
   dialogueScript: {fileID: 1725219289}
+  UIDialogueHandler: {fileID: 1153268383}
   menuButtons:
   - {fileID: 641052399}
   - {fileID: 172553187}
@@ -1786,6 +1787,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1153268383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1153268380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1997a187c8442f24fa71d83b155e4f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startIndex: 6
+  currentIndex: 0
+  dialogueManager: {fileID: 1153268381}
 --- !u!1 &1162633222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,7 +2865,7 @@ Prefab:
     - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
       propertyPath: dialogueText.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224579296483215526, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
@@ -3035,6 +3050,16 @@ Prefab:
       propertyPath: dialogueText.Array.data[5]
       value: 
       objectReference: {fileID: 4900000, guid: 2797436a2dde6a34184bf05c540955ce, type: 3}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: dialogueText.Array.data[6]
+      value: 
+      objectReference: {fileID: 4900000, guid: d227965333fe71a47914bc92d8c767cb, type: 3}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: dialogueText.Array.data[7]
+      value: 
+      objectReference: {fileID: 4900000, guid: ea274117475a8574ca3a7fab9fd2a691, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f266cf2afd6d2b41a51f193e0398838, type: 2}
   m_IsPrefabParent: 0
