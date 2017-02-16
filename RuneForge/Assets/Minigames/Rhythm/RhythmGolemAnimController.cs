@@ -12,19 +12,19 @@ public class RhythmGolemAnimController : MonoBehaviour {
     }
     void Update()
     {
-        if (gameObject.name == "w_key" && Input.GetKeyDown(KeyCode.W))
+        if (gameObject.name == "w_golem" && Input.GetKeyDown(KeyCode.W))
         {
             animator.SetTrigger("w_key");
         }
-        if (gameObject.name == "s_key" && Input.GetKeyDown(KeyCode.S))
+        if (gameObject.name == "s_golem" && Input.GetKeyDown(KeyCode.S))
         {
             animator.SetTrigger("s_key");
         }
-        if (gameObject.name == "a_key" && Input.GetKeyDown(KeyCode.A))
+        if (gameObject.name == "a_golem" && Input.GetKeyDown(KeyCode.A))
         {
             animator.SetTrigger("a_key");
         }
-        if (gameObject.name == "d_key" && Input.GetKeyDown(KeyCode.D))
+        if (gameObject.name == "d_golem" && Input.GetKeyDown(KeyCode.D))
         {
             animator.SetTrigger("d_key");
         }

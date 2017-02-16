@@ -168,6 +168,7 @@ public class NoteTracker : MonoBehaviour {
         {
             scriptNote.miss++;
             scriptNote.hitText.text = "Miss!";
+            scriptNote.score.subScore(5);
         }
         else if (accuracy == 1)
         {
