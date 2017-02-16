@@ -47,8 +47,13 @@ public class ResultScreen : MonoBehaviour {
             currentStage = order.currentStage;
             totalScore = order.score;
 
+            if (order.isComplete)
+            {
+                Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+            }
             //Start to fade into result screen
             StartCoroutine(FadeResults());
+
 
             //If complete, show work order score and rune completed.
             //if (order.isComplete)
@@ -159,11 +164,7 @@ public class ResultScreen : MonoBehaviour {
             if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.0015f)
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
             yield return new WaitForEndOfFrame();
-        }
-        if (currentOrder.isComplete)
-        {
-            Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(currentOrder);
-        }
+        }     
         StartCoroutine(FadeDone());
     }
 

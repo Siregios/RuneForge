@@ -1,6 +1,6 @@
 [LSpeaking:F, RSpeaking:T, RPort:Mom, RName:Mom]
 
-(Player Name)! Can you come help me with something over here?
+Alex! Can you come help me with something over here?
 
 [Clear]
 
