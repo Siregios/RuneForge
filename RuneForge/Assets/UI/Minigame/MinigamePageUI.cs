@@ -44,7 +44,9 @@ public class MinigamePageUI : MonoBehaviour {
         // Display the current shortcut
         if (orderManager.workorderList.Count < orderManager.maxWorkOrders)
         {
-            recipeShortcuts[orderManager.workorderList.Count].SetActive(true);
+            //Tutorial purposes
+            if (recipeShortcuts.Count > 0)
+                recipeShortcuts[orderManager.workorderList.Count].SetActive(true);
         }
         SetMinigame(minigame);
         Enable(true);

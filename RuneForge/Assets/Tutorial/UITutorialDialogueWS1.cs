@@ -25,9 +25,9 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         if(currentIndex == startIndex)
         {
             if (itemInfo.Class == "Rune")
-                dialogueManager.ButtonActivate(currentIndex);
+                dialogueManager.ButtonActivateFalse(currentIndex);
             else if (itemInfo.Class == "Product")
-                dialogueManager.ButtonActivate(currentIndex + 1);
+                dialogueManager.ButtonActivateFalse(currentIndex + 1);
             currentIndex += 2;
         }
 
@@ -60,5 +60,11 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         {
 
         }
+    }
+
+    public void disableColor(Button button)
+    {
+        button.gameObject.GetComponent<Image>().color = button.colors.disabledColor;
+        button.enabled = false;
     }
 }

@@ -113,6 +113,11 @@ MonoBehaviour:
     HQ: 400
     MC: 500
     isTutorial: 1
+  - Name: SortingTutorial
+    SD: 30
+    HQ: 240
+    MC: 280
+    isTutorial: 1
   playerStats: {fileID: 114740248611132830}
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}

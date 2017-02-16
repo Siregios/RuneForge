@@ -88,9 +88,15 @@ public class TutorialDialogue : MonoBehaviour
     }
 
     //Button Use
-    public void ButtonActivate(int index)
+    public void ButtonActivateFalse(int index)
     {
         ActivateDialogue(index, false);
+        dialogueIndex = index + 1;
+    }
+
+    public void ButtonActivateTrue(int index)
+    {
+        ActivateDialogue(index, true);
         dialogueIndex = index + 1;
     }
 
