@@ -27,7 +27,7 @@ public class TutorialDialogue : MonoBehaviour
         dialogueUI = dialogueScript.dialogueUI;
 
         dialogueUI.SetActive(false);
-        ActivateDialogue(dialogueIndex, false);
+        ActivateDialogue(dialogueIndex, true);
         if (MasterGameManager.instance.sceneManager.currentScene == "WorkshopTutorialPt1")
         {
             MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
