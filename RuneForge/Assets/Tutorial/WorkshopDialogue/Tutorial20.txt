@@ -6,16 +6,14 @@ All done? Let's see how it turned out.
 
 Wow! Nice work! Thanks for all the help Rolric!
 
-[LPort:Blacksmith, RName:Rolric, LSpeaking:T, RSpeaking:F]
+[LPort:Blacksmith, RName:Rolric, RSpeaking:F]
 
 Haha! No problem! 'tis what I'm 'ere for!
 
-[RPort:Blacksmith, RName:Rolric]
+[Clear]
 
-Sure thing laddy! ‘Tis my job after all.
+[RPort:Fairy, RName:Minamo, RSpeaking:T]
 
-[RPort:Fairy, RName:Minamo]
+Hey look! Some of your Mom's helper golems have come to visit and just in time too! We're going to need them to sort out some ingredients for us for the next item.
 
-Thanks Rolric!
-
-Ok Alex, go ahead and click on Rolric to get started.
+Click on the golems to get started!

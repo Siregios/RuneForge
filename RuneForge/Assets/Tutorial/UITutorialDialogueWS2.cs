@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITutorialDialogueWS1 : UITutorialDialogue {
+public class UITutorialDialogueWS2 : UITutorialDialogue {
 
     public int startIndex = 0;
     public int currentIndex;
@@ -15,10 +15,6 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
 
     private void Awake()
     {
-        //So the player won't see it in the inventory since the mom "takes it"
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (MC)"], 0);
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (HQ)"], 0);
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune"], 0);
         currentIndex = startIndex;
         clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.disabledColor;
         clipboard.enabled = false;
