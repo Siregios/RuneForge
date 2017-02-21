@@ -1,3 +1,3 @@
 [Clear]
 
-Here is the minigame panel. Here you choose what runes you want to work on. The rune your mom gave is automatically selected so just hit “Play” to begin!
+This is the minigame panel. Here you choose what runes you want to work on. The rune your mom gave is automatically selected so just hit “Play” to begin!

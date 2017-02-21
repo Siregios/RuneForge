@@ -1,5 +1,5 @@
 [RPort:Fairy, RName:Minamo]
 
-Here is your recipe page. It shows you the items you can currently craft.
+This is your recipe page. It shows you the items you can currently craft.
 
 Your mom wanted two runes, so let's start by selecting any rune that you would like to work on.

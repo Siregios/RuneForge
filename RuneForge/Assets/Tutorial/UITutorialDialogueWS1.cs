@@ -58,7 +58,27 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         }
         else if (currentIndex == (startIndex + 4))
         {
+            
+        }
+    }
 
+    public void ButtonActivateOverride(int index)
+    {
+        currentIndex = index;
+        if (currentIndex == 12)
+        {
+            dialogueManager.dialogueIndex = currentIndex;
+            dialogueManager.ActivateDialogue(currentIndex, true);
+            GameObject BlacksmithParent = GameObject.Find("BlacksmithParent");
+            BlacksmithParent.transform.FindChild("BlacksmithTools").gameObject.SetActive(false);
+            BlacksmithParent.transform.FindChild("Blacksmith").gameObject.SetActive(true);
+        }
+
+        if (currentIndex == 13)
+        {
+            dialogueManager.dialogueIndex = currentIndex;
+            dialogueManager.ActivateDialogue(currentIndex, true);
+            GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
         }
     }
 

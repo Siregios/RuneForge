@@ -1,0 +1,17 @@
+[RPort:Blacksmith, RName:Rolric]
+
+Ah, Minamo! What can I do for ya?
+
+[RPort:Fairy, RName:Minamo]
+
+Hello Rolric! Could you help out Alex and I finish up this item?
+
+[RPort:Blacksmith, RName:Rolric]
+
+Sure thing laddy! ‘Tis my job after all.
+
+[RPort:Fairy, RName:Minamo]
+
+Thanks Rolric!
+
+Ok Alex, go ahead and click on Rolric to get started.
