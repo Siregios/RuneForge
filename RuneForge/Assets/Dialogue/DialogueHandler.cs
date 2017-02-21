@@ -43,8 +43,7 @@ public class DialogueHandler : MonoBehaviour {
     {
         public string name;
         public Sprite image;
-        public string description;
-        public bool unlocked;
+        public float scale = 1f;
     }
 
     //External scripts
@@ -445,8 +444,9 @@ public class DialogueHandler : MonoBehaviour {
     {
         if (name != "" && itemDict.ContainsKey(name))
         {
-            itemImage.SetActive(true);
+            itemImage.SetActive(true);            
             itemImage.GetComponent<Image>().sprite = itemDict[name].image;
+            itemImage.transform.localScale = new Vector3(itemDict[name].scale, itemDict[name].scale, 1);
         }
     }
 

@@ -4288,6 +4288,22 @@ Prefab:
       propertyPath: dialogueText.Array.data[14]
       value: 
       objectReference: {fileID: 4900000, guid: a96480500e7b75a4f8b86052511a35fc, type: 3}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: itemEntries.Array.data[0].name
+      value: FireRune
+      objectReference: {fileID: 0}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: itemEntries.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 613d6a677cb6a3048bddd6827d9f2815,
+        type: 3}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: itemEntries.Array.data[0].scale
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f266cf2afd6d2b41a51f193e0398838, type: 2}
   m_IsPrefabParent: 0
@@ -4699,7 +4715,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Smithing
+          m_StringArgument: SmithingTutorial
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,

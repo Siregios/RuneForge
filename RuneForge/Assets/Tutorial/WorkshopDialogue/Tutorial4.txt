@@ -4,4 +4,6 @@ I'm behind on some orders and I could use your help. Here, take this rune and fi
 
 [Clear]
 
-Click on your mother to add the final enchantments with the "Tracer" minigame.
+[Item:Rune]
+
+Click on your mother to add the final enchantments to this rune.
