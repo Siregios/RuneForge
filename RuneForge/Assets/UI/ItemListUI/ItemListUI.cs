@@ -120,19 +120,22 @@ public class ItemListUI : MonoBehaviour
 
     public void RefreshPage()
     {
-        DisplayPage(filterString);
+        DisplayNewFilter(filterString);
+        //DisplayPage(filterString);
     }
 
     public void ClickPreviousPage()
     {
         currentPage--;
-        DisplayPage(filterString);
+        DisplayNewFilter(filterString);
+        //DisplayPage(filterString);
     }
 
     public void ClickNextPage()
     {
         currentPage++;
-        DisplayPage(filterString);
+        DisplayNewFilter(filterString);
+        //DisplayPage(filterString);
     }
 
     public void ClickFilterButton(FilterInventoryButton filterButton)
@@ -153,11 +156,13 @@ public class ItemListUI : MonoBehaviour
         {
             this.filterString = defaultFilter;
         }
+        currentPage = 0;
         DisplayNewFilter(this.filterString);
     }
 
     public void OnSearchSubmit()
     {
+        currentPage = 0;
         DisplayNewFilter(searchInput.text);
     }
 
@@ -181,7 +186,7 @@ public class ItemListUI : MonoBehaviour
             itemList = filteredItems;
         }
 
-        currentPage = 0;
+        //currentPage = 0;
         DisplayPage(filterString);
         searchInput.text = this.filterString;
     }
