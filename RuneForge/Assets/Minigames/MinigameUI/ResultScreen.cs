@@ -43,6 +43,7 @@ public class ResultScreen : MonoBehaviour {
             progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
+            MasterGameManager.instance.playerStats.gainExperience(minigameScore);
             requiredStage = order.requiredStages;
             currentStage = order.currentStage;
             totalScore = order.score;

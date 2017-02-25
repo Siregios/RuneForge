@@ -33,5 +33,6 @@ public class PlayerStats : MonoBehaviour {
     public void gainExperience(float experienceGained)
     {
         totalExperience += experienceGained;
+        Debug.Log("I gained " + experienceGained + "EXP");
     }
 }
