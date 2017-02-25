@@ -3,10 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class QuestBoardUI : MonoBehaviour {
+public class QuestBoardUI : MonoBehaviour
+{
     public GameObject questNote;
     [HideInInspector]
-    public int currentDisplayedDay = 0;    
+    public int currentDisplayedDay = 0;
     public List<GameObject> questObjects;
     float xPos = 175, yPos = 150, padY = -70;
     int objCount;
@@ -41,7 +42,7 @@ public class QuestBoardUI : MonoBehaviour {
     public void DisplayBoard()
     {
         objCount = 0;
-        foreach(Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
+        foreach (Quest quest in MasterGameManager.instance.questGenerator.currentQuests)
         {
             GameObject newQuest = (GameObject)Instantiate(questNote, questNote.transform.position, Quaternion.identity);
             newQuest.transform.SetParent(this.transform);
@@ -51,7 +52,7 @@ public class QuestBoardUI : MonoBehaviour {
             newQuest.GetComponent<QuestNote>().quest = quest;
             questObjects.Add(newQuest);
             //newQuest.transform.SetAsFirstSibling();
-            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;           
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;
             newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.product.icon;
             newQuest.transform.FindChild("QuestGold").transform.FindChild("GoldInfo").GetComponent<Text>().text = "x" + quest.gold;
             newQuest.transform.FindChild("QuestIngredient").GetComponent<Image>().sprite = quest.ingredient.icon;
@@ -90,8 +91,11 @@ public class QuestBoardUI : MonoBehaviour {
         Quest qValues = quest.GetComponent<QuestNote>().quest;
         int addIngr = 0;
         float goldMultiplier = 1f;
-        if (PlayerInventory.inventory.GetItemCount(item.GetComponent<ItemButton>().item) >= qValues.amountProduct)
-        {            
+        string submitName = item.GetComponent<ItemButton>().item.name;
+        string productName = qValues.product.name;
+        if (PlayerInventory.inventory.GetItemCount(item.GetComponent<ItemButton>().item) >= qValues.amountProduct &&
+            string.Compare(submitName, productName) >= 0)
+        {
             if (item.GetComponent<ItemButton>().item.name.Contains("(HQ)"))
             {
                 addIngr++;

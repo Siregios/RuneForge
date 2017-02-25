@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Customer : MonoBehaviour {
+    public bool spawnWithSpecificItem = false;
+    public string itemName;
+    public int amount;
     public FadeEffect fadeEffect;
     public Interactable interactScript;
     public Text text;
@@ -12,6 +15,10 @@ public class Customer : MonoBehaviour {
 
     void Start()
     {
+        if (spawnWithSpecificItem)
+        {
+            SetItem(new Quest(ItemCollection.itemDict[itemName], amount));
+        }
         fadeEffect.FadeIn();
     }
 
