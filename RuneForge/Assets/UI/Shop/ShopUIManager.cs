@@ -23,10 +23,14 @@ public class ShopUIManager : MonoBehaviour {
 
     public void Enable(bool active)
     {
-        this.gameObject.SetActive(active);
+        //this.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active, true);
         if (active)
+        {
+            buyItemList.RefreshPage(true);
+            sellItemList.RefreshPage(true);
             audioManager.PlaySound(9);
+        }
         else
             audioManager.PlaySound(10);
     }

@@ -27,6 +27,7 @@ public class MasterGameManager : MonoBehaviour
     public InteractionManager interactionManager;
     public WorkOrderManager workOrderManager;
     public UIManager uiManager;
+    public SaveManager saveManager;
 
     public bool inputActive = true;
 
@@ -36,10 +37,29 @@ public class MasterGameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(this.gameObject);
-        
+
         DontDestroyOnLoad(this.gameObject);
 
         SetMinigameDict();
+    }
+
+    //void Start()
+    //{
+    //    //For testing
+    //    this.saveManager.SaveData();
+    //}
+
+    void Update()
+    {
+        //For testing
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            this.saveManager.SaveData();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            this.saveManager.LoadData();
+        }
     }
 
     void SetMinigameDict()

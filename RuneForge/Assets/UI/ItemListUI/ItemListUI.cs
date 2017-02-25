@@ -118,7 +118,7 @@ public class ItemListUI : MonoBehaviour
         buttonList.Clear();
     }
 
-    public void RefreshPage()
+    public void RefreshPage(bool goToFirstPage=false)
     {
         DisplayNewFilter(filterString);
         //DisplayPage(filterString);
