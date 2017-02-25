@@ -31,6 +31,5 @@ public class Quest {
         this.gold = Mathf.FloorToInt((product.price * amountProduct * 1.25f)/10) * 10;
         this.ingredient = ingredientList[randomIngredient];
         this.amountIngredient = Random.Range(1, 6);
-
     }
 }

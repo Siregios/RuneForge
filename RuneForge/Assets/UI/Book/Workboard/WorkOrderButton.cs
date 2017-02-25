@@ -95,9 +95,5 @@ public class WorkOrderButton : MonoBehaviour {
 
             workOrderManager.WorkOnOrder(this.order);
         }
-        else
-        {
-            MasterGameManager.instance.workOrderManager.CancelWorkOnOrder(this.order);
-        }
     }
 }

@@ -40,4 +40,4 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _Rect
-      second: {r: 0, g: 0, b: 1, a: 1}
+      second: {r: 0.007690301, g: 0.0061522406, b: 0.99230975, a: 1}
