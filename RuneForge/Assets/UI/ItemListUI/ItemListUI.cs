@@ -166,7 +166,7 @@ public class ItemListUI : MonoBehaviour
         DisplayNewFilter(searchInput.text);
     }
 
-    void DisplayNewFilter(string filter)
+    public void DisplayNewFilter(string filter)
     {
         this.filterString = filter;
 
