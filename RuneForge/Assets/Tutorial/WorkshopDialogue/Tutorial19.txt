@@ -4,7 +4,7 @@ Ah, Minamo! What can I do for ya?
 
 [RPort:Fairy, RName:Minamo]
 
-Hello Rolric! Could you help out Alex and I finish up this item?
+Hello Rolric! Could you help Alex finish up this item?
 
 [RPort:Blacksmith, RName:Rolric]
 
