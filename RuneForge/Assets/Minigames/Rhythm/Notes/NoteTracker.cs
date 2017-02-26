@@ -18,10 +18,12 @@ public class NoteTracker : MonoBehaviour {
     bool destroyed = false;
 
 
-	void Start () {
+
+    void Start () {
         noteSprite = gameObject.GetComponent<SpriteRenderer>();
         scriptNote = GameObject.Find("RandomSpawn").GetComponent<RandomSpawnNote>();
         center = GameObject.Find("center");
+        StartCoroutine(FadeIn());
 	}
 	
 	
@@ -122,9 +124,21 @@ public class NoteTracker : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         scriptNote.keyNotes[indexNote].Remove(gameObject);
+        StopAllCoroutines();
         StartCoroutine(FadeObj());
     }
 
+    IEnumerator FadeIn()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        while (sprite.color.a < 1)
+        {
+            Color temp = sprite.color;
+            temp.a = Mathf.Lerp(temp.a, 1, Time.deltaTime/1.25f);
+            sprite.color = temp;
+            yield return new WaitForEndOfFrame();
+        }
+    }
     IEnumerator FadeObj()
     {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
