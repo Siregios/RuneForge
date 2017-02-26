@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NoteTracker : MonoBehaviour {
+public class NoteTracker : MonoBehaviour
+{
     public int accuracy = 0;
     public int indexNote;
     public float speed = 3.5f;
     public RandomSpawnNote scriptNote;
     public GameObject center;
+    public GameObject accShow;
     public bool canDie = false;
     bool switchOver, ws, ad = false;
 
@@ -19,19 +21,27 @@ public class NoteTracker : MonoBehaviour {
 
 
 
-    void Start () {
+    void Start()
+    {
         noteSprite = gameObject.GetComponent<SpriteRenderer>();
         scriptNote = GameObject.Find("RandomSpawn").GetComponent<RandomSpawnNote>();
         center = GameObject.Find("center");
         StartCoroutine(FadeIn());
-	}
-	
-	
-	void Update () {
-        if (!destroyed)
+    }
+
+
+    void Update()
+    {
+        //Checks if the note is in front of the list
+        if (destroyed)
         {
-            //Checks if the note is in front of the list
-            if (gameObject == scriptNote.keyNotes[indexNote][0] || scriptNote.keyNotes[indexNote][0].GetComponent<NoteTracker>().destroyed)
+            scriptNote.keyNotes[indexNote].Remove(gameObject);
+            StopAllCoroutines();
+            GetComponent<NoteTransition>().enabled = true;
+        }
+        else
+        {
+            if (gameObject == scriptNote.keyNotes[indexNote][0])
             {
                 canDie = true;
             }
@@ -81,7 +91,7 @@ public class NoteTracker : MonoBehaviour {
                 if (accuracy != 0)
                     DoubleSpawn();
                 if (!switchOver && accuracy != 0)
-                    StartCoroutine(IngToCauldron());
+                    destroyed = true;
             }
             if (Input.GetKeyDown(KeyCode.S) && indexNote == 2 && !switchOver && canDie)
             {
@@ -89,7 +99,7 @@ public class NoteTracker : MonoBehaviour {
                 if (accuracy != 0)
                     DoubleSpawn();
                 if (!switchOver && accuracy != 0)
-                    StartCoroutine(IngToCauldron());
+                    destroyed = true;
             }
             if (Input.GetKeyDown(KeyCode.A) && indexNote == 1 && !switchOver && canDie)
             {
@@ -97,7 +107,7 @@ public class NoteTracker : MonoBehaviour {
                 if (accuracy != 0)
                     DoubleSpawn();
                 if (!switchOver && accuracy != 0)
-                    StartCoroutine(IngToCauldron());
+                    destroyed = true;
             }
             if (Input.GetKeyDown(KeyCode.D) && indexNote == 3 && !switchOver && canDie)
             {
@@ -105,27 +115,13 @@ public class NoteTracker : MonoBehaviour {
                 if (accuracy != 0)
                     DoubleSpawn();
                 if (!switchOver && accuracy != 0)
-                    StartCoroutine(IngToCauldron());
+                    destroyed = true;
             }
 
             //Move towards location
             if (!switchOver)
                 transform.position = Vector3.MoveTowards(transform.position, center.transform.position, speed * Time.deltaTime);
         }
-    }            
-
-    IEnumerator IngToCauldron()
-    {
-        GetComponent<BoxCollider2D>().enabled = false;
-        destroyed = true;
-        while (Vector3.Distance(transform.position, center.transform.position) > 0.3f)
-        {
-            transform.position = Vector3.Lerp(transform.position, center.transform.position, Time.deltaTime * speed * 3);
-            yield return new WaitForEndOfFrame();
-        }
-        scriptNote.keyNotes[indexNote].Remove(gameObject);
-        StopAllCoroutines();
-        StartCoroutine(FadeObj());
     }
 
     IEnumerator FadeIn()
@@ -134,22 +130,10 @@ public class NoteTracker : MonoBehaviour {
         while (sprite.color.a < 1)
         {
             Color temp = sprite.color;
-            temp.a = Mathf.Lerp(temp.a, 1, Time.deltaTime/1.25f);
+            temp.a = Mathf.Lerp(temp.a, 1, Time.deltaTime / 1.25f);
             sprite.color = temp;
             yield return new WaitForEndOfFrame();
         }
-    }
-    IEnumerator FadeObj()
-    {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        while (sprite.color.a > 0)
-        {
-            Color temp = sprite.color;
-            temp.a = Mathf.Lerp(temp.a, 0, Time.deltaTime * speed);
-            sprite.color = temp;
-            yield return new WaitForEndOfFrame();
-        }
-        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -177,8 +161,9 @@ public class NoteTracker : MonoBehaviour {
             scriptNote.multiplier = 0;
             Destroy(gameObject);
             scriptNote.score.subScore(5);
-            scriptNote.hitText.text = "Miss!";
-        }        
+            GameObject ez = Instantiate(accShow, accShow.transform.position, Quaternion.identity);
+            ez.GetComponent<SpriteRenderer>().sprite = ez.GetComponent<AccuracyShower>().miss;
+        }
     }
 
     //void OnTriggerStay2D(Collider2D other)
@@ -210,41 +195,42 @@ public class NoteTracker : MonoBehaviour {
     {
         if (accuracy == 0)
         {
-            if (scriptNote.keyNotes[indexNote].Count > 1)
-            {
-                if (scriptNote.keyNotes[indexNote][0].GetComponent<NoteTracker>().destroyed)
-                {
-                    ;//Nothing
-                }
-            }
-            else {
+            if (canDie)
                 scriptNote.miss++;
-                scriptNote.multiplier = 0;
-                scriptNote.hitText.text = "Miss!";
-                scriptNote.score.subScore(5);
-            }
+            scriptNote.multiplier = 0;
+            GameObject ez = Instantiate(accShow, accShow.transform.position, Quaternion.identity);
+            ez.GetComponent<SpriteRenderer>().sprite = ez.GetComponent<AccuracyShower>().miss;
+            scriptNote.score.subScore(5);
         }
+
         else if (accuracy == 1)
         {
             scriptNote.multiplier++;
-            scriptNote.hitText.text = "Great.";
             scriptNote.great++;
-            scriptNote.score.addScore(5);
+            scriptNote.score.addScore(5 * scriptNote.mult);
         }
         else if (accuracy == 2)
         {
             scriptNote.multiplier++;
-            scriptNote.hitText.text = "Perfect!";
             scriptNote.perfect++;
-            scriptNote.score.addScore(10);
+            scriptNote.score.addScore(10 * scriptNote.mult);
+        }
+    }
+
+    void checkAccuracy(GameObject change)
+    {
+        AccuracyShower script = change.GetComponent<AccuracyShower>();
+        if (accuracy == 0 || accuracy == 3)
+        {
+            script.GetComponent<SpriteRenderer>().sprite = script.miss;
         }
     }
 
     //When destroyed, removes itself from the front of the list.
     void OnDestroy()
-    { 
-        if(!destroyed)
-            scriptNote.keyNotes[indexNote].Remove(gameObject);        
+    {
+        if (!destroyed)
+            scriptNote.keyNotes[indexNote].Remove(gameObject);
     }
 
     //Will spawn a double note if it is a double.
@@ -273,10 +259,10 @@ public class NoteTracker : MonoBehaviour {
         {
             return false;
         }
-        switchOver = true;                
+        switchOver = true;
         accuracy = -999;
         //startSlerp = Time.time;
-        
+
         return switchOver;
     }
 
@@ -294,12 +280,11 @@ public class NoteTracker : MonoBehaviour {
                     scriptNote.miss++;
                     scriptNote.multiplier = 0;
                     scriptNote.score.subScore(5);
-                    scriptNote.hitText.text = "Miss!";
                     scriptNote.dub--;
                     Destroy(gameObject);
                 }
             }
-            else            
+            else
                 transform.position = Vector3.Slerp(transform.position, keyLoc.transform.position, Time.deltaTime * speed * 3f);
             if (Mathf.Abs(transform.position.x - keyLoc.transform.position.x) <= 0.35f)
             {
@@ -322,7 +307,6 @@ public class NoteTracker : MonoBehaviour {
                     scriptNote.miss++;
                     scriptNote.multiplier = 0;
                     scriptNote.score.subScore(5);
-                    scriptNote.hitText.text = "Miss!";
                     scriptNote.dub--;
                     Destroy(gameObject);
                 }

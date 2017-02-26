@@ -25,15 +25,16 @@ public class RandomSpawnNote : MonoBehaviour
     public bool songStart = false;
     [HideInInspector]
     public int dub = 0;
-    
+    [HideInInspector]
+    public int mult = 1;
+
     //UI Text
     public Score score;
-    public Text hitText;
-    public Text track;
     public Text multiplierText;
+    public Text multText;
     [HideInInspector]
     public int great, perfect, miss, multiplier = 0;
-    
+
     void Start()
     {
         keyNotes = new List<List<GameObject>>();
@@ -59,7 +60,16 @@ public class RandomSpawnNote : MonoBehaviour
 
     void Update()
     {
-        track.text = "Miss: " + miss.ToString() + "\nGreat: " + great.ToString() + "\nPerfect: " + perfect.ToString();
+        if (multiplier > 15)
+            mult = 4;
+        else if (multiplier > 10)
+            mult = 3;
+        else if (multiplier > 5)
+            mult = 2;
+        else
+            mult = 1;
+
+        multText.text = "Multiplier: x" + mult.ToString();
         multiplierText.text = "x" + multiplier.ToString();
         if (counter >= readTime.Count && !GetComponent<AudioSource>().isPlaying)
         {
@@ -83,11 +93,11 @@ public class RandomSpawnNote : MonoBehaviour
                     //        spawnRandomNote();
                     //}
                     //else                   
-                        spawnRandomNote();                   
+                    spawnRandomNote();
                 }
                 else
                 {
-                    counter++;  
+                    counter++;
                 }
             }
         }
@@ -106,7 +116,7 @@ public class RandomSpawnNote : MonoBehaviour
         GameObject note = (GameObject)Instantiate(spawnObject[randomInt], spawnObject[randomInt].transform.position, Quaternion.identity);
         note.GetComponent<NoteTracker>().indexNote = randomInt;
         keyNotes[randomInt].Add(note);
-        
+
         counter++;
     }
 
