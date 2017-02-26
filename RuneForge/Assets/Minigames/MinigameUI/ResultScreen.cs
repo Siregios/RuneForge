@@ -4,10 +4,13 @@ using UnityEngine.UI;
 
 public class ResultScreen : MonoBehaviour {
 
+    bool checkLast = true;
     public Image board;
     public Image product;
     public GameObject scoreFill;
     public GameObject progressFill;
+    public GameObject Minigame;
+    public GameObject qualityStamp;
     public Button done;
     float time = 1.5f;
     int minigameScore, totalScore;
@@ -34,12 +37,21 @@ public class ResultScreen : MonoBehaviour {
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
+            if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])            
+                checkLast = false;            
+            else
+                checkLast = true;
+
             currentOrder = order;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
             gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
             progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
+            for (int stage = 1; stage <= order.currentStage; stage++)
+            {
+                Minigame.transform.FindChild(stage.ToString()).GetComponent<Text>().text = order.minigameList[stage - 1].Key + ": "+ order.minigameList[stage-1].Value;
+            }
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
             MasterGameManager.instance.playerStats.gainExperience(minigameScore);
             requiredStage = order.requiredStages;
@@ -86,10 +98,10 @@ public class ResultScreen : MonoBehaviour {
         Time.timeScale = 0;
         while (GetComponent<Image>().color.a <= 1)
         {
+            //Restult Screen itself
             Color temp = GetComponent<Image>().color;
             temp.a += Time.unscaledDeltaTime / time;
             GetComponent<Image>().color = temp;
-            scoreFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
         StartCoroutine(FadeBoard());
@@ -101,8 +113,18 @@ public class ResultScreen : MonoBehaviour {
         product.sprite = currentOrder.item.icon;
         while (board.GetComponent<CanvasGroup>().alpha < 1)
         {
+            //Board
             board.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
+
+            //Progress bar
+            Color temp = progressFill.GetComponent<Image>().color;
+            temp.a += Time.unscaledDeltaTime / time;
+            progressFill.GetComponent<Image>().color = temp;
+
+            //Scorefill and minigame text
+            scoreFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
+            Minigame.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
         }
         StartCoroutine(FadeScoreFill());
     }
@@ -141,9 +163,47 @@ public class ResultScreen : MonoBehaviour {
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
             yield return new WaitForEndOfFrame();
         }     
-        StartCoroutine(FadeDone());
+        StartCoroutine(NextMinigame());
     }
 
+    IEnumerator NextMinigame()
+    {
+        Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
+        Color temp = currentMinigame.color;
+        temp.a = 0;
+        currentMinigame.color = temp;
+        currentMinigame.text = currentOrder.minigameList[currentOrder.currentStage - 1].Key + ": " + currentOrder.minigameList[currentOrder.currentStage - 1].Value;
+        while (currentMinigame.color.a < 1)
+        {
+            Color temp2 = currentMinigame.color;
+            temp2.a += Time.unscaledDeltaTime / time;
+            currentMinigame.color = temp2;
+            yield return new WaitForEndOfFrame();
+        }
+        if (currentOrder.isComplete)
+        {
+            StartCoroutine(Stamp());
+        }
+        else if (checkLast)
+            StartCoroutine(FadeDone());
+        //else
+        //    StartCoroutine(FadeNext());
+    }
+
+    IEnumerator Stamp()
+    {
+        GameObject quality = qualityStamp.transform.FindChild(currentOrder.quality).gameObject;
+        quality.SetActive(true);
+        while (quality.GetComponent<Image>().color.a < 1)
+        {
+            Color temp = quality.GetComponent<Image>().color;
+            temp.a += Time.unscaledDeltaTime / time;
+            quality.GetComponent<Image>().color = temp;
+            yield return new WaitForEndOfFrame();
+        }
+        StartCoroutine(FadeDone());
+        
+    }
     //Fades done button
     IEnumerator FadeDone()
     {

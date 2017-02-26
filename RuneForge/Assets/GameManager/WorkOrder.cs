@@ -16,6 +16,7 @@ public class WorkOrder {
     public bool isEnhanced = false;
     public bool isRandom = false;
     public bool isComplete = false;
+    public string quality = "";
     public float multiplier = 1f;
     public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
@@ -125,6 +126,7 @@ public class WorkOrder {
         bool successfulRoll;
         if (this.score <= standard) //Roll for Standard
         {
+            quality = "standard";
             successfulRoll = WeightedCoinFlip(this.score, standard);
             if (successfulRoll)
                 Debug.Log("Rolled for Standard - Got Standard");
@@ -133,6 +135,7 @@ public class WorkOrder {
         }
         else if (standard < score && score <= highQuality)  //Roll for HQ
         {
+            quality = "hq";
             successfulRoll = WeightedCoinFlip(score - standard, highQuality - standard);
             if (successfulRoll)
             {
@@ -144,6 +147,7 @@ public class WorkOrder {
         }
         else if (score > highQuality)   //Roll for MC
         {
+            quality = "mc";
             successfulRoll = WeightedCoinFlip(score - highQuality, masterCraft - highQuality);
             if (successfulRoll)
             {
