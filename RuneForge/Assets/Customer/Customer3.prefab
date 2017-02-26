@@ -495,9 +495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942dc3bb421865343b211ff87b7d58be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnWithSpecificItem: 1
-  itemName: Fire Rune (MC)
-  amount: 1
+  spawnWithSpecificItem: 0
+  itemName: 
+  amount: 0
   fadeEffect: {fileID: 114108148529262632}
   interactScript: {fileID: 114861982692327930}
   text: {fileID: 114653670519264804}

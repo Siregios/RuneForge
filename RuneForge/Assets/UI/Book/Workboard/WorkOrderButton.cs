@@ -69,12 +69,14 @@ public class WorkOrderButton : MonoBehaviour {
         WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
         if (orderManager.currentWorkOrders.Contains(this.order))
         {
-            this.button.targetGraphic.color = this.button.colors.pressedColor;
+            //this.button.targetGraphic.color = selectedColor;
+            SelectedColors();
             selected = true;
         }
         else
         {
-            this.button.targetGraphic.color = this.button.colors.normalColor;
+            DeselectedColors();
+            //this.button.targetGraphic.color = normalColor;
             selected = false;
         }
     }
@@ -95,5 +97,23 @@ public class WorkOrderButton : MonoBehaviour {
 
             workOrderManager.WorkOnOrder(this.order);
         }
+    }
+
+    void SelectedColors()
+    {
+        ColorBlock cb = button.colors;
+        cb.normalColor = Color.white;
+        cb.highlightedColor = Color.white;
+        cb.pressedColor = Color.white;
+        button.colors = cb;
+    }
+
+    void DeselectedColors()
+    {
+        ColorBlock cb = button.colors;
+        cb.normalColor = new Color(.6f, .6f, .6f);
+        cb.highlightedColor = new Color(.8f, .8f, 8f);
+        cb.pressedColor = Color.white;
+        button.colors = cb;
     }
 }
