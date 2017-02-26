@@ -61,6 +61,20 @@ public class WorkOrder {
         }
     }
 
+    public bool CanPlayMinigame(string minigame)
+    {
+        if (!this.isRandom && !MinigameListContains(minigame))
+        {
+            return true;
+        }
+        else if (this.isRandom && MinigameAt(minigame, this.currentStage))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
     public bool MinigameAt(string minigame, int index)
     {
         return minigameList[index].Key == minigame;
@@ -71,7 +85,9 @@ public class WorkOrder {
         for (int i = 0; i < minigameList.Count; i++)
         {
             if (MinigameAt(minigame, i))
+            {
                 return true;
+            }
         }
 
         return false;

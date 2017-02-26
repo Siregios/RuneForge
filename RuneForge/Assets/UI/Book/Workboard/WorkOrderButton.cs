@@ -10,12 +10,13 @@ public class WorkOrderButton : MonoBehaviour {
         Minigame
     }
     public UIType uiType;
+    ClipboardUI clipboard;
     WorkOrderPageUI workOrderPanel;
     MinigamePageUI minigamePanel;
 
     WorkOrder order;
     Button button;
-    bool selected;  // For minigame page
+    bool selected = false;  // For minigame page
     public Text orderName;
     public Image orderIcon;
     public Text stageText;
@@ -29,8 +30,9 @@ public class WorkOrderButton : MonoBehaviour {
         gaugeMaxWidth = gauge.rect.width;
     }
 
-    public void Initialize(WorkOrder order)
+    public void Initialize(WorkOrder order, ClipboardUI clipboard)
     {
+        this.clipboard = clipboard;
         this.order = order;
         this.orderName.text = order.item.name;
         this.orderIcon.sprite = order.item.icon;
@@ -52,14 +54,10 @@ public class WorkOrderButton : MonoBehaviour {
                 minigamePanel = GameObject.Find("MinigamePage").GetComponent<MinigamePageUI>();
 
                 string minigame = minigamePanel.minigame;
-                if (!this.order.isRandom && this.order.MinigameListContains(minigame))
-                {
-                    this.GetComponent<Button>().interactable = false;
-                }
-                else if (this.order.isRandom && !this.order.MinigameAt(minigame, this.order.currentStage))
-                {
-                    this.GetComponent<Button>().interactable = false;
-                }
+
+                if (!this.order.CanPlayMinigame(minigame))
+                    this.button.interactable = false;
+
                 break;
         }
     }
@@ -67,36 +65,51 @@ public class WorkOrderButton : MonoBehaviour {
     void Update()
     {
         WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
-        if (orderManager.currentWorkOrders.Contains(this.order))
+        if (uiType == UIType.Minigame)
         {
-            //this.button.targetGraphic.color = selectedColor;
+            if (orderManager.currentWorkOrders.Contains(this.order))
+            {
+                selected = true;
+            }
+            else
+            {
+                selected = false;
+            }
+        }
+
+        if (selected)
             SelectedColors();
-            selected = true;
-        }
         else
-        {
             DeselectedColors();
-            //this.button.targetGraphic.color = normalColor;
-            selected = false;
-        }
     }
 
     public void WorkOrderClick()
     {
+        _Click();
         workOrderPanel.LoadOrder(this.order);
     }
 
     public void MinigameClick()
     {
+        _Click();
         WorkOrderManager workOrderManager = MasterGameManager.instance.workOrderManager;
-        if (!selected)
-        {
+        //if (!selected)
+        //{
             /// This prevents working on multiple orders at once. We should wrap this in an if so that it stops when the player
             /// has the upgrade to work on multiples
             workOrderManager.currentWorkOrders.Clear();
 
             workOrderManager.WorkOnOrder(this.order);
+        //}
+    }
+
+    void _Click()
+    {
+        foreach (WorkOrderButton button in clipboard.buttonList)
+        {
+            button.selected = false;
         }
+        this.selected = true;
     }
 
     void SelectedColors()

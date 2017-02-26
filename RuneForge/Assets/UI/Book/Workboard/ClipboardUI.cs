@@ -13,24 +13,7 @@ public class ClipboardUI : MonoBehaviour
     void OnEnable()
     {
         DisplayBoard();
-        //MasterGameManager.instance.uiManager.uiOpen = true;
     }
-
-    //void OnDisable()
-    //{
-    //    MasterGameManager.instance.uiManager.uiOpen = false;
-    //}
-
-    //void Awake()
-    //{
-    //    DisplayBoard();
-    //}
-    //public void Enable(bool active)
-    //{
-    //    this.gameObject.SetActive(active);
-    //    if (active)
-    //        DisplayBoard();
-    //}
 
     void DisplayBoard()
     {
@@ -45,7 +28,7 @@ public class ClipboardUI : MonoBehaviour
             newOrderObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, yPos, 0);
 
             WorkOrderButton newOrderButton = newOrderObject.GetComponent<WorkOrderButton>();
-            newOrderButton.Initialize(order);
+            newOrderButton.Initialize(order, this);
             yPos -= 50;
 
             buttonList.Add(newOrderButton);

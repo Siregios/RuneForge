@@ -10,12 +10,14 @@ public class MinigamePageUI : MonoBehaviour {
     public Button playButton;
     public Image minigameThumbnail;
     public Animator animator;
+    WorkOrderManager orderManager;
 
     public void Enable(bool active)
     {
         this.gameObject.SetActive(active);
         clipboard.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
+
         //MasterGameManager.instance.uiManager.uiOpen = active;
         //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
         //MasterGameManager.instance.interactionManager.canInteract = !active;
@@ -31,12 +33,10 @@ public class MinigamePageUI : MonoBehaviour {
 
     public void DisplayPage(string minigame)
     {
-        WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
-        orderManager.currentWorkOrders.Clear();
-        if (orderManager.workorderList.Count >= 1)
-        {
-            MasterGameManager.instance.workOrderManager.WorkOnOrder(orderManager.workorderList[0]);
-        }
+        SetMinigame(minigame);
+        orderManager = MasterGameManager.instance.workOrderManager;
+
+        AutoSelect();
 
         // Deactivate all the shortcuts before displaying the current one
         foreach (GameObject recipeShortcut in recipeShortcuts)
@@ -48,9 +48,21 @@ public class MinigamePageUI : MonoBehaviour {
             if (recipeShortcuts.Count > 0)
                 recipeShortcuts[orderManager.workorderList.Count].SetActive(true);
         }
-        SetMinigame(minigame);
         Enable(true);
         animator.SetBool(minigame, true);
+    }
+
+    void AutoSelect()
+    {
+        this.orderManager.currentWorkOrders.Clear();
+        foreach (WorkOrder order in orderManager.workorderList)
+        {
+            if (order.CanPlayMinigame(minigame))
+            {
+                MasterGameManager.instance.workOrderManager.WorkOnOrder(order);
+                break;
+            }
+        }
     }
 
     void SetMinigame(string minigame)
@@ -62,7 +74,7 @@ public class MinigamePageUI : MonoBehaviour {
 
     public void PlayMinigame()
     {
-        Debug.Log(this.minigame);
+        //Debug.Log(this.minigame);
         if (!MasterGameManager.instance.sceneManager.loadingScene)
         {
             MasterGameManager.instance.actionClock.SpendAction();
