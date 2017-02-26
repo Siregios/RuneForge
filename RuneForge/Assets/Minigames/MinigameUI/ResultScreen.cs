@@ -4,11 +4,9 @@ using UnityEngine.UI;
 
 public class ResultScreen : MonoBehaviour {
 
-    public Text result;
+    public Image board;
     public Image product;
-    public GameObject score;
     public GameObject scoreFill;
-    public GameObject progress;
     public GameObject progressFill;
     public Button done;
     float time = 1.5f;
@@ -91,49 +89,36 @@ public class ResultScreen : MonoBehaviour {
             Color temp = GetComponent<Image>().color;
             temp.a += Time.unscaledDeltaTime / time;
             GetComponent<Image>().color = temp;
+            scoreFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(FadeResultText());
+        StartCoroutine(FadeBoard());
     }
 
-    //Fades "Results" Text
-    IEnumerator FadeResultText()
-    {
-        while (result.color.a <= 1)
-        {
-            Color temp = result.color;        
-            temp.a += Time.unscaledDeltaTime / time;
-            result.color = temp;
-            yield return new WaitForEndOfFrame();
-        }
-        StartCoroutine(FadeProduct());
-    }
-
-    //Fades product worked on
-    IEnumerator FadeProduct()
+    //Fade product and board
+    IEnumerator FadeBoard()
     {
         product.sprite = currentOrder.item.icon;
-        while (product.color.a <= 1)
+        while (board.GetComponent<CanvasGroup>().alpha < 1)
         {
-            Color temp = product.color;
-            temp.a += Time.unscaledDeltaTime / time;
-            product.color = temp;
-            yield return new WaitForEndOfFrame();
-        }
-        StartCoroutine(FadeScore());
-    }
-
-    //Fades score bar
-    IEnumerator FadeScore()
-    {
-        while (score.GetComponent<CanvasGroup>().alpha < 1)
-        {
-            score.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
-            scoreFill.GetComponent<CanvasGroup>().alpha = score.GetComponent<CanvasGroup>().alpha;
+            board.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             yield return new WaitForEndOfFrame();
         }
         StartCoroutine(FadeScoreFill());
     }
+    ////Fades product worked on
+    //IEnumerator FadeProduct()
+    //{
+    //    product.sprite = currentOrder.item.icon;
+    //    while (product.color.a <= 1)
+    //    {
+    //        Color temp = product.color;
+    //        temp.a += Time.unscaledDeltaTime / time;
+    //        product.color = temp;
+    //        yield return new WaitForEndOfFrame();
+    //    }
+
+    //}
 
     //adds the score fill
     IEnumerator FadeScoreFill()
@@ -142,19 +127,9 @@ public class ResultScreen : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(ProgressFade());
-    }
-
-    //Fades progress bar
-    IEnumerator ProgressFade()
-    {
-        while (progress.GetComponent<CanvasGroup>().alpha < 1)
-        {
-            progress.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
-            yield return new WaitForEndOfFrame();
-        }
         StartCoroutine(ProgressFill());
     }
+
 
     //Progress fill
     IEnumerator ProgressFill()
