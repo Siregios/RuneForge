@@ -1358,7 +1358,7 @@ Prefab:
     - target: {fileID: 114000013553111936, guid: 225482849374ce74abe03093506c3717,
         type: 2}
       propertyPath: nextScene
-      value: Store
+      value: WorkshopTutorialPt4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 225482849374ce74abe03093506c3717, type: 2}

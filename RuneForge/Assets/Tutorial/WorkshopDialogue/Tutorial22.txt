@@ -1,0 +1,19 @@
+[RPort:Fairy, RName:Minamo, RSpeaking:F, LPort:Mom, LName:Mom]
+
+How's your progress Alex?
+
+[Item:AirRune]
+
+[RPort:Fairy, LPort:Mom, LName:Mom]
+
+Nice work! You definitely put a lot of hard work into these.
+
+I have one more favor to ask.
+
+Could you please make one more rune? It's a special request from a regular customer.
+
+[RPort:Fairy, RName:Minamo, LPort:Mom, LName:Mom, RSpeaking:T, LSpeaking:F]
+
+This will be easy! Some more golems have brought in a cauldron so we can make a rune with this.
+
+Let's click on the cauldron to start!
