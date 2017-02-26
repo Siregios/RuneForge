@@ -5,17 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/UI/Title Screen/Main Menu.unity
+  - enabled: 1
     path: Assets/Tutorial/WorkshopTutorialPt1.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/TracerTutorial.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/WorkshopTutorialPt2.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/SmithingTutorial.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/WorkshopTutorialPt3.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Tutorial/SortingTutorial.unity
   - enabled: 1
     path: Assets/Store/Store.unity
