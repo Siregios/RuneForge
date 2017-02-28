@@ -4,9 +4,9 @@ All done? Let's see how it turned out.
 
 [RPort:Fairy, RName:Minamo, Anim:RBounce]
 
-Wow! Nice work! Thanks for all the help Rolric!
+Wow! Nice work! Thanks for all the help Edgar!
 
-[LPort:Blacksmith, RName:Rolric, RSpeaking:F]
+[RPort:Blacksmith, RName:Edgar]
 
 Haha! No problem! 'tis what I'm 'ere for!
 

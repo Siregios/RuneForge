@@ -22,17 +22,23 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         currentIndex = startIndex;
         clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.disabledColor;
         clipboard.enabled = false;
+
+
     }
 
     public override void handleButtonPush(Item itemInfo)
     {
         if(currentIndex == startIndex)
         {
+
             if (itemInfo.Class == "Rune")
                 dialogueManager.ButtonActivateFalse(currentIndex);
             else if (itemInfo.Class == "Product")
                 dialogueManager.ButtonActivateFalse(currentIndex + 1);
             currentIndex += 2;
+            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            extraFilter.extraFilters[0] = "Water Rune";
+            extraFilter.applyExtraFilters();
         }
 
         if(currentIndex == (startIndex + 2))

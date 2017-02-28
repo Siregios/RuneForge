@@ -1,17 +1,17 @@
-[RPort:Blacksmith, RName:Rolric]
+[RPort:Blacksmith, RName:Edgar]
 
 Ah, Minamo! What can I do for ya?
 
 [RPort:Fairy, RName:Minamo]
 
-Hello Rolric! Could you help Alex finish up this item?
+Hello Edgar! Could you help Alex finish up this item?
 
-[RPort:Blacksmith, RName:Rolric]
+[RPort:Blacksmith, RName:Edgar]
 
 Sure thing laddy! ‘Tis my job after all.
 
 [RPort:Fairy, RName:Minamo]
 
-Thanks Rolric!
+Thanks Edgar!
 
-Ok Alex, go ahead and click on Rolric to get started.
+Ok Alex, go ahead and click on Edgar to get started.

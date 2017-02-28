@@ -30,6 +30,11 @@ public class TutorialDialogue : MonoBehaviour
         ActivateDialogue(dialogueIndex, true);
         if (MasterGameManager.instance.sceneManager.currentScene == "WorkshopTutorialPt1")
         {
+            MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Air Rune"], false, false);
+            MasterGameManager.instance.workOrderManager.workorderList[0].requiredStages = 1;
+        }
+        if (MasterGameManager.instance.sceneManager.currentScene == "WorkshopTutorialPt4")
+        {
             MasterGameManager.instance.workOrderManager.CreateWorkOrder(ItemCollection.itemDict["Fire Rune"], false, false);
             MasterGameManager.instance.workOrderManager.workorderList[0].requiredStages = 1;
         }
