@@ -35,7 +35,7 @@ public class NoteTransition : MonoBehaviour
         GameObject ez = Instantiate(accShow, accShow.transform.position, Quaternion.identity);
         checkAccuracy(ez);
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        while (sprite.color.a > 0)
+        while (sprite.color.a > 0.1f)
         {
             Color temp = sprite.color;
             temp.a = Mathf.Lerp(temp.a, 0, Time.deltaTime * speed);
