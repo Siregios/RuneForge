@@ -11,6 +11,9 @@ public class RandomSpawnNote : MonoBehaviour
     public List<List<GameObject>> keyNotes;
     public int randomInt;
     int dubRandom = 6;
+    bool row = false;
+    bool ddr = false;
+    int loop = 0;
     //private BeatObserver beatObserver;
     //private int beatCounter;
 
@@ -80,20 +83,26 @@ public class RandomSpawnNote : MonoBehaviour
         {
             if (Mathf.Abs((float)AudioSettings.dspTime - (float)offset) >= readTime[counter])
             {
-                if (counter + 1 < readTime.Count)
+                if (row)
+                    spawnSpecific(randomInt);
+                else if (counter + 2 < readTime.Count)
                 {
-                    //if (readTime[counter + 1] - readTime[counter] < 0.25f)
-                    //{
-                    //    if (Random.Range(1, 3) == 1 && dub < 1)
-                    //    {
-                    //        spawnRandomDouble();
-                    //        dub++;
-                    //    }
-                    //    else
-                    //        spawnRandomNote();
-                    //}
-                    //else                   
-                    spawnRandomNote();
+                    if (readTime[counter + 2] - readTime[counter] < 0.5f)
+                    {
+                        if (Random.Range(1, 3) == 1)
+                            spawnRandomNote(true, true, 2);
+                        else
+                            spawnRandomNote(true, false, 2);
+                        //if (Random.Range(1, 3) == 1 && dub < 1)
+                        //{
+                        //    spawnRandomDouble();
+                        //    dub++;
+                        //}
+                        //else
+                        //    spawnRandomNote();
+                    }
+                    else
+                        spawnRandomNote();
                 }
                 else
                 {
@@ -103,8 +112,12 @@ public class RandomSpawnNote : MonoBehaviour
         }
     }
 
-    void spawnRandomNote()
+    void spawnRandomNote(bool spec = false, bool d = false, int l = 0)
     {
+        row = spec;
+        loop = l;
+        ddr = d;
+
         randomInt = Random.Range(0, 4);
         if (randomInt == dubRandom)
         {
@@ -116,7 +129,28 @@ public class RandomSpawnNote : MonoBehaviour
         GameObject note = (GameObject)Instantiate(spawnObject[randomInt], spawnObject[randomInt].transform.position, Quaternion.identity);
         note.GetComponent<NoteTracker>().indexNote = randomInt;
         keyNotes[randomInt].Add(note);
+        counter++;
+    }
 
+    void spawnSpecific(int dir)
+    {
+        if (ddr)
+        {
+            if (loop == 2)
+                randomInt++;
+            else if (loop == 1)
+                randomInt--;
+            if (randomInt == 4)
+                randomInt = 0;
+            if (randomInt == -1)
+                randomInt = 3;
+        }
+        GameObject note = (GameObject)Instantiate(spawnObject[randomInt], spawnObject[randomInt].transform.position, Quaternion.identity);
+        note.GetComponent<NoteTracker>().indexNote = randomInt;
+        keyNotes[randomInt].Add(note);
+        if (loop == 0)
+            row = false;
+        loop--;
         counter++;
     }
 
