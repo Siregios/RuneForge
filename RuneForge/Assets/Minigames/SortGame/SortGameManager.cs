@@ -6,6 +6,7 @@ public class SortGameManager : MonoBehaviour
 {
 
     public AudioManager AudioManager;
+    private GameObject AudioMangerObject;
     private AudioSource music;
     bool musicOn = false;
     //Draggable runes and bubble spawns
@@ -34,7 +35,7 @@ public class SortGameManager : MonoBehaviour
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        music = this.gameObject.GetComponent<AudioSource>();
+        AudioMangerObject = GameObject.Find("AudioManager");
     }
 
     void Start()
@@ -46,7 +47,7 @@ public class SortGameManager : MonoBehaviour
     {
         if (!musicOn)
         {
-            music.Play();
+            AudioMangerObject.GetComponent<AudioSource>().Play();
             musicOn = true;
         }
 

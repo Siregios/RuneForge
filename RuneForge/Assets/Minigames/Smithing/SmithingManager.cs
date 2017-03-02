@@ -5,18 +5,18 @@ using UnityEngine;
 public class SmithingManager : MonoBehaviour {
 
     private AudioManager AudioManager;
-    private AudioSource music;
+    private GameObject AudioManagerObject;
 
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        music = this.gameObject.GetComponent<AudioSource>();
+        AudioManagerObject = GameObject.Find("AudioManager");
     }
 
     // Use this for initialization
     void Start ()
     {
-        music.Play();	
+       AudioManagerObject.GetComponent<AudioSource>().Play();	
 	}
 	
 	// Update is called once per frame

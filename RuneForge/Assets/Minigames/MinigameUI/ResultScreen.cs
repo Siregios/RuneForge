@@ -19,12 +19,23 @@ public class ResultScreen : MonoBehaviour {
     int currentStage, requiredStage;
     float fillSpeed = 0.5f;
     WorkOrder currentOrder;
+    AudioSource[] sfxSources;
+    public AudioClip[] barSounds;
+    public AudioClip[] completionSounds;
+    public AudioClip[] completionSongs;
+
+    AudioManager audioManager;
+    AudioSource audioManagerObject;
+
     //float transition = 1.5f;
 
     public string nextScene = "Workshop";
 
     void Start() {
         done.interactable = false;
+        sfxSources = this.gameObject.GetComponents<AudioSource>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioManagerObject = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         //set fills
         bronze = scoreFill.transform.FindChild("Standard").GetComponent<Image>();
         silver = scoreFill.transform.FindChild("High Quality").GetComponent<Image>();
@@ -149,6 +160,8 @@ public class ResultScreen : MonoBehaviour {
         {
             yield return new WaitForEndOfFrame();
         }
+        foreach (AudioSource sfx in sfxSources)
+            sfx.Stop();
         StartCoroutine(ProgressFill());
     }
 
@@ -156,6 +169,8 @@ public class ResultScreen : MonoBehaviour {
     //Progress fill
     IEnumerator ProgressFill()
     {
+        foreach (AudioSource sfx in sfxSources)
+            sfx.Stop();
         while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
         {
             progressFill.GetComponent<Image>().fillAmount = Mathf.MoveTowards(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * fillSpeed);
@@ -193,6 +208,30 @@ public class ResultScreen : MonoBehaviour {
     IEnumerator Stamp()
     {
         GameObject quality = qualityStamp.transform.FindChild(currentOrder.quality).gameObject;
+        if(currentOrder.quality == "standard")
+        {
+            sfxSources[0].PlayOneShot(completionSounds[0]);
+            audioManagerObject.Stop();
+            audioManagerObject.loop = true;
+            audioManagerObject.clip = completionSongs[0];
+            audioManagerObject.Play();
+        }
+        else if (currentOrder.quality == "hc")
+        {
+            sfxSources[0].PlayOneShot(completionSounds[1]);
+            audioManagerObject.Stop();
+            audioManagerObject.loop = true;
+            audioManagerObject.clip = completionSongs[1];
+            audioManagerObject.Play();
+        }
+        else if (currentOrder.quality == "mc")
+        {
+            sfxSources[0].PlayOneShot(completionSounds[2]);
+            audioManagerObject.Stop();
+            audioManagerObject.loop = true;
+            audioManagerObject.clip = completionSongs[2];
+            audioManagerObject.Play();
+        }
         quality.SetActive(true);
         while (quality.GetComponent<Image>().color.a < 1)
         {
@@ -244,22 +283,59 @@ public class ResultScreen : MonoBehaviour {
         float goldFill = Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f);
         if (bronze.fillAmount < bronzeFill)
         {
-            bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
             if (bronzeFill - bronze.fillAmount <= 0.0015f)
+            {
                 bronze.fillAmount = bronzeFill;
+                //sfxSources[0].Stop();
+            }
+
+            if (!sfxSources[0].isPlaying)
+            {
+                //clipLength = barSounds[0].samples;
+                //sfxSource.timeSamples = (int)((bronzeFill - bronze.fillAmount) * clipLength);
+                //sfxSources[0].clip = barSounds[0];
+                sfxSources[0].Play();
+
+            }
+            bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
             
         }
         else if (silver.fillAmount < silverFill)
         {
-            silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
             if (silverFill - silver.fillAmount <= 0.0015f)
+            {
                 silver.fillAmount = silverFill;
+                //sfxSources[1].Stop();
+            }
+            if (!sfxSources[1].isPlaying)
+            {
+                //clipLength = barSounds[1].samples;
+                //sfxSource.timeSamples = (int)((silverFill - silver.fillAmount) * clipLength);
+                //sfxSource.clip = barSounds[1];
+                sfxSources[1].Play();
+                //sfxSources[0].Stop();
+
+
+            }
+            silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
         }
         else if (gold.fillAmount < goldFill)
         {
-            gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
             if (goldFill - gold.fillAmount <= 0.0015f)
+            {
                 gold.fillAmount = goldFill;
+                sfxSources[2].Stop();
+            }
+            if (!sfxSources[2].isPlaying)
+            {
+                //clipLength = barSounds[2].samples;
+                //sfxSource.timeSamples = (int)((goldFill - gold.fillAmount) * clipLength);
+                //sfxSource.clip = barSounds[2];
+                //sfxSources[1].Stop();
+                sfxSources[2].Play();
+
+            }
+            gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
         }
         else
         {

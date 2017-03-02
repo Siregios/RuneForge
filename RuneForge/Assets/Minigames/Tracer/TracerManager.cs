@@ -10,6 +10,7 @@ public class TracerManager : MonoBehaviour {
     Vector3 currentPos;
 
     private AudioManager AudioManager;
+    private GameObject AudioManagerObject;
     private AudioSource music;
     public List<TraceMap> traceMaps;
     int currentMapIndex = -1;
@@ -26,7 +27,7 @@ public class TracerManager : MonoBehaviour {
     void Awake()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        music = this.gameObject.GetComponent<AudioSource>();
+        AudioManagerObject = GameObject.Find("AudioManager");
     }
 
     void Start()
@@ -34,7 +35,7 @@ public class TracerManager : MonoBehaviour {
         currentMap = CreateNewMap();
         CreateNewTrail();
         Cursor.visible = false;
-        music.Play();
+        AudioManagerObject.GetComponent<AudioSource>().Play();
     }
 
     void Update()
