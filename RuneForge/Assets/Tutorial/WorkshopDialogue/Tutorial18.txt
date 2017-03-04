@@ -1,3 +1,11 @@
 [RPort:Fairy, RName:Minamo]
 
-For our first item we're going to need some help from Edgar, our blacksmith. Lucky for us he just came in!
+This is your clipboard. 
+
+In here, you'll see the progress on the items you are working on. You'll also see how well you're doing in each minigame that you've played.
+
+Your mother has left you with almost completed items, so these items will only require one more step to completion, but later on it will take more.
+
+Let's leave the clipboard menu and start crafting our items.
+
+[Clear]

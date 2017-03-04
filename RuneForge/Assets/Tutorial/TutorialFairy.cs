@@ -45,5 +45,4 @@ public class TutorialFairy : CutsceneMovement
         if(dialogueScript.actorsMoving == 0)
             dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
     }
-
 }

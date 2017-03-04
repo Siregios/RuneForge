@@ -35,7 +35,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             //    dialogueManager.ButtonActivateFalse(currentIndex);
             //else if (itemInfo.Class == "Product")
             //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
-            dialogueManager.ButtonActivateFalse(currentIndex);
+            dialogueManager.ButtonActivateFalse(currentIndex+1);
             currentIndex += 2;
             ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             extraFilter.extraFilters[0] = "Water Rune";
@@ -50,13 +50,13 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
 
     public void pinOrder()
     {
-        if (currentIndex == (startIndex + 2))
+        if (currentIndex == (startIndex + 3))
         {
             dialogueManager.ActivateDialogue(currentIndex, false);
             currentIndex++;
             dialogueManager.dialogueIndex = currentIndex;
         }
-        else if (currentIndex == (startIndex + 3))
+        else if (currentIndex == (startIndex + 4))
         {
             book.GetComponent<BookUI>().Enable(false);
             dialogueManager.ActivateDialogue(currentIndex, false);
@@ -84,7 +84,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             //else if (itemInfo.Class == "Product")
             //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
             dialogueManager.ButtonActivateFalse(currentIndex);
-            currentIndex += 2;
+            currentIndex += 1;
             ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             extraFilter.extraFilters[0] = "Earth Rune";
             extraFilter.applyExtraFilters();
