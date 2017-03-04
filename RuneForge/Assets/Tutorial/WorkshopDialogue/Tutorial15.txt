@@ -1,3 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Good job! You now have two items to work with.
+This is your recipe page. It shows you the items you can currently craft and allows you to start working on your own runes.
