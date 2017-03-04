@@ -7,7 +7,7 @@ public class TraceMap : MonoBehaviour
     public List<DotController> dots;
     public int currentDot = 0;
     public bool onLastDot { get { return (currentDot == dots.Count - 1); } }
-
+    public int dotsHit = 0;
     public SpriteRenderer sphere, magicCircle;
     public Color goalColor;
 
@@ -43,13 +43,13 @@ public class TraceMap : MonoBehaviour
 
     Color ColorStep(Color goalColor)
     {
-        float step = (float)currentDot / (dots.Count - 1);
+        float step = (float)dotsHit / (dots.Count - 1);
         return new Color(1 - (1 - goalColor.r) * step, 1 - (1 - goalColor.g) * step, 1 - (1 - goalColor.b) * step);
     }
 
     Color AlphaStep()
     {
-        float step = (float)currentDot / (dots.Count - 1);
+        float step = (float)dotsHit / (dots.Count - 1);
         return new Color(1, 1, 1, step);
     }
 }

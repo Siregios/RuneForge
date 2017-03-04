@@ -5,8 +5,8 @@ public class DotController : MonoBehaviour {
 
     TracerManager manager;
     GameObject hitCircle;
-    float lifeTime = 0f;
-    float timeRemaining = 0f;
+    public float lifeTime = 0f;
+    public float timeRemaining = 0f;
 
     void Awake()
     {

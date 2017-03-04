@@ -18,7 +18,7 @@ public class TracerManager : MonoBehaviour {
     //Number of maps to spawn in one playthrough
     public int mapsPerPlay = 5;
     public float spawnInterval = 1f;
-    int count = 1;
+    public int count = 1;
 
     public Score score;
 
@@ -46,14 +46,15 @@ public class TracerManager : MonoBehaviour {
 
     public void DotTouched(GameObject dot)
     {
-        score.addScore(10);
+        int points = (int)(3 * Mathf.Ceil(4 + Mathf.Min(7 * Mathf.Pow(dot.GetComponent<DotController>().timeRemaining/dot.GetComponent<DotController>().lifeTime,4), 6)));
+        score.addScore(points);
 
         currentPos = dot.transform.position;
 
         //This makes the last dot not spawn burst prefab
         if (!currentMap.onLastDot || count < mapsPerPlay)
             Destroy((GameObject)Instantiate(burst, currentPos, Quaternion.identity), 0.2f);
-
+        currentMap.dotsHit++;
         SpawnDot(dot);
         
         //Aesthetics polish
