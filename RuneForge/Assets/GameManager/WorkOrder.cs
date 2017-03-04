@@ -7,7 +7,8 @@ using System.Collections.Generic;
 // It will then subsequently call UpdateOrder during the results screen for each work order in that list.
 
 // [Optional] Perhaps that script should also check if an order has been completed and show the proper result screen for that?
-public class WorkOrder {
+public class WorkOrder
+{
     public Item item;
     public int orderNumber;
     public int requiredStages;
@@ -16,7 +17,7 @@ public class WorkOrder {
     public bool isEnhanced = false;
     public bool isRandom = false;
     public bool isComplete = false;
-    public string quality = "";
+    public string quality = "fail";
     public float multiplier = 1f;
     public List<KeyValuePair<string, int>> minigameList = new List<KeyValuePair<string, int>>();
 
@@ -107,7 +108,7 @@ public class WorkOrder {
         for (int i = 0; i < requiredStages; i++)
         {
             int randomIndex = Random.Range(0, tempMinigameList.Count);
-            minigameList.Add(new KeyValuePair < string, int >(tempMinigameList[randomIndex], int.MinValue));
+            minigameList.Add(new KeyValuePair<string, int>(tempMinigameList[randomIndex], int.MinValue));
             tempMinigameList.RemoveAt(randomIndex);
         }
     }
@@ -126,33 +127,38 @@ public class WorkOrder {
         bool successfulRoll;
         if (this.score <= standard) //Roll for Standard
         {
-            quality = "standard";
             successfulRoll = WeightedCoinFlip(this.score, standard);
             if (successfulRoll)
+            {
                 Debug.Log("Rolled for Standard - Got Standard");
+                quality = "standard";
+            }
             else
+            {
                 Debug.Log("Rolled for Standard - Failed");
+                quality = "fail";
+            }
         }
         else if (standard < score && score <= highQuality)  //Roll for HQ
         {
-            quality = "hq";
             successfulRoll = WeightedCoinFlip(score - standard, highQuality - standard);
             if (successfulRoll)
             {
                 Debug.Log("Rolled for HQ - Got HQ");
                 this.item = ItemCollection.itemDict[item.name + " (HQ)"];
+                quality = "hq";
             }
             else
                 Debug.Log("Rolled for HQ - Got Standard");
         }
         else if (score > highQuality)   //Roll for MC
         {
-            quality = "mc";
             successfulRoll = WeightedCoinFlip(score - highQuality, masterCraft - highQuality);
             if (successfulRoll)
             {
                 Debug.Log("Rolled for MC - Got MC");
                 this.item = ItemCollection.itemDict[item.name + " (MC)"];
+                quality = "mc";
             }
             else
                 Debug.Log("Rolled for MC - Got HQ");

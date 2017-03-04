@@ -16,35 +16,36 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
     private void Awake()
     {
         //So the player won't see it in the inventory since the mom "takes it"
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (MC)"], 0);
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (HQ)"], 0);
-        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune"], 0);
+        //PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (MC)"], 0);
+        //PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune (HQ)"], 0);
+        //PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Fire Rune"], 0);
         currentIndex = startIndex;
-        clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.disabledColor;
-        clipboard.enabled = false;
+        //clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.disabledColor;
+        //clipboard.enabled = false;
 
 
     }
 
     public override void handleButtonPush(Item itemInfo)
     {
-        if(currentIndex == startIndex)
+        if(currentIndex == startIndex+1)
         {
 
             //if (itemInfo.Class == "Rune")
             //    dialogueManager.ButtonActivateFalse(currentIndex);
             //else if (itemInfo.Class == "Product")
             //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
-            //currentIndex += 2;
-            //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
-            //extraFilter.extraFilters[0] = "Water Rune";
-            //extraFilter.applyExtraFilters();
+            dialogueManager.ButtonActivateFalse(currentIndex);
+            currentIndex += 2;
+            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            extraFilter.extraFilters[0] = "Water Rune";
+            extraFilter.applyExtraFilters();
         }
 
-        if(currentIndex == (startIndex + 2))
-        {
+        //if (currentIndex == (startIndex + 2))
+        //{
             
-        }
+        //}
     }
 
     public void pinOrder()
@@ -75,7 +76,20 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
     public void ButtonActivateOverride(int index)
     {
         currentIndex = index;
-        if (currentIndex == 12)
+        if (currentIndex == startIndex)
+        {
+
+            //if (itemInfo.Class == "Rune")
+            //    dialogueManager.ButtonActivateFalse(currentIndex);
+            //else if (itemInfo.Class == "Product")
+            //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
+            dialogueManager.ButtonActivateFalse(currentIndex);
+            currentIndex += 2;
+            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            extraFilter.extraFilters[0] = "Earth Rune";
+            extraFilter.applyExtraFilters();
+        }
+        else if (currentIndex == 12)
         {
             dialogueManager.dialogueIndex = currentIndex;
             dialogueManager.ActivateDialogue(currentIndex, true);
@@ -84,7 +98,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             BlacksmithParent.transform.FindChild("Blacksmith").gameObject.SetActive(true);
         }
 
-        if (currentIndex == 13)
+        else if (currentIndex == 13)
         {
             dialogueManager.dialogueIndex = currentIndex;
             dialogueManager.ActivateDialogue(currentIndex, true);
