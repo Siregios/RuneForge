@@ -1,5 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Great! You've successfully added an order to your clipboard. 
-
-Let's add one more!
+Click here to access the recipe page.

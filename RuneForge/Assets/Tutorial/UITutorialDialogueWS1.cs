@@ -31,14 +31,14 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         if(currentIndex == startIndex)
         {
 
-            if (itemInfo.Class == "Rune")
-                dialogueManager.ButtonActivateFalse(currentIndex);
-            else if (itemInfo.Class == "Product")
-                dialogueManager.ButtonActivateFalse(currentIndex + 1);
-            currentIndex += 2;
-            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
-            extraFilter.extraFilters[0] = "Water Rune";
-            extraFilter.applyExtraFilters();
+            //if (itemInfo.Class == "Rune")
+            //    dialogueManager.ButtonActivateFalse(currentIndex);
+            //else if (itemInfo.Class == "Product")
+            //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
+            //currentIndex += 2;
+            //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            //extraFilter.extraFilters[0] = "Water Rune";
+            //extraFilter.applyExtraFilters();
         }
 
         if(currentIndex == (startIndex + 2))

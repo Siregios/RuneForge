@@ -1,3 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Now pin the rune to your clipboard to select it for crafting!
+ In this page, you can check your inventory and statistics on how you and your shop are doing. Let’s move on to the recipe page.

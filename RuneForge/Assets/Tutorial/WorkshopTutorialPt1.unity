@@ -485,12 +485,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 5.59, y: 6.73}
---- !u!114 &172553187 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000014264467656, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1549269514}
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &229637535
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,12 +981,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &641052399 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114392254471247156, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1549269514}
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &674844332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,9 +2521,7 @@ MonoBehaviour:
   dialogueScript: {fileID: 1725219289}
   UIDialogueHandler: {fileID: 0}
   menuButtons:
-  - {fileID: 641052399}
-  - {fileID: 172553187}
-  - {fileID: 1355556242}
+  - {fileID: 1753561346}
   movementIndex: 0000000002000000
   characterMovements:
   - Player
@@ -2919,12 +2905,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &1355556242 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012472985286, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1549269514}
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1368228675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3465,6 +3445,15 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385064476767742, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
   m_IsPrefabParent: 0
@@ -3778,6 +3767,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010635528436, guid: 732d1141156ccc344848c8894155295e,
     type: 2}
   m_PrefabInternal: {fileID: 2070310488}
+--- !u!114 &1753561346 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1549269514}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1758780480
 Prefab:
   m_ObjectHideFlags: 0

@@ -12,13 +12,13 @@ public class TutorialFairy : CutsceneMovement
     public TutorialDialogue dialogueScript;
     float defaultWidth = Screen.width;
     float defaultHeight = Screen.height;
-    float speed = ((Screen.width + Screen.height) / 8);
+    float speed = ((Screen.width + Screen.height) / 5.5f);
 
     void Update()
     {
         if (Screen.width != defaultWidth || Screen.height != defaultHeight)
         {
-            speed = ((Screen.width + Screen.height) / 8);
+            speed = ((Screen.width + Screen.height) / 5.5f);
             defaultWidth = Screen.width;
             defaultHeight = Screen.height;
         }

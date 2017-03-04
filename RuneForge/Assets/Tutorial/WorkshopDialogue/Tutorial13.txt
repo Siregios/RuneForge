@@ -1,5 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Hmmmm, that's not a rune. We are running low on those though, so that should be fine!
-
-Just pin the item to your clipboard to select it for crafting!
+Click here to access the recipe page.
