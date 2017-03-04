@@ -88,9 +88,9 @@ MonoBehaviour:
   - Sorting
   - Rhythm
   - Smithing
-  SDThreshold: 50
-  HQThreshold: 400
-  MCThreshold: 500
+  SDThreshold: 1000
+  HQThreshold: 2000
+  MCThreshold: 4000
   playerStats: {fileID: 114740248611132830}
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}
