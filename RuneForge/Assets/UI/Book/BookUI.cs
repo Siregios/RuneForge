@@ -5,12 +5,16 @@ public class BookUI : MonoBehaviour {
     private AudioManager audioManager;
     public enum BookSection
     {
+        INVENTORY,
+        RECIPE,
         CLIPBOARD,
-        RECIPE
+        QUESTBOARD,
+        SETTINGS
     }
-    public BookSection currentSection = BookSection.CLIPBOARD;
+    public BookSection currentSection = BookSection.INVENTORY;
     public RecipeUIManager recipe;
     public ClipboardUI clipboard;
+    public QuestBoardUI questboard;
     public GameObject menuBar;
 
     void Awake()
@@ -44,19 +48,35 @@ public class BookUI : MonoBehaviour {
         }
     }
 
+    public void DisplayInventory()
+    {
+
+    }
+
     public void DisplayRecipe()
     {
         Enable(true);
         recipe.gameObject.SetActive(true);
         clipboard.gameObject.SetActive(false);
+        questboard.gameObject.SetActive(false);
         currentSection = BookSection.RECIPE;
     }
 
     public void DisplayClipboard()
     {
         Enable(true);
-        recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(true);
+        recipe.gameObject.SetActive(false);
+        questboard.gameObject.SetActive(false);
         currentSection = BookSection.CLIPBOARD;
+    }
+
+    public void DisplayQuestboard()
+    {
+        Enable(true);
+        questboard.gameObject.SetActive(true);
+        recipe.gameObject.SetActive(false);
+        clipboard.gameObject.SetActive(false);
+        currentSection = BookSection.QUESTBOARD;
     }
 }

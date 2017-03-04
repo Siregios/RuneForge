@@ -87,7 +87,7 @@ public class ItemButton : MonoBehaviour
             {
                 if (LastClicked.transform.Find("QuestIcon").GetComponent<Image>().sprite == gameObject.transform.Find("Icon").GetComponent<Image>().sprite)
                 {
-                    GameObject.Find("QuestPanel").GetComponent<QuestBoardUI>().turnInQuest(LastClicked, gameObject);
+                    GameObject.Find("Questboard").GetComponent<QuestBoardUI>().turnInQuest(LastClicked, gameObject);
                     LastClicked = null;
                 }
             }

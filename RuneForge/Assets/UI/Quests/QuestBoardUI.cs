@@ -9,24 +9,24 @@ public class QuestBoardUI : MonoBehaviour
     [HideInInspector]
     public int currentDisplayedDay = 0;
     public List<GameObject> questObjects;
-    float xPos = 175, yPos = 150, padY = -70;
+    float xPos = 150, yPos = 120, padY = -50;
     int objCount;
     public ItemListUI productList;
 
-    public void Enable(bool active)
-    {
-        if (active)
-            DisplayBoard();
-        else
-        {
-            ClearBoard();
-        }
-        this.gameObject.SetActive(active);
-        MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
-        //MasterGameManager.instance.uiManager.uiOpen = active;
-        //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
-        //MasterGameManager.instance.interactionManager.canInteract = !active;
-    }
+    //public void Enable(bool active)
+    //{
+    //    if (active)
+    //        DisplayBoard();
+    //    else
+    //    {
+    //        ClearBoard();
+    //    }
+    //    this.gameObject.SetActive(active);
+    //    MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
+    //    //MasterGameManager.instance.uiManager.uiOpen = active;
+    //    //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
+    //    //MasterGameManager.instance.interactionManager.canInteract = !active;
+    //}
 
     //void OnEnable()
     //{
@@ -38,6 +38,16 @@ public class QuestBoardUI : MonoBehaviour
     //{
     //    MasterGameManager.instance.uiManager.uiOpen = false;
     //}
+
+    void OnEnable()
+    {
+        DisplayBoard();
+    }
+
+    void OnDisable()
+    {
+        ClearBoard();
+    }
 
     public void DisplayBoard()
     {
