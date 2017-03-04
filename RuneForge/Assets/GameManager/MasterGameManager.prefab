@@ -84,51 +84,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameList:
-  - Name: Tracer
-    SD: 50
-    HQ: 400
-    MC: 500
-    isTutorial: 0
-  - Name: Sorting
-    SD: 30
-    HQ: 240
-    MC: 280
-    isTutorial: 0
-  - Name: GolemFetch
-    SD: 100
-    HQ: 1000
-    MC: 1500
-    isTutorial: 0
-  - Name: Rhythm
-    SD: 30
-    HQ: 270
-    MC: 300
-    isTutorial: 0
-  - Name: Smithing
-    SD: 500
-    HQ: 1000
-    MC: 1500
-    isTutorial: 0
-  - Name: TracerTutorial
-    SD: 50
-    HQ: 400
-    MC: 500
-    isTutorial: 1
-  - Name: SortingTutorial
-    SD: 30
-    HQ: 240
-    MC: 280
-    isTutorial: 1
-  - Name: SmithingTutorial
-    SD: 500
-    HQ: 1000
-    MC: 1500
-    isTutorial: 1
-  - Name: RhythmTutorial
-    SD: 30
-    HQ: 270
-    MC: 300
-    isTutorial: 1
+  - Tracer
+  - Sorting
+  - Rhythm
+  - Smithing
+  SDThreshold: 50
+  HQThreshold: 400
+  MCThreshold: 500
   playerStats: {fileID: 114740248611132830}
   actionClock: {fileID: 114000010917058700}
   questGenerator: {fileID: 114000013663129980}

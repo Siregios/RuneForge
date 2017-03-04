@@ -100,9 +100,10 @@ public class WorkOrder
         List<string> tempMinigameList = new List<string>();
         for (int i = 0; i < MasterGameManager.instance.minigameList.Count; i++)
         {
-            MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameList[i];
-            if (!minigame.isTutorial)
-                tempMinigameList.Add(MasterGameManager.instance.minigameList[i].Name);
+            //MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameList[i];
+            //if (!minigame.isTutorial)
+            //    tempMinigameList.Add(MasterGameManager.instance.minigameList[i].Name);
+            tempMinigameList.Add(MasterGameManager.instance.minigameList[i]);
         }
 
         for (int i = 0; i < requiredStages; i++)
@@ -118,10 +119,10 @@ public class WorkOrder
         int standard = 0, highQuality = 0, masterCraft = 0;
         foreach (var kvp in minigameList)
         {
-            MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameDict[kvp.Key];
-            standard += minigame.SD;
-            highQuality += minigame.HQ;
-            masterCraft += minigame.MC;
+            //MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameDict[kvp.Key];
+            standard += MasterGameManager.instance.SDThreshold;
+            highQuality += MasterGameManager.instance.HQThreshold;
+            masterCraft += MasterGameManager.instance.MCThreshold;
         }
 
         bool successfulRoll;

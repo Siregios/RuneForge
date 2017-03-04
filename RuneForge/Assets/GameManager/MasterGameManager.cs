@@ -7,18 +7,21 @@ public class MasterGameManager : MonoBehaviour
     //Static instance of GameManager which allows it to be accessed by any other script.
     public static MasterGameManager instance = null;
 
-    [System.Serializable]
-    public class Minigame
-    {
-        public string Name;
-        public int SD = 50;
-        public int HQ = 400;
-        public int MC = 500;
-        public bool isTutorial = false;
-    }
+    //[System.Serializable]
+    //public class Minigame
+    //{
+    //    public string Name;
+    //    public int SD = 50;
+    //    public int HQ = 400;
+    //    public int MC = 500;
+    //    public bool isTutorial = false;
+    //}
 
-    public List<Minigame> minigameList;
-    public Dictionary<string, Minigame> minigameDict = new Dictionary<string, Minigame>();
+    public List<string> minigameList;
+    //public Dictionary<string, Minigame> minigameDict = new Dictionary<string, Minigame>();
+    public int SDThreshold;
+    public int HQThreshold;
+    public int MCThreshold;
 
     public PlayerStats playerStats;
     public ActionClock actionClock;
@@ -40,7 +43,7 @@ public class MasterGameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        SetMinigameDict();
+        //SetMinigameDict();
     }
 
     //void Start()
@@ -62,11 +65,11 @@ public class MasterGameManager : MonoBehaviour
         }
     }
 
-    void SetMinigameDict()
-    {
-        foreach (Minigame minigame in minigameList)
-        {
-            minigameDict[minigame.Name] = minigame;
-        }
-    }
+    //void SetMinigameDict()
+    //{
+    //    foreach (Minigame minigame in minigameList)
+    //    {
+    //        minigameDict[minigame.Name] = minigame;
+    //    }
+    //}
 }

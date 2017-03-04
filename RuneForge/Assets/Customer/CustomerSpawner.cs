@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour {
-    public Customer customer;
+    public List<Customer> customerList;
     int index = 0;
     void Start()
     {
@@ -13,7 +13,8 @@ public class CustomerSpawner : MonoBehaviour {
 
     public void SpawnCustomer(Quest quest)
     {
-        GameObject newCustomer = Instantiate(customer.gameObject, this.transform);
+        Customer randomCustomer = customerList[Random.Range(0, customerList.Count)];
+        GameObject newCustomer = Instantiate(randomCustomer.gameObject, this.transform);
         Customer newCustomerScript = newCustomer.GetComponent<Customer>();
         newCustomerScript.SetItem(quest);
     }
