@@ -12,6 +12,7 @@ public class BookUI : MonoBehaviour {
         SETTINGS
     }
     public BookSection currentSection = BookSection.INVENTORY;
+    public GameObject inventory;
     public RecipeUIManager recipe;
     public ClipboardUI clipboard;
     public QuestBoardUI questboard;
@@ -50,13 +51,19 @@ public class BookUI : MonoBehaviour {
 
     public void DisplayInventory()
     {
-
+        Enable(true);
+        inventory.gameObject.SetActive(true);
+        recipe.gameObject.SetActive(false);
+        clipboard.gameObject.SetActive(false);
+        questboard.gameObject.SetActive(false);
+        currentSection = BookSection.INVENTORY;
     }
 
     public void DisplayRecipe()
     {
         Enable(true);
         recipe.gameObject.SetActive(true);
+        inventory.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
         currentSection = BookSection.RECIPE;
@@ -66,6 +73,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         clipboard.gameObject.SetActive(true);
+        inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
         currentSection = BookSection.CLIPBOARD;
@@ -75,6 +83,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         questboard.gameObject.SetActive(true);
+        inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         currentSection = BookSection.QUESTBOARD;
