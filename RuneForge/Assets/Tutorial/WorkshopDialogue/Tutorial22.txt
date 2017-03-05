@@ -1,18 +1,17 @@
-[RPort:Mom, RName:Mom]
+[RPort:Blacksmith, RName:Edgar]
 
-How's your progress Alex?
-
-[Item:AirRune]
-
-
-Nice work! You definitely put a lot of hard work into these.
-
-I have one more favor to ask.
-
-Could you please make me a fire rune? We're all out, and I always like to have at least one in stock.
+Ah, Minamo! What can I do for ya?
 
 [RPort:Fairy, RName:Minamo]
 
-This will be easy! Some more golems have brought in a cauldron so we can make a rune with this.
+Hello Edgar! Could you help out Alex and I finish up this item?
 
-Let's click on the cauldron to start!
+[RPort:Blacksmith, RName:Edgar]
+
+Sure thing laddy! ‘Tis my job after all.
+
+[RPort:Fairy, RName:Minamo]
+
+Thanks Edgar!
+
+Okay Alex, go ahead and click on Edgar to get started.

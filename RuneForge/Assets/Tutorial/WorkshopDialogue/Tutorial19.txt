@@ -1,17 +1,3 @@
-[RPort:Blacksmith, RName:Edgar]
-
-Ah, Minamo! What can I do for ya?
-
 [RPort:Fairy, RName:Minamo]
 
-Hello Edgar! Could you help Alex finish up this item?
-
-[RPort:Blacksmith, RName:Edgar]
-
-Sure thing laddy! ‘Tis my job after all.
-
-[RPort:Fairy, RName:Minamo]
-
-Thanks Edgar!
-
-Ok Alex, go ahead and click on Edgar to get started.
+Let’s go check out the clipboard to see what you need to work on!

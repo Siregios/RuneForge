@@ -150,7 +150,10 @@ public class WorkOrder
                 quality = "hq";
             }
             else
+            {
                 Debug.Log("Rolled for HQ - Got Standard");
+                quality = "standard";
+            }
         }
         else if (score > highQuality)   //Roll for MC
         {
@@ -162,7 +165,10 @@ public class WorkOrder
                 quality = "mc";
             }
             else
+            {
                 Debug.Log("Rolled for MC - Got HQ");
+                quality = "hq";
+            }
         }
     }
 

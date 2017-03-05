@@ -2551,6 +2551,7 @@ MonoBehaviour:
   UIDialogueHandler: {fileID: 0}
   menuButtons:
   - {fileID: 1753561346}
+  book: {fileID: 1964228726}
   movementIndex: 0000000002000000
   characterMovements:
   - Player
@@ -4078,6 +4079,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1964228723}
   m_Script: {fileID: 11500000, guid: 21dab67d7bf9669469cb36dca3c70ad7, type: 3}
+--- !u!1 &1964228726 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013526118788, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1964228723}
 --- !u!1001 &2047043043
 Prefab:
   m_ObjectHideFlags: 0

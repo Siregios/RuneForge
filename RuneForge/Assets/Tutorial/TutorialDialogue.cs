@@ -10,6 +10,7 @@ public class TutorialDialogue : MonoBehaviour
     public DialogueHandler dialogueScript;
     public UITutorialDialogue UIDialogueHandler;
     public List<Button> menuButtons = new List<Button>();   //List of all interactable menu buttons
+    public GameObject book;
 
     public List<int> movementIndex = new List<int>();       //List of which dialoguee indexes initiate movement
 
@@ -20,9 +21,14 @@ public class TutorialDialogue : MonoBehaviour
     public int actorsMoving = 0;
     public int dialogueIndex = 0;
     bool disableOnce = false;
+    ColorBlock enableColor;
+    ColorBlock disableColor;
 
     void Start()
     {
+        enableColor = menuButtons[0].colors;
+        disableColor = menuButtons[0].colors;
+        disableColor.normalColor = menuButtons[0].colors.disabledColor;
         dialogueScript = GameObject.FindGameObjectWithTag("DialogueUI").GetComponent<DialogueHandler>();
         dialogueUI = dialogueScript.dialogueUI;
 
@@ -67,9 +73,13 @@ public class TutorialDialogue : MonoBehaviour
                 Player.GetComponent<PlayerController>().tutorial = false;
                 MasterGameManager.instance.inputActive = true;
                 MasterGameManager.instance.uiManager.uiOpen = false;
+                changeButtonActive(true);
                 foreach (Button button in menuButtons)
                 {
-                    button.interactable = true;
+                    if (button.name == "CloseButton" && button.enabled)
+                    {
+                        book.GetComponent<CloseOnEscape>().enabled = true;
+                    }
                 }
                 disableOnce = false;
             }
@@ -82,16 +92,24 @@ public class TutorialDialogue : MonoBehaviour
         disableOnce = disableAfter;
         MasterGameManager.instance.inputActive = false;
         MasterGameManager.instance.uiManager.uiOpen = true;
-        foreach (Button button in menuButtons)
-        {
-            button.interactable = false;
-        }
+        changeButtonActive(false);
 
         dialogueScript.GetComponent<DialogueHandler>().LoadTextAsset(index);
         dialogueScript.enabled = true;
         dialogueScript.SetBackground("");
     }
 
+    public void changeButtonActive(bool active)
+    {
+        foreach (Button button in menuButtons)
+        {
+            button.interactable = active;
+            if (button.enabled == false)
+                button.colors = disableColor;
+            else
+                button.colors = enableColor;
+        }
+    }
     //Button Use
     public void ButtonActivateFalse(int index)
     {

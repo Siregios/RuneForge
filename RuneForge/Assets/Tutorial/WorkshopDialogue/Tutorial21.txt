@@ -1,7 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Done? Let's check out your results!
-
-[RPort:Fairy, RName:Minamo, Anim:RBounce]
-
-Another job well done! I knew I could count on you! Thank you golems for your help!
+For our first item we’re going to need some help from Edgar, our blacksmith. Lucky for us he just came in!

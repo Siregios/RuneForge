@@ -1,19 +1,9 @@
 [RPort:Fairy, RName:Minamo]
 
-All done? Let's see how it turned out.
+This is your clipboard. In here, you’ll see the progress on the items you are working on.
 
-[RPort:Fairy, RName:Minamo, Anim:RBounce]
+You’ll also see how well you are doing in each minigame that you’ve played.
 
-Wow! Nice work! Thanks for all the help Edgar!
+Your mother has left you with almost completed items, so these items will only require one more step to completion, but later on it will take more.
 
-[RPort:Blacksmith, RName:Edgar]
-
-Haha! No problem! 'tis what I'm 'ere for!
-
-[Clear]
-
-[RPort:Fairy, RName:Minamo, RSpeaking:T]
-
-Hey look! Some of your Mom's helper golems have come to visit and just in time too! We're going to need them to sort out some ingredients for us for the next item.
-
-Click on the golems to get started!
+Let’s leave the book menu and start crafting our items.
