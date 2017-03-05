@@ -1,9 +1,9 @@
 [RPort:Fairy, RName:Minamo]
 
-This is your clipboard. In here, you’ll see the progress on the items you are working on.
+This is your clipboard. In here, you'll see the progress on the items you are working on.
 
-You’ll also see how well you are doing in each minigame that you’ve played.
+You'll also see how well you are doing in each minigame that you've played.
 
 Your mother has left you with almost completed items, so these items will only require one more step to completion, but later on it will take more.
 
-Let’s leave the book menu and start crafting our items.
+Let's leave the book menu and start crafting our items.

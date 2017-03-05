@@ -649,7 +649,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cb865ae2f44a5c4d9c75521adbe4de9, type: 3}
   - {fileID: 8300000, guid: e33002f6c9130424c8a54deda6bce821, type: 3}
   - {fileID: 8300000, guid: 7aaf904f5d64752448166e1277d180b0, type: 3}
-  nextScene: WorkshopTutorialPt2
+  nextScene: Workshop
 --- !u!114 &114084997055954974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1233,7 +1233,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010993853912}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:

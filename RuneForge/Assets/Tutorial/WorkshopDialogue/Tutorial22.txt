@@ -8,7 +8,7 @@ Hello Edgar! Could you help out Alex and I finish up this item?
 
 [RPort:Blacksmith, RName:Edgar]
 
-Sure thing laddy! ‘Tis my job after all.
+Sure thing laddy! 'Tis my job after all.
 
 [RPort:Fairy, RName:Minamo]
 

@@ -1,3 +1,5 @@
 []
 
 (Press C to advance the dialogue)
+
+[Clear]

@@ -7,3 +7,5 @@ I'm behind on some orders and I could use your help. Here, take this rune and fi
 [Item:Rune]
 
 Click on your mother to add the final enchantments to this rune.
+
+[Clear]

@@ -332,6 +332,7 @@ public class DialogueHandler : MonoBehaviour {
             currentLine ++;
             if (currentLine >= dialogueArray.Length){
                 EndDialogue();
+                dialogueUIText.text = "";
                 return;
             }
             if (currentLine < dialogueArray.Length){

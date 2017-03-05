@@ -89,7 +89,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             dialogueManager.changeButtonActive(false);
             ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             extraFilter.extraFilters[0] = "Earth Rune";
-            extraFilter.applyExtraFilters();
+
         }
         else if (currentIndex == 14)
         {

@@ -4091,21 +4091,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1177513092}
     m_Modifications:
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: dialogueText.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 224579296483215526, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -4196,135 +4181,15 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+    - target: {fileID: 114239433433430634, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
-      propertyPath: dialogueText.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: d7247c34d8afedd4b96a7976e9cd42ff, type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: dialogueText.Array.data[1]
-      value: 
-      objectReference: {fileID: 4900000, guid: 1054be6bf96766442bcd5eea8252324e, type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[2].name
-      value: Fairy
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[2].img
-      value: 
-      objectReference: {fileID: 21300000, guid: 7fdb3e7645a0a8642a1f1b6646263153,
-        type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[2].width
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[2].height
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: dialogueText.Array.data[2]
-      value: 
-      objectReference: {fileID: 4900000, guid: 8fec4d7d9fcd2e843bc6208e6c1149cd, type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: dialogueText.Array.data[3]
-      value: 
-      objectReference: {fileID: 4900000, guid: f9c7062b7f427ad4a8975961d557ad1e, type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[3].name
-      value: Mom
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[3].img
-      value: 
-      objectReference: {fileID: 21300000, guid: 6968854a12014e64bba08755a71d470f,
-        type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[3].width
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[3].height
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[4].name
-      value: MomSphereOut
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[4].img
-      value: 
-      objectReference: {fileID: 21300000, guid: 17fead2756ba8c04e8bf4c42d6176c64,
-        type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[4].width
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: spritePorts.Array.data[4].height
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: dialogueText.Array.data[4]
-      value: 
-      objectReference: {fileID: 4900000, guid: 431fee3711a04db478ce225a184bbaf9, type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[0].image
-      value: 
-      objectReference: {fileID: 21300000, guid: 84bc5517c378ea74c947e5b8f6498311,
-        type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[0].name
-      value: Rune
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[0].description
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[0].unlocked
+      propertyPath: m_UseGraphicAlpha
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+    - target: {fileID: 114239433433430634, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
-      propertyPath: itemEntries.Array.data[1].name
-      value: Rune
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[1].image
-      value: 
-      objectReference: {fileID: 21300000, guid: 84bc5517c378ea74c947e5b8f6498311,
-        type: 3}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[1].scale
+      propertyPath: m_EffectColor.a
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
-        type: 2}
-      propertyPath: itemEntries.Array.data[0].scale
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f266cf2afd6d2b41a51f193e0398838, type: 2}
