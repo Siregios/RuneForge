@@ -87,7 +87,6 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         currentIndex = index;
         if (currentIndex == startIndex)
         {
-            Debug.Log("Here");
             //if (itemInfo.Class == "Rune")
             //    dialogueManager.ButtonActivateFalse(currentIndex);
             //else if (itemInfo.Class == "Product")
