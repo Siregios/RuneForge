@@ -1,0 +1,15 @@
+[RPort:Mom, RName:Mom]
+
+How's your progress Alex?
+
+Nice work! You definitely put a lot of hard work into these.
+
+I have one more favor to ask.
+
+Could you please make me a fire rune? We're all out, and I always like to have at least one in stock.
+
+[RPort:Fairy, RName:Minamo]
+
+This will be easy! The golems just brought in a cauldron so we can make a rune with this.
+
+Let's click on the cauldron to start!

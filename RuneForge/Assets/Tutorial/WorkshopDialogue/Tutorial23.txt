@@ -1,13 +1,15 @@
-[RPort:Mom, RName:Mom]
+[RPort:Fairy, RName:Minamo]
 
-Nice work! I think you're ready to start working up front.
+All done? Let's see how it turned out.
 
-Minamo, could you show Alex how to work in the front? Veronna told me she is on her way to make an order. You can show Alex how to turn in these orders we've done while you wait for her.
+Wow! Nice work! We just need one more rune. Thanks for all the help Edgar!
+
+[RPort:Blacksmith, RName:Edgar]
+
+Haha! No problem! 'tis what I'm 'ere for!
 
 [RPort:Fairy, RName:Minamo]
 
-Sure thing! I love the store front! Let's go Alex.
+Hey look! Some of your Mom's golems have come to visit and just in time too. We're going to need them to sort out some ingredients for us for the next rune.
 
-[RPort:Mom, RName:Mom]
-
-I'll be here if you two need anything.
+Click on the golems to get started!
