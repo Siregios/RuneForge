@@ -116,14 +116,18 @@ public class WorkOrder
 
     void DetermineQuality()
     {
-        int standard = 0, highQuality = 0, masterCraft = 0;
-        foreach (var kvp in minigameList)
-        {
-            //MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameDict[kvp.Key];
-            standard += MasterGameManager.instance.SDThreshold;
-            highQuality += MasterGameManager.instance.HQThreshold;
-            masterCraft += MasterGameManager.instance.MCThreshold;
-        }
+        //int standard = 0, highQuality = 0, masterCraft = 0;
+        //foreach (var kvp in minigameList)
+        //{
+        //    //MasterGameManager.Minigame minigame = MasterGameManager.instance.minigameDict[kvp.Key];
+        //    standard += MasterGameManager.instance.SDThreshold;
+        //    highQuality += MasterGameManager.instance.HQThreshold;
+        //    masterCraft += MasterGameManager.instance.MCThreshold;
+        //}
+
+        int standard = minigameList.Count * MasterGameManager.instance.SDThreshold;
+        int highQuality = minigameList.Count * MasterGameManager.instance.HQThreshold;
+        int masterCraft = minigameList.Count * MasterGameManager.instance.MCThreshold;
 
         bool successfulRoll;
         if (this.score <= standard) //Roll for Standard

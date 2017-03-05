@@ -53,6 +53,11 @@ public class ResultScreen : MonoBehaviour {
             else
                 checkLast = true;
 
+            /* Calculate total thresholds for entire product. (e.g. if requires 3 games, then st = 3*1000. if 4 games, st = 4*1000) */
+            st = MasterGameManager.instance.SDThreshold * order.minigameList.Count;
+            hq = MasterGameManager.instance.HQThreshold * order.minigameList.Count;
+            mc = MasterGameManager.instance.MCThreshold * order.minigameList.Count;
+
             currentOrder = order;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
