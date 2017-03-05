@@ -31,12 +31,11 @@ public class RuneCollision : MonoBehaviour
 
     IEnumerator Animation_Success(Collider2D other)
     {
-        float s = other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timer / other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timerSet;
-        Debug.Log(s);
-        
+        float s = other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timer / other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timerSet;       
         managerScript.AudioManager.PlaySound((int)Random.Range(0, 2));
         //This code will allocate score first and reset cursor and object position.
-        managerScript.score.addScore((int)(35 * s));
+        Debug.Log("Score: " + (int)100 * s);
+        managerScript.score.addScore((int)(100 * s));
         managerScript.resetPosition();
         other.gameObject.SetActive(false);
         GameObject delMatch = (GameObject)Instantiate(matched, other.transform.position, Quaternion.identity);

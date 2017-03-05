@@ -56,7 +56,7 @@ public class SortMove : MonoBehaviour
                     Destroy(child.gameObject);
                     if (matchedOn)
                         Destroy((GameObject)Instantiate(unmatched, child.transform.position, Quaternion.identity), timeToDel);
-                }
+                }           
             }
             //This is for instantiate
             matchedOn = false;
@@ -101,6 +101,7 @@ public class SortMove : MonoBehaviour
                 changeColor = true;
                 moveDown = false;
                 transform.position = new Vector3(transform.position.x, -7f, 0);
+                timer = timerSet;
             }
         }
 
