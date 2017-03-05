@@ -1121,24 +1121,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &677961218 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011352176082, guid: 438c6d38f7b07094da7ff88ff55a613d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1964228723}
---- !u!114 &677961223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 677961218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbe24b67ba55554e82c7ff46263a18f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  extraFilters:
-  - Earth Rune
 --- !u!1 &732574477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2621,7 @@ MonoBehaviour:
   currentIndex: 0
   dialogueManager: {fileID: 1153268381}
   book: {fileID: 949988399}
+  itemList: {fileID: 1785200477}
   recipe: {fileID: 1317680654}
   clipboard: {fileID: 1896958179}
   close: {fileID: 590111384}
@@ -3808,24 +3791,12 @@ Transform:
   m_Father: {fileID: 2081972893}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1785200473 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1697819709555342, guid: 438c6d38f7b07094da7ff88ff55a613d,
+--- !u!114 &1785200477 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114857382842785726, guid: 438c6d38f7b07094da7ff88ff55a613d,
     type: 2}
   m_PrefabInternal: {fileID: 1964228723}
---- !u!114 &1785200478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1785200473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbe24b67ba55554e82c7ff46263a18f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  extraFilters:
-  - Earth Rune
+  m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
 --- !u!1 &1841505234
 GameObject:
   m_ObjectHideFlags: 0

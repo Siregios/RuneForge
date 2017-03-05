@@ -9,6 +9,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
     public int currentIndex;
     public TutorialDialogue dialogueManager;
     public GameObject book;
+    public ItemListUI itemList;
     public Button recipe;
     public Button clipboard;
     public Button close;
@@ -37,9 +38,10 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
             dialogueManager.ButtonActivateFalse(currentIndex+1);
             currentIndex += 1;
-            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
-            extraFilter.extraFilters[0] = "Water Rune";
-            extraFilter.applyExtraFilters();
+            itemList.DisplayNewFilter("Water Rune");
+            //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            //extraFilter.extraFilters[0] = "Water Rune";
+            //extraFilter.applyExtraFilters();
         }
 
         //if (currentIndex == (startIndex + 2))
@@ -66,11 +68,18 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             dialogueManager.changeButtonActive(false);
             //clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.normalColor;
             dialogueManager.dialogueIndex = currentIndex;
-            ItemList_ExtraFilter extraFilter = book.transform.FindChild("Recipe").FindChild("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
-            extraFilter.extraFilters[0] = "None";
-            extraFilter.applyExtraFilters();
+            itemList.DisplayNewFilter("None");
+            //ItemList_ExtraFilter extraFilter = book.transform.FindChild("Recipe").FindChild("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            //extraFilter.extraFilters[0] = "None";
+            //extraFilter.applyExtraFilters();
         }
 
+    }
+
+    IEnumerator StupidClumsyFix()
+    {
+        yield return new WaitForEndOfFrame();
+        itemList.DisplayNewFilter("Earth Rune");
     }
 
     public void ButtonActivateOverride(int index)
@@ -78,7 +87,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         currentIndex = index;
         if (currentIndex == startIndex)
         {
-
+            Debug.Log("Here");
             //if (itemInfo.Class == "Rune")
             //    dialogueManager.ButtonActivateFalse(currentIndex);
             //else if (itemInfo.Class == "Product")
@@ -87,9 +96,10 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             currentIndex += 2;
             recipe.enabled = false;
             dialogueManager.changeButtonActive(false);
-            ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
-            extraFilter.extraFilters[0] = "Earth Rune";
-            extraFilter.applyExtraFilters();
+            StartCoroutine(StupidClumsyFix());  //Have to wait a small fraction of time to let itemListUI call its start function before making it display a new filter
+            //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
+            //extraFilter.extraFilters[0] = "Earth Rune";
+            //extraFilter.applyExtraFilters();
         }
         else if (currentIndex == 14)
         {
