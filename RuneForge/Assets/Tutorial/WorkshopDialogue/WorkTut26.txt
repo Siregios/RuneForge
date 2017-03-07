@@ -1,0 +1,21 @@
+[RPort:Mom, RName:Mom]
+
+Nice work! I think you're ready to start working up front.
+
+Minamo, could you show Alex how to work in the front?  
+
+Veronna told me she is on her way to make an order. You can show Alex how to turn in these orders we've done while you wait for her.
+
+[RPort:Fairy, RName:Minamo]
+
+Same you little piece of s-. Don't make me one punch you.
+
+Sure thing! I love going up front! Let's go Alex!
+
+[RPort:Mom, RName:Mom]
+
+I'll be here if you two need anything.
+
+[RPort:Fairy, RName:Minamo]
+
+Follow me!

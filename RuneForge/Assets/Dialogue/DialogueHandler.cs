@@ -233,11 +233,12 @@ public class DialogueHandler : MonoBehaviour {
 
     //Types line to be displayed
    public void TypingLine(){
-        int length = dialogueArray[currentLine].Length;
-        textShown += 1;
-        textShown = Math.Min(length, textShown);
-        dialogueUIText.text = dialogueArray[currentLine].Substring(0, textShown);
-        isTyping = !(textShown == length);
+        dialogueUIText.text = dialogueArray[currentLine];
+        //int length = dialogueArray[currentLine].Length;
+        //textShown += 1;
+        //textShown = Math.Min(length, textShown);
+        //dialogueUIText.text = dialogueArray[currentLine].Substring(0, textShown);
+        //isTyping = !(textShown == length);
     }
 
     void WatchForProceed(){
