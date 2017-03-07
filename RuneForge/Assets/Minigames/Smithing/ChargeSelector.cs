@@ -10,7 +10,7 @@ public class ChargeSelector : MonoBehaviour {
 
        
     private int mashCount = 0;
-    private float lastSpeed;
+    public float lastSpeed;
     private float timeRemaining;
     private float targetCenter;
     public Score score;
@@ -28,7 +28,9 @@ public class ChargeSelector : MonoBehaviour {
     private TargetMovment target;
     private movementAI movement;
     private SmithingBlacksmithAnimations blacksmith;
+    bool hit = false;
 
+    public GameObject accuracy;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +55,7 @@ public class ChargeSelector : MonoBehaviour {
             timeRemaining -= Time.deltaTime;
 
         if (selectButtonDown() && isPlaying) {
+            stopMarker();
             if (buttonMash)
                 mashUp();
             else
@@ -91,8 +94,8 @@ public class ChargeSelector : MonoBehaviour {
 
     bool selectButtonDown()
     {
-        if (Input.GetMouseButtonDown(0))
-            return true;
+        //if (Input.GetMouseButtonDown(0))
+        //    return true;
         if (Input.GetKeyDown(KeyCode.Space))
             return true;
         return false;
@@ -101,22 +104,30 @@ public class ChargeSelector : MonoBehaviour {
     //Reset position of marker. If scored, add to score
     void checkForScore()
     {
-        stopMarker();
+        
         targetCenter = target.getCenterX();
         //lightning[0].enabled = true;
         blacksmith.startHammering();
+        GameObject ez = Instantiate(accuracy, gameObject.transform.position, Quaternion.identity);
         if (inSelection)
         {
             blacksmith.hit = true;
             //is the target in the green?
             //Debug.Log(transform.position.x);
             //Debug.Log(targetCenter);
+            
             if (this.transform.position.x > (targetCenter - greenWidth) && this.transform.position.x < (targetCenter + greenWidth))
             {
                 score.addScore(50);
                 //Debug.Log("Perfect!");
+                ez.GetComponent<SpriteRenderer>().sprite = ez.GetComponent<AccuracyShower>().perfect;
+            }
+            else
+            {
+                ez.GetComponent<SpriteRenderer>().sprite = ez.GetComponent<AccuracyShower>().great;
             }
             score.addScore(50);
+            hit = true;
             //Debug.Log("RIDE THE LIGHTNING!");
             buttonMash = true;
             timeRemaining = chargeTime;
@@ -124,8 +135,10 @@ public class ChargeSelector : MonoBehaviour {
         else
         {
             //Debug.Log("MISS!");
+            ez.GetComponent<SpriteRenderer>().sprite = ez.GetComponent<AccuracyShower>().miss;
             blacksmith.hit = false;
             StartCoroutine(waitForAnimation());
+            hit = false;
         }
 
 
@@ -151,7 +164,8 @@ public class ChargeSelector : MonoBehaviour {
     //stop the marker's movement and save its speed
     void stopMarker()
     {
-        lastSpeed = movement.speed;
+        if(movement.speed!=0)
+            lastSpeed = movement.speed;
         movement.maxSpeed = 0;
         movement.minSpeed = 0;
         movement.speed = 0;
@@ -161,7 +175,7 @@ public class ChargeSelector : MonoBehaviour {
     void resetMarker()
     {
         transform.position = new Vector2(startXPos, startYPos);
-        if(lastSpeed + speedIncrement <= maxSpeed)
+        if(lastSpeed + speedIncrement <= maxSpeed && hit)
         {
             movement.maxSpeed = lastSpeed + speedIncrement;
             movement.minSpeed = lastSpeed + speedIncrement;
