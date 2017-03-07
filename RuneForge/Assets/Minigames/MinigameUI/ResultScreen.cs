@@ -221,26 +221,26 @@ public class ResultScreen : MonoBehaviour {
         else if(currentOrder.quality == "standard")
         {
             sfxSources[0].PlayOneShot(completionSounds[0]);
-            audioManagerObject.Stop();
-            audioManagerObject.loop = true;
-            audioManagerObject.clip = completionSongs[0];
-            audioManagerObject.Play();
+            //audioManagerObject.Stop();
+            //audioManagerObject.loop = true;
+            //audioManagerObject.clip = completionSongs[0];
+            //audioManagerObject.Play();
         }
         else if (currentOrder.quality == "hq")
         {
             sfxSources[0].PlayOneShot(completionSounds[1]);
-            audioManagerObject.Stop();
-            audioManagerObject.loop = true;
-            audioManagerObject.clip = completionSongs[1];
-            audioManagerObject.Play();
+            //audioManagerObject.Stop();
+            //audioManagerObject.loop = true;
+            //audioManagerObject.clip = completionSongs[1];
+            //audioManagerObject.Play();
         }
         else if (currentOrder.quality == "mc")
         {
             sfxSources[0].PlayOneShot(completionSounds[2]);
-            audioManagerObject.Stop();
-            audioManagerObject.loop = true;
-            audioManagerObject.clip = completionSongs[2];
-            audioManagerObject.Play();
+            //audioManagerObject.Stop();
+            //audioManagerObject.loop = true;
+            //audioManagerObject.clip = completionSongs[2];
+            //audioManagerObject.Play();
         }
         quality.SetActive(true);
 
@@ -295,57 +295,23 @@ public class ResultScreen : MonoBehaviour {
         if (bronze.fillAmount < bronzeFill)
         {
             if (bronzeFill - bronze.fillAmount <= 0.0015f)
-            {
                 bronze.fillAmount = bronzeFill;
-                //sfxSources[0].Stop();
-            }
-
-            if (!sfxSources[0].isPlaying)
-            {
-                //clipLength = barSounds[0].samples;
-                //sfxSource.timeSamples = (int)((bronzeFill - bronze.fillAmount) * clipLength);
-                //sfxSources[0].clip = barSounds[0];
-                sfxSources[0].Play();
-
-            }
+            sfxSources[0].PlayOneShot(barSounds[0]);
             bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
             
         }
         else if (silver.fillAmount < silverFill)
         {
             if (silverFill - silver.fillAmount <= 0.0015f)
-            {
                 silver.fillAmount = silverFill;
-                //sfxSources[1].Stop();
-            }
-            if (!sfxSources[1].isPlaying)
-            {
-                //clipLength = barSounds[1].samples;
-                //sfxSource.timeSamples = (int)((silverFill - silver.fillAmount) * clipLength);
-                //sfxSource.clip = barSounds[1];
-                sfxSources[1].Play();
-                //sfxSources[0].Stop();
-
-
-            }
+            sfxSources[1].PlayOneShot(barSounds[1]);
             silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
         }
         else if (gold.fillAmount < goldFill)
         {
             if (goldFill - gold.fillAmount <= 0.0015f)
-            {
                 gold.fillAmount = goldFill;
-                sfxSources[2].Stop();
-            }
-            if (!sfxSources[2].isPlaying)
-            {
-                //clipLength = barSounds[2].samples;
-                //sfxSource.timeSamples = (int)((goldFill - gold.fillAmount) * clipLength);
-                //sfxSource.clip = barSounds[2];
-                //sfxSources[1].Stop();
-                sfxSources[2].Play();
-
-            }
+            sfxSources[2].PlayOneShot(barSounds[2]);
             gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
         }
         else
