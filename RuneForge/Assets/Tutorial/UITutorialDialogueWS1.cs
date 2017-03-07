@@ -117,6 +117,8 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             GameObject BlacksmithParent = GameObject.Find("BlacksmithParent");
             BlacksmithParent.transform.FindChild("BlacksmithTools").gameObject.SetActive(false);
             BlacksmithParent.transform.FindChild("Blacksmith").gameObject.SetActive(true);
+            GameObject MenuButton = GameObject.Find("MenuButton");
+            MenuButton.GetComponent<Button>().enabled = false;
         }
         //else if (currentIndex == 12)
         //{
