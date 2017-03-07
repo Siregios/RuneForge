@@ -42,6 +42,9 @@ public class Item
     [XmlIgnoreAttribute]
     public Dictionary<string, int> requiredAttributes;
 
+    [XmlElement("Level")]
+    public int level = 0;
+
     public Sprite icon;
 
     public Item()
@@ -62,5 +65,6 @@ public class Item
         this.minigamesRequired = copyItem.minigamesRequired;
         this.requiredAttributes = new Dictionary<string, int>(copyItem.minigamesRequired);
         this.icon = copyItem.icon;
+        this.level = copyItem.level;
     }
 }

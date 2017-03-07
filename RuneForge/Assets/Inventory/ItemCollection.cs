@@ -127,20 +127,23 @@ public static class ItemCollection
 
         foreach (Item item in specificList)
         {
-            if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
-                result.Add(item);
-            else if (lowerFilter.Contains("baseproduct") && (item.Class == "Product" || item.Class == "Rune"))
-                result.Add(item);
-            else if (lowerFilter.Contains("improvedproduct") && (item.Class == "ImprovedProduct"))
-                result.Add(item);
-            else if (lowerFilter == "product" && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
-                result.Add(item);
-            else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
-                result.Add(item);
-            else if (lowerFilter == "rune" && item.ingredientType.Contains("Rune"))
-                result.Add(item);
-            else if (item.name.ToLower().Replace(" ", string.Empty).Contains(lowerFilter) || item.ingredientType.ToLower().Contains(lowerFilter))
-                result.Add(item);
+            if (item.level <= GameObject.Find("MasterGameManager(Clone)").GetComponent<PlayerStats>().Level)
+            {
+                if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
+                    result.Add(item);
+                else if (lowerFilter.Contains("baseproduct") && (item.Class == "Product" || item.Class == "Rune"))
+                    result.Add(item);
+                else if (lowerFilter.Contains("improvedproduct") && (item.Class == "ImprovedProduct"))
+                    result.Add(item);
+                else if (lowerFilter == "product" && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
+                    result.Add(item);
+                else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
+                    result.Add(item);
+                else if (lowerFilter == "rune" && item.ingredientType.Contains("Rune"))
+                    result.Add(item);
+                else if (item.name.ToLower().Replace(" ", string.Empty).Contains(lowerFilter) || item.ingredientType.ToLower().Contains(lowerFilter))
+                    result.Add(item);
+            }
         }
         return result;
     }

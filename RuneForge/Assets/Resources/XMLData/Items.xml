@@ -9,6 +9,7 @@
 			<Recipe>Stone: 1, Monster Part: 1</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Air: 2</RequiredAttributes>
+      <Level>1</Level>
 		</Item>
 		<Item name="Fire Rune">
 			<Price>350</Price>
@@ -18,6 +19,7 @@
 			<Recipe>Stone: 1, Monster Part: 1</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Fire: 2</RequiredAttributes>
+      <Level>1</Level>
 		</Item>
 		<Item name="Earth Rune">
 			<Price>350</Price>
@@ -27,6 +29,7 @@
 			<Recipe>Stone: 1, Monster Part: 1</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Earth: 2</RequiredAttributes>
+      <Level>1</Level>
 		</Item>
 		<Item name="Water Rune">
 			<Price>350</Price>
@@ -36,6 +39,7 @@
 			<Recipe>Stone: 1, Monster Part: 1</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Water: 2</RequiredAttributes>
+      <Level>1</Level>
 		</Item>
 		<Item name="Lava Rune">
 			<Price>900</Price>
@@ -45,6 +49,7 @@
 			<Recipe>Rune: 2</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Fire: 4, Earth: 4</RequiredAttributes>
+      <Level>2</Level>
 		</Item>
 		<Item name="Mist Rune">
 			<Price>900</Price>
@@ -54,6 +59,7 @@
 			<Recipe>Rune: 2</Recipe>
 			<MinigamesRequired>3</MinigamesRequired>
 			<RequiredAttributes>Water: 4, Air: 4</RequiredAttributes>
+      <Level>2</Level>
 		</Item>
 		<Item name="Enchanted Weapon">
 			<Price>1000</Price>
@@ -62,12 +68,14 @@
 			<Recipe>Weapon: 1, Rune: 1</Recipe>
 			<MinigamesRequired>4</MinigamesRequired>
 			<RequiredAttributes>Fire: 4, Earth: 1</RequiredAttributes>
+      <Level>3</Level>
 		</Item>
 		<Item name="Slime Gel">
 			<Price>500</Price>
 			<Class>Ingredient</Class>
 			<IngredientType>Monster Part</IngredientType>
 			<ProvidedAttributes>ALL: 1</ProvidedAttributes>
+      <Level>3</Level>
 		</Item>
 		<Item name="Devilfish Scale">
 			<Price>100</Price>

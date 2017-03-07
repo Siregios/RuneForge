@@ -24,6 +24,11 @@ public class PlayerStats : MonoBehaviour {
     {
         //We might not need to make this public if we just increment level internally in this script based on experience
         level += increment;
+        foreach (Item material in ItemCollection.FilterItemList("material"))
+        {
+            if (material.level <= level)
+                ShopInventory.inventory.SetItemCount(material, int.MaxValue);
+        }
     }
 
     /// <summary>

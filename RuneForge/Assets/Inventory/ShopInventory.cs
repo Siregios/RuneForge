@@ -11,7 +11,8 @@ public static class ShopInventory {
 
         foreach (Item material in ItemCollection.FilterItemList("material"))
         {
-            inventory.SetItemCount(material, int.MaxValue);
+            if(material.level <= 1)
+                inventory.SetItemCount(material, int.MaxValue);
         }
     }
 }
