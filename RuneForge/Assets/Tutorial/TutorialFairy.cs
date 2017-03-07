@@ -42,7 +42,7 @@ public class TutorialFairy : CutsceneMovement
         }
         waypointIndex++;
         dialogueScript.actorsMoving--;
-        if(dialogueScript.actorsMoving == 0 && dialogueScript.dialogueScript.dialogueText.Length <= dialogueScript.dialogueIndex)
+        if(dialogueScript.actorsMoving == 0 && dialogueScript.dialogueScript.dialogueText.Length > dialogueScript.dialogueIndex)
             dialogueScript.ActivateDialogue(dialogueScript.dialogueIndex, true);
     }
 }

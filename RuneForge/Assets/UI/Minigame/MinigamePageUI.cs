@@ -3,12 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class MinigamePageUI : MonoBehaviour {
+public class MinigamePageUI : MonoBehaviour
+{
     public ClipboardUI clipboard;
     public List<GameObject> recipeShortcuts;
     public string minigame;
     public Button playButton;
     public Image minigameThumbnail;
+    public Text minigameInstructions;
     public Animator animator;
     WorkOrderManager orderManager;
 
@@ -49,7 +51,8 @@ public class MinigamePageUI : MonoBehaviour {
                 recipeShortcuts[orderManager.workorderList.Count].SetActive(true);
         }
         Enable(true);
-        animator.SetBool(minigame, true);
+        string temp = minigame.Replace("Tutorial", "");
+        animator.SetBool(temp, true);
     }
 
     void AutoSelect()
@@ -68,8 +71,11 @@ public class MinigamePageUI : MonoBehaviour {
     void SetMinigame(string minigame)
     {
         this.minigame = minigame;
-        Sprite thumbnail = Resources.Load<Sprite>(string.Format("MinigameThumbnails/{0}Thumbnail", minigame));
-        minigameThumbnail.sprite = thumbnail;
+        string temp = minigame.Replace("Tutorial", "");
+        //Sprite thumbnail = Resources.Load<Sprite>(string.Format("MinigameThumbnails/{0}Thumbnail", minigame));
+        //minigameThumbnail.sprite = thumbnail;
+        TextAsset instructions = Resources.Load(string.Format("MinigameInstructions/{0}Instructions", temp), typeof(TextAsset)) as TextAsset;
+        minigameInstructions.text = instructions.text;
     }
 
     public void PlayMinigame()

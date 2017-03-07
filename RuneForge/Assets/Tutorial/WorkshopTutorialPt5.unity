@@ -3966,6 +3966,7 @@ MonoBehaviour:
   minigame: 
   playButton: {fileID: 236403855}
   minigameThumbnail: {fileID: 2106229260}
+  minigameInstructions: {fileID: 0}
   animator: {fileID: 2106229257}
 --- !u!1001 &1549269514
 Prefab:
@@ -5065,7 +5066,7 @@ Prefab:
     - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
       propertyPath: dialogueText.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224579296483215526, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
