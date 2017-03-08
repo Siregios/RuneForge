@@ -57,7 +57,8 @@ public class TutorialDialogue : MonoBehaviour
         {
             if (movementIndex.Contains(dialogueIndex))
             {
-                Mom.GetComponent<PlayerController>().tutorial = true;
+                if(Mom)
+                    Mom.GetComponent<PlayerController>().tutorial = true;
                 Player.GetComponent<PlayerController>().tutorial = true;
                 string[] charactersToMove = movementDict[dialogueIndex].Replace(" ", string.Empty).Split(',');
                 foreach (string character in charactersToMove)
@@ -69,7 +70,8 @@ public class TutorialDialogue : MonoBehaviour
             }
             else if (disableOnce)
             {
-                Mom.GetComponent<PlayerController>().tutorial = false;
+                if(Mom)
+                    Mom.GetComponent<PlayerController>().tutorial = false;
                 Player.GetComponent<PlayerController>().tutorial = false;
                 MasterGameManager.instance.inputActive = true;
                 MasterGameManager.instance.uiManager.uiOpen = false;
