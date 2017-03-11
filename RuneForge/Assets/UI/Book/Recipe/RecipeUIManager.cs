@@ -72,17 +72,25 @@ public class RecipeUIManager : MonoBehaviour {
 
     public void CreateWorkOrder(bool isRandom)
     {
-        bool enhanced = false;
+        if (PlayerInventory.money >= recipePage.pinCost)    //Replace with productItem.pinCost if that variable is ever made
+        {
+            PlayerInventory.money -= recipePage.pinCost;
+            bool enhanced = false;
 
-        enhanced = AttributesMet();
+            enhanced = AttributesMet();
 
-        MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, enhanced, isRandom);
-        RemoveAllIngredients(false);
-        if(isRandom)
-            AudioManager.PlaySound(4);
+            MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, enhanced, isRandom);
+            RemoveAllIngredients(false);
+            if (isRandom)
+                AudioManager.PlaySound(4);
+            else
+                AudioManager.PlaySound(3);
+            ImportProductMode();
+        }
         else
-            AudioManager.PlaySound(3);
-        ImportProductMode();
+        {
+            Debug.LogWarning("Not enough gold to create item");
+        }
     }
 
     public void CreateWorkOrderTutorial()

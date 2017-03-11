@@ -11,6 +11,8 @@ public class RecipePage : MonoBehaviour {
     public RectTransform recipeArea;
     public RecipeCharm recipeCharm;
     public AttrBarGroup attributeBars;
+    public int pinCost = 100;
+    public Text pinCostText;
     //public float padX, padY;
     float areaWidth, areaHeight, charmWidth = 35, charmHeight = 10;
     //public Text recipeText;
@@ -32,6 +34,7 @@ public class RecipePage : MonoBehaviour {
         productIcon.sprite = item.icon;
         DisplayRecipe(item.recipe);
         DisplayRequiredAttr(item.requiredAttributes);
+        pinCostText.gameObject.SetActive(true);
     }
 
     public void Clear()
@@ -40,6 +43,7 @@ public class RecipePage : MonoBehaviour {
         productIcon.color = Color.clear;
         ClearRecipe();
         attributeBars.Clear();
+        pinCostText.gameObject.SetActive(false);
     }
 
     void DisplayRecipe(Dictionary<string, int> recipe)

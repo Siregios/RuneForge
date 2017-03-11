@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BookUI : MonoBehaviour {
@@ -17,10 +18,16 @@ public class BookUI : MonoBehaviour {
     public ClipboardUI clipboard;
     public QuestBoardUI questboard;
     public GameObject menuBar;
+    public Text moneyText;
 
     void Awake()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
+    void Update()
+    {
+        moneyText.text = PlayerInventory.money.ToString();
     }
 
     public void Enable(bool active)
