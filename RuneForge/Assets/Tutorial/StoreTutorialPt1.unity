@@ -3165,6 +3165,12 @@ ParticleSystem:
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
+--- !u!114 &221960942 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114462488631633828, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1945050925}
+  m_Script: {fileID: 11500000, guid: 730b1a94b14950940b3e716451587247, type: 3}
 --- !u!1 &287211029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,6 +3935,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &737889339 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012584999040, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1945050925}
+--- !u!114 &737889343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737889339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f046cc65c5f6d0449f60c51247eec75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questNote: {fileID: 1000011143129724, guid: 755b0ac4bac181147af095339eb66106, type: 2}
+  currentDisplayedDay: 0
+  questObjects: []
+  productList: {fileID: 221960942}
+  currentIndex: 7
+  UIDialogueHandler: {fileID: 1267561640}
 --- !u!1 &739934724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7968,7 +7996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 1792485029}
   dialogueScript: {fileID: 1792485028}
-  UIDialogueHandler: {fileID: 0}
+  UIDialogueHandler: {fileID: 1267561640}
   menuButtons:
   - {fileID: 1407271453}
   - {fileID: 9430853}
@@ -8506,7 +8534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 870, y: -90}
+  m_AnchoredPosition: {x: 870, y: -153.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1523054047
@@ -9401,7 +9429,7 @@ Prefab:
     - target: {fileID: 224000013394311022, guid: 438c6d38f7b07094da7ff88ff55a613d,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000013654765816, guid: 438c6d38f7b07094da7ff88ff55a613d,
         type: 2}
@@ -9498,7 +9526,18 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114000011497062628, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: questboard
+      value: 
+      objectReference: {fileID: 737889343}
+    - target: {fileID: 224040606064507282, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114856740605093168, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1945050926 stripped

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UITutorialDialogueS1 : UITutorialDialogue {
 
-    public int startIndex = 0;
-    public int currentIndex;
     public TutorialDialogue dialogueManager;
     public Button questBoard;
     private MasterGameManager gameManager;
@@ -25,7 +23,7 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
     }
 
 
-    public void ButtonActivateOverride(int index)
+    public override void ButtonActivateOverride(int index)
     {
         currentIndex = index;
         if (currentIndex == 3)
@@ -40,6 +38,11 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             dialogueManager.ButtonActivateTrue(currentIndex);
             questBoard.enabled = false;
             dialogueManager.changeButtonActive(false);
+        }
+
+        if(currentIndex == 7) 
+        {
+            dialogueManager.ButtonActivateTrue(currentIndex);
         }
     }
 }

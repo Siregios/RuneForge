@@ -96,7 +96,7 @@ public class QuestBoardUI : MonoBehaviour
         questObjects.Clear();
     }
 
-    public void turnInQuest(GameObject quest, GameObject item)
+    public virtual void turnInQuest(GameObject quest, GameObject item)
     {
         Quest qValues = quest.GetComponent<QuestNote>().quest;
         int addIngr = 0;

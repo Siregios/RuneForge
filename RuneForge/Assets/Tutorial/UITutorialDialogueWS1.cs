@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UITutorialDialogueWS1 : UITutorialDialogue {
 
-    public int startIndex = 0;
-    public int currentIndex;
     public TutorialDialogue dialogueManager;
     public GameObject book;
     public ItemListUI itemList;
@@ -82,7 +80,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
         itemList.DisplayNewFilter("Earth Rune");
     }
 
-    public void ButtonActivateOverride(int index)
+    public override void ButtonActivateOverride(int index)
     {
         currentIndex = index;
         if (currentIndex == startIndex)

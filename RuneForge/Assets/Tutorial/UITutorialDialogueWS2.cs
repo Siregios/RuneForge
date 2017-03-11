@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UITutorialDialogueWS2 : UITutorialDialogue {
 
-    public int startIndex = 0;
-    public int currentIndex;
     public TutorialDialogue dialogueManager;
     public GameObject book;
     public Button recipe;
@@ -62,7 +60,7 @@ public class UITutorialDialogueWS2 : UITutorialDialogue {
         }
     }
 
-    public void ButtonActivateOverride(int index)
+    public override void ButtonActivateOverride(int index)
     {
         currentIndex = index;
         if (currentIndex == 12)

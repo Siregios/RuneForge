@@ -1,0 +1,5 @@
+[RPort:Fairy, RName:Minamo]
+
+Congratulations! You have just turned in your first quest!
+
+Go ahead and turn in your last quest.
