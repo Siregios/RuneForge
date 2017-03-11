@@ -1571,7 +1571,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 841791044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e2fc154ee82c344aa12a1d8d54e9e5, type: 3}
   m_Name: 
@@ -2447,7 +2447,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1047099455}
   m_OnClick:
     m_PersistentCalls:
@@ -2698,8 +2698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1997a187c8442f24fa71d83b155e4f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startIndex: 9
   currentIndex: 0
+  startIndex: 9
   dialogueManager: {fileID: 1153268381}
   book: {fileID: 949988399}
   itemList: {fileID: 1785200477}
@@ -3845,6 +3845,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ee1d0f120bacd449a069c518276f05, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1764650989 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114417365462062934, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1964228723}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1778252117
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,6 +4656,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1000011658806744, guid: 6cd9da05b5c938e4e9692cb3ab7629db,
         type: 2}
+    - target: {fileID: 114000012240273044, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: pinCostText
+      value: 
+      objectReference: {fileID: 1764650989}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_IsPrefabParent: 0

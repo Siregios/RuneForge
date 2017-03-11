@@ -3443,6 +3443,15 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012796759516, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3013588e6f6cfa445a4902bc37d9c4b1, type: 2}
   m_IsPrefabParent: 0
@@ -3804,6 +3813,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1177513092}
     m_Modifications:
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224000010101123004, guid: 3edef61b02e81a249932bbe5a25265b0,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -3901,11 +3915,100 @@ Prefab:
     - target: {fileID: 114000010967749952, guid: 3edef61b02e81a249932bbe5a25265b0,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012980013992, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181160123951314, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174807463996802, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410477428107818, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721689825499942, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053106721383964, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.data[0]
+      value: 
+      objectReference: {fileID: 1841161966}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.data[1]
+      value: 
+      objectReference: {fileID: 1841161965}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.data[2]
+      value: 
+      objectReference: {fileID: 1841161964}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.data[3]
+      value: 
+      objectReference: {fileID: 1841161963}
+    - target: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: recipeShortcuts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1841161962}
+    - target: {fileID: 114959546656305668, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010967749952, guid: 3edef61b02e81a249932bbe5a25265b0,
+        type: 2}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1841161962 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1721689825499942, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841161961}
+--- !u!1 &1841161963 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1410477428107818, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841161961}
+--- !u!1 &1841161964 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1174807463996802, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841161961}
+--- !u!1 &1841161965 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1053106721383964, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841161961}
+--- !u!1 &1841161966 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1181160123951314, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841161961}
 --- !u!1 &1841505234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4366,6 +4469,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 172553187}
+    - target: {fileID: 1000013526118788, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_IsPrefabParent: 0
