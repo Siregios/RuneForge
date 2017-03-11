@@ -130,7 +130,6 @@ public class QuestBoardUI : MonoBehaviour
             PlayerInventory.money += Mathf.RoundToInt(qValues.gold * goldMultiplier);
             Destroy(quest);
             productList.RefreshPage();
-            Debug.Log(true);
         }
         else
         {

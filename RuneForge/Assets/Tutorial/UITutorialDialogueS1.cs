@@ -7,7 +7,11 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
 
     public TutorialDialogue dialogueManager;
     public Button questBoard;
+    public GameObject Book;
+    public Button menuButton;
+    public GameObject customer;
     private MasterGameManager gameManager;
+
 
     private void Awake()
     {
@@ -41,6 +45,19 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
         }
 
         if(currentIndex == 7) 
+        {
+            dialogueManager.ButtonActivateTrue(currentIndex);
+        }
+
+        if (currentIndex == 8) 
+        {
+            dialogueManager.ButtonActivateTrue(currentIndex);
+            menuButton.interactable = false;
+            customer.SetActive(true);
+            Book.GetComponent<CloseOnEscape>().enabled = true;   
+        }
+
+        if(currentIndex == 9) 
         {
             dialogueManager.ButtonActivateTrue(currentIndex);
         }

@@ -1,0 +1,45 @@
+[RPort:Customer1, RName:Verrona]
+
+Hello Minamo, hello Alex, it’s a pleasure to meet you. I'm doing splendid, thanks for asking.
+
+[RPort:Fairy, RName:Minamo]
+
+Glad to hear it! What can we help you with today?
+
+[RPort:Customer1, RName:Verrona]
+
+I've just been given a very important task from the Mage's Guild. They want me to clear out a nearby dungeon that's become overrun with powerful wraiths.
+
+[RPort:Fairy, RName:Minamo]
+
+Whoa, that sounds scary!
+
+[RPort:Customer1, RName:Verrona]
+
+It would be, if I didn't have the right tools for the job, which is why I'm here.
+
+I'm going to need an enchanted sword, but I'm going to need it master crafted.
+
+[RPort:Fairy, RName:Minamo]
+
+Master crafted? Wow, we haven't gotten an order like that in a while.
+
+[RPort:Customer1, RName:Verrona]
+
+Can you do it?
+
+[RPort:Fairy, RName:Minamo]
+
+Of course! Alex and I can get it done for you no problem!
+
+[RPort:Customer1, RName:Verrona]
+
+You and Alex? Are you sure Alex could make a master craft item? No offense Alex, I've just never seen your work before, and a master craft isn't exactly something anyone can do.
+
+[RPort:Fairy, RName:Minamo]
+
+No worries Verrona! I've seen Alex work before, you're in good hands!
+
+[RPort:Customer1, RName:Verrona]
+
+Ok Minamo, I trust you.
