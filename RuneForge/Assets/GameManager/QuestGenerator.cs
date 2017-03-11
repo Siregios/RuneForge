@@ -14,8 +14,9 @@ public class QuestGenerator : MonoBehaviour {
     public void GenerateQuests()
     {
         todaysQuests.Clear();
-        //Temporary to test
-        for (int i = 0; i < 5; i++)
+        int questsToday = Random.Range(0, 4);
+
+        for (int i = 0; i < questsToday; i++)
         {
             todaysQuests.Add(new Quest());
         }

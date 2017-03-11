@@ -39,11 +39,13 @@ public class ActionClock : MonoBehaviour {
 
     IEnumerator endCoroutine()
     {
-        MasterGameManager.instance.sceneManager.LoadScene("Store");
-        yield return new WaitForSeconds(.01f);  //This is small because loadscene sets timescale to 0
         day++;
         currentActionCount = maxActionsPerDay;
         rent();
+        MasterGameManager.instance.questGenerator.GenerateQuests();
+
+        MasterGameManager.instance.sceneManager.LoadScene("Store");
+        yield return new WaitForSeconds(.01f);  //This is small because loadscene sets timescale to 0
     }
 
     void rent()

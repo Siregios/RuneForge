@@ -30,6 +30,11 @@ public class MenuBar : MonoBehaviour {
         {
             endDayButton.gameObject.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            EndDay();
+        }
     }
 
     public void EndDay()
