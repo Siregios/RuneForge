@@ -1,5 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-Here you can look at all of your active quests and turn them in for rewards.
-
-The quests that your mom had you make runes for are here. Grab one of the runes that you have a quest for and drag it to that quest to complete it!
+Click here to open your quest log.
