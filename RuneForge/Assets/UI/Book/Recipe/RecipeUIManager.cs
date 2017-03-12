@@ -41,6 +41,16 @@ public class RecipeUIManager : MonoBehaviour {
 
     public void ImportProductMode()
     {
+        if (MasterGameManager.instance.upgradeManager.level1 == 1 || MasterGameManager.instance.upgradeManager.level1 == 3)
+        {
+            providedAttributes["Fire"] = 1;
+            providedAttributes["Water"] = 1;
+        }
+        if (MasterGameManager.instance.upgradeManager.level1 == 2 || MasterGameManager.instance.upgradeManager.level1 == 3)
+        {
+            providedAttributes["Air"] = 1;
+            providedAttributes["Earth"] = 1;
+        }
         ingredientItemList.gameObject.SetActive(false);
         productItemList.gameObject.SetActive(true);
         productItem = null;
@@ -54,8 +64,10 @@ public class RecipeUIManager : MonoBehaviour {
     {
         productItemList.gameObject.SetActive(false);
         ingredientItemList.gameObject.SetActive(true);
+        recipePage.ProvideToAttrBars(providedAttributes);
         EnablePinButtons(!MasterGameManager.instance.workOrderManager.IsFull());
         cancelButton.gameObject.SetActive(true);
+
     }
 
     bool AttributesMet()

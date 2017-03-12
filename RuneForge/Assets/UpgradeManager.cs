@@ -10,6 +10,12 @@ public class UpgradeManager : MonoBehaviour {
     int l4 = 0;
     int l5 = 0;
 
+    public int level1 { get { return l1; }}
+    public int level2 { get { return l2; } }
+    public int level3 { get { return l3; } }
+    public int level4 { get { return l4; } }
+    public int level5 { get { return l5; } }
+
     public void setUpgrade(int temp)
     {
         int tier = temp / 10;

@@ -77,7 +77,7 @@ public class RecipePage : MonoBehaviour {
         foreach (var kvp in reqAttributes)
         {
             attributeBars.SetPlaceholder(kvp.Key, kvp.Value);
-            attributeBars.SetText(kvp.Key, string.Format("0/" + kvp.Value));
+            //attributeBars.SetText(kvp.Key, string.Format("{0}/{1}", provAttributes[kvp.Key] ,kvp.Value));
         }
     }
 
