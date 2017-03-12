@@ -40,6 +40,10 @@ public class ActionClock : MonoBehaviour {
     IEnumerator endCoroutine()
     {
         day++;
+        if (MasterGameManager.instance.upgradeManager.level2 == 2 || MasterGameManager.instance.upgradeManager.level2 == 3)
+            maxActionsPerDay = 8;
+        else
+            maxActionsPerDay = 6;
         currentActionCount = maxActionsPerDay;
         rent();
         MasterGameManager.instance.questGenerator.GenerateQuests();
