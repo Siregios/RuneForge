@@ -8,6 +8,26 @@ public class FrontPageUIManager : MonoBehaviour {
 
     void OnEnable()
     {
-        calendarPage.DisplayCalendar();
+        calendarPage.DisplayPage();
+    }
+
+    public void EndDayClick()
+    {
+        MasterGameManager.instance.actionClock.EndDay();
+    }
+
+    public void SaveGameClick()
+    {
+        MasterGameManager.instance.saveManager.SaveData();
+    }
+
+    public void LoadGameClick()
+    {
+        MasterGameManager.instance.saveManager.LoadData();
+    }
+
+    public void QuitClick()
+    {
+        Application.Quit();
     }
 }
