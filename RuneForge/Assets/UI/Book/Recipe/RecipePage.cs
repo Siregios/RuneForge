@@ -35,6 +35,11 @@ public class RecipePage : MonoBehaviour {
         DisplayRecipe(item.recipe);
         DisplayRequiredAttr(item.requiredAttributes);
         pinCostText.gameObject.SetActive(true);
+        if (MasterGameManager.instance.upgradeManager.level4 == 1 || MasterGameManager.instance.upgradeManager.level4 == 3)
+            pinCost = 25;
+        else
+            pinCost = 100;
+        pinCostText.text = pinCost.ToString();
     }
 
     public void Clear()
@@ -77,7 +82,6 @@ public class RecipePage : MonoBehaviour {
         foreach (var kvp in reqAttributes)
         {
             attributeBars.SetPlaceholder(kvp.Key, kvp.Value);
-            //attributeBars.SetText(kvp.Key, string.Format("{0}/{1}", provAttributes[kvp.Key] ,kvp.Value));
         }
     }
 

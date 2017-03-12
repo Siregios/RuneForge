@@ -70,26 +70,32 @@ public class ActionClock : MonoBehaviour {
 
     void rent()
     {
-        switch (gameObject.GetComponent<PlayerStats>().Level)
-        {
-            case 1:
-                PlayerInventory.money -= 100;
-                break;
-            case 2:
-                PlayerInventory.money -= 200;
-                break;
-            case 3:
-                PlayerInventory.money -= 300;
-                break;
-            case 4:
-                PlayerInventory.money -= 400;
-                break;
-            case 5:
-                PlayerInventory.money -= 500;
-                break;
-            default:
-                break;
-        }
+        int reduction;
+        if (MasterGameManager.instance.upgradeManager.level4 == 2 || MasterGameManager.instance.upgradeManager.level4 == 3)
+            reduction = 4;
+        else
+            reduction = 1;
+
+            switch (gameObject.GetComponent<PlayerStats>().Level)
+            {
+                case 1:
+                    PlayerInventory.money -= 100/reduction;
+                    break;
+                case 2:
+                    PlayerInventory.money -= 200/reduction;
+                    break;
+                case 3:
+                    PlayerInventory.money -= 300/reduction;
+                    break;
+                case 4:
+                    PlayerInventory.money -= 400/reduction;
+                    break;
+                case 5:
+                    PlayerInventory.money -= 500/reduction;
+                    break;
+                default:
+                    break;
+            }
         if(PlayerInventory.money < 0)
         {
             Debug.Log("GAME OVER");
