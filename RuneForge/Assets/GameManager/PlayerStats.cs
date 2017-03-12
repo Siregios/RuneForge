@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
     private int level = 1;
-    private float totalExperience = 0.0f;
+    private int maxLevel = 5;
+    private int currentExperience = 0;
+    private int[] levelUp = new int[] {10000, 20000, 30000, 40000, 0}; //zero is just so no errors happen
 
     public int Level
     {
         get { return level; }
     }
 
-    public float TotalExperience
+    public float CurrentExperience
     {
-        get { return totalExperience; }
+        get { return currentExperience; }
     }
 
     /// <summary>
     /// Adds "increment" to the current player level
     /// </summary>
     /// <param name="increment"></param>
-    public void incrementLevel(int increment)
+    public void incrementLevel()
     {
         //We might not need to make this public if we just increment level internally in this script based on experience
-        level += increment;
+        while(level < maxLevel && levelUp[level - 1] <= currentExperience)
+        {
+            currentExperience -= levelUp[level - 1];
+            level++;
+        }
+        
         foreach (Item material in ItemCollection.FilterItemList("material"))
         {
             if (material.level <= level)
@@ -35,9 +42,9 @@ public class PlayerStats : MonoBehaviour {
     /// Adds "experienceGained" to player's totalExperience
     /// </summary>
     /// <param name="experienceGained"></param>
-    public void gainExperience(float experienceGained)
+    public void gainExperience(int experienceGained)
     {
-        totalExperience += experienceGained;
-        Debug.Log("I gained " + experienceGained + "EXP");
+        currentExperience += experienceGained;
+        incrementLevel();
     }
 }
