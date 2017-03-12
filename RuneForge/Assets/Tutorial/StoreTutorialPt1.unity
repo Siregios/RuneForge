@@ -3454,7 +3454,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8403,13 +8403,15 @@ MonoBehaviour:
   - {fileID: 1945050930}
   - {fileID: 1945050929}
   book: {fileID: 1945050928}
-  movementIndex: 00000000040000000a000000
+  movementIndex: 00000000040000000a0000000d000000
   characterMovements:
   - Fairy
   - Fairy
   - Fairy
+  - Customer1
   Player: {fileID: 1679626972}
   Mom: {fileID: 0}
+  Customer: {fileID: 1381763575}
   actorsMoving: 0
   dialogueIndex: 0
 --- !u!4 &1267561639
@@ -8585,6 +8587,7 @@ GameObject:
   - component: {fileID: 1381763578}
   - component: {fileID: 1381763577}
   - component: {fileID: 1381763576}
+  - component: {fileID: 1381763584}
   m_Layer: 9
   m_Name: Customer1
   m_TagString: Untagged
@@ -8775,6 +8778,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1381763584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1381763575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0efcc6ba162a04dbbcc347e7bd8b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customer: {fileID: 1381763579}
 --- !u!1 &1398837617
 GameObject:
   m_ObjectHideFlags: 0
