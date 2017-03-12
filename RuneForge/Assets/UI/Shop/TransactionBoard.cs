@@ -53,6 +53,10 @@ public class TransactionBoard : MonoBehaviour
             case ShopUIManager.TransactionType.SELL:
                 sellButton.gameObject.SetActive(true);
                 buyButton.gameObject.SetActive(false);
+                if (MasterGameManager.instance.upgradeManager.level3 == 1 || MasterGameManager.instance.upgradeManager.level3 == 3)
+                    transactionPrice.text = item.price.ToString();
+                else
+                    transactionPrice.text = (item.price/2).ToString();
                 break;
             case ShopUIManager.TransactionType.BUY:
                 buyButton.gameObject.SetActive(true);

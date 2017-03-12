@@ -14,7 +14,11 @@ public class QuestGenerator : MonoBehaviour {
     public void GenerateQuests()
     {
         todaysQuests.Clear();
-        int questsToday = Random.Range(0, 4);
+        int questsToday;
+        if (MasterGameManager.instance.upgradeManager.level3 == 2 || MasterGameManager.instance.upgradeManager.level3 == 3)
+            questsToday = Random.Range(1, 4);
+        else
+            questsToday = Random.Range(0, 4);
 
         for (int i = 0; i < questsToday; i++)
         {

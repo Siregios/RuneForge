@@ -29,8 +29,10 @@ public class TradeManager : MonoBehaviour {
         {
             finalCount = PlayerInventory.inventory.GetItemCount(item);
         }
-
-        PlayerInventory.money += finalCount * item.price;
+        if (MasterGameManager.instance.upgradeManager.level3 == 1 || MasterGameManager.instance.upgradeManager.level3 == 3)
+            PlayerInventory.money += finalCount * item.price;
+        else
+            PlayerInventory.money += finalCount * item.price/2;
         PlayerInventory.inventory.SubtractItem(item, finalCount);
     }
 
