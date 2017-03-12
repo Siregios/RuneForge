@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ActionClock : MonoBehaviour {
     private int maxActionsPerDay = 1;
     private int currentActionCount = 1;
     private int day = 1;
+    private int seasonIndex = 1;
+    List<string> seasonMap = new List<string> { "spring", "summer", "fall", "winter" };
 
     public int ActionsPerDay
     {
@@ -24,6 +27,11 @@ public class ActionClock : MonoBehaviour {
         set { day = value; }
     }
 
+    public string Season
+    {
+        get { return seasonMap[seasonIndex - 1]; }
+    }
+
     public void EndDay()
     {
         StartCoroutine(endCoroutine());
@@ -40,6 +48,14 @@ public class ActionClock : MonoBehaviour {
     IEnumerator endCoroutine()
     {
         day++;
+        if (day > 28)
+        {
+            day = 1;
+            seasonIndex++;
+            if (seasonIndex > 4)
+                seasonIndex = 1;
+        }
+
         if (MasterGameManager.instance.upgradeManager.level2 == 2 || MasterGameManager.instance.upgradeManager.level2 == 3)
             maxActionsPerDay = 8;
         else

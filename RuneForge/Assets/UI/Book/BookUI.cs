@@ -6,13 +6,14 @@ public class BookUI : MonoBehaviour {
     private AudioManager audioManager;
     public enum BookSection
     {
+        FRONT_PAGE,
         INVENTORY,
         RECIPE,
         CLIPBOARD,
-        QUESTBOARD,
-        SETTINGS
+        QUESTBOARD
     }
     public BookSection currentSection = BookSection.INVENTORY;
+    public FrontPageUIManager frontPage;
     public GameObject inventory;
     public RecipeUIManager recipe;
     public ClipboardUI clipboard;
@@ -56,10 +57,22 @@ public class BookUI : MonoBehaviour {
         }
     }
 
+    public void DisplayFrontPage()
+    {
+        Enable(true);
+        frontPage.gameObject.SetActive(true);
+        inventory.gameObject.SetActive(false);
+        recipe.gameObject.SetActive(false);
+        clipboard.gameObject.SetActive(false);
+        questboard.gameObject.SetActive(false);
+        currentSection = BookSection.FRONT_PAGE;
+    }
+
     public void DisplayInventory()
     {
         Enable(true);
         inventory.gameObject.SetActive(true);
+        frontPage.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
@@ -70,6 +83,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         recipe.gameObject.SetActive(true);
+        frontPage.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
@@ -80,6 +94,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         clipboard.gameObject.SetActive(true);
+        frontPage.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
@@ -90,6 +105,7 @@ public class BookUI : MonoBehaviour {
     {
         Enable(true);
         questboard.gameObject.SetActive(true);
+        frontPage.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);

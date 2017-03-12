@@ -360,7 +360,6 @@ MonoBehaviour:
   moneyText: {fileID: 114038633106988594}
   dayText: {fileID: 114000011125710248}
   actionText: {fileID: 114000011535349380}
-  endDayButton: {fileID: 114000012472985286}
   clockHand: {fileID: 114000013557230524}
 --- !u!114 &114000011125710248
 MonoBehaviour:
@@ -979,7 +978,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: DisplayInventory
+        m_MethodName: DisplayFrontPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
