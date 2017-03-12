@@ -31,6 +31,7 @@ public class MasterGameManager : MonoBehaviour
     public WorkOrderManager workOrderManager;
     public UIManager uiManager;
     public SaveManager saveManager;
+    public UpgradeManager upgradeManager;
 
     public bool inputActive = true;
 
