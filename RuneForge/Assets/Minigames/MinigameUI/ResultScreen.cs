@@ -32,9 +32,11 @@ public class ResultScreen : MonoBehaviour
     bool corRun = false;
     bool finish = false;
     bool canClick = false;
+    bool nextItem = false;
     float expToLevel = 99999;
     AudioManager audioManager;
     AudioSource audioManagerObject;
+    int workOrderIndex = 0;
 
     //float transition = 1.5f;
 
@@ -61,80 +63,116 @@ public class ResultScreen : MonoBehaviour
         //transform.Find("Final Score").gameObject.GetComponent<Text>().text = "Final Score: " + scoreText;
 
         //Update the work order with the score
-        foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
-        {
-            if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])
-                checkLast = false;
-            else
-                checkLast = true;
-
-            /* Calculate total thresholds for entire product. (e.g. if requires 3 games, then st = 3*1000. if 4 games, st = 4*1000) */
-            st = (float)MasterGameManager.instance.SDThreshold * order.requiredStages;
-            hq = (float)MasterGameManager.instance.HQThreshold * order.requiredStages;
-            mc = (float)MasterGameManager.instance.MCThreshold * order.requiredStages;
-            Debug.Log(mc);
-            currentOrder = order;
-            bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
-            silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
-            gold.fillAmount = Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
-            if (bronze.fillAmount == 1)
-                star1.GetComponent<Image>().color = starAlpha;
-            if (silver.fillAmount == 1)
-                star2.GetComponent<Image>().color = starAlpha;
-            if (gold.fillAmount == 1)
-                star3.GetComponent<Image>().color = starAlpha;
-            progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
-            minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
-            for (int stage = 1; stage <= order.currentStage; stage++)
-            {
-                Minigame.transform.FindChild(stage.ToString()).GetComponent<Text>().text = order.minigameList[stage - 1].Key + ": " + order.minigameList[stage - 1].Value;
-            }
-            order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
-            MasterGameManager.instance.playerStats.gainExperience(minigameScore);
-            requiredStage = order.requiredStages;
-            currentStage = order.currentStage;
-            totalScore = order.score;
-
-            if (order.isComplete)
-            {
-                Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-            }
-            //Start to fade into result screen
-            StartCoroutine(FadeResults());
-
-
-            //If complete, show work order score and rune completed.
-            //if (order.isComplete)
-            //{
-            //Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-            //    transform.Find("Actions").gameObject.SetActive(false);
-            //    transform.Find("Final Score").gameObject.SetActive(false);
-            //    transform.Find("CompletedOrder").gameObject.SetActive(true);
-            //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-            //    string name = completedItem.name;
-            //    string quality = "Standard";
-            //    if (completedItem.name.Contains("(HQ)"))
-            //    {
-            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-            //        quality = "High Quality";
-            //    }
-            //    else if (completedItem.name.Contains("(MC)"))
-            //    {
-            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-            //        quality = "Master Craft";
-            //    }
-            //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
-            //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
-            //}
-        }
+        //while (workOrderIndex < MasterGameManager.instance.workOrderManager.currentWorkOrders.Count) 
+        //foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
+        EntireFunction();
     }
 
+    void EntireFunction()
+    {
+        WorkOrder order = MasterGameManager.instance.workOrderManager.currentWorkOrders[workOrderIndex];
+        if (workOrderIndex != 0)
+        {
+            GameObject quality = qualityStamp.transform.FindChild(MasterGameManager.instance.workOrderManager.currentWorkOrders[workOrderIndex - 1].quality).gameObject;
+            Color temp = quality.GetComponent<Image>().color;
+            temp.a = 0;
+            quality.GetComponent<Image>().color = temp;
+            quality.SetActive(false);
+            temp = scoreText.color;
+            temp.a = 0;
+            scoreText.color = temp;
+            int noAlpha = currentOrder.currentStage;
+            foreach (Transform child in Minigame.transform)
+            {
+                if (noAlpha == 0)
+                {
+                    Color temp2 = child.gameObject.GetComponent<Text>().color;
+                    temp2.a = 0;
+                    child.gameObject.GetComponent<Text>().color = temp2;
+                }
+                else
+                    noAlpha--;
+            }
+            temp = star1.GetComponent<Image>().color;
+            temp.a = 0;
+            star1.GetComponent<Image>().color = temp;
+            star2.GetComponent<Image>().color = temp;
+            star3.GetComponent<Image>().color = temp;
+        }
+        if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])
+            checkLast = false;
+        else
+            checkLast = true;
+
+        /* Calculate total thresholds for entire product. (e.g. if requires 3 games, then st = 3*1000. if 4 games, st = 4*1000) */
+        st = (float)MasterGameManager.instance.SDThreshold * order.requiredStages;
+        hq = (float)MasterGameManager.instance.HQThreshold * order.requiredStages;
+        mc = (float)MasterGameManager.instance.MCThreshold * order.requiredStages;
+        currentOrder = order;
+        bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
+        silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
+        gold.fillAmount = Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
+        if (bronze.fillAmount == 1)
+            star1.GetComponent<Image>().color = starAlpha;
+        if (silver.fillAmount == 1)
+            star2.GetComponent<Image>().color = starAlpha;
+        if (gold.fillAmount == 1)
+            star3.GetComponent<Image>().color = starAlpha;
+        progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
+        minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
+        for (int stage = 1; stage <= order.currentStage; stage++)
+        {
+            Minigame.transform.FindChild(stage.ToString()).GetComponent<Text>().text = order.minigameList[stage - 1].Key + ": " + order.minigameList[stage - 1].Value;
+        }
+        order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
+        MasterGameManager.instance.playerStats.gainExperience(minigameScore);
+        requiredStage = order.requiredStages;
+        currentStage = order.currentStage;
+        totalScore = order.score;
+
+        if (order.isComplete)
+        {
+            Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+        }
+        //Start to fade into result screen
+        StartCoroutine(FadeResults());
+
+
+        //If complete, show work order score and rune completed.
+        //if (order.isComplete)
+        //{
+        //Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+        //    transform.Find("Actions").gameObject.SetActive(false);
+        //    transform.Find("Final Score").gameObject.SetActive(false);
+        //    transform.Find("CompletedOrder").gameObject.SetActive(true);
+        //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+        //    string name = completedItem.name;
+        //    string quality = "Standard";
+        //    if (completedItem.name.Contains("(HQ)"))
+        //    {
+        //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+        //        quality = "High Quality";
+        //    }
+        //    else if (completedItem.name.Contains("(MC)"))
+        //    {
+        //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+        //        quality = "Master Craft";
+        //    }
+        //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
+        //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
+        //}
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && canClick)
         {
             if (finish)
                 LoadScene();
+            else if (nextItem)
+            {
+                EntireFunction();
+                nextItem = false;
+            }
             else
             {
                 StopAllCoroutines();
@@ -195,8 +233,10 @@ public class ResultScreen : MonoBehaviour
                     temp.a = 1;
                     quality.GetComponent<Image>().color = temp;
                 }
+                workOrderIndex++;
+                nextItem = true;
                 if (checkLast)
-                    finish = true;
+                    finish = true;                
             }
         }
     }
@@ -298,9 +338,15 @@ public class ResultScreen : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         //temp until exp fill is done
-        finish = true;
+        if (checkLast)
+            finish = true;
         if (currentOrder.isComplete)
             StartCoroutine(DebateQuality());
+        else
+        {
+            workOrderIndex++;
+            nextItem = true;            
+        }
         //StartCoroutine(expFill());
     }
 
@@ -347,7 +393,11 @@ public class ResultScreen : MonoBehaviour
         float unchange = realFill.fillAmount - 0.02f;
         bool changeBool = false;
         float timer = 2f;
-        while (realFill != null && timer > 0f)
+        if (realFill == null)
+        {
+            timer = 0f;
+        }
+        while (timer > 0f)
         {
             if (realFill.fillAmount < change && !changeBool)
             {
@@ -428,6 +478,8 @@ public class ResultScreen : MonoBehaviour
             quality.GetComponent<Image>().color = temp;
             yield return new WaitForEndOfFrame();
         }
+        workOrderIndex++;
+        nextItem = true;
         //StartCoroutine(FadeDone());        
     }
 

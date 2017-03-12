@@ -8,7 +8,7 @@ public class UpgradeManager : MonoBehaviour {
     int l2 = 0;
     int l3 = 0;
     int l4 = 0;
-    int l5 = 0;
+    int l5 = 3;
 
     public int level1 { get { return l1; }}
     public int level2 { get { return l2; } }
