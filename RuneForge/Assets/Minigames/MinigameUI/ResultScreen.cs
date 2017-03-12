@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ResultScreen : MonoBehaviour {
+public class ResultScreen : MonoBehaviour
+{
 
     bool checkLast = true;
     public Image board;
@@ -29,7 +30,8 @@ public class ResultScreen : MonoBehaviour {
     float starWidth = 210, starHeight = 210;
     float starBigW = 4000, starBigH = 4000;
     bool corRun = false;
-    bool click = false;
+    bool finish = false;
+    bool canClick = false;
     float expToLevel = 99999;
     AudioManager audioManager;
     AudioSource audioManagerObject;
@@ -38,7 +40,8 @@ public class ResultScreen : MonoBehaviour {
 
     public string nextScene = "Workshop";
 
-    void Start() {        
+    void Start()
+    {
         sfxSources = this.gameObject.GetComponents<AudioSource>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioManagerObject = GameObject.Find("AudioManager").GetComponent<AudioSource>();
@@ -51,7 +54,7 @@ public class ResultScreen : MonoBehaviour {
         star3 = starFill.transform.FindChild("Star3").gameObject;
         starAlpha = starFill.transform.FindChild("Star1").GetComponent<Image>().color;
         starAlpha.a = 1;
-        
+
 
         //Find final score text
         //string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
@@ -60,8 +63,8 @@ public class ResultScreen : MonoBehaviour {
         //Update the work order with the score
         foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.currentWorkOrders)
         {
-            if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])            
-                checkLast = false;            
+            if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])
+                checkLast = false;
             else
                 checkLast = true;
 
@@ -73,7 +76,7 @@ public class ResultScreen : MonoBehaviour {
             currentOrder = order;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
-            gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);        
+            gold.fillAmount = Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
             if (bronze.fillAmount == 1)
                 star1.GetComponent<Image>().color = starAlpha;
             if (silver.fillAmount == 1)
@@ -84,7 +87,7 @@ public class ResultScreen : MonoBehaviour {
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
             for (int stage = 1; stage <= order.currentStage; stage++)
             {
-                Minigame.transform.FindChild(stage.ToString()).GetComponent<Text>().text = order.minigameList[stage - 1].Key + ": "+ order.minigameList[stage-1].Value;
+                Minigame.transform.FindChild(stage.ToString()).GetComponent<Text>().text = order.minigameList[stage - 1].Key + ": " + order.minigameList[stage - 1].Value;
             }
             order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
             MasterGameManager.instance.playerStats.gainExperience(minigameScore);
@@ -103,49 +106,114 @@ public class ResultScreen : MonoBehaviour {
             //If complete, show work order score and rune completed.
             //if (order.isComplete)
             //{
-                //Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-                //    transform.Find("Actions").gameObject.SetActive(false);
-                //    transform.Find("Final Score").gameObject.SetActive(false);
-                //    transform.Find("CompletedOrder").gameObject.SetActive(true);
-                //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
-                //    string name = completedItem.name;
-                //    string quality = "Standard";
-                //    if (completedItem.name.Contains("(HQ)"))
-                //    {
-                //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-                //        quality = "High Quality";
-                //    }
-                //    else if (completedItem.name.Contains("(MC)"))
-                //    {
-                //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
-                //        quality = "Master Craft";
-                //    }
-                //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
-                //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
+            //Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+            //    transform.Find("Actions").gameObject.SetActive(false);
+            //    transform.Find("Final Score").gameObject.SetActive(false);
+            //    transform.Find("CompletedOrder").gameObject.SetActive(true);
+            //    Item completedItem = MasterGameManager.instance.workOrderManager.CompleteOrder(order);
+            //    string name = completedItem.name;
+            //    string quality = "Standard";
+            //    if (completedItem.name.Contains("(HQ)"))
+            //    {
+            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+            //        quality = "High Quality";
+            //    }
+            //    else if (completedItem.name.Contains("(MC)"))
+            //    {
+            //        name = completedItem.name.Substring(0, completedItem.name.Length - 5);
+            //        quality = "Master Craft";
+            //    }
+            //    transform.Find("CompletedOrder").transform.Find("completeOrderText").GetComponent<Text>().text = 
+            //        string.Format("Completed: {0}\nQuality: {1}\nTotal Score: {2}", name, quality, order.score.ToString());
             //}
         }
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && click)
+        if (Input.GetMouseButtonDown(0) && canClick)
         {
-            LoadScene();
+            if (finish)
+                LoadScene();
+            else
+            {
+                StopAllCoroutines();
+                Color temp = GetComponent<Image>().color;
+                temp.a = 1;
+                GetComponent<Image>().color = temp;
+                board.GetComponent<CanvasGroup>().alpha = 1;
+                temp = progressFill.GetComponent<Image>().color;
+                temp.a = 1;
+                progressFill.GetComponent<Image>().color = temp;
+                scoreFill.GetComponent<CanvasGroup>().alpha = 1;
+                Minigame.GetComponent<CanvasGroup>().alpha = 1;
+                starFill.GetComponent<CanvasGroup>().alpha = 1;
+                bronze.fillAmount = Mathf.Clamp((float)totalScore / st, 0f, 1f);
+                silver.fillAmount = Mathf.Clamp(((float)totalScore - st) / (hq - st), 0f, 1f);
+                gold.fillAmount = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
+                progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
+                //Stage Text
+                Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
+                currentMinigame.text = currentOrder.minigameList[currentOrder.currentStage - 1].Key + ": " + currentOrder.minigameList[currentOrder.currentStage - 1].Value;
+                scoreText.text = currentOrder.score.ToString();
+                temp = scoreText.color;
+                temp.a = 1;
+                scoreText.color = temp;
+                if (currentOrder.isComplete)
+                {
+                    GameObject quality = qualityStamp.transform.FindChild(currentOrder.quality).gameObject;
+                    if (currentOrder.quality == "fail")
+                    {
+                        Debug.Log("What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.");
+                    }
+                    else if (currentOrder.quality == "standard")
+                    {
+                        sfxSources[0].PlayOneShot(completionSounds[0]);
+                        //audioManagerObject.Stop();
+                        //audioManagerObject.loop = true;
+                        //audioManagerObject.clip = completionSongs[0];
+                        //audioManagerObject.Play();
+                    }
+                    else if (currentOrder.quality == "hq")
+                    {
+                        sfxSources[0].PlayOneShot(completionSounds[1]);
+                        //audioManagerObject.Stop();
+                        //audioManagerObject.loop = true;
+                        //audioManagerObject.clip = completionSongs[1];
+                        //audioManagerObject.Play();
+                    }
+                    else if (currentOrder.quality == "mc")
+                    {
+                        sfxSources[0].PlayOneShot(completionSounds[2]);
+                        //audioManagerObject.Stop();
+                        //audioManagerObject.loop = true;
+                        //audioManagerObject.clip = completionSongs[2];
+                        //audioManagerObject.Play();
+                    }
+                    quality.SetActive(true);
+                    temp = quality.GetComponent<Image>().color;
+                    temp.a = 1;
+                    quality.GetComponent<Image>().color = temp;
+                }
+                if (checkLast)
+                    finish = true;
+            }
         }
     }
-    
+
     //Fades to black
     IEnumerator FadeResults()
     {
         Time.timeScale = 0;
         while (GetComponent<Image>().color.a <= 1)
         {
-            //Restult Screen itself
+            //Result Screen itself
             Color temp = GetComponent<Image>().color;
             temp.a += Time.unscaledDeltaTime / time;
             GetComponent<Image>().color = temp;
             yield return new WaitForEndOfFrame();
         }
+        canClick = true;
         StartCoroutine(FadeBoard());
     }
 
@@ -173,19 +241,6 @@ public class ResultScreen : MonoBehaviour {
         }
         StartCoroutine(FadeScoreFill());
     }
-    ////Fades product worked on
-    //IEnumerator FadeProduct()
-    //{
-    //    product.sprite = currentOrder.item.icon;
-    //    while (product.color.a <= 1)
-    //    {
-    //        Color temp = product.color;
-    //        temp.a += Time.unscaledDeltaTime / time;
-    //        product.color = temp;
-    //        yield return new WaitForEndOfFrame();
-    //    }
-
-    //}
 
     //adds the score fill
     IEnumerator FadeScoreFill()
@@ -204,16 +259,17 @@ public class ResultScreen : MonoBehaviour {
     {
         foreach (AudioSource sfx in sfxSources)
             sfx.Stop();
-        while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage/requiredStage)
+        while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage / requiredStage)
         {
             progressFill.GetComponent<Image>().fillAmount = Mathf.MoveTowards(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * fillSpeed);
             if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.0015f)
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
             yield return new WaitForEndOfFrame();
-        }     
+        }
         StartCoroutine(NextMinigame());
     }
 
+    //Minigame line text
     IEnumerator NextMinigame()
     {
         Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
@@ -241,9 +297,10 @@ public class ResultScreen : MonoBehaviour {
             scoreText.color = temp;
             yield return new WaitForEndOfFrame();
         }
-        click = true;
+        //temp until exp fill is done
+        finish = true;
         if (currentOrder.isComplete)
-            StartCoroutine(Stamp());
+            StartCoroutine(DebateQuality());
         //StartCoroutine(expFill());
     }
 
@@ -253,6 +310,83 @@ public class ResultScreen : MonoBehaviour {
     //    while ()
     //}
 
+    IEnumerator DebateQuality()
+    {
+        Image realFill = null;
+        bool roll = false;
+        if (currentOrder.quality == "fail")
+            realFill = bronze;
+        else if (currentOrder.quality == "standard")
+        {
+            if (bronze.fillAmount == 1)
+                realFill = silver;
+            else {
+                realFill = bronze;
+                roll = true;
+            }
+        }
+        else if (currentOrder.quality == "hq")
+        {
+            if (silver.fillAmount == 1)
+                realFill = gold;
+            else {
+                realFill = silver;
+                roll = true;
+            }
+        }
+        else if (currentOrder.quality == "mc")
+        {
+            if (gold.fillAmount == 1)
+                StartCoroutine(Stamp());
+            else {
+                realFill = silver;
+                roll = true;
+            }
+        }
+        float change = realFill.fillAmount + 0.02f;
+        float unchange = realFill.fillAmount - 0.02f;
+        bool changeBool = false;
+        float timer = 2f;
+        while (realFill != null && timer > 0f)
+        {
+            if (realFill.fillAmount < change && !changeBool)
+            {
+                realFill.fillAmount = Mathf.MoveTowards(realFill.fillAmount, change, Time.unscaledDeltaTime * fillSpeed);
+                if (change - realFill.fillAmount <= 0.001f)
+                    changeBool = true;
+            }
+            else if (changeBool)
+            {
+                realFill.fillAmount = Mathf.MoveTowards(realFill.fillAmount, unchange, Time.unscaledDeltaTime * fillSpeed);
+                if (realFill.fillAmount - unchange <= 0.001f)
+                    changeBool = false;
+            }
+            timer -= Time.unscaledDeltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        StartCoroutine(TrueQuality(realFill, roll));
+    }
+
+    IEnumerator TrueQuality(Image fill, bool roll)
+
+    {
+        if (roll)
+        {
+            while (fill.fillAmount < 1)
+            {
+                fill.fillAmount = Mathf.MoveTowards(fill.fillAmount, 1, Time.unscaledDeltaTime * fillSpeed);
+                if (1 - fill.fillAmount <= 0.015f)
+                {
+                    fill.fillAmount = 1;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        StartCoroutine(Stamp());
+    }
+
+
+
     IEnumerator Stamp()
     {
         GameObject quality = qualityStamp.transform.FindChild(currentOrder.quality).gameObject;
@@ -261,7 +395,7 @@ public class ResultScreen : MonoBehaviour {
         {
             Debug.Log("What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.");
         }
-        else if(currentOrder.quality == "standard")
+        else if (currentOrder.quality == "standard")
         {
             sfxSources[0].PlayOneShot(completionSounds[0]);
             //audioManagerObject.Stop();
@@ -333,8 +467,8 @@ public class ResultScreen : MonoBehaviour {
     bool moveFillAmount()
     {
         float bronzeFill = Mathf.Clamp((float)totalScore / st, 0f, 1f);
-        float silverFill = Mathf.Clamp(((float)totalScore-st) / (hq- st), 0f, 1f);
-        float goldFill = Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f);
+        float silverFill = Mathf.Clamp(((float)totalScore - st) / (hq - st), 0f, 1f);
+        float goldFill = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
         if (bronze.fillAmount < bronzeFill)
         {
 
