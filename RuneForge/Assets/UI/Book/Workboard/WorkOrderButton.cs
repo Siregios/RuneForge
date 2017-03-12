@@ -95,8 +95,10 @@ public class WorkOrderButton : MonoBehaviour {
         WorkOrderManager workOrderManager = MasterGameManager.instance.workOrderManager;
         //if (!selected)
         //{
-            /// This prevents working on multiple orders at once. We should wrap this in an if so that it stops when the player
-            /// has the upgrade to work on multiples
+        /// This prevents working on multiple orders at once. We should wrap this in an if so that it stops when the player
+        /// has the upgrade to work on multiples
+        //if (//Not Can Multicraft)
+        if (MasterGameManager.instance.upgradeManager.level5 == 2 || MasterGameManager.instance.upgradeManager.level5 == 0)
             workOrderManager.currentWorkOrders.Clear();
 
             workOrderManager.WorkOnOrder(this.order);

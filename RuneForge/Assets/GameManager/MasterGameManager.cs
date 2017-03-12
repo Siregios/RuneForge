@@ -68,6 +68,17 @@ public class MasterGameManager : MonoBehaviour
             SDThreshold = 800;
         else
             SDThreshold = 1000;
+        if (MasterGameManager.instance.upgradeManager.level5 == 2 || MasterGameManager.instance.upgradeManager.level5 == 3)
+        {
+            HQThreshold = 1800;
+            MCThreshold = 3500;
+        }
+        else
+        {
+            HQThreshold = 2000;
+            MCThreshold = 4000;
+
+        }
     }
 
     //void SetMinigameDict()
