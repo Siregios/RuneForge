@@ -7,11 +7,14 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
 
     public TutorialDialogue dialogueManager;
     public Button questBoard;
+    public Button recipe;
     public GameObject Book;
     public Button menuButton;
     public GameObject customer;
+    public ItemListUI itemList;
     private MasterGameManager gameManager;
     private int bookOpenNum = 0;
+    private int closeBookNum = 0;
 
 
     private void Awake()
@@ -39,46 +42,76 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
                 dialogueManager.ButtonActivateFalse(currentIndex);
                 questBoard.enabled = true;
                 dialogueManager.changeButtonActive(false);
+                return;
             }
             if(bookOpenNum == 1)
             {
-                currentIndex = index;
+                currentIndex += 2;
                 bookOpenNum++;
                 dialogueManager.ButtonActivateFalse(currentIndex);
+                recipe.enabled = true;
+                dialogueManager.changeButtonActive(false);
+                return;
             }
         }
 
-        currentIndex = index;
 
-        if (currentIndex == 6)
+        if (index == 6)
         {
+            currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
             questBoard.enabled = false;
             dialogueManager.changeButtonActive(false);
         }
 
-        if(currentIndex == 7) 
+        if(index == 7) 
         {
+            currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
         }
 
-        if (currentIndex == 8) 
+        if (index == 8) 
         {
+            currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
-            menuButton.interactable = false;
+            menuButton.gameObject.SetActive(false);
             customer.SetActive(true);
             Book.GetComponent<CloseOnEscape>().enabled = true;   
         }
 
-        if(currentIndex == 9) 
+        if(index == 9) 
         {
-            dialogueManager.ButtonActivateTrue(currentIndex);
-            customer.GetComponent<BoxCollider2D>().enabled = true;
+            if(closeBookNum == 0) 
+            {
+                currentIndex = index;
+                closeBookNum++;
+                dialogueManager.ButtonActivateTrue(currentIndex);
+                customer.GetComponent<BoxCollider2D>().enabled = true;
+            }
+
         }
 
-        if(currentIndex == 12) 
+        if(index == 12) 
         {
+            currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
+            menuButton.gameObject.SetActive(true);
         }
+
+        if (index == 17) 
+        {
+            Debug.Log("BAM");
+            currentIndex = index;
+            dialogueManager.ButtonActivateTrue(currentIndex);
+            recipe.enabled = false;
+            dialogueManager.changeButtonActive(false);
+            ItemCollection.itemDict["Enchanted Weapon"].level = 1;
+            StartCoroutine(StupidClumsyFix());
+        }
+    }
+
+    IEnumerator StupidClumsyFix() {
+        yield return new WaitForEndOfFrame();
+        itemList.DisplayNewFilter("Enchanted Weapon");
     }
 }

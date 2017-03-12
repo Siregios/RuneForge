@@ -1,0 +1,3 @@
+[RPort:Fairy, RName:Minamo]
+
+Ok, now this next part can get a little complicated, but once mastered it can really help in the long run.
