@@ -8,14 +8,16 @@ public class ResultScreen : MonoBehaviour {
     public Image board;
     public Image product;
     public GameObject scoreFill;
+    public GameObject starFill;
     public GameObject progressFill;
     public GameObject Minigame;
+    public Text scoreText;
     public GameObject qualityStamp;
-    public Button done;
     float time = 1.5f;
     int minigameScore, totalScore;
     float st = 500, hq = 1000, mc = 1500;
     Image bronze, silver, gold;
+    GameObject star1, star2, star3;
     int currentStage, requiredStage;
     float fillSpeed = 0.5f;
     WorkOrder currentOrder;
@@ -23,7 +25,12 @@ public class ResultScreen : MonoBehaviour {
     public AudioClip[] barSounds;
     public AudioClip[] completionSounds;
     public AudioClip[] completionSongs;
-
+    Color starAlpha;
+    float starWidth = 210, starHeight = 210;
+    float starBigW = 4000, starBigH = 4000;
+    bool corRun = false;
+    bool click = false;
+    float expToLevel = 99999;
     AudioManager audioManager;
     AudioSource audioManagerObject;
 
@@ -31,8 +38,7 @@ public class ResultScreen : MonoBehaviour {
 
     public string nextScene = "Workshop";
 
-    void Start() {
-        done.interactable = false;
+    void Start() {        
         sfxSources = this.gameObject.GetComponents<AudioSource>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioManagerObject = GameObject.Find("AudioManager").GetComponent<AudioSource>();
@@ -40,6 +46,12 @@ public class ResultScreen : MonoBehaviour {
         bronze = scoreFill.transform.FindChild("Standard").GetComponent<Image>();
         silver = scoreFill.transform.FindChild("High Quality").GetComponent<Image>();
         gold = scoreFill.transform.FindChild("Master Craft").GetComponent<Image>();
+        star1 = starFill.transform.FindChild("Star1").gameObject;
+        star2 = starFill.transform.FindChild("Star2").gameObject;
+        star3 = starFill.transform.FindChild("Star3").gameObject;
+        starAlpha = starFill.transform.FindChild("Star1").GetComponent<Image>().color;
+        starAlpha.a = 1;
+        
 
         //Find final score text
         //string scoreText = GameObject.Find("Score").transform.Find("ScoreText").GetComponent<Text>().text;
@@ -57,11 +69,17 @@ public class ResultScreen : MonoBehaviour {
             st = (float)MasterGameManager.instance.SDThreshold * order.requiredStages;
             hq = (float)MasterGameManager.instance.HQThreshold * order.requiredStages;
             mc = (float)MasterGameManager.instance.MCThreshold * order.requiredStages;
-
+            Debug.Log(mc);
             currentOrder = order;
             bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
             silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
-            gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
+            gold.fillAmount =   Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);        
+            if (bronze.fillAmount == 1)
+                star1.GetComponent<Image>().color = starAlpha;
+            if (silver.fillAmount == 1)
+                star2.GetComponent<Image>().color = starAlpha;
+            if (gold.fillAmount == 1)
+                star3.GetComponent<Image>().color = starAlpha;
             progressFill.GetComponent<Image>().fillAmount = ((float)order.currentStage / order.requiredStages);
             minigameScore = GameObject.Find("Score").GetComponent<Score>().score;
             for (int stage = 1; stage <= order.currentStage; stage++)
@@ -107,6 +125,14 @@ public class ResultScreen : MonoBehaviour {
             //}
         }
     }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && click)
+        {
+            LoadScene();
+        }
+    }
     
     //Fades to black
     IEnumerator FadeResults()
@@ -141,6 +167,9 @@ public class ResultScreen : MonoBehaviour {
             //Scorefill and minigame text
             scoreFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
             Minigame.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
+
+            //Stars
+            starFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
         }
         StartCoroutine(FadeScoreFill());
     }
@@ -169,7 +198,6 @@ public class ResultScreen : MonoBehaviour {
             sfx.Stop();
         StartCoroutine(ProgressFill());
     }
-
 
     //Progress fill
     IEnumerator ProgressFill()
@@ -200,15 +228,30 @@ public class ResultScreen : MonoBehaviour {
             currentMinigame.color = temp2;
             yield return new WaitForEndOfFrame();
         }
-        if (currentOrder.isComplete)
-        {
-            StartCoroutine(Stamp());
-        }
-        else if (checkLast)
-            StartCoroutine(FadeDone());
-        //else
-        //    StartCoroutine(FadeNext());
+        StartCoroutine(scoreTextFade());
     }
+
+    IEnumerator scoreTextFade()
+    {
+        scoreText.text = currentOrder.score.ToString();
+        while (scoreText.color.a < 1)
+        {
+            Color temp = scoreText.color;
+            temp.a += Time.unscaledDeltaTime / time;
+            scoreText.color = temp;
+            yield return new WaitForEndOfFrame();
+        }
+        click = true;
+        if (currentOrder.isComplete)
+            StartCoroutine(Stamp());
+        //StartCoroutine(expFill());
+    }
+
+    //IEnumerator expFill()
+    //{
+    //    float exp = Mathf.Clamp(MasterGameManager.instance.playerStats.TotalExperience / expToLevel, 0f, 1f);
+    //    while ()
+    //}
 
     IEnumerator Stamp()
     {
@@ -251,19 +294,19 @@ public class ResultScreen : MonoBehaviour {
             quality.GetComponent<Image>().color = temp;
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(FadeDone());
-        
+        //StartCoroutine(FadeDone());        
     }
+
     //Fades done button
-    IEnumerator FadeDone()
-    {
-        while (done.GetComponent<CanvasGroup>().alpha < 1)
-        {
-            done.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
-            yield return new WaitForEndOfFrame();
-        }
-        done.interactable = true;
-    }
+    //IEnumerator FadeDone()
+    //{
+    //    while (done.GetComponent<CanvasGroup>().alpha < 1)
+    //    {
+    //        done.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //    done.interactable = true;
+    //}
     //IEnumerator FadeOut()    
     //{
     //    Time.timeScale = 0;
@@ -294,26 +337,40 @@ public class ResultScreen : MonoBehaviour {
         float goldFill = Mathf.Clamp(((float)totalScore- hq) / (mc- hq), 0f, 1f);
         if (bronze.fillAmount < bronzeFill)
         {
-            if (bronzeFill - bronze.fillAmount <= 0.0015f)
-                bronze.fillAmount = bronzeFill;
+
             sfxSources[0].PlayOneShot(barSounds[0]);
             bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
-            
+            if (bronzeFill - bronze.fillAmount <= 0.015f)
+            {
+                bronze.fillAmount = bronzeFill;
+                if (bronze.fillAmount == 1)
+                    StartCoroutine(StarFill(star1));
+            }
         }
         else if (silver.fillAmount < silverFill)
         {
-            if (silverFill - silver.fillAmount <= 0.0015f)
-                silver.fillAmount = silverFill;
             sfxSources[1].PlayOneShot(barSounds[1]);
             silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
+            if (silverFill - silver.fillAmount <= 0.015f)
+            {
+                silver.fillAmount = silverFill;
+                if (silver.fillAmount == 1)
+                    StartCoroutine(StarFill(star2));
+            }
         }
         else if (gold.fillAmount < goldFill)
         {
-            if (goldFill - gold.fillAmount <= 0.0015f)
-                gold.fillAmount = goldFill;
             sfxSources[2].PlayOneShot(barSounds[2]);
             gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
+            if (goldFill - gold.fillAmount <= 0.015f)
+            {
+                gold.fillAmount = goldFill;
+                if (gold.fillAmount == 1)
+                    StartCoroutine(StarFill(star3));
+            }
         }
+        else if (corRun)
+            return true;
         else
         {
             return false;
@@ -321,6 +378,21 @@ public class ResultScreen : MonoBehaviour {
         return true;
     }
 
+    IEnumerator StarFill(GameObject star)
+    {
+        corRun = true;
+        RectTransform starTrans = star.GetComponent<RectTransform>();
+        star.GetComponent<Image>().color = starAlpha;
+        starTrans.sizeDelta = new Vector2(starBigW, starBigH);
+        while (starTrans.sizeDelta.x != starWidth && starTrans.sizeDelta.y != starHeight)
+        {
+            starTrans.sizeDelta = Vector2.MoveTowards(starTrans.sizeDelta, new Vector2(starWidth, starHeight), Time.unscaledDeltaTime * 9000);
+            if (starTrans.sizeDelta.x - starWidth <= 0.015f)
+                starTrans.sizeDelta = new Vector2(starWidth, starHeight);
+            yield return new WaitForEndOfFrame();
+        }
+        corRun = false;
+    }
     public void LoadScene()
     {
         MasterGameManager.instance.sceneManager.LoadScene(nextScene);

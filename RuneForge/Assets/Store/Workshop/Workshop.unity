@@ -942,6 +942,15 @@ Prefab:
       propertyPath: menuBar
       value: 
       objectReference: {fileID: 378825897}
+    - target: {fileID: 114000012240273044, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: pinCostText
+      value: 
+      objectReference: {fileID: 1606981457}
+    - target: {fileID: 1000013526118788, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
   m_IsPrefabParent: 0
@@ -3459,6 +3468,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000012005418600, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
     type: 2}
   m_PrefabInternal: {fileID: 1549269514}
+--- !u!114 &1606981457 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114417365462062934, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 433166616}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1607860106
 GameObject:
   m_ObjectHideFlags: 0
