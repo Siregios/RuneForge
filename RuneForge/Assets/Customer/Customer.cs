@@ -29,10 +29,11 @@ public class Customer : MonoBehaviour {
         text.text = string.Format("Can you make me {0} {1}{2}", quest.amountProduct, quest.product.name, plural);
     }
 
-    public void AcceptQuest()
+    public void AcceptQuest(bool autoLeave = true)
     {
         MasterGameManager.instance.questGenerator.currentQuests.Add(quest);
-        Leave();
+        if(autoLeave)
+            Leave();
     }
     public void Leave()
     {

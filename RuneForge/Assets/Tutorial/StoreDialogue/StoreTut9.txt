@@ -43,3 +43,7 @@ No worries Verrona! I've seen Alex work before, you're in good hands!
 [RPort:Customer1, RName:Verrona]
 
 Ok Minamo, I trust you.
+
+[RPort:Fairy, RName:Minamo]
+
+Click on Verrona to accept this new quest!

@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &176051926
 Transform:
   m_ObjectHideFlags: 0
@@ -3384,7 +3384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54.6, y: -20.6}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 63.4, y: 21.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &323227903
@@ -3428,7 +3428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1381763579}
         m_MethodName: AcceptQuest
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3444,6 +3444,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1267561640}
+        m_MethodName: ButtonActivateOverride
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8412,7 +8423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1267561640
 MonoBehaviour:
@@ -8629,14 +8640,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1381763575}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 942dc3bb421865343b211ff87b7d58be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnWithSpecificItem: 0
-  itemName: 
-  amount: 0
+  spawnWithSpecificItem: 1
+  itemName: Enchanted Weapon
+  amount: 1
   fadeEffect: {fileID: 1381763578}
   interactScript: {fileID: 1381763580}
   text: {fileID: 910925621}
@@ -8707,7 +8718,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1381763575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -8762,7 +8773,7 @@ Transform:
   m_Children:
   - {fileID: 1446574005}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398837617
 GameObject:
@@ -9521,49 +9532,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1578132498}
---- !u!1 &1581701696
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1581701698}
-  - component: {fileID: 1581701697}
-  m_Layer: 0
-  m_Name: CustomerSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1581701697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1581701696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32c96f0bb75bef4ebdd2f704739c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customerList:
-  - {fileID: 114046562230453848, guid: 993cdee1d4ef86c4ba9ee17e11643790, type: 2}
-  spawnPositions: []
---- !u!4 &1581701698
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1581701696}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1619035847 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000010276402778, guid: 4f573761fbfb8ad49ba40b940dd658b3,
@@ -9678,7 +9646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1753764447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9873,7 +9841,7 @@ Prefab:
     - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
       propertyPath: dialogueText.Array.size
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224579296483215526, guid: 3f266cf2afd6d2b41a51f193e0398838,
         type: 2}
@@ -10072,6 +10040,11 @@ Prefab:
       propertyPath: spritePorts.Array.data[3].height
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 114967559268504148, guid: 3f266cf2afd6d2b41a51f193e0398838,
+        type: 2}
+      propertyPath: dialogueText.Array.data[12]
+      value: 
+      objectReference: {fileID: 4900000, guid: 7102e84b4bec2c04a8789f484a4a5875, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f266cf2afd6d2b41a51f193e0398838, type: 2}
   m_IsPrefabParent: 0

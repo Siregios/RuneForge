@@ -16,7 +16,7 @@ public class TutorialDialogue : MonoBehaviour
 
     public List<string> characterMovements;                  //List for which characters we want moved in what order, separated by commas (you could also make
                                                              //this a double list, but I think it saves more space making that second list locally later on)
-    public GameObject Player, Mom;
+    public GameObject Player, Mom, Customer;
     private Dictionary<int, string> movementDict = new Dictionary<int, string>();       //Dictionary of movement indexes corresponding to which characters move on that index
     public int actorsMoving = 0;
     public int dialogueIndex = 0;

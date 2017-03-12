@@ -11,6 +11,7 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
     public Button menuButton;
     public GameObject customer;
     private MasterGameManager gameManager;
+    private int bookOpenNum = 0;
 
 
     private void Awake()
@@ -29,13 +30,25 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
 
     public override void ButtonActivateOverride(int index)
     {
-        currentIndex = index;
-        if (currentIndex == 3)
+        if (index == 3)
         {
-            dialogueManager.ButtonActivateFalse(index);
-            questBoard.enabled = true;
-            dialogueManager.changeButtonActive(false);
+            if (bookOpenNum == 0) 
+            {
+                currentIndex = index;
+                bookOpenNum++;
+                dialogueManager.ButtonActivateFalse(currentIndex);
+                questBoard.enabled = true;
+                dialogueManager.changeButtonActive(false);
+            }
+            if(bookOpenNum == 1)
+            {
+                currentIndex = index;
+                bookOpenNum++;
+                dialogueManager.ButtonActivateFalse(currentIndex);
+            }
         }
+
+        currentIndex = index;
 
         if (currentIndex == 6)
         {
@@ -58,6 +71,12 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
         }
 
         if(currentIndex == 9) 
+        {
+            dialogueManager.ButtonActivateTrue(currentIndex);
+            customer.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        if(currentIndex == 12) 
         {
             dialogueManager.ButtonActivateTrue(currentIndex);
         }
