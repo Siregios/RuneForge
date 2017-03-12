@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour {
     public void SaveData()
     {
         SavePlayerInventory();
+        SaveActionClock();
 
         PlayerPrefs.Save();
     }
@@ -14,6 +15,7 @@ public class SaveManager : MonoBehaviour {
     public void LoadData()
     {
         LoadPlayerInventory();
+        LoadActionClock();
     }
 
     void SavePlayerInventory()
@@ -36,5 +38,27 @@ public class SaveManager : MonoBehaviour {
             if (PlayerPrefs.HasKey("@PlayerInventory: " + item.name))
                 PlayerInventory.inventory.inventoryDict[item] = PlayerPrefs.GetInt("@PlayerInventory: " + item.name);
         }
+    }
+
+    void SaveActionClock()
+    {
+        ActionClock actionClock = MasterGameManager.instance.actionClock;
+        PlayerPrefs.SetInt("@ActionClock: ActionCount", actionClock.ActionCount);
+        PlayerPrefs.SetInt("@ActionClock: ActionsPerDay", actionClock.ActionsPerDay);
+        PlayerPrefs.SetInt("@ActionClock: Day", actionClock.Day);
+        PlayerPrefs.SetString("@ActionClock: Season", actionClock.Season);
+    }
+
+    void LoadActionClock()
+    {
+        ActionClock actionClock = MasterGameManager.instance.actionClock;
+        if (PlayerPrefs.HasKey("@ActionClock: ActionCount"))
+            actionClock.ActionCount = PlayerPrefs.GetInt("@ActionClock: ActionCount");
+        if (PlayerPrefs.HasKey("@ActionClock: ActionsPerDay"))
+            actionClock.ActionsPerDay = PlayerPrefs.GetInt("@ActionClock: ActionsPerDay");
+        if (PlayerPrefs.HasKey("@ActionClock: Day"))
+            actionClock.Day = PlayerPrefs.GetInt("@ActionClock: Day");
+        if (PlayerPrefs.HasKey("@ActionClock: Season"))
+            actionClock.Season = PlayerPrefs.GetString("@ActionClock: Season");
     }
 }

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ActionClock : MonoBehaviour {
-    private int maxActionsPerDay = 1;
-    private int currentActionCount = 1;
+    private int maxActionsPerDay = 6;
+    private int currentActionCount = 6;
     private int day = 1;
     private int seasonIndex = 1;
     List<string> seasonMap = new List<string> { "spring", "summer", "fall", "winter" };
@@ -30,6 +30,18 @@ public class ActionClock : MonoBehaviour {
     public string Season
     {
         get { return seasonMap[seasonIndex - 1]; }
+        set
+        {
+            string season = value;
+            if (season == "spring")
+                seasonIndex = 1;
+            else if (season == "summer")
+                seasonIndex = 2;
+            else if (season == "fall")
+                seasonIndex = 3;
+            else if (season == "winter")
+                seasonIndex = 4;
+        }
     }
 
     public void EndDay()

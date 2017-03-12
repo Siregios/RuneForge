@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FrontPageUIManager : MonoBehaviour {
     public CalendarPage calendarPage;
-    public SettingsPage settingsPage;
 
     void OnEnable()
     {
