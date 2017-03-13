@@ -297,7 +297,7 @@ public class ResultScreen : MonoBehaviour
             realFill = bronze;
         else if (currentOrder.quality == "standard")
         {
-            if (bronze.fillAmount >= .98f)
+            if (bronze.fillAmount >= .99f)
                 realFill = silver;
             else {
                 realFill = bronze;
@@ -306,7 +306,7 @@ public class ResultScreen : MonoBehaviour
         }
         else if (currentOrder.quality == "hq")
         {
-            if (silver.fillAmount == .98f)
+            if (silver.fillAmount >= .99f)
                 realFill = gold;
             else {
                 realFill = silver;
@@ -315,10 +315,10 @@ public class ResultScreen : MonoBehaviour
         }
         else if (currentOrder.quality == "mc")
         {
-            if (gold.fillAmount == .98f)
+            if (gold.fillAmount >= .99f)
                 StartCoroutine(Stamp());
             else {
-                realFill = silver;
+                realFill = gold;
                 roll = true;
             }
         }

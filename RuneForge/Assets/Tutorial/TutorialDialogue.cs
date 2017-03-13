@@ -23,9 +23,12 @@ public class TutorialDialogue : MonoBehaviour
     bool disableOnce = false;
     ColorBlock enableColor;
     ColorBlock disableColor;
+    GameObject buttonArea;
+    bool disabledRecipe = false;
 
     void Start()
     {
+        buttonArea = book.transform.FindChild("Recipe").transform.FindChild("ItemListPanel (Product)").transform.FindChild("ButtonArea").gameObject;
         enableColor = menuButtons[0].colors;
         disableColor = menuButtons[0].colors;
         disableColor.normalColor = menuButtons[0].colors.disabledColor;
@@ -53,8 +56,11 @@ public class TutorialDialogue : MonoBehaviour
 
     void Update()
     {
+        if (actorsMoving > 0 && !disabledRecipe)
+            RecipeButtons(false);
         if (dialogueUI.activeSelf == false && actorsMoving == 0)
         {
+            RecipeButtons(true);
             if (movementIndex.Contains(dialogueIndex))
             {
                 if(Mom)
@@ -88,6 +94,14 @@ public class TutorialDialogue : MonoBehaviour
         }
     }
 
+    public void RecipeButtons(bool set)
+    {
+        foreach (Transform button in buttonArea.transform)
+        {
+            button.GetComponent<Button>().interactable = set;
+        }
+        disabledRecipe = !set;
+    }
 
     public void ActivateDialogue(int index, bool disableAfter)
     {

@@ -2183,6 +2183,7 @@ MonoBehaviour:
   characterMovements: []
   Player: {fileID: 2070310489}
   Mom: {fileID: 954220114}
+  Customer: {fileID: 0}
   actorsMoving: 0
   dialogueIndex: 0
 --- !u!4 &1153268382
@@ -2931,6 +2932,11 @@ Prefab:
     - target: {fileID: 114000014208541810, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
+        type: 2}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

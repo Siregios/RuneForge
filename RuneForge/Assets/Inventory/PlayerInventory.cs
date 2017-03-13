@@ -13,4 +13,14 @@ public static class PlayerInventory {
             inventory.SetItemCount(item, 10);
         }
     }
+
+    //static GodwinHo()
+    //{
+    //    //Edwin is God
+    //    foreach (Item item in ItemCollection.itemList)
+    //    {
+    //        inventory.SetItemCount(item, 694201337);
+    //    }
+    //    money = int.Parse("xXxEdgeWin420BestReaperQNA");
+    //}
 }

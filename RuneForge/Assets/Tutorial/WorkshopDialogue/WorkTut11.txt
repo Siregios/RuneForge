@@ -1,3 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
-This here is your inventory page.
+This here is your calendar and settings page.

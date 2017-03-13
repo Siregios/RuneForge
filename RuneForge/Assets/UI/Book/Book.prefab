@@ -5406,7 +5406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   calendarPage: {fileID: 114920435340386546}
-  settingsPage: {fileID: 0}
 --- !u!114 &114169839105355478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7744,6 +7743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionsText: {fileID: 114170953562234156}
   currentDateCircle: {fileID: 114605937471860924}
+  previousDayCross: {fileID: 1613702534866874, guid: aea439c36329b984cb09c8ebd9d925df,
+    type: 2}
   calendar: {fileID: 114586389121859384}
   springCalendar: {fileID: 21300000, guid: e6fe64a3f6df9854f90b014cae67daef, type: 3}
   summerCalendar: {fileID: 21300000, guid: f575f19ef3f82d3418c857b31e53b779, type: 3}

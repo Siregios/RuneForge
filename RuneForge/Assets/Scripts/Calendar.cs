@@ -15,7 +15,8 @@ public class Calendar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time = Time.time;
-        if(time - startTime > dayLength)
+        Debug.Log(day);
+        if (time - startTime > dayLength)
         {
             startTime = Time.time;
             day++;

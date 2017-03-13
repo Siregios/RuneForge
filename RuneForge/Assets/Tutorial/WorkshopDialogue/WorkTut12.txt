@@ -1,3 +1,3 @@
 [RPort:Fairy, RName:Minamo]
 
- In this page, you can check your inventory and statistics on how you and your shop are doing. Let’s move on to the recipe page.
+ In this page, you can check your goals, the date, and also tweak some settings. You can also save and load here too!
