@@ -1,0 +1,13 @@
+[RPort:Fairy, RName:Minamo]
+
+Yeah, I was right! Hey Nolak!
+
+[RPort:Shopkeep, RName:Nolak]
+
+Hmmm.
+
+[RPort:Fairy, RName:Minamo]
+
+Nolak always stops by the shop to sell goods for us to use in our crafting. Let's buy a weapon from him.
+
+Click on Nolak to check out the shop!

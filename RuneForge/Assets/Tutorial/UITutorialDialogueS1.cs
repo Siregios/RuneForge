@@ -10,7 +10,10 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
     public Button recipe;
     public GameObject Book;
     public Button menuButton;
+    public Button recipeBackButton;
+    public Button recipePinButton;
     public GameObject customer;
+    public GameObject shopkeep;
     public ItemListUI itemList;
     private MasterGameManager gameManager;
     private int bookOpenNum = 0;
@@ -27,7 +30,10 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
 
     public override void handleButtonPush(Item itemInfo)
     {
-
+        if(itemInfo.name == "Enchanted Weapon")
+        {
+            ButtonActivateOverride(18);
+        }
     }
 
 
@@ -87,6 +93,15 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
                 closeBookNum++;
                 dialogueManager.ButtonActivateTrue(currentIndex);
                 customer.GetComponent<BoxCollider2D>().enabled = true;
+                return;
+            }
+
+            if(closeBookNum == 1)
+            {
+                currentIndex = 22;
+                closeBookNum++;
+                dialogueManager.ButtonActivateTrue(currentIndex);
+
             }
 
         }
@@ -96,17 +111,28 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
             menuButton.gameObject.SetActive(true);
+            Book.GetComponent<CloseOnEscape>().enabled = false;
         }
 
         if (index == 17) 
         {
-            Debug.Log("BAM");
             currentIndex = index;
-            dialogueManager.ButtonActivateTrue(currentIndex);
+            dialogueManager.ButtonActivateFalse(currentIndex);
             recipe.enabled = false;
             dialogueManager.changeButtonActive(false);
             ItemCollection.itemDict["Enchanted Weapon"].level = 1;
+            ItemCollection.itemDict["Enchanted Weapon"].requiredAttributes["Fire"] = 3;
+            recipePinButton.enabled = false;
             StartCoroutine(StupidClumsyFix());
+        }
+
+        if(index == 18)
+        {
+            currentIndex = index;
+            dialogueManager.ButtonActivateTrue(currentIndex);
+            recipeBackButton.enabled = false;
+            Book.GetComponent<CloseOnEscape>().enabled = true;
+            shopkeep.SetActive(true);
         }
     }
 

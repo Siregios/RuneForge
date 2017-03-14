@@ -1,6 +1,6 @@
 [RPort:Customer1, RName:Verrona]
 
-Hello Minamo, hello Alex, it’s a pleasure to meet you. I'm doing splendid, thanks for asking.
+Hello Minamo, hello Alex, it's a pleasure to meet you. I'm doing splendid, thanks for asking.
 
 [RPort:Fairy, RName:Minamo]
 
@@ -18,7 +18,7 @@ Whoa, that sounds scary!
 
 It would be, if I didn't have the right tools for the job, which is why I'm here.
 
-I'm going to need an enchanted sword, but I'm going to need it master crafted.
+I'm going to need an enchanted weapon, but I'm going to need it master crafted.
 
 [RPort:Fairy, RName:Minamo]
 

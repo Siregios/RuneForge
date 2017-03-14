@@ -1,0 +1,3 @@
+[RPort:Fairy, RName:Minamo]
+
+Every item can have bonus ingredients added to it. But these bonus ingredients must be of a specific type. 
