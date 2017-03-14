@@ -56,14 +56,14 @@ public class MasterGameManager : MonoBehaviour
     void Update()
     {
         //For testing
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            this.saveManager.SaveData();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            this.saveManager.LoadData();
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    this.saveManager.SaveData();
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    this.saveManager.LoadData();
+        //}
         if (MasterGameManager.instance.upgradeManager.level2 == 1 || MasterGameManager.instance.upgradeManager.level2 == 3)
             SDThreshold = 800;
         else

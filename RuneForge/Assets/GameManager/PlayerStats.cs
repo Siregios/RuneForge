@@ -8,6 +8,11 @@ public class PlayerStats : MonoBehaviour {
     private int currentExperience = 0;
     private int[] levelUp = new int[] {10000, 20000, 30000, 40000, 0}; //zero is just so no errors happen
 
+    void Start()
+    {
+        setShopItems();
+    }
+
     public int Level
     {
         get { return level; }
@@ -47,7 +52,12 @@ public class PlayerStats : MonoBehaviour {
             currentExperience -= levelUp[level - 1];
             level++;
         }
-        
+
+        setShopItems();
+    }
+
+    void setShopItems()
+    {
         foreach (Item material in ItemCollection.FilterItemList("material"))
         {
             if (material.level <= level)
