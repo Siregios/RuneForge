@@ -110,8 +110,6 @@ public static class ItemCollection
     public static List<Item> FilterItemList(string filter)
     {
         string lowerFilter = filter.Trim().ToLower();
-        if (lowerFilter.Contains("all"))
-            return itemList;
 
         return FilterSpecificList(itemList, filter);
     }
@@ -120,16 +118,15 @@ public static class ItemCollection
     {
         string lowerFilter = filter.Trim().ToLower().Replace(" ", string.Empty);
 
-        if (lowerFilter.Contains("all"))
-            return itemList;
-
         List<Item> result = new List<Item>();
 
         foreach (Item item in specificList)
         {
-            if (item.level <= GameObject.Find("MasterGameManager(Clone)").GetComponent<PlayerStats>().Level)
+            if (item.level <= MasterGameManager.instance.playerStats.Level)
             {
-                if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
+                if (lowerFilter == "all")
+                    result.Add(item);
+                else if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
                     result.Add(item);
                 else if (lowerFilter.Contains("baseproduct") && (item.Class == "Product" || item.Class == "Rune"))
                     result.Add(item);

@@ -8224,6 +8224,30 @@ Prefab:
       propertyPath: menuBar
       value: 
       objectReference: {fileID: 165569158}
+    - target: {fileID: 114000010017554806, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 4a5c1f9bfa0899e42adba592ec3649b1,
+        type: 3}
+    - target: {fileID: 114000013848616844, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 4a5c1f9bfa0899e42adba592ec3649b1,
+        type: 3}
+    - target: {fileID: 114000012095835326, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 4a5c1f9bfa0899e42adba592ec3649b1,
+        type: 3}
+    - target: {fileID: 114000013071267538, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 4a5c1f9bfa0899e42adba592ec3649b1,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 702e5d6228254d94c99fa6d13a301d63, type: 2}
   m_IsPrefabParent: 0
@@ -9157,7 +9181,7 @@ Prefab:
     - target: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisplayInventory
+      value: DisplayFrontPage
       objectReference: {fileID: 0}
     - target: {fileID: 114477378653707452, guid: 3013588e6f6cfa445a4902bc37d9c4b1,
         type: 2}
@@ -10844,7 +10868,7 @@ Prefab:
         type: 2}
       propertyPath: itemButton
       value: 
-      objectReference: {fileID: 1000011658806744, guid: 6cd9da05b5c938e4e9692cb3ab7629db,
+      objectReference: {fileID: 1000011658806744, guid: 444f756619825bf4a889fb04dbb5ff8f,
         type: 2}
     - target: {fileID: 114857382842785726, guid: 438c6d38f7b07094da7ff88ff55a613d,
         type: 2}
