@@ -11,6 +11,7 @@ public class ResultScreen : MonoBehaviour
     public GameObject scoreFill;
     public GameObject starFill;
     public GameObject progressFill;
+    public Image expFill;
     public GameObject Minigame;
     public Text scoreText;
     public GameObject qualityStamp;
@@ -33,7 +34,8 @@ public class ResultScreen : MonoBehaviour
     bool finish = false;
     bool canClick = false;
     bool nextItem = false;
-    float expToLevel = 99999;
+    float expToLevel;
+    float previousLevel;
     AudioManager audioManager;
     AudioSource audioManagerObject;
     int workOrderIndex = 0;
@@ -50,6 +52,9 @@ public class ResultScreen : MonoBehaviour
 
     void Start()
     {
+        //set exp requirement
+        expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
+        previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
         //Sets all necessary variables.
         //Sounds
         sfxSources = this.gameObject.GetComponents<AudioSource>();
@@ -102,6 +107,8 @@ public class ResultScreen : MonoBehaviour
                 silver.fillAmount = Mathf.Clamp(((float)totalScore - st) / (hq - st), 0f, 1f);
                 gold.fillAmount = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
+                //Sets expfill
+                expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.CurrentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
                 //Sets text of minigames and alpha
                 Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
                 currentMinigame.text = currentOrder.minigameList[currentOrder.currentStage - 1].Key + ": " + currentOrder.minigameList[currentOrder.currentStage - 1].Value;
@@ -110,10 +117,11 @@ public class ResultScreen : MonoBehaviour
                 scoreText.text = currentOrder.score.ToString();
                 setAlphaText(scoreText, 1);
                 //Set star alpha and size
-                if (bronze.fillAmount == 1) {
+                if (bronze.fillAmount == 1)
+                {
                     setAlphaImage(star1.GetComponent<Image>(), 1);
                     star1.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
-                   }
+                }
                 if (silver.fillAmount == 1)
                 {
                     setAlphaImage(star2.GetComponent<Image>(), 1);
@@ -164,7 +172,7 @@ public class ResultScreen : MonoBehaviour
                 nextItem = true;
                 //Checks if its the last item in the order list
                 if (checkLast)
-                    finish = true;                
+                    finish = true;
             }
         }
     }
@@ -178,7 +186,7 @@ public class ResultScreen : MonoBehaviour
         while (GetComponent<Image>().color.a <= 1)
         {
             alpha += Time.unscaledDeltaTime / time;
-            setAlphaImage(GetComponent<Image>(), alpha);            
+            setAlphaImage(GetComponent<Image>(), alpha);
             yield return new WaitForEndOfFrame();
         }
         //Afterwards start the next animation and allow player to click to skip
@@ -208,6 +216,9 @@ public class ResultScreen : MonoBehaviour
 
             //Stars
             starFill.GetComponent<CanvasGroup>().alpha += Time.unscaledDeltaTime / time;
+
+            //exp fill
+            setAlphaImage(expFill, alpha);
         }
         StartCoroutine(FadeScoreFill());
     }
@@ -252,7 +263,7 @@ public class ResultScreen : MonoBehaviour
         while (currentMinigame.color.a < 1)
         {
             alpha += Time.unscaledDeltaTime / time;
-            setAlphaText(currentMinigame, alpha);            
+            setAlphaText(currentMinigame, alpha);
             yield return new WaitForEndOfFrame();
         }
         StartCoroutine(scoreTextFade());
@@ -268,7 +279,34 @@ public class ResultScreen : MonoBehaviour
             scoreText.color = temp;
             yield return new WaitForEndOfFrame();
         }
-        //temp until exp fill is done
+        StartCoroutine(EXPFill());
+    }
+
+    IEnumerator EXPFill()
+    {
+        //EFREN: we probably do need an exp fill sound tho....idk
+        Debug.Log("Current Exp: " + MasterGameManager.instance.playerStats.CurrentExperience);
+        Debug.Log("Previous Level: " + previousLevel);
+        Debug.Log("EXP to Level: " + expToLevel);
+        float exp = (MasterGameManager.instance.playerStats.CurrentExperience - previousLevel) / (expToLevel - previousLevel);
+        while (expFill.fillAmount < exp)
+        {
+            expFill.fillAmount = Mathf.MoveTowards(expFill.fillAmount, exp, Time.unscaledDeltaTime * fillSpeed);
+            if (1 - expFill.fillAmount <= 0.015f)
+            {
+                if (exp > 1)
+                {
+                    expFill.fillAmount = 0;
+                    exp -= 1;
+                    MasterGameManager.instance.playerStats.incrementLevel();
+                    expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
+                    previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
+                }
+                else
+                    expFill.fillAmount = 1;
+            }            
+            yield return new WaitForEndOfFrame();
+        }
         if (checkLast)
             finish = true;
         if (currentOrder.isComplete)
@@ -276,17 +314,9 @@ public class ResultScreen : MonoBehaviour
         else
         {
             workOrderIndex++;
-            nextItem = true;            
+            nextItem = true;
         }
-        //StartCoroutine(expFill());
     }
-
-    //IEnumerator expFill()
-    //{
-    //EFREN: we probably do need an exp fill sound tho.... idk
-    //    float exp = Mathf.Clamp(MasterGameManager.instance.playerStats.TotalExperience / expToLevel, 0f, 1f);
-    //    while ()
-    //}
 
     IEnumerator DebateQuality()
     {
@@ -322,7 +352,7 @@ public class ResultScreen : MonoBehaviour
                 roll = true;
             }
         }
-        
+
         //jitter variables
         float change = realFill.fillAmount + 0.02f;
         float unchange = realFill.fillAmount - 0.02f;
@@ -356,7 +386,7 @@ public class ResultScreen : MonoBehaviour
     //This sets quality after jitter
     IEnumerator TrueQuality(Image fill, bool roll)
 
-    {        
+    {
         if (roll)
         {
             while (fill.fillAmount < 1)
@@ -417,7 +447,7 @@ public class ResultScreen : MonoBehaviour
         }
         //THIS IS THE END, so set next item and workorderindex
         workOrderIndex++;
-        nextItem = true;      
+        nextItem = true;
     }
 
     //Moves fill amount for score... not going to explain this its a lot
@@ -508,7 +538,7 @@ public class ResultScreen : MonoBehaviour
             scoreText.color = temp;
 
             //minigame text lines reset
-            int noAlpha = currentOrder.currentStage-1;
+            int noAlpha = currentOrder.currentStage - 1;
             foreach (Transform child in Minigame.transform)
             {
                 if (noAlpha == 0)

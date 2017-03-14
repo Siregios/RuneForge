@@ -59,6 +59,7 @@ public class SortGameManager : MonoBehaviour
 
         if (timer.timeEnd)
         {
+            resetPosition();
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
 

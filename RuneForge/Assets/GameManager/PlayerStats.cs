@@ -18,6 +18,23 @@ public class PlayerStats : MonoBehaviour {
         get { return currentExperience; }
     }
 
+    public int nextLevelUp()
+    {
+        for (int i = 0; i < levelUp.Length; i++)
+            if (currentExperience < levelUp[i])
+                return levelUp[i];
+        return levelUp[levelUp.Length - 1];
+    }
+
+    public int previousLevelUp()
+    {
+        for (int i = 0; i < levelUp.Length; i++)
+            if (nextLevelUp() == levelUp[i])
+                if (i != 0)
+                    return levelUp[i];
+        return 0;
+    }
+
     /// <summary>
     /// Adds "increment" to the current player level
     /// </summary>
@@ -45,6 +62,6 @@ public class PlayerStats : MonoBehaviour {
     public void gainExperience(int experienceGained)
     {
         currentExperience += experienceGained;
-        incrementLevel();
+        //incrementLevel(); <-- This is done in result screen now
     }
 }

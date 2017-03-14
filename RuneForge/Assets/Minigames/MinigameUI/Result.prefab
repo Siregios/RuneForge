@@ -704,6 +704,7 @@ MonoBehaviour:
   scoreFill: {fileID: 1150754164187580}
   starFill: {fileID: 1795070259033164}
   progressFill: {fileID: 1836710641254748}
+  expFill: {fileID: 114970695708693006}
   Minigame: {fileID: 1171637810299634}
   scoreText: {fileID: 114322655995258874}
   qualityStamp: {fileID: 1763742565984650}
