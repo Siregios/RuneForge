@@ -7323,7 +7323,7 @@ Prefab:
     - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224000013399009392, guid: 702e5d6228254d94c99fa6d13a301d63,
         type: 2}
@@ -7713,6 +7713,36 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1267561640}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ButtonActivateOverride
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010708695580, guid: 702e5d6228254d94c99fa6d13a301d63,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 702e5d6228254d94c99fa6d13a301d63, type: 2}
