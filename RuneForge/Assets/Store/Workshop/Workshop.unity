@@ -3286,7 +3286,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1964228725}
-    - target: {fileID: 114889388559940318, guid: 3edef61b02e81a249932bbe5a25265b0,
+    - target: {fileID: 114704987995186366, guid: 3edef61b02e81a249932bbe5a25265b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3301,7 +3301,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1964228725}
-    - target: {fileID: 114704987995186366, guid: 3edef61b02e81a249932bbe5a25265b0,
+    - target: {fileID: 114889388559940318, guid: 3edef61b02e81a249932bbe5a25265b0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3309,30 +3309,6 @@ Prefab:
     - target: {fileID: 1000012980013992, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
       propertyPath: m_Name
       value: MinigamePage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181160123951314, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1053106721383964, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1174807463996802, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410477428107818, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1721689825499942, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012980013992, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3edef61b02e81a249932bbe5a25265b0, type: 2}
