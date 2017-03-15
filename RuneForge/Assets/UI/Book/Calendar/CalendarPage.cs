@@ -38,11 +38,15 @@ public class CalendarPage : MonoBehaviour {
     void SetExpBar()
     {
         PlayerStats playerStats = MasterGameManager.instance.playerStats;
-        levelText.text = playerStats.level.ToString();
-        int experience = playerStats.currentExperience;
-        int experienceDelta = playerStats.nextLevelUp() - playerStats.previousLevelUp();
-        float expPercentage = (float)experience / (float)experienceDelta;
-        expBar.fillAmount = Mathf.Clamp(expPercentage, 0, 1);
+        if (levelText != null)
+            levelText.text = playerStats.level.ToString();
+        if (expBar != null)
+        {
+            int experience = playerStats.currentExperience;
+            int experienceDelta = playerStats.nextLevelUp() - playerStats.previousLevelUp();
+            float expPercentage = (float)experience / (float)experienceDelta;
+            expBar.fillAmount = Mathf.Clamp(expPercentage, 0, 1);
+        }
     }
 
     void CircleCurrentDate()

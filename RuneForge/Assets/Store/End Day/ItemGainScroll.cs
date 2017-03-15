@@ -22,6 +22,7 @@ public class ItemGainScroll : MonoBehaviour {
             if (PlayerInventory.inventory.inventoryDict[i] > MasterGameManager.instance.storeDayStats.inventory.inventoryDict[i])
             {
                 GameObject item = Instantiate(itemButton) as GameObject;
+                item.GetComponent<EndDayItemImage>().item = i;
                 item.GetComponent<RectTransform>().position = new Vector2(xPos, yPos);
                 xPos += xPad;
                 itemCurrentRow++;

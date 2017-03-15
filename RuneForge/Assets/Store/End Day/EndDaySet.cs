@@ -14,8 +14,11 @@ public class EndDaySet : MonoBehaviour {
     public Image fader;
     bool corRun = true;
     bool noExit = false;
+
     void Start()
     {
+        MasterGameManager.instance.uiManager.uiOpen = true;
+
         StoreDayStats sdt = MasterGameManager.instance.storeDayStats;
         PlayerStats pt = MasterGameManager.instance.playerStats;
         level.text = "Levels Gained: " + (pt.level - sdt.level).ToString();

@@ -6,6 +6,7 @@ public class SaveManager : MonoBehaviour {
 
     public void SaveData()
     {
+        PlayerPrefs.SetString("@General: Scene", MasterGameManager.instance.sceneManager.currentScene);
         SavePlayerStats();
         SavePlayerInventory();
         SaveActionClock();
@@ -18,6 +19,8 @@ public class SaveManager : MonoBehaviour {
         LoadPlayerStats();
         LoadPlayerInventory();
         LoadActionClock();
+        if (PlayerPrefs.HasKey("@General: Scene"))
+            MasterGameManager.instance.sceneManager.LoadScene(PlayerPrefs.GetString("@General: Scene"));
     }
 
     void SavePlayerStats()

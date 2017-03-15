@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 
     public void LoadGame()
     {
-
+        MasterGameManager.instance.saveManager.LoadData();
     }
 
     public void Quit()
