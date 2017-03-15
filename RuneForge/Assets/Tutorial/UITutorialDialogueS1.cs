@@ -124,7 +124,7 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             ItemCollection.itemDict["Enchanted Weapon"].level = 1;
             ItemCollection.itemDict["Enchanted Weapon"].requiredAttributes["Fire"] = 3;
             recipePinButton.enabled = false;
-            StartCoroutine(StupidClumsyFix());
+            //StartCoroutine(StupidClumsyFix());
         }
 
         if(index == 18)
@@ -149,8 +149,8 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
         }
     }
 
-    IEnumerator StupidClumsyFix() {
-        yield return new WaitForEndOfFrame();
-        itemList.DisplayNewFilter("Enchanted Weapon");
-    }
+    //IEnumerator StupidClumsyFix() {
+    //    yield return new WaitForEndOfFrame();
+    //    itemList.DisplayNewFilter("Enchanted Weapon");
+    //}
 }

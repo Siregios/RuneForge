@@ -36,7 +36,8 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             //    dialogueManager.ButtonActivateFalse(currentIndex + 1);
             dialogueManager.ButtonActivateFalse(currentIndex+1);
             currentIndex += 1;
-            itemList.DisplayNewFilter("Water Rune");
+            //itemList.DisplayNewFilter("Water Rune");
+            itemList.ModifyDefaultFilter("Base Products : Water Rune");
             //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             //extraFilter.extraFilters[0] = "Water Rune";
             //extraFilter.applyExtraFilters();
@@ -66,7 +67,8 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             dialogueManager.changeButtonActive(false);
             //clipboard.gameObject.GetComponent<Image>().color = clipboard.colors.normalColor;
             dialogueManager.dialogueIndex = currentIndex;
-            itemList.DisplayNewFilter("None");
+            //itemList.DisplayNewFilter("None");
+            itemList.ModifyDefaultFilter("None");
             //ItemList_ExtraFilter extraFilter = book.transform.FindChild("Recipe").FindChild("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             //extraFilter.extraFilters[0] = "None";
             //extraFilter.applyExtraFilters();
@@ -74,11 +76,11 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
 
     }
 
-    IEnumerator StupidClumsyFix()
-    {
-        yield return new WaitForEndOfFrame();
-        itemList.DisplayNewFilter("Earth Rune");
-    }
+    //IEnumerator StupidClumsyFix()
+    //{
+    //    yield return new WaitForEndOfFrame();
+    //    itemList.DisplayNewFilter("Earth Rune");
+    //}
 
     public override void ButtonActivateOverride(int index)
     {
@@ -93,7 +95,7 @@ public class UITutorialDialogueWS1 : UITutorialDialogue {
             currentIndex += 2;
             recipe.enabled = false;
             dialogueManager.changeButtonActive(false);
-            StartCoroutine(StupidClumsyFix());  //Have to wait a small fraction of time to let itemListUI call its start function before making it display a new filter
+            //StartCoroutine(StupidClumsyFix());  //Have to wait a small fraction of time to let itemListUI call its start function before making it display a new filter
             //ItemList_ExtraFilter extraFilter = GameObject.Find("ItemListPanel (Product)").GetComponent<ItemList_ExtraFilter>();
             //extraFilter.extraFilters[0] = "Earth Rune";
             //extraFilter.applyExtraFilters();

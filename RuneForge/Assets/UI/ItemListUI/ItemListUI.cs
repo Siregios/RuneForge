@@ -58,9 +58,7 @@ public class ItemListUI : MonoBehaviour
 
     void Start()
     {
-        defaultList = ItemCollection.FilterItemList(defaultFilter);
-        filterString = defaultFilter;
-        DisplayNewFilter(filterString);
+        ModifyDefaultFilter(defaultFilter);
     }
 
     void LateUpdate()
@@ -189,5 +187,44 @@ public class ItemListUI : MonoBehaviour
         //currentPage = 0;
         DisplayPage(filterString);
         searchInput.text = this.filterString;
+    }
+
+    public void ModifyDefaultFilter(string newFilter)
+    {
+        this.defaultFilter = newFilter;
+
+        if (defaultFilter.Contains(":"))
+        {
+            string[] splitFilter = defaultFilter.Split(':');
+            string primaryFilter = splitFilter[0].Trim();
+            string secondaryFilter = splitFilter[1].Trim();
+            defaultList = AdvancedFilter(primaryFilter, secondaryFilter);
+            filterString = secondaryFilter;
+        }
+        else
+        {
+            defaultList = ItemCollection.FilterItemList(defaultFilter);
+            filterString = defaultFilter;
+        }
+
+        DisplayNewFilter(filterString);
+    }
+
+    /// <summary>
+    /// Filters ItemCollection.itemList by primary filter.
+    /// Then filters that result by secondaryFilter
+    /// </summary>
+    List<Item> AdvancedFilter(string primaryFilter, string secondaryFilter)
+    {
+        List<Item> baseList = ItemCollection.FilterItemList(primaryFilter);
+        List<Item> resultList = new List<Item>();
+
+        string[] secondaryFilterList = secondaryFilter.Split(',');
+        foreach (string filter in secondaryFilterList)
+        {
+            resultList.AddRange(ItemCollection.FilterSpecificList(baseList, filter));
+        }
+
+        return resultList;
     }
 }

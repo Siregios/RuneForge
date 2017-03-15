@@ -10964,7 +10964,7 @@ Prefab:
     - target: {fileID: 114857382842785726, guid: 438c6d38f7b07094da7ff88ff55a613d,
         type: 2}
       propertyPath: defaultFilter
-      value: Base Products
+      value: Base Products:Enchanted Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 114000011955474778, guid: 438c6d38f7b07094da7ff88ff55a613d,
         type: 2}
