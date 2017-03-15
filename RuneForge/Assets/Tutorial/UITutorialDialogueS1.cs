@@ -32,8 +32,9 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
     {
         currentIndex = startIndex;
         gameManager = MasterGameManager.instance;
-        gameManager.questGenerator.currentQuests.Add(new Quest(ItemCollection.itemDict["Earth Rune"], 1));
         gameManager.questGenerator.currentQuests.Add(new Quest(ItemCollection.itemDict["Water Rune"], 1));
+        gameManager.questGenerator.currentQuests.Add(new Quest(ItemCollection.itemDict["Earth Rune"], 1));
+        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Air Rune"], 0);
     }
 
     public override void handleButtonPush(Item itemInfo)

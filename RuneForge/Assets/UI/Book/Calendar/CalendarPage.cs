@@ -42,7 +42,7 @@ public class CalendarPage : MonoBehaviour {
             levelText.text = playerStats.level.ToString();
         if (expBar != null)
         {
-            int experience = playerStats.currentExperience;
+            int experience = playerStats.currentExperience - playerStats.previousLevelUp();
             int experienceDelta = playerStats.nextLevelUp() - playerStats.previousLevelUp();
             float expPercentage = (float)experience / (float)experienceDelta;
             expBar.fillAmount = Mathf.Clamp(expPercentage, 0, 1);
@@ -84,8 +84,8 @@ public class CalendarPage : MonoBehaviour {
         if (active)
         {
             HoverInfo.Load();
-            HoverInfo.instance.DisplayText(expBar.gameObject, string.Format("Level: {0}\nExperience: {1}", 
-                MasterGameManager.instance.playerStats.level, MasterGameManager.instance.playerStats.currentExperience));
+            HoverInfo.instance.DisplayText(expBar.gameObject, string.Format("Level: {0}\nExperience: {1}\nNext Level: {2}", 
+                MasterGameManager.instance.playerStats.level, MasterGameManager.instance.playerStats.currentExperience, MasterGameManager.instance.playerStats.nextLevelUp()));
         }
         else
         {
