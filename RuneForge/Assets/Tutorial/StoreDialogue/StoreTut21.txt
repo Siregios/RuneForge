@@ -1,0 +1,3 @@
+[RPort:Fairy, RName:Minamo]
+
+Ok, that should be all we need to do in the shop, let's head back.

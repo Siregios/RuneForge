@@ -12,6 +12,7 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
     public Button menuButton;
     public Button recipeBackButton;
     public Button recipePinButton;
+    public Button shopBuyButton;
     public GameObject customer;
     public GameObject shopkeep;
     public ItemListUI itemList;
@@ -133,6 +134,18 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             recipeBackButton.enabled = false;
             Book.GetComponent<CloseOnEscape>().enabled = true;
             shopkeep.SetActive(true);
+        }
+
+        if(index == 24)
+        {
+            currentIndex = index;
+            Book.GetComponent<CloseOnEscape>().enabled = false;
+            dialogueManager.ButtonActivateFalse(currentIndex);
+        }
+
+        if(index == 27)
+        {
+
         }
     }
 
