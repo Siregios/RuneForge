@@ -563,6 +563,7 @@ public class ResultScreen : MonoBehaviour
         st = (float)MasterGameManager.instance.SDThreshold * order.requiredStages;
         hq = (float)MasterGameManager.instance.HQThreshold * order.requiredStages;
         mc = (float)MasterGameManager.instance.MCThreshold * order.requiredStages;
+        expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
         currentOrder = order;
         bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
         silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);

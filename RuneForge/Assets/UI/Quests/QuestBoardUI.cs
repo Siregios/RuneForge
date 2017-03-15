@@ -9,7 +9,7 @@ public class QuestBoardUI : MonoBehaviour
     [HideInInspector]
     public int currentDisplayedDay = 0;
     public List<GameObject> questObjects;
-    float xPos = 150, yPos = 120, padY = -50;
+    float xPos = 150, yPos = 120, padY = -60;
     int objCount;
     public ItemListUI productList;
 
@@ -62,7 +62,7 @@ public class QuestBoardUI : MonoBehaviour
             newQuest.GetComponent<QuestNote>().quest = quest;
             questObjects.Add(newQuest);
             //newQuest.transform.SetAsFirstSibling();
-            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = "Need: " + quest.amountProduct.ToString() + "x " + quest.product.name;
+            newQuest.transform.FindChild("QuestName").GetComponent<Text>().text = quest.amountProduct.ToString() + " " + quest.product.name;
             newQuest.transform.FindChild("QuestIcon").GetComponent<Image>().sprite = quest.product.icon;
             newQuest.transform.FindChild("QuestGold").transform.FindChild("GoldInfo").GetComponent<Text>().text = "x" + quest.gold;
             newQuest.transform.FindChild("QuestIngredient").GetComponent<Image>().sprite = quest.ingredient.icon;
