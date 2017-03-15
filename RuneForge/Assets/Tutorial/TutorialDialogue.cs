@@ -129,12 +129,14 @@ public class TutorialDialogue : MonoBehaviour
     //Button Use
     public void ButtonActivateFalse(int index)
     {
+        dialogueScript.checkYesJuliet = true;
         ActivateDialogue(index, false);
         dialogueIndex = index + 1;
     }
 
     public void ButtonActivateTrue(int index)
     {
+        dialogueScript.checkYesJuliet = true;
         ActivateDialogue(index, true);
         dialogueIndex = index + 1;
     }

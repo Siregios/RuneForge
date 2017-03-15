@@ -97,6 +97,7 @@ public class DialogueHandler : MonoBehaviour {
 
     private bool typing = false;
 
+    public bool checkYesJuliet = false;
     //Change for fine tuning
     KeyCode proceedKey = KeyCode.Space;                             //Proceed with dialogue at normal speed    
     KeyCode skipKey = KeyCode.Return;                           //Bring up skip scene panel
@@ -242,13 +243,28 @@ public class DialogueHandler : MonoBehaviour {
     }
 
     void WatchForProceed(){
-        if ((Input.GetKeyDown(proceedKey) || Input.GetMouseButtonDown(0))&&!isTyping){
+        if ((Input.GetKeyDown(proceedKey)&&!isTyping)){
             itemImage.SetActive(false);
             ProceedDialogue();
         }
-        else if((Input.GetKeyDown(proceedKey) || Input.GetMouseButtonDown(0))&&isTyping){
-            textShown = dialogueArray[currentLine].Length;
+        else if (Input.GetMouseButtonDown(0))
+        {
+            float timer = 5f;
+            if (checkYesJuliet == true)
+            {
+                while (timer > 0)
+                    timer -= Time.deltaTime;
+                checkYesJuliet = false;
+            }
+            else
+            {
+                itemImage.SetActive(false);
+                ProceedDialogue();
+            }
         }
+        //else if((Input.GetKeyDown(proceedKey) || Input.GetMouseButtonDown(0))&&isTyping){
+        //    textShown = dialogueArray[currentLine].Length;
+        //}
     }
 
     void WatchForCardQueue()
