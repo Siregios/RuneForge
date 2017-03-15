@@ -12,8 +12,8 @@ public class TutorialQuestBoardUI : QuestBoardUI {
         currentIndex = UIDialogueHandler.currentIndex;
         base.turnInQuest(quest, item);
         UIDialogueHandler.ButtonActivateOverride(++currentIndex);
+        PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Sword"], 0);
 
-        
 
     }
 }
