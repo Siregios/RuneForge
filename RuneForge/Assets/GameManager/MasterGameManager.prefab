@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114000011377930820}
   - component: {fileID: 114400462855156652}
   - component: {fileID: 114453423006246880}
+  - component: {fileID: 114909744437385246}
   m_Layer: 0
   m_Name: MasterGameManager
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   uiManager: {fileID: 114000011377930820}
   saveManager: {fileID: 114400462855156652}
   upgradeManager: {fileID: 114453423006246880}
+  storeDayStats: {fileID: 114909744437385246}
   inputActive: 1
 --- !u!114 &114000011377930820
 MonoBehaviour:
@@ -181,5 +183,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c3589e30ac0ac145b6db660dbf51781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114909744437385246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013527338524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40476fbddf702ed4c97e5187d22fd231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

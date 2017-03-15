@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class MinigameCountdown : MonoBehaviour {
 
     int max = 3;
-    int count;
     public GameObject[] activate;
+    public AudioSource[] countdown;
 	void Start () {
         StartGame(false);
         StartCoroutine(Countdown(max));
@@ -18,9 +18,18 @@ public class MinigameCountdown : MonoBehaviour {
         while (count > -1)
         {
             if (count == 3)
-                GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime+0.25f);
+                countdown[0].Play();
+            if (count == 2)
+                countdown[1].Play();
+            if (count == 1)
+                countdown[2].Play();
             if (count == 0)
+            {
                 GetComponent<Text>().text = "Go!";
+                countdown[0].PlayScheduled(.15f);
+                countdown[1].Play();
+                countdown[2].Play();
+            }
             else
                 GetComponent<Text>().text = count.ToString();
             count--;

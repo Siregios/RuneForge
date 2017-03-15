@@ -32,6 +32,7 @@ public class MasterGameManager : MonoBehaviour
     public UIManager uiManager;
     public SaveManager saveManager;
     public UpgradeManager upgradeManager;
+    public StoreDayStats storeDayStats;
 
     public bool inputActive = true;
 

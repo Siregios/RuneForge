@@ -128,6 +128,7 @@ public class QuestBoardUI : MonoBehaviour
             PlayerInventory.inventory.AddItem(qValues.ingredient, qValues.amountIngredient + addIngr);
             PlayerInventory.inventory.SubtractItem(item.GetComponent<ItemButton>().item, qValues.amountProduct);
             PlayerInventory.money += Mathf.RoundToInt(qValues.gold * goldMultiplier);
+            MasterGameManager.instance.storeDayStats.quests++;
             Destroy(quest);
             productList.RefreshPage();
         }
