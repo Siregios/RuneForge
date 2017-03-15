@@ -128,6 +128,8 @@ public class ResultScreen : MonoBehaviour
                 //Sets alpha of total score text
                 scoreText.text = currentOrder.score.ToString();
                 setAlphaText(scoreText, 1);
+                foreach (GameObject p in progressTicks)
+                    setAlphaImage(p.GetComponent<Image>(), 1);
                 //Set star alpha and size
                 if (bronze.fillAmount == 1)
                 {
