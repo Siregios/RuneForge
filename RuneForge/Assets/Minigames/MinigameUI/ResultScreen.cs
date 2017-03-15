@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class ResultScreen : MonoBehaviour
@@ -15,6 +16,7 @@ public class ResultScreen : MonoBehaviour
     public GameObject Minigame;
     public Text scoreText;
     public GameObject qualityStamp;
+    public GameObject progressTick;
     float time = 1.5f;
     int minigameScore, totalScore;
     float st = 500, hq = 1000, mc = 1500;
@@ -39,6 +41,7 @@ public class ResultScreen : MonoBehaviour
     AudioManager audioManager;
     AudioSource audioManagerObject;
     int workOrderIndex = 0;
+    List<GameObject> progressTicks = new List<GameObject>();
 
     //float transition = 1.5f;
 
@@ -107,8 +110,17 @@ public class ResultScreen : MonoBehaviour
                 silver.fillAmount = Mathf.Clamp(((float)totalScore - st) / (hq - st), 0f, 1f);
                 gold.fillAmount = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
-                //Sets expfill
-                expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
+                //Sets expfill and levels up character
+                float exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
+                while (exp >= 1)
+                {
+                    MasterGameManager.instance.playerStats.incrementLevel();
+                    expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
+                    previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
+                    exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
+                }
+                expFill.fillAmount = exp;
+                setAlphaImage(expFill, 1);
                 //Sets text of minigames and alpha
                 Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
                 currentMinigame.text = currentOrder.minigameList[currentOrder.currentStage - 1].Key + ": " + currentOrder.minigameList[currentOrder.currentStage - 1].Value;
@@ -181,6 +193,10 @@ public class ResultScreen : MonoBehaviour
     IEnumerator FadeResults()
     {
         Time.timeScale = 0;
+        if (workOrderIndex == 0)
+            progressTickAdder(currentOrder, 0);
+        else
+            progressTickAdder(currentOrder, 1);
         //Changes alpha gradually to result screen fader
         float alpha = GetComponent<Image>().color.a;
         while (GetComponent<Image>().color.a <= 1)
@@ -219,6 +235,10 @@ public class ResultScreen : MonoBehaviour
 
             //exp fill
             setAlphaImage(expFill, alpha);
+
+            //progress ticks
+            foreach (GameObject tick in progressTicks)
+                setAlphaImage(tick.GetComponent<Image>(), alpha);
         }
         StartCoroutine(FadeScoreFill());
     }
@@ -285,9 +305,6 @@ public class ResultScreen : MonoBehaviour
     IEnumerator EXPFill()
     {
         //EFREN: we probably do need an exp fill sound tho....idk
-        Debug.Log("Current Exp: " + MasterGameManager.instance.playerStats.currentExperience);
-        Debug.Log("Previous Level: " + previousLevel);
-        Debug.Log("EXP to Level: " + expToLevel);
         float exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
         while (expFill.fillAmount < exp)
         {
@@ -297,14 +314,14 @@ public class ResultScreen : MonoBehaviour
                 if (exp > 1)
                 {
                     expFill.fillAmount = 0;
-                    exp -= 1;
                     MasterGameManager.instance.playerStats.incrementLevel();
                     expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
                     previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
+                    exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
                 }
                 else
                     expFill.fillAmount = 1;
-            }            
+            }
             yield return new WaitForEndOfFrame();
         }
         if (checkLast)
@@ -329,7 +346,8 @@ public class ResultScreen : MonoBehaviour
         {
             if (bronze.fillAmount >= .99f)
                 realFill = silver;
-            else {
+            else
+            {
                 realFill = bronze;
                 roll = true;
             }
@@ -338,7 +356,8 @@ public class ResultScreen : MonoBehaviour
         {
             if (silver.fillAmount >= .99f)
                 realFill = gold;
-            else {
+            else
+            {
                 realFill = silver;
                 roll = true;
             }
@@ -347,15 +366,16 @@ public class ResultScreen : MonoBehaviour
         {
             if (gold.fillAmount >= .99f)
                 StartCoroutine(Stamp());
-            else {
+            else
+            {
                 realFill = gold;
                 roll = true;
             }
         }
 
         //jitter variables
-        float change = realFill.fillAmount + 0.02f;
-        float unchange = realFill.fillAmount - 0.02f;
+        float change = Mathf.Clamp(realFill.fillAmount + 0.02f, 0f, 1f);
+        float unchange = Mathf.Clamp(realFill.fillAmount - 0.02f, 0f, 1f);
         bool changeBool = false;
         float timer = 2f;
         if (realFill == null)
@@ -553,21 +573,27 @@ public class ResultScreen : MonoBehaviour
             star1.GetComponent<Image>().color = temp;
             star2.GetComponent<Image>().color = temp;
             star3.GetComponent<Image>().color = temp;
+
+            //progress tick reset
+            foreach (GameObject tick in progressTicks)
+            {
+                Destroy(tick);
+            }
+            progressTicks.Clear();
         }
         if (order != MasterGameManager.instance.workOrderManager.currentWorkOrders[MasterGameManager.instance.workOrderManager.currentWorkOrders.Count - 1])
             checkLast = false;
         else
             checkLast = true;
-
         /* Calculate total thresholds for entire product. (e.g. if requires 3 games, then st = 3*1000. if 4 games, st = 4*1000) */
         st = (float)MasterGameManager.instance.SDThreshold * order.requiredStages;
         hq = (float)MasterGameManager.instance.HQThreshold * order.requiredStages;
         mc = (float)MasterGameManager.instance.MCThreshold * order.requiredStages;
-        expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
         currentOrder = order;
         bronze.fillAmount = Mathf.Clamp(order.score / st, 0, 1);
         silver.fillAmount = Mathf.Clamp((order.score - st) / (hq - st), 0, 1);
         gold.fillAmount = Mathf.Clamp((order.score - hq) / (mc - hq), 0, 1);
+        expFill.fillAmount = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
         if (bronze.fillAmount == 1)
             star1.GetComponent<Image>().color = starAlpha;
         if (silver.fillAmount == 1)
@@ -582,6 +608,9 @@ public class ResultScreen : MonoBehaviour
         }
         order.UpdateOrder(MasterGameManager.instance.sceneManager.currentScene, minigameScore);
         MasterGameManager.instance.playerStats.gainExperience(minigameScore);
+        //if (workOrderIndex != 0)
+        //    expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
+        //    previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
         requiredStage = order.requiredStages;
         currentStage = order.currentStage;
         totalScore = order.score;
@@ -610,6 +639,18 @@ public class ResultScreen : MonoBehaviour
         text.color = temp;
     }
 
+    void progressTickAdder(WorkOrder order, int alpha)
+    {
+        int startX = 165, startY = -50, padX = 315 / order.requiredStages;
+        for (int i = 0; i < order.requiredStages; i++)
+        {
+            progressTicks.Add(Instantiate(progressTick));
+            progressTicks[i].GetComponent<RectTransform>().localPosition = new Vector2(startX, startY);
+            startX -= padX;
+            progressTicks[i].transform.SetParent(transform, false);
+            setAlphaImage(progressTicks[i].GetComponent<Image>(), alpha);
+        }
+    }
     //Loads to next scene
     public void LoadScene()
     {
