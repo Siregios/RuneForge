@@ -138,7 +138,7 @@ public static class ItemCollection
                     result.Add(item);
                 else if (lowerFilter == "rune" && item.ingredientType.Contains("Rune"))
                     result.Add(item);
-                else if (item.name.ToLower().Replace(" ", string.Empty).Contains(lowerFilter) || item.ingredientType.ToLower().Contains(lowerFilter))
+                else if (item.name.ToLower().Replace(" ", string.Empty).Contains(lowerFilter) || item.ingredientType.ToLower().Replace(" ", string.Empty).Contains(lowerFilter))
                     result.Add(item);
             }
         }

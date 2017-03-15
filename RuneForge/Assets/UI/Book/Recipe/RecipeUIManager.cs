@@ -64,10 +64,25 @@ public class RecipeUIManager : MonoBehaviour {
     {
         productItemList.gameObject.SetActive(false);
         ingredientItemList.gameObject.SetActive(true);
+        ingredientItemList.ModifyDefaultFilter(recipeStringFilter(productItem.recipe));
         recipePage.ProvideToAttrBars(providedAttributes);
         EnablePinButtons(!MasterGameManager.instance.workOrderManager.IsFull());
         cancelButton.gameObject.SetActive(true);
+    }
 
+    string recipeStringFilter(Dictionary<string, int> recipe)
+    {
+        string resultFilter = "Ingredient:";
+
+        foreach (string key in recipe.Keys)
+        {
+            resultFilter += string.Format("{0},", key);
+        }
+
+        if (resultFilter[resultFilter.Length - 1] == ',')
+            resultFilter = resultFilter.Substring(0, resultFilter.Length - 1); //Remove the last comma at the end.
+
+        return resultFilter;
     }
 
     bool AttributesMet()

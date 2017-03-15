@@ -168,7 +168,8 @@ public class ItemListUI : MonoBehaviour
     {
         this.filterString = filter;
 
-        List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
+        //List<Item> filteredItems = ItemCollection.FilterSpecificList(defaultList, filter);
+        List<Item> filteredItems = FilterSecondaryList(defaultList, filter);
         itemList.Clear();
 
         if (!displayZeroCountItems)
@@ -217,6 +218,12 @@ public class ItemListUI : MonoBehaviour
     List<Item> AdvancedFilter(string primaryFilter, string secondaryFilter)
     {
         List<Item> baseList = ItemCollection.FilterItemList(primaryFilter);
+
+        return FilterSecondaryList(baseList, secondaryFilter);
+    }
+
+    List<Item> FilterSecondaryList(List<Item> baseList, string secondaryFilter)
+    {
         List<Item> resultList = new List<Item>();
 
         string[] secondaryFilterList = secondaryFilter.Split(',');
