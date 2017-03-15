@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CalendarPage : MonoBehaviour {
+    public Image expBar;
+    public Text levelText;
     public Text actionsText;
     public Image currentDateCircle;
     public GameObject previousDayCross;
@@ -13,6 +15,7 @@ public class CalendarPage : MonoBehaviour {
 
     public void DisplayPage()
     {
+        SetExpBar();
         DisplayCalendar();
         actionsText.text = MasterGameManager.instance.actionClock.ActionCount.ToString();
         crossPreviousDays();
@@ -30,6 +33,16 @@ public class CalendarPage : MonoBehaviour {
             calendar.sprite = fallCalendar;
         else if (season == "winter")
             calendar.sprite = winterCalendar;
+    }
+
+    void SetExpBar()
+    {
+        PlayerStats playerStats = MasterGameManager.instance.playerStats;
+        levelText.text = playerStats.level.ToString();
+        int experience = playerStats.currentExperience;
+        int experienceDelta = playerStats.nextLevelUp() - playerStats.previousLevelUp();
+        float expPercentage = (float)experience / (float)experienceDelta;
+        expBar.fillAmount = Mathf.Clamp(expPercentage, 0, 1);
     }
 
     void CircleCurrentDate()
@@ -59,6 +72,20 @@ public class CalendarPage : MonoBehaviour {
                 xPos = -75;
                 yPos -= yPad;
             }
+        }
+    }
+
+    public void OnBarHover(bool active)
+    {
+        if (active)
+        {
+            HoverInfo.Load();
+            HoverInfo.instance.DisplayText(expBar.gameObject, string.Format("Level: {0}\nExperience: {1}", 
+                MasterGameManager.instance.playerStats.level, MasterGameManager.instance.playerStats.currentExperience));
+        }
+        else
+        {
+            HoverInfo.instance.Hide();
         }
     }
 }
