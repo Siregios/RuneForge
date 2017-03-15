@@ -708,6 +708,8 @@ MonoBehaviour:
   Minigame: {fileID: 1171637810299634}
   scoreText: {fileID: 114322655995258874}
   qualityStamp: {fileID: 1763742565984650}
+  progressTick: {fileID: 1778044286480160, guid: 4c84196f70765b64b8e7936a7738f0cd,
+    type: 2}
   barSounds:
   - {fileID: 8300000, guid: 6a0ad7d95815470418499a133704a0f0, type: 3}
   - {fileID: 8300000, guid: f06250770bacc3e41ab8a69638b90b49, type: 3}

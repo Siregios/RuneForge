@@ -73,7 +73,7 @@ public class ActionClock : MonoBehaviour {
             maxActionsPerDay = 8;
         else
             maxActionsPerDay = 6;
-        currentActionCount = maxActionsPerDay;
+        //currentActionCount = maxActionsPerDay;
         rent();
         MasterGameManager.instance.questGenerator.GenerateQuests();
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class PlayerInventory {
     public static Inventory inventory = new Inventory();
-    public static int money = 600;
+    public static int money = 999999;
 
     static PlayerInventory()
     {
