@@ -46,7 +46,8 @@ public class ActionClock : MonoBehaviour {
 
     public void EndDay()
     {
-        StartCoroutine(endCoroutine());
+        if (!MasterGameManager.instance.sceneManager.loadingScene)
+            StartCoroutine(endCoroutine());
     }
 
     public void SpendAction()
