@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
-    public int level = 5;
+    public int level = 1;
     public int currentExperience = 0;
 
     private int maxLevel = 5;

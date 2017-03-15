@@ -6,4 +6,4 @@ You'll also see how well you are doing in each minigame that you've played.
 
 Your mother has left you with almost completed items, so these items will only require one more step to completion, but later on it will take more.
 
-Let's leave the book menu and start crafting our items.
+Let's leave the book menu and start crafting our items. Press escape or click outside the book to leave the menu.

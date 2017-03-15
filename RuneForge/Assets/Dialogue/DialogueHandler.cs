@@ -98,7 +98,7 @@ public class DialogueHandler : MonoBehaviour {
     private bool typing = false;
 
     //Change for fine tuning
-    KeyCode proceedKey = KeyCode.C;                             //Proceed with dialogue at normal speed
+    KeyCode proceedKey = KeyCode.Space;                             //Proceed with dialogue at normal speed    
     KeyCode skipKey = KeyCode.Return;                           //Bring up skip scene panel
     KeyCode cardqueueKey = KeyCode.Z;
 
@@ -242,11 +242,11 @@ public class DialogueHandler : MonoBehaviour {
     }
 
     void WatchForProceed(){
-        if (Input.GetKeyDown(proceedKey)&&!isTyping){
+        if ((Input.GetKeyDown(proceedKey) || Input.GetMouseButtonDown(0))&&!isTyping){
             itemImage.SetActive(false);
             ProceedDialogue();
         }
-        else if(Input.GetKeyDown(proceedKey)&&isTyping){
+        else if((Input.GetKeyDown(proceedKey) || Input.GetMouseButtonDown(0))&&isTyping){
             textShown = dialogueArray[currentLine].Length;
         }
     }
