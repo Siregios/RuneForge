@@ -27,7 +27,8 @@ public class MinigamePageUI : MonoBehaviour
 
     void Update()
     {
-        if (MasterGameManager.instance.workOrderManager.currentWorkOrders.Count > 0)
+        if (MasterGameManager.instance.workOrderManager.currentWorkOrders.Count > 0 &&
+            MasterGameManager.instance.actionClock.ActionCount > 0)
             playButton.interactable = true;
         else
             playButton.interactable = false;
@@ -83,8 +84,27 @@ public class MinigamePageUI : MonoBehaviour
         //Debug.Log(this.minigame);
         if (!MasterGameManager.instance.sceneManager.loadingScene)
         {
-            MasterGameManager.instance.actionClock.SpendAction();
-            MasterGameManager.instance.sceneManager.LoadScene(minigame);
+            if (MasterGameManager.instance.actionClock.SpendAction())
+            {
+                MasterGameManager.instance.sceneManager.LoadScene(minigame);
+            }
+            else
+            {
+                Debug.LogError("Cannot play minigame, not enough actions today");
+            }
+        }
+    }
+
+    public void PlayButtonHover(bool active)
+    {
+        if (active && MasterGameManager.instance.actionClock.ActionCount <= 0)
+        {
+            HoverInfo.Load();
+            HoverInfo.instance.DisplayText(playButton.gameObject, "Not enough time actions today.");
+        }
+        else
+        {
+            HoverInfo.instance.Hide();
         }
     }
 }

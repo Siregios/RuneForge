@@ -1023,6 +1023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114094228601128010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1034,6 +1036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114169556440818840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1045,6 +1049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114198865195157988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1056,6 +1062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114232565869571034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1067,6 +1075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114240462855348754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1078,6 +1088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114258552567975698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1103,6 +1115,7 @@ MonoBehaviour:
   - {fileID: 114044880671768992}
   - {fileID: 114306169916935610}
   currentDot: 0
+  dotsHit: 0
   sphere: {fileID: 212452415082005316}
   magicCircle: {fileID: 212341588065740162}
   goalColor: {r: 0.5, g: 0.5, b: 1, a: 0}
@@ -1117,6 +1130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114682044394318364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1128,6 +1143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114866131278634006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1139,6 +1156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114873858494672674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1150,6 +1169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114960068255020012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,6 +1182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!114 &114964855040707902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1172,6 +1195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263de95ebf8983446b89d8418e8ce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 0
+  timeRemaining: 0
 --- !u!212 &212017269486248470
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1589,7 +1614,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ad5270a0041efb48859e4e7faf694df, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212364388521568990

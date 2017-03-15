@@ -50,12 +50,17 @@ public class ActionClock : MonoBehaviour {
             StartCoroutine(endCoroutine());
     }
 
-    public void SpendAction()
+    public bool SpendAction()
     {
         if (currentActionCount > 0)
+        {
             currentActionCount--;
+            return true;
+        }
         else
-            Debug.LogError("Cannot perform action, not enough time today");
+        {
+            return false;
+        }
     }
 
     IEnumerator endCoroutine()

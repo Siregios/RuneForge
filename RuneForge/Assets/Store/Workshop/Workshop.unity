@@ -3343,12 +3343,64 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000010101123004, guid: 3edef61b02e81a249932bbe5a25265b0,
     type: 2}
   m_PrefabInternal: {fileID: 1538915070}
+--- !u!1 &1538915072 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011861577840, guid: 3edef61b02e81a249932bbe5a25265b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1538915070}
 --- !u!114 &1538915074 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114342841927933072, guid: 3edef61b02e81a249932bbe5a25265b0,
     type: 2}
   m_PrefabInternal: {fileID: 1538915070}
   m_Script: {fileID: 11500000, guid: 15250b046bf6a044aa3f828a02dbe910, type: 3}
+--- !u!114 &1538915075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538915072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1538915074}
+          m_MethodName: PlayButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1538915074}
+          m_MethodName: PlayButtonHover
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1001 &1549269514
 Prefab:
   m_ObjectHideFlags: 0
