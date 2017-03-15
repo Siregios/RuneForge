@@ -13,7 +13,7 @@ public class EndDaySet : MonoBehaviour {
     public GameObject calendar;
     public Image fader;
     bool corRun = true;
-    bool noExit = false;
+    bool noExit = true;
 
     void Start()
     {

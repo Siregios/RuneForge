@@ -1,5 +1,5 @@
 []
 
-(Press space to advance the dialogue)
+(Press SPACE or LEFT CLICK to advance the dialogue)
 
 [Clear]

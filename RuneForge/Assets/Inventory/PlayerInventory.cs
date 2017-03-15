@@ -10,7 +10,7 @@ public static class PlayerInventory {
         //Testing
         foreach (Item item in ItemCollection.itemList)
         {
-            inventory.SetItemCount(item, 10);
+            inventory.SetItemCount(item, 0);
         }
     }
 
