@@ -158,7 +158,7 @@ public class ItemButton : MonoBehaviour
                 secondaryItemAttribute = mainItemAttribute;
                 mainItemAttribute = kvp;
             }
-            else
+            else if (kvp.Value > secondaryItemAttribute.Value)
                 secondaryItemAttribute = kvp;
         }
 
