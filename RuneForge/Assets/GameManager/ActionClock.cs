@@ -77,7 +77,7 @@ public class ActionClock : MonoBehaviour {
         rent();
         MasterGameManager.instance.questGenerator.GenerateQuests();
 
-        MasterGameManager.instance.sceneManager.LoadScene("Store");
+        MasterGameManager.instance.sceneManager.LoadScene("EndDay");
         yield return new WaitForSeconds(.01f);  //This is small because loadscene sets timescale to 0
     }
 

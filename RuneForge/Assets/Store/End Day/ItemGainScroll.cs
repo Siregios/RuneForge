@@ -19,22 +19,27 @@ public class ItemGainScroll : MonoBehaviour {
         yPos = yDefault;
         foreach (Item i in MasterGameManager.instance.storeDayStats.inventory.inventoryDict.Keys)
         {
-            GameObject item = Instantiate(itemButton) as GameObject;
-            item.GetComponent<RectTransform>().position = new Vector2(xPos, yPos);
-            xPos += xPad;
-            itemCurrentRow++;
-            if (itemCurrentRow >= itemMaxRow)
+            if (PlayerInventory.inventory.inventoryDict[i] > MasterGameManager.instance.storeDayStats.inventory.inventoryDict[i])
             {
-                yPos -= yPad;
-                xPos = xDefault;
-                itemCurrentRow = 0;
-            }
-            item.transform.SetParent(transform, false);
-            if (Mathf.Abs(item.GetComponent<RectTransform>().localPosition.y) <= 0)
-            {
-                additionalRows++;
-                viewport.sizeDelta = new Vector2(viewport.sizeDelta.x, viewport.sizeDelta.y + 60);
-                viewport.localPosition = new Vector2(0, -60 * additionalRows);
+                GameObject item = Instantiate(itemButton) as GameObject;
+                item.GetComponent<RectTransform>().position = new Vector2(xPos, yPos);
+                xPos += xPad;
+                itemCurrentRow++;
+                if (itemCurrentRow >= itemMaxRow)
+                {
+                    yPos -= yPad;
+                    xPos = xDefault;
+                    itemCurrentRow = 0;
+                }
+                item.transform.FindChild("Icon").GetComponent<Image>().sprite = i.icon;
+                item.transform.FindChild("CountText").GetComponent<Text>().text = "x" + (PlayerInventory.inventory.inventoryDict[i] - MasterGameManager.instance.storeDayStats.inventory.inventoryDict[i]).ToString();
+                item.transform.SetParent(transform, false);
+                if (Mathf.Abs(item.GetComponent<RectTransform>().localPosition.y) <= 0)
+                {
+                    additionalRows++;
+                    viewport.sizeDelta = new Vector2(viewport.sizeDelta.x, viewport.sizeDelta.y + 60);
+                    viewport.localPosition = new Vector2(0, -60 * additionalRows);
+                }
             }
         }
     }

@@ -36,8 +36,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Minigames/SortGame/Sorting.unity
   - enabled: 1
-    path: Assets/Minigames/GolemFetch/GolemFetch.unity
+    path: Assets/Minigames/ARCHIVED/GolemFetch/GolemFetch.unity
   - enabled: 1
     path: Assets/Minigames/Smithing/Smithing.unity
   - enabled: 1
     path: Assets/Tutorial/RhythmTutorial.unity
+  - enabled: 1
+    path: Assets/Store/End Day/EndDay.unity
