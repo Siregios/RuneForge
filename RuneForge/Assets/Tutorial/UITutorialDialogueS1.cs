@@ -37,6 +37,14 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
         PlayerInventory.inventory.SetItemCount(ItemCollection.itemDict["Air Rune"], 0);
     }
 
+    void Update()
+    {
+        if (dialogueManager.dialogueIndex == 21)
+        {
+            Book.GetComponent<CloseOnEscape>().enabled = true;
+        }
+    }
+
     public override void handleButtonPush(Item itemInfo)
     {
         if(itemInfo.name == "Enchanted Weapon" && currentIndex < 18)
@@ -176,7 +184,7 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             currentIndex = index;
             dialogueManager.ButtonActivateTrue(currentIndex);
             recipeBackButton.enabled = false;
-            Book.GetComponent<CloseOnEscape>().enabled = true;
+            //Book.GetComponent<CloseOnEscape>().enabled = true;
             shopkeep.SetActive(true);
         }
 
@@ -203,6 +211,8 @@ public class UITutorialDialogueS1 : UITutorialDialogue {
             shopkeep.GetComponent<Interactable>().enabled = false;
             dialogueManager.ButtonActivateFalse(currentIndex);
             menuButton.interactable = true; //idk why this fixes it
+            menuButton.onClick.RemoveAllListeners();
+            menuButton.onClick.AddListener(Book.GetComponent<BookUI>().DisplayRecipe);
             Book.GetComponent<CloseOnEscape>().enabled = false;
 
         }

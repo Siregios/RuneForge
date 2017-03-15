@@ -78,7 +78,7 @@ public class ActionClock : MonoBehaviour {
             maxActionsPerDay = 8;
         else
             maxActionsPerDay = 6;
-        //currentActionCount = maxActionsPerDay;
+
         rent();
         MasterGameManager.instance.questGenerator.GenerateQuests();
 
@@ -116,6 +116,7 @@ public class ActionClock : MonoBehaviour {
             }
         if(PlayerInventory.money < 0)
         {
+            PlayerInventory.money = 0; //Temporary for presentation
             Debug.Log("GAME OVER");
         }
     }
