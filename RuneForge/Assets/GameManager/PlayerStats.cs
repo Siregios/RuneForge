@@ -7,38 +7,30 @@ public class PlayerStats : MonoBehaviour {
     public int currentExperience = 0;
 
     private int maxLevel = 5;
-    private int[] levelUp = new int[] {10000, 20000, 30000, 40000, 0}; //zero is just so no errors happen
+    private List<int> levelUp = new List<int> { 0, 10000, 30000, 60000, 100000 };   //zero is just so no errors happen
 
     void Start()
     {
         setShopItems();
     }
 
-    //public int Level
-    //{
-    //    get { return level; }
-    //}
-
-    //public float CurrentExperience
-    //{
-    //    get { return currentExperience; }
-    //}
-
     public int nextLevelUp()
     {
-        for (int i = 0; i < levelUp.Length; i++)
-            if (currentExperience < levelUp[i])
-                return levelUp[i];
-        return levelUp[levelUp.Length - 1];
+        //for (int i = 0; i < levelUp.Length; i++)
+        //    if (currentExperience < levelUp[i])
+        //        return levelUp[i];
+        //return levelUp[levelUp.Length - 1];
+        return levelUp[level];
     }
 
     public int previousLevelUp()
     {
-        for (int i = 0; i < levelUp.Length; i++)
-            if (nextLevelUp() == levelUp[i])
-                if (i != 0)
-                    return levelUp[i];
-        return 0;
+        //for (int i = 0; i < levelUp.Length; i++)
+        //    if (nextLevelUp() == levelUp[i])
+        //        if (i != 0)
+        //            return levelUp[i];
+        //return 0;
+        return levelUp[level - 1];
     }
 
     /// <summary>
@@ -50,7 +42,7 @@ public class PlayerStats : MonoBehaviour {
         //We might not need to make this public if we just increment level internally in this script based on experience
         while(level < maxLevel && levelUp[level - 1] <= currentExperience)
         {
-            currentExperience -= levelUp[level - 1];
+            //currentExperience -= levelUp[level - 1];
             level++;
         }
 
