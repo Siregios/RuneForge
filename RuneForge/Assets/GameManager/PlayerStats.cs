@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour {
     public void incrementLevel()
     {
         //We might not need to make this public if we just increment level internally in this script based on experience
-        while(level < maxLevel && levelUp[level - 1] <= currentExperience)
+        while(level < maxLevel && levelUp[level] <= currentExperience)
         {
             //currentExperience -= levelUp[level - 1];
             level++;
