@@ -1,0 +1,9 @@
+[RPort:Fairy, RName:Minamo]
+
+Take a look at the bars that have just been filled. These represent attributes, there are four: earth, water, air, and fire.
+
+For an item to be correctly imbued, these bars need to be filled what the requirements say. For this item, we needed four fire attributes and one earth attribute, which have been filled!
+
+Ok! That took some time, but we now have an enchanted weapon imbued to make it easier to master craft. 
+
+Now, pin it to your clipboard and let's get to work!
