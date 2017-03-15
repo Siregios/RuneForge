@@ -21,6 +21,11 @@ public class Inventory
         }
     }
 
+    public Inventory(Inventory copyInventory)
+    {
+        this.inventoryDict = new Dictionary<Item, int>(copyInventory.inventoryDict);
+    }
+
     //Increment the item count by 1
     public void AddItem(Item item)
     {

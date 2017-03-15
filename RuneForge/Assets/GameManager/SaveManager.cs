@@ -6,6 +6,7 @@ public class SaveManager : MonoBehaviour {
 
     public void SaveData()
     {
+        SavePlayerStats();
         SavePlayerInventory();
         SaveActionClock();
 
@@ -16,6 +17,11 @@ public class SaveManager : MonoBehaviour {
     {
         LoadPlayerInventory();
         LoadActionClock();
+    }
+
+    void SavePlayerStats()
+    {
+
     }
 
     void SavePlayerInventory()
