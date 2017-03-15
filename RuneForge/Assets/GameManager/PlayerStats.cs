@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
-    private int level = 1;
+    public int level = 1;
+    public int currentExperience = 0;
+
     private int maxLevel = 5;
-    private int currentExperience = 0;
     private int[] levelUp = new int[] {10000, 20000, 30000, 40000, 0}; //zero is just so no errors happen
 
     void Start()
@@ -13,15 +14,15 @@ public class PlayerStats : MonoBehaviour {
         setShopItems();
     }
 
-    public int Level
-    {
-        get { return level; }
-    }
+    //public int Level
+    //{
+    //    get { return level; }
+    //}
 
-    public float CurrentExperience
-    {
-        get { return currentExperience; }
-    }
+    //public float CurrentExperience
+    //{
+    //    get { return currentExperience; }
+    //}
 
     public int nextLevelUp()
     {

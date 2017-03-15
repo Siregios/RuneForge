@@ -122,7 +122,7 @@ public static class ItemCollection
 
         foreach (Item item in specificList)
         {
-            if (item.level <= MasterGameManager.instance.playerStats.Level)
+            if (item.level <= MasterGameManager.instance.playerStats.level)
             {
                 if (lowerFilter == "all")
                     result.Add(item);

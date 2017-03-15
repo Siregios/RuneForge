@@ -89,7 +89,7 @@ public class ActionClock : MonoBehaviour {
         else
             reduction = 1;
 
-            switch (gameObject.GetComponent<PlayerStats>().Level)
+            switch (gameObject.GetComponent<PlayerStats>().level)
             {
                 case 1:
                     PlayerInventory.money -= 100/reduction;

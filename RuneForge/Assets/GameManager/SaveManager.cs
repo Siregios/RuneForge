@@ -15,13 +15,25 @@ public class SaveManager : MonoBehaviour {
 
     public void LoadData()
     {
+        LoadPlayerStats();
         LoadPlayerInventory();
         LoadActionClock();
     }
 
     void SavePlayerStats()
     {
+        PlayerStats playerStats = MasterGameManager.instance.playerStats;
+        PlayerPrefs.SetInt("@PlayerStats: Level", playerStats.level);
+        PlayerPrefs.SetInt("@PlayerStats: Experience", playerStats.currentExperience);
+    }
 
+    void LoadPlayerStats()
+    {
+        PlayerStats playerStats = MasterGameManager.instance.playerStats;
+        if (PlayerPrefs.HasKey("@PlayerStats: Level"))
+            playerStats.level = PlayerPrefs.GetInt("@PlayerStats: Level", playerStats.level);
+        if (PlayerPrefs.HasKey("@PlayerStats: Experience"))
+            playerStats.currentExperience = PlayerPrefs.GetInt("@PlayerStats: Experience", playerStats.currentExperience);
     }
 
     void SavePlayerInventory()

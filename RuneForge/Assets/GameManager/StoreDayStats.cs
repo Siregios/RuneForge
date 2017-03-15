@@ -30,7 +30,7 @@ public class StoreDayStats : MonoBehaviour {
         season = actionClock.Season;
         actions = actionClock.ActionCount;
         money = PlayerInventory.money;
-        level = playerStats.Level;
-        experience = playerStats.CurrentExperience; 
+        level = playerStats.level;
+        experience = playerStats.currentExperience; 
     }
 }

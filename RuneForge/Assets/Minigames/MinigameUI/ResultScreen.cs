@@ -108,7 +108,7 @@ public class ResultScreen : MonoBehaviour
                 gold.fillAmount = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
                 //Sets expfill
-                expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.CurrentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
+                expFill.fillAmount = Mathf.Clamp((MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel), 0f, 1f);
                 //Sets text of minigames and alpha
                 Text currentMinigame = Minigame.transform.FindChild(currentOrder.currentStage.ToString()).GetComponent<Text>();
                 currentMinigame.text = currentOrder.minigameList[currentOrder.currentStage - 1].Key + ": " + currentOrder.minigameList[currentOrder.currentStage - 1].Value;
@@ -285,10 +285,10 @@ public class ResultScreen : MonoBehaviour
     IEnumerator EXPFill()
     {
         //EFREN: we probably do need an exp fill sound tho....idk
-        Debug.Log("Current Exp: " + MasterGameManager.instance.playerStats.CurrentExperience);
+        Debug.Log("Current Exp: " + MasterGameManager.instance.playerStats.currentExperience);
         Debug.Log("Previous Level: " + previousLevel);
         Debug.Log("EXP to Level: " + expToLevel);
-        float exp = (MasterGameManager.instance.playerStats.CurrentExperience - previousLevel) / (expToLevel - previousLevel);
+        float exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
         while (expFill.fillAmount < exp)
         {
             expFill.fillAmount = Mathf.MoveTowards(expFill.fillAmount, exp, Time.unscaledDeltaTime * fillSpeed);
