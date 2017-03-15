@@ -38,6 +38,7 @@ public class EndDaySet : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0) && !corRun && !noExit)
         {
+            MasterGameManager.instance.storeDayStats.copyGameStats();
             MasterGameManager.instance.sceneManager.LoadScene("Store");
         }
     }
