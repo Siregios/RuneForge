@@ -104,7 +104,8 @@ public class MinigamePageUI : MonoBehaviour
         }
         else
         {
-            HoverInfo.instance.Hide();
+            if (HoverInfo.instance != null)
+                HoverInfo.instance.Hide();
         }
     }
 }
