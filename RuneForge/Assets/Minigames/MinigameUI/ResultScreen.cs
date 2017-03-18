@@ -87,16 +87,16 @@ public class ResultScreen : MonoBehaviour
             //Goes to nextScene variable when coroutines and updating orders are done
             if (finish)
                 LoadScene();
+            else if (levelSet)
+            {
+                StopAllCoroutines();
+                ExitLevelUp();
+            }
             else if (nextItem)
             {
                 //Goes to next item on click
                 EntireFunction();
                 nextItem = false;
-            }
-            else if (levelSet)
-            {
-                ExitLevelUp();
-                levelSet = false;
             }
             else
             {
@@ -336,10 +336,10 @@ public class ResultScreen : MonoBehaviour
             StartCoroutine(DebateQuality());
         else if (gainedLevel > 0)
             StartCoroutine(LevelUp());
-        if (checkLast)
-            finish = true;
         else
         {
+            if (checkLast)
+                finish = true;
             workOrderIndex++;
             nextItem = true;
         }
@@ -556,27 +556,45 @@ public class ResultScreen : MonoBehaviour
 
     IEnumerator LevelUp()
     {
-        levelSet = true;
         Text tempText = levelUp.transform.FindChild("text").GetComponent<Text>();
         tempText.text = (MasterGameManager.instance.playerStats.level - gainedLevel).ToString() + " --> " + (MasterGameManager.instance.playerStats.level).ToString();
         RectTransform icon = levelUp.transform.FindChild("icon").GetComponent<RectTransform>();
         levelUp.GetComponent<CanvasGroup>().alpha = 1;
-        transform.FindChild("LevelUpExit").gameObject.SetActive(true);
         icon.gameObject.SetActive(true);
-        tempText.gameObject.SetActive(true);        
-        while (icon.position.y < 100)
+        tempText.gameObject.SetActive(true);
+        levelUp.transform.FindChild("box").gameObject.SetActive(true);
+        float alpha = tempText.color.a;
+        float alpha2 = levelUp.transform.FindChild("box").GetComponent<Image>().color.a;
+        while (icon.localPosition.y < 0)
         {
-            icon.position = Vector2.MoveTowards(icon.position, new Vector2(icon.position.x, icon.position.y + 5), Time.deltaTime);
+            alpha += Time.unscaledDeltaTime;
+            alpha2 += Time.unscaledDeltaTime;
+            setAlphaImage(levelUp.transform.FindChild("box").GetComponent<Image>(), alpha2);
+            setAlphaText(tempText, alpha);
+            icon.localPosition = Vector2.MoveTowards(icon.localPosition, new Vector2(icon.localPosition.x, 0), Time.unscaledDeltaTime * 200);
+            if (200 - icon.localPosition.y <= 0.015f)
+            {
+                icon.localPosition = new Vector2(icon.localPosition.x, 0);
+            }
             yield return new WaitForEndOfFrame();
         }
+        levelSet = true;
     }
 
     void ExitLevelUp()
     {
-        transform.FindChild("LevelUp").gameObject.SetActive(false);
-        transform.FindChild("LevelUpExit").gameObject.SetActive(false);
+        levelSet = false;
+        setAlphaText(levelUp.transform.FindChild("text").GetComponent<Text>(), 0);
+        setAlphaImage(levelUp.transform.FindChild("box").GetComponent<Image>(), 0);
+        levelUp.GetComponent<CanvasGroup>().alpha = 0;
+        levelUp.transform.FindChild("icon").GetComponent<RectTransform>().localPosition = new Vector2(0, -200);
+        levelUp.transform.FindChild("icon").gameObject.SetActive(false);
+        levelUp.transform.FindChild("icon").GetComponent<Animator>().Rebind();
+        levelUp.transform.FindChild("text").gameObject.SetActive(false);
+        levelUp.transform.FindChild("box").gameObject.SetActive(false);
         workOrderIndex++;
         nextItem = true;
+        gainedLevel = 0;
         if (checkLast)
             finish = true;
 
@@ -684,7 +702,7 @@ public class ResultScreen : MonoBehaviour
 
     void progressTickAdder(WorkOrder order, int alpha)
     {
-        int startX = -150, startY = 0, padX = 315 / order.requiredStages;
+        int startX = -155, startY = 0, padX = 315 / order.requiredStages;
         startX += padX;
         for (int i = 0; i < order.requiredStages-1; i++)
         {
