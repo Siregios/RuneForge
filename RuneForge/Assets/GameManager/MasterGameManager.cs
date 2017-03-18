@@ -33,6 +33,7 @@ public class MasterGameManager : MonoBehaviour
     public SaveManager saveManager;
     public UpgradeManager upgradeManager;
     public StoreDayStats storeDayStats;
+    public AudioManager audioManager;
 
     public bool inputActive = true;
 

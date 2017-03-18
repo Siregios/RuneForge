@@ -39,12 +39,14 @@ public class RandomSpawnNote : MonoBehaviour
     public int great, perfect, miss, multiplier = 0;
 
     private AudioManager audioManager;
-    private GameObject audioManagerObject;
+    public MusicBank MusicBank;
+    private AudioClip musicClip;
 
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        audioManagerObject = GameObject.Find("AudioManager");
+        //can set to random int in range of songs once there are more songs
+        musicClip = MusicBank.additionalSongs[0];
         keyNotes = new List<List<GameObject>>();
         for (int i = 0; i < 4; i++)
             keyNotes.Add(new List<GameObject>());
@@ -62,8 +64,7 @@ public class RandomSpawnNote : MonoBehaviour
         }
         offset = AudioSettings.dspTime - readTime[0];
         counter++;
-        audioManagerObject.GetComponent<AudioSource>().enabled = true;
-        audioManagerObject.GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime + musicSync);
+        MasterGameManager.instance.audioManager.PlayMusicScheduled(musicClip, AudioSettings.dspTime + musicSync, false);
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class RandomSpawnNote : MonoBehaviour
 
         multText.text = "Multiplier: x" + mult.ToString();
         multiplierText.text = "x" + multiplier.ToString();
-        if (counter >= readTime.Count && !audioManagerObject.GetComponent<AudioSource>().isPlaying)
+        if (counter >= readTime.Count && !MasterGameManager.instance.audioManager.isMusicPlaying())
         {
             GameObject.Find("Canvas").transform.Find("Result").gameObject.SetActive(true);
         }
