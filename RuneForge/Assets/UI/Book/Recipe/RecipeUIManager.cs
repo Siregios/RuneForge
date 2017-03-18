@@ -146,6 +146,7 @@ public class RecipeUIManager : MonoBehaviour {
             addedIngredients[item.ingredientType] < productItem.recipe[item.ingredientType])
         {
             PlayerInventory.inventory.SubtractItem(item);
+            ingredientItemList.RefreshPage();
             addedIngredients[item.ingredientType]++;
             foreach (var kvp in item.providedAttributes)
             {
@@ -179,7 +180,10 @@ public class RecipeUIManager : MonoBehaviour {
         }
         recipePage.ProvideToAttrBars(providedAttributes);
         if (restockInventory)
+        {
             PlayerInventory.inventory.AddItem(item);
+            ingredientItemList.RefreshPage();
+        }
         Destroy(entry.loadedButton.gameObject);
         entry.loadedButton = null;
     }

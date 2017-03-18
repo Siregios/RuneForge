@@ -8,10 +8,10 @@ public static class PlayerInventory {
     static PlayerInventory()
     {
         //Testing
-        //foreach (Item item in ItemCollection.itemList)
-        //{
-        //    inventory.SetItemCount(item, 10);
-        //}
+        foreach (Item item in ItemCollection.itemList)
+        {
+            inventory.SetItemCount(item, 1);
+        }
     }
 
     //static GodwinHo()
