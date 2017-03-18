@@ -10,6 +10,7 @@ public class ItemListUI : MonoBehaviour
     public GameObject itemButton;
     public string defaultFilter = "ALL";
     public bool displayZeroCountItems = true;
+    public bool restrictByLevel = true;
     public Inventory.InventoryType inventoryType;
     Inventory referenceInventory;
     
@@ -204,7 +205,7 @@ public class ItemListUI : MonoBehaviour
         }
         else
         {
-            defaultList = ItemCollection.FilterItemList(defaultFilter);
+            defaultList = ItemCollection.FilterItemList(defaultFilter, restrictByLevel);
             filterString = defaultFilter;
         }
 
@@ -217,7 +218,7 @@ public class ItemListUI : MonoBehaviour
     /// </summary>
     List<Item> AdvancedFilter(string primaryFilter, string secondaryFilter)
     {
-        List<Item> baseList = ItemCollection.FilterItemList(primaryFilter);
+        List<Item> baseList = ItemCollection.FilterItemList(primaryFilter, restrictByLevel);
 
         return FilterSecondaryList(baseList, secondaryFilter);
     }
@@ -229,7 +230,7 @@ public class ItemListUI : MonoBehaviour
         string[] secondaryFilterList = secondaryFilter.Split(',');
         foreach (string filter in secondaryFilterList)
         {
-            resultList.AddRange(ItemCollection.FilterSpecificList(baseList, filter));
+            resultList.AddRange(ItemCollection.FilterSpecificList(baseList, filter, restrictByLevel));
         }
 
         return resultList;

@@ -4,10 +4,10 @@ using System.Collections;
 
 public class CloseOnEscape : MonoBehaviour {
     public UnityEvent OnEscape;
-    bool noExit = true;
+    bool exit = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetMouseButtonDown(0) && !noExit))
+        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetMouseButtonDown(0) && exit))
         {
             OnEscape.Invoke();
         }
@@ -15,6 +15,6 @@ public class CloseOnEscape : MonoBehaviour {
 
     public void setExitBool(bool set)
     {
-        noExit = set;
+        exit = set;
     }
 }

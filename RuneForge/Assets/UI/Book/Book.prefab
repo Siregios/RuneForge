@@ -3494,6 +3494,7 @@ MonoBehaviour:
   itemButton: {fileID: 1000011658806744, guid: 7d780aa4671e88e4583f910b0861d098, type: 2}
   defaultFilter: Ingredient
   displayZeroCountItems: 0
+  restrictByLevel: 1
   inventoryType: 0
   padX: 20
   padY: 20
@@ -6351,7 +6352,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -6368,7 +6369,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -6461,6 +6462,7 @@ MonoBehaviour:
   itemButton: {fileID: 1000011658806744, guid: 464d550ba5554964e9bce15a1ed01cd9, type: 2}
   defaultFilter: Product
   displayZeroCountItems: 0
+  restrictByLevel: 0
   inventoryType: 0
   padX: 10
   padY: 20
@@ -7846,6 +7848,7 @@ MonoBehaviour:
   itemButton: {fileID: 1000011658806744, guid: 8ea9509a5dabf504f86bae4a0ee12db5, type: 2}
   defaultFilter: Base Products
   displayZeroCountItems: 1
+  restrictByLevel: 1
   inventoryType: 0
   padX: 20
   padY: 20
@@ -8099,7 +8102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemButton: {fileID: 1000011658806744, guid: 110b3caa0d3674b49954d0950ef3aa89, type: 2}
   defaultFilter: 
-  displayZeroCountItems: 1
+  displayZeroCountItems: 0
+  restrictByLevel: 1
   inventoryType: 0
   padX: 20
   padY: 20

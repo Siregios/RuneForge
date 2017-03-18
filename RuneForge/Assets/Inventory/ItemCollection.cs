@@ -107,14 +107,14 @@ public static class ItemCollection
     }
 
     //This funciton might be slow when there are lots of items in the game.
-    public static List<Item> FilterItemList(string filter)
+    public static List<Item> FilterItemList(string filter, bool restrictLevel=true)
     {
         string lowerFilter = filter.Trim().ToLower();
 
-        return FilterSpecificList(itemList, filter);
+        return FilterSpecificList(itemList, filter, restrictLevel);
     }
 
-    public static List<Item> FilterSpecificList(List<Item> specificList, string filter)
+    public static List<Item> FilterSpecificList(List<Item> specificList, string filter, bool restrictLevel=true)
     {
         string lowerFilter = filter.Trim().ToLower().Replace(" ", string.Empty);
 
@@ -122,7 +122,29 @@ public static class ItemCollection
 
         foreach (Item item in specificList)
         {
-            if (item.level <= MasterGameManager.instance.playerStats.level)
+            if (restrictLevel)
+            {
+                if (item.level <= MasterGameManager.instance.playerStats.level)
+                {
+                    if (lowerFilter == "all")
+                        result.Add(item);
+                    else if (lowerFilter.Contains("ingredient") && (item.Class == "Ingredient" || item.ingredientType.Contains("Rune")))
+                        result.Add(item);
+                    else if (lowerFilter.Contains("baseproduct") && (item.Class == "Product" || item.Class == "Rune"))
+                        result.Add(item);
+                    else if (lowerFilter.Contains("improvedproduct") && (item.Class == "ImprovedProduct"))
+                        result.Add(item);
+                    else if (lowerFilter == "product" && (item.Class == "Product" || item.Class == "Rune" || item.Class == "ImprovedProduct"))
+                        result.Add(item);
+                    else if (lowerFilter.Contains("material") && item.Class == "Ingredient")
+                        result.Add(item);
+                    else if (lowerFilter == "rune" && item.ingredientType.Contains("Rune"))
+                        result.Add(item);
+                    else if (item.name.ToLower().Replace(" ", string.Empty).Contains(lowerFilter) || item.ingredientType.ToLower().Replace(" ", string.Empty).Contains(lowerFilter))
+                        result.Add(item);
+                }
+            }
+            else
             {
                 if (lowerFilter == "all")
                     result.Add(item);
