@@ -139,6 +139,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1486af6db523d224ba5edff45397f966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &22542974
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856282812791724, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114142963966573194, guid: 25eeab7b97923e24dba0f52bf1e15a93,
+        type: 2}
+      propertyPath: startSong
+      value: 
+      objectReference: {fileID: 8300000, guid: cdfac5a3ab5a62f469e469f507dcb0cf, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &60070260
 GameObject:
   m_ObjectHideFlags: 0
