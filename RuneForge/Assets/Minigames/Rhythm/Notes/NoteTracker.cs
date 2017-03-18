@@ -229,7 +229,7 @@ public class NoteTracker : MonoBehaviour
     //When destroyed, removes itself from the front of the list.
     void OnDestroy()
     {
-        if (!destroyed)
+        //if (!destroyed)
             scriptNote.keyNotes[indexNote].Remove(gameObject);
     }
 

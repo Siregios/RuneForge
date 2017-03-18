@@ -13,7 +13,7 @@ public class EndDaySet : MonoBehaviour {
     public GameObject calendar;
     public Image fader;
     bool corRun = true;
-    bool noExit = true;
+    bool exit = false;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class EndDaySet : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !corRun && !noExit)
+        if (Input.GetMouseButtonDown(0) && !corRun && exit)
         {
             MasterGameManager.instance.storeDayStats.copyGameStats();
             MasterGameManager.instance.sceneManager.LoadScene("Store");
@@ -54,6 +54,6 @@ public class EndDaySet : MonoBehaviour {
 
     public void setExitBool(bool set)
     {
-        noExit = set;
+        exit = set;
     }
 }

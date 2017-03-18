@@ -130,22 +130,7 @@ public class ResultScreen : MonoBehaviour
                 setAlphaText(scoreText, 1);
                 foreach (GameObject p in progressTicks)
                     setAlphaImage(p.GetComponent<Image>(), 1);
-                //Set star alpha and size
-                if (bronze.fillAmount == 1)
-                {
-                    setAlphaImage(star1.GetComponent<Image>(), 1);
-                    star1.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
-                }
-                if (silver.fillAmount == 1)
-                {
-                    setAlphaImage(star2.GetComponent<Image>(), 1);
-                    star2.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
-                }
-                if (gold.fillAmount == 1)
-                {
-                    setAlphaImage(star3.GetComponent<Image>(), 1);
-                    star3.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
-                }
+                
                 //Check if current order is complete and sets its alpha to 1 and plays sound
                 if (currentOrder.isComplete)
                 {
@@ -157,26 +142,33 @@ public class ResultScreen : MonoBehaviour
                     else if (currentOrder.quality == "standard")
                     {
                         sfxSources[0].PlayOneShot(completionSounds[0]);
-                        //audioManagerObject.Stop();
-                        //audioManagerObject.loop = true;
-                        //audioManagerObject.clip = completionSongs[0];
-                        //audioManagerObject.Play();
+                        bronze.fillAmount = 1;
                     }
                     else if (currentOrder.quality == "hq")
                     {
                         sfxSources[0].PlayOneShot(completionSounds[1]);
-                        //audioManagerObject.Stop();
-                        //audioManagerObject.loop = true;
-                        //audioManagerObject.clip = completionSongs[1];
-                        //audioManagerObject.Play();
+                        silver.fillAmount = 1;
                     }
                     else if (currentOrder.quality == "mc")
                     {
                         sfxSources[0].PlayOneShot(completionSounds[2]);
-                        //audioManagerObject.Stop();
-                        //audioManagerObject.loop = true;
-                        //audioManagerObject.clip = completionSongs[2];
-                        //audioManagerObject.Play();
+                        gold.fillAmount = 1;
+                    }
+                    //Set star alpha and size
+                    if (bronze.fillAmount == 1)
+                    {
+                        setAlphaImage(star1.GetComponent<Image>(), 1);
+                        star1.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
+                    }
+                    if (silver.fillAmount == 1)
+                    {
+                        setAlphaImage(star2.GetComponent<Image>(), 1);
+                        star2.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
+                    }
+                    if (gold.fillAmount == 1)
+                    {
+                        setAlphaImage(star3.GetComponent<Image>(), 1);
+                        star3.GetComponent<RectTransform>().sizeDelta = new Vector2(starWidth, starHeight);
                     }
                     quality.SetActive(true);
                     setAlphaImage(quality.GetComponent<Image>(), 1);
