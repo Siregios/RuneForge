@@ -34,6 +34,8 @@ public class ItemListUI : MonoBehaviour
     int columns = 5;
     int buttonsPerPage = 25;
 
+    public AudioClip pageChangeSound;
+
     void Awake()
     {
         switch (inventoryType)
@@ -127,6 +129,7 @@ public class ItemListUI : MonoBehaviour
     {
         currentPage--;
         DisplayNewFilter(filterString);
+        MasterGameManager.instance.audioManager.PlaySFXClip(pageChangeSound);
         //DisplayPage(filterString);
     }
 
@@ -134,6 +137,7 @@ public class ItemListUI : MonoBehaviour
     {
         currentPage++;
         DisplayNewFilter(filterString);
+        MasterGameManager.instance.audioManager.PlaySFXClip(pageChangeSound);
         //DisplayPage(filterString);
     }
 

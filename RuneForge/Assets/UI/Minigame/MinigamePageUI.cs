@@ -12,6 +12,8 @@ public class MinigamePageUI : MonoBehaviour
     public Image minigameThumbnail;
     public Text minigameInstructions;
     public Animator animator;
+    public AudioClip openSound;
+    public AudioClip playSound;
     WorkOrderManager orderManager;
 
     public void Enable(bool active)
@@ -19,6 +21,7 @@ public class MinigamePageUI : MonoBehaviour
         this.gameObject.SetActive(active);
         clipboard.gameObject.SetActive(active);
         MasterGameManager.instance.uiManager.Enable(this.gameObject, active);
+        MasterGameManager.instance.audioManager.PlaySFXClip(openSound);
 
         //MasterGameManager.instance.uiManager.uiOpen = active;
         //MasterGameManager.instance.uiManager.EnableMenuBar(!active);
@@ -38,6 +41,7 @@ public class MinigamePageUI : MonoBehaviour
     {
         SetMinigame(minigame);
         orderManager = MasterGameManager.instance.workOrderManager;
+        MasterGameManager.instance.audioManager.PlaySFXClip(openSound);
 
         AutoSelect();
 
@@ -86,7 +90,9 @@ public class MinigamePageUI : MonoBehaviour
         {
             if (MasterGameManager.instance.actionClock.SpendAction())
             {
+                MasterGameManager.instance.audioManager.PlaySFXClip(playSound);
                 MasterGameManager.instance.sceneManager.LoadScene(minigame);
+
             }
             else
             {

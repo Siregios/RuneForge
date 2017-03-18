@@ -3515,6 +3515,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
+  pageChangeSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
 --- !u!114 &114000012014514372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6483,6 +6484,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 10
   padY: 20
+  pageChangeSound: {fileID: 0}
 --- !u!114 &114465402681362600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7869,6 +7871,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
+  pageChangeSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
 --- !u!114 &114861429971766106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8124,6 +8127,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
+  pageChangeSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
 --- !u!114 &114931038118373172
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -242,6 +242,7 @@ MonoBehaviour:
   stageText: {fileID: 114000013782509412}
   gauge: {fileID: 224000014247217034}
   scoreText: {fileID: 114000010189921824}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
 --- !u!114 &114000012933501920
 MonoBehaviour:
   m_ObjectHideFlags: 1

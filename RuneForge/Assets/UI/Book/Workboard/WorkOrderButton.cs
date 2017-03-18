@@ -23,6 +23,7 @@ public class WorkOrderButton : MonoBehaviour {
     public RectTransform gauge;
     float gaugeMaxWidth;
     public Text scoreText;
+    public AudioClip clickSound;
 
     void Awake()
     {
@@ -87,11 +88,13 @@ public class WorkOrderButton : MonoBehaviour {
     {
         _Click();
         workOrderPanel.LoadOrder(this.order);
+        MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
     }
 
     public void MinigameClick()
     {
         _Click();
+        MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
         WorkOrderManager workOrderManager = MasterGameManager.instance.workOrderManager;
         //if (!selected)
         //{
