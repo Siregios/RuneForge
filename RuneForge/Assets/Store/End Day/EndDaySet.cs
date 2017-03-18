@@ -44,11 +44,16 @@ public class EndDaySet : MonoBehaviour {
     }
     IEnumerator FadeIn()
     {
+        Color temp = fader.color;
         while (fader.fillAmount > 0)
         {
-            fader.fillAmount -= Time.deltaTime;
+            fader.fillAmount -= Time.deltaTime;                        
+            fader.color = temp;
             yield return new WaitForEndOfFrame();
         }
+        temp.a = 0;
+        fader.color = temp;
+        fader.fillAmount = 1;
         corRun = false;
     }
 
