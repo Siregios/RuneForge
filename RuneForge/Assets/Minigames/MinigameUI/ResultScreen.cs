@@ -17,6 +17,7 @@ public class ResultScreen : MonoBehaviour
     public Text scoreText;
     public GameObject qualityStamp;
     public GameObject progressTick;
+    public GameObject levelUp;
     float time = 1.5f;
     int minigameScore, totalScore;
     float st = 500, hq = 1000, mc = 1500;
@@ -42,6 +43,8 @@ public class ResultScreen : MonoBehaviour
     AudioSource audioManagerObject;
     int workOrderIndex = 0;
     List<GameObject> progressTicks = new List<GameObject>();
+    int gainedLevel = 0;
+    bool levelSet = false;
 
     //float transition = 1.5f;
 
@@ -90,6 +93,11 @@ public class ResultScreen : MonoBehaviour
                 EntireFunction();
                 nextItem = false;
             }
+            else if (levelSet)
+            {
+                ExitLevelUp();
+                levelSet = false;
+            }
             else
             {
                 //TO EFREN: Do not add any sounds here! Ctrl+F EFREN to find where to add sounds 
@@ -115,6 +123,7 @@ public class ResultScreen : MonoBehaviour
                 while (exp >= 1)
                 {
                     MasterGameManager.instance.playerStats.incrementLevel();
+                    gainedLevel++;
                     expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
                     previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
                     exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
@@ -130,7 +139,7 @@ public class ResultScreen : MonoBehaviour
                 setAlphaText(scoreText, 1);
                 foreach (GameObject p in progressTicks)
                     setAlphaImage(p.GetComponent<Image>(), 1);
-                
+
                 //Check if current order is complete and sets its alpha to 1 and plays sound
                 if (currentOrder.isComplete)
                 {
@@ -174,11 +183,15 @@ public class ResultScreen : MonoBehaviour
                     setAlphaImage(quality.GetComponent<Image>(), 1);
                 }
                 //Increments to work on next order and allows the click
-                workOrderIndex++;
-                nextItem = true;
-                //Checks if its the last item in the order list
-                if (checkLast)
-                    finish = true;
+                if (gainedLevel > 0)
+                    StartCoroutine(LevelUp());
+                else {
+                    workOrderIndex++;
+                    nextItem = true;
+                    //Checks if its the last item in the order list
+                    if (checkLast)
+                        finish = true;
+                }
             }
         }
     }
@@ -309,6 +322,7 @@ public class ResultScreen : MonoBehaviour
                 {
                     expFill.fillAmount = 0;
                     MasterGameManager.instance.playerStats.incrementLevel();
+                    gainedLevel++;
                     expToLevel = MasterGameManager.instance.playerStats.nextLevelUp();
                     previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
                     exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
@@ -318,10 +332,12 @@ public class ResultScreen : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-        if (checkLast)
-            finish = true;
         if (currentOrder.isComplete)
             StartCoroutine(DebateQuality());
+        else if (gainedLevel > 0)
+            StartCoroutine(LevelUp());
+        if (checkLast)
+            finish = true;
         else
         {
             workOrderIndex++;
@@ -460,8 +476,14 @@ public class ResultScreen : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         //THIS IS THE END, so set next item and workorderindex
-        workOrderIndex++;
-        nextItem = true;
+        if (gainedLevel > 0)
+            StartCoroutine(LevelUp());
+        else if (checkLast)
+            finish = true;
+        else {
+            workOrderIndex++;
+            nextItem = true;
+        }
     }
 
     //Moves fill amount for score... not going to explain this its a lot
@@ -532,6 +554,33 @@ public class ResultScreen : MonoBehaviour
         corRun = false;
     }
 
+    IEnumerator LevelUp()
+    {
+        levelSet = true;
+        Text tempText = levelUp.transform.FindChild("text").GetComponent<Text>();
+        tempText.text = (MasterGameManager.instance.playerStats.level - gainedLevel).ToString() + " --> " + (MasterGameManager.instance.playerStats.level).ToString();
+        RectTransform icon = levelUp.transform.FindChild("icon").GetComponent<RectTransform>();
+        levelUp.GetComponent<CanvasGroup>().alpha = 1;
+        transform.FindChild("LevelUpExit").gameObject.SetActive(true);
+        icon.gameObject.SetActive(true);
+        tempText.gameObject.SetActive(true);        
+        while (icon.position.y < 100)
+        {
+            icon.position = Vector2.MoveTowards(icon.position, new Vector2(icon.position.x, icon.position.y + 5), Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void ExitLevelUp()
+    {
+        transform.FindChild("LevelUp").gameObject.SetActive(false);
+        transform.FindChild("LevelUpExit").gameObject.SetActive(false);
+        workOrderIndex++;
+        nextItem = true;
+        if (checkLast)
+            finish = true;
+
+    }
     //This runs once on one order, the workorderindex will make it work on the next order if there are multiple and reset values.
     void EntireFunction()
     {
@@ -635,13 +684,14 @@ public class ResultScreen : MonoBehaviour
 
     void progressTickAdder(WorkOrder order, int alpha)
     {
-        int startX = 165, startY = -50, padX = 315 / order.requiredStages;
-        for (int i = 0; i < order.requiredStages; i++)
+        int startX = -150, startY = 0, padX = 315 / order.requiredStages;
+        startX += padX;
+        for (int i = 0; i < order.requiredStages-1; i++)
         {
             progressTicks.Add(Instantiate(progressTick));
             progressTicks[i].GetComponent<RectTransform>().localPosition = new Vector2(startX, startY);
-            startX -= padX;
-            progressTicks[i].transform.SetParent(transform, false);
+            startX += padX;
+            progressTicks[i].transform.SetParent(progressFill.transform, false);
             setAlphaImage(progressTicks[i].GetComponent<Image>(), alpha);
         }
     }
