@@ -382,6 +382,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa5d4d173d5694428ff36f2b2a21fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  omni: 0
+  tier: 0
+  upgrade: 0
+  l1cost: 1000
+  l2cost: 3000
+  l3cost: 5000
+  l4cost: 7500
+  l5cost: 10000
+  omnicost: 30000
 --- !u!114 &114740248611132830
 MonoBehaviour:
   m_ObjectHideFlags: 1

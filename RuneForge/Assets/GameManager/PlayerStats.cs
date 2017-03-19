@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour {
     public int currentExperience = 0;
 
     private int maxLevel = 5;
-    private List<int> levelUp = new List<int> { 0, 10000, 30000, 60000, 100000 };   //zero is just so no errors happen
+    private List<int> levelUp = new List<int> { 0, 10000, 30000, 60000, 100000, 0};   //zero is just so no errors happen
 
     void Start()
     {
