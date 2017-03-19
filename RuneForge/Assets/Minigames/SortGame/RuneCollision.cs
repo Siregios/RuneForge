@@ -31,8 +31,8 @@ public class RuneCollision : MonoBehaviour
 
     IEnumerator Animation_Success(Collider2D other)
     {
-        float s = other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timer / other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timerSet;       
-        managerScript.AudioManager.PlaySound((int)Random.Range(0, 2));
+        float s = other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timer / other.transform.parent.transform.GetChild(1).GetComponent<SortMove>().timerSet;
+        MasterGameManager.instance.audioManager.PlayRandomSFXClip(managerScript.hitSounds);      
         //This code will allocate score first and reset cursor and object position.
         managerScript.score.addScore((int)(100 * s));
         managerScript.resetPosition();
@@ -70,7 +70,7 @@ public class RuneCollision : MonoBehaviour
 
     IEnumerator Animation_Failure(Collider2D other)
     {
-        managerScript.AudioManager.PlaySound((int)Random.Range(3, 6));
+        MasterGameManager.instance.audioManager.PlayRandomSFXClip(managerScript.missSounds);
         //Literally same as above code but without adding score and fail animation
         managerScript.score.subScore(5);
         managerScript.resetPosition();

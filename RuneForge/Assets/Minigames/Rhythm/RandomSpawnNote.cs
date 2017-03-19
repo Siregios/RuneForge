@@ -38,13 +38,11 @@ public class RandomSpawnNote : MonoBehaviour
     [HideInInspector]
     public int great, perfect, miss, multiplier = 0;
 
-    private AudioManager audioManager;
     public MusicBank MusicBank;
     private AudioClip musicClip;
 
     void Start()
     {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         //can set to random int in range of songs once there are more songs
         musicClip = MusicBank.additionalSongs[0];
         keyNotes = new List<List<GameObject>>();

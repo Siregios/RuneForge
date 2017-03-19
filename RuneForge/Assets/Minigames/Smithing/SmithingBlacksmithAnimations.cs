@@ -5,18 +5,18 @@ using UnityEngine;
 public class SmithingBlacksmithAnimations : MonoBehaviour {
 
     private Animator animator;
-    private AudioManager AudioManager;
     private int hammerFrames;
     private bool hammering;
     private bool reset;
     public bool hit;
     public ParticleSystem hammerParticles;
+    public AudioClip hitSound;
+    public AudioClip missSound;
 
 	// Use this for initialization
 	void Start ()
     {
         animator = this.GetComponent<Animator>();
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         hammerFrames = 24;
         hammering = false;
         hit = true;
@@ -38,13 +38,13 @@ public class SmithingBlacksmithAnimations : MonoBehaviour {
             if (animationIndex >= 10  && reset)
             {
                 //Debug.Log("Hammer hit?");
-                if (hit) 
+                if (hit)
                 {
-                    AudioManager.PlaySound(0);
+                    MasterGameManager.instance.audioManager.PlaySFXClip(hitSound);
                     hammerParticles.Play();
                 }
                 else
-                    AudioManager.PlaySound(1);
+                    MasterGameManager.instance.audioManager.PlaySFXClip(missSound);
                 reset = false;
             }
         }

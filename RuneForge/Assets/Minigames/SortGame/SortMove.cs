@@ -44,7 +44,7 @@ public class SortMove : MonoBehaviour
         {
             if (!soundPlayed)
             {
-                managerScript.AudioManager.PlaySound((int)Random.Range(3, 6));
+                MasterGameManager.instance.audioManager.PlayRandomSFXClip(managerScript.missSounds);
                 soundPlayed = true;
             }
             GetComponent<SpriteRenderer>().color = spriteColor;

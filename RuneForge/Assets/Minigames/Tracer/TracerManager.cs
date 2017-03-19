@@ -9,7 +9,6 @@ public class TracerManager : MonoBehaviour {
     public GameObject nextMapBurst;
     Vector3 currentPos;
 
-    private AudioManager AudioManager;
     private AudioSource music;
     public List<TraceMap> traceMaps;
     int currentMapIndex = -1;
@@ -21,12 +20,10 @@ public class TracerManager : MonoBehaviour {
 
     public Score score;
 
-    GameObject currentTrail = null;
+    public AudioClip hitSound;
+    public AudioClip completionSound;
 
-    void Awake()
-    {
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-    }
+    GameObject currentTrail = null;
 
     void Start()
     {
@@ -53,9 +50,9 @@ public class TracerManager : MonoBehaviour {
             Destroy((GameObject)Instantiate(burst, currentPos, Quaternion.identity), 0.2f);
         currentMap.dotsHit++;
         SpawnDot(dot);
-        
+
         //Aesthetics polish
-        AudioManager.PlaySound(0);
+        MasterGameManager.instance.audioManager.PlaySFXClip(hitSound);
         currentTrail.GetComponent<TrailRenderer>().time += .01f;
         currentMap.AdvanceSprites();
     }
@@ -113,7 +110,7 @@ public class TracerManager : MonoBehaviour {
 
         Destroy(currentMap.gameObject);
         currentMap = CreateNewMap();
-        AudioManager.PlaySound(1);
+        MasterGameManager.instance.audioManager.PlaySFXClip(completionSound);
         count++;
     }
 
