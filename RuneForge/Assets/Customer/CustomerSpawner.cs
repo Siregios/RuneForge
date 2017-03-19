@@ -23,24 +23,23 @@ public class CustomerSpawner : MonoBehaviour {
     /// </summary>
     public void NewDayCustomers()
     {
-        int pos = 0;
+        int customerID = 1;
         foreach (Quest quest in MasterGameManager.instance.questGenerator.todaysQuests)
         {
-            SpawnCustomer(quest, pos);
-            pos++;
+            SpawnCustomer(quest, customerID);
+            customerID++;
         }
 
-        if (pos == 0)
+        if (customerID == 1)
             Debug.Log("No quests today");
     }
 
-    public void SpawnCustomer(Quest quest, int posIndex)
+    public void SpawnCustomer(Quest quest, int customerID)
     {
         Customer randomCustomer = customerList[Random.Range(0, customerList.Count)];
         GameObject newCustomer = Instantiate(randomCustomer.gameObject, this.transform);
-        newCustomer.transform.position = spawnPositions[posIndex].position;
+        newCustomer.transform.position = spawnPositions[customerID].position;
         Customer newCustomerScript = newCustomer.GetComponent<Customer>();
         newCustomerScript.SetItem(quest);
-        //questIndex++;
     }
 }

@@ -10,7 +10,8 @@ public class BookUI : MonoBehaviour {
         INVENTORY,
         RECIPE,
         CLIPBOARD,
-        QUESTBOARD
+        QUESTBOARD,
+        UPGRADES
     }
     public BookSection currentSection = BookSection.INVENTORY;
     public FrontPageUIManager frontPage;
@@ -18,6 +19,7 @@ public class BookUI : MonoBehaviour {
     public RecipeUIManager recipe;
     public ClipboardUI clipboard;
     public QuestBoardUI questboard;
+    public GameObject upgrades;
     public GameObject menuBar;
     public Text moneyText;
 
@@ -44,18 +46,18 @@ public class BookUI : MonoBehaviour {
             audioManager.PlaySound(8);
     }
 
-    public void DisplaySection(BookSection section)
-    {
-        switch (section)
-        {
-            case BookSection.CLIPBOARD:
-                DisplayRecipe();
-                break;
-            case BookSection.RECIPE:
-                DisplayClipboard();
-                break;
-        }
-    }
+    //public void DisplaySection(BookSection section)
+    //{
+    //    switch (section)
+    //    {
+    //        case BookSection.CLIPBOARD:
+    //            DisplayRecipe();
+    //            break;
+    //        case BookSection.RECIPE:
+    //            DisplayClipboard();
+    //            break;
+    //    }
+    //}
 
     public void DisplayFrontPage()
     {
@@ -65,6 +67,7 @@ public class BookUI : MonoBehaviour {
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
+        upgrades.gameObject.SetActive(false);
         currentSection = BookSection.FRONT_PAGE;
     }
 
@@ -76,6 +79,7 @@ public class BookUI : MonoBehaviour {
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
+        upgrades.gameObject.SetActive(false);
         currentSection = BookSection.INVENTORY;
     }
 
@@ -87,6 +91,7 @@ public class BookUI : MonoBehaviour {
         inventory.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
+        upgrades.gameObject.SetActive(false);
         currentSection = BookSection.RECIPE;
     }
 
@@ -98,6 +103,7 @@ public class BookUI : MonoBehaviour {
         inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         questboard.gameObject.SetActive(false);
+        upgrades.gameObject.SetActive(false);
         currentSection = BookSection.CLIPBOARD;
     }
 
@@ -109,6 +115,19 @@ public class BookUI : MonoBehaviour {
         inventory.gameObject.SetActive(false);
         recipe.gameObject.SetActive(false);
         clipboard.gameObject.SetActive(false);
+        upgrades.gameObject.SetActive(false);
         currentSection = BookSection.QUESTBOARD;
+    }
+
+    public void DisplayUpgrades()
+    {
+        Enable(true);
+        upgrades.gameObject.SetActive(true);
+        frontPage.gameObject.SetActive(false);
+        inventory.gameObject.SetActive(false);
+        recipe.gameObject.SetActive(false);
+        clipboard.gameObject.SetActive(false);
+        questboard.gameObject.SetActive(false);
+        currentSection = BookSection.UPGRADES;
     }
 }
