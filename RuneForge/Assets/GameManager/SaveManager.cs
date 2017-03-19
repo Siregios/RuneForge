@@ -8,11 +8,14 @@ public class SaveManager : MonoBehaviour {
 
     public void SaveData()
     {
+        PlayerPrefs.DeleteAll();    //Not gonna work out if we have multiple save files
+                                    //Used to solve nulls of workorders
         PlayerPrefs.SetString("@General: Scene", MasterGameManager.instance.sceneManager.currentScene);
         SavePlayerStats();
         SavePlayerInventory();
         SaveActionClock();
         SaveWorkOrders();
+        SaveQuests();
 
         PlayerPrefs.Save();
     }
@@ -23,6 +26,7 @@ public class SaveManager : MonoBehaviour {
         LoadPlayerInventory();
         LoadActionClock();
         LoadWorkOrders();
+        LoadQuests();
         if (PlayerPrefs.HasKey("@General: Scene"))
             MasterGameManager.instance.sceneManager.LoadScene(PlayerPrefs.GetString("@General: Scene"));
     }
@@ -89,7 +93,8 @@ public class SaveManager : MonoBehaviour {
 
     void SaveWorkOrders()
     {
-        foreach (WorkOrder order in MasterGameManager.instance.workOrderManager.workorderList)
+        WorkOrderManager orderManager = MasterGameManager.instance.workOrderManager;
+        foreach (WorkOrder order in orderManager.workorderList)
         {
             int orderNumber = order.orderNumber;
             string itemName = order.item.name;
@@ -104,7 +109,11 @@ public class SaveManager : MonoBehaviour {
                 minigameListString = minigameListString.Substring(0, minigameListString.Length - 1);
 
             string saveKey = string.Format("@WorkOrder #{0}", orderNumber);
-            string saveValue = string.Format("{0}-{1}-{2}-{3}", itemName, isEnhanced, score, minigameListString);
+            string saveValue = string.Format("{0}|{1}|{2}|{3}", 
+                itemName, 
+                isEnhanced, 
+                score, 
+                minigameListString);
             PlayerPrefs.SetString(saveKey, saveValue);
         }
     }
@@ -119,7 +128,7 @@ public class SaveManager : MonoBehaviour {
             if (PlayerPrefs.HasKey(saveKey))
             {
                 string saveValue = PlayerPrefs.GetString(saveKey);
-                List<string> values = saveValue.Split('-').ToList();
+                List<string> values = saveValue.Split('|').ToList();
                 Item item = ItemCollection.itemDict[values[0]];
                 bool isEnhanced = Convert.ToBoolean(Convert.ToInt32(values[1]));
                 orderManager.CreateWorkOrder(item, isEnhanced, false);
@@ -141,6 +150,54 @@ public class SaveManager : MonoBehaviour {
                 }
 
                 order.currentStage = order.minigameList.Count;
+            }
+        }
+    }
+
+    void SaveQuests()
+    {
+        QuestGenerator questManager = MasterGameManager.instance.questGenerator;
+        int questNum = 1;
+        foreach (Quest quest in questManager.currentQuests)
+        {
+            string productName = quest.product.name;
+            int amountProduct = quest.amountProduct;
+            int deadlineDate = quest.deadlineDate;
+            int goldReward = quest.gold;
+            string ingredientName = quest.ingredient.name;
+            int amountIngredient = quest.amountIngredient;
+
+            string saveKey = string.Format("@CurrentQuests #{0}", questNum);
+            string saveValue = string.Format("{0}|{1}|{2}|{3}|{4}|{5}",
+                productName,
+                amountProduct,
+                deadlineDate,
+                goldReward,
+                ingredientName,
+                amountIngredient);
+            PlayerPrefs.SetString(saveKey, saveValue);
+            questNum++;
+        }
+    }
+
+    void LoadQuests()
+    {
+        QuestGenerator questManager = MasterGameManager.instance.questGenerator;
+        questManager.currentQuests.Clear();
+        for (int questNum = 1; questNum < questManager.maxQuestsPerDay + 1; questNum++)
+        {
+            string saveKey = string.Format("@CurrentQuests #{0}", questNum);
+            if (PlayerPrefs.HasKey(saveKey))
+            {
+                string saveValue = PlayerPrefs.GetString(saveKey);
+                List<string> values = saveValue.Split('|').ToList();
+                Item productItem = ItemCollection.itemDict[values[0]];
+                int amountProduct = Convert.ToInt32(values[1]);
+                int deadlineDate = Convert.ToInt32(values[2]);
+                int goldReward = Convert.ToInt32(values[3]);
+                Item ingredient = ItemCollection.itemDict[values[4]];
+                int amountIngredient = Convert.ToInt32(values[5]);
+                questManager.currentQuests.Add(new Quest(productItem, amountProduct, deadlineDate, goldReward, ingredient, amountIngredient));
             }
         }
     }

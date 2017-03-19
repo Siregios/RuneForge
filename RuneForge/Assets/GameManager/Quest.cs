@@ -44,4 +44,14 @@ public class Quest {
         this.ingredient = ingredientList[randomIngredient];
         this.amountIngredient = Random.Range(1, 6);
     }
+
+    public Quest(Item product, int productAmount, int deadlineDate, int gold, Item ingredient, int amountIngredient)
+    {
+        this.product = product;
+        this.amountProduct = productAmount;
+        this.deadlineDate = deadlineDate;
+        this.gold = gold;
+        this.ingredient = ingredient;
+        this.amountIngredient = amountIngredient;
+    }
 }
