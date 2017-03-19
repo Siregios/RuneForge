@@ -26,10 +26,13 @@ public class ResultScreen : MonoBehaviour
     int currentStage, requiredStage;
     float fillSpeed = 0.5f;
     WorkOrder currentOrder;
-    AudioSource[] sfxSources;
     public AudioClip[] barSounds;
     public AudioClip[] completionSounds;
     public AudioClip[] completionSongs;
+    public AudioClip starSound;
+    public AudioClip progressSound;
+    public AudioClip expSound;
+    public AudioClip levelUpSound;
     Color starAlpha;
     float starWidth = 210, starHeight = 210;
     float starBigW = 4000, starBigH = 4000;
@@ -39,8 +42,6 @@ public class ResultScreen : MonoBehaviour
     bool nextItem = false;
     float expToLevel;
     float previousLevel;
-    AudioManager audioManager;
-    AudioSource audioManagerObject;
     int workOrderIndex = 0;
     List<GameObject> progressTicks = new List<GameObject>();
     int gainedLevel = 0;
@@ -63,9 +64,6 @@ public class ResultScreen : MonoBehaviour
         previousLevel = MasterGameManager.instance.playerStats.previousLevelUp();
         //Sets all necessary variables.
         //Sounds
-        sfxSources = this.gameObject.GetComponents<AudioSource>();
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        audioManagerObject = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         //score fills
         bronze = scoreFill.transform.FindChild("Standard").GetComponent<Image>();
         silver = scoreFill.transform.FindChild("High Quality").GetComponent<Image>();
@@ -150,17 +148,14 @@ public class ResultScreen : MonoBehaviour
                     }
                     else if (currentOrder.quality == "standard")
                     {
-                        sfxSources[0].PlayOneShot(completionSounds[0]);
                         bronze.fillAmount = 1;
                     }
                     else if (currentOrder.quality == "hq")
                     {
-                        sfxSources[0].PlayOneShot(completionSounds[1]);
                         silver.fillAmount = 1;
                     }
                     else if (currentOrder.quality == "mc")
                     {
-                        sfxSources[0].PlayOneShot(completionSounds[2]);
                         gold.fillAmount = 1;
                     }
                     //Set star alpha and size
@@ -258,8 +253,6 @@ public class ResultScreen : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-        foreach (AudioSource sfx in sfxSources)
-            sfx.Stop();
         StartCoroutine(ProgressFill());
     }
 
@@ -267,10 +260,9 @@ public class ResultScreen : MonoBehaviour
     IEnumerator ProgressFill()
     {
         //EFREN: dunno if we need a progress fill sound but up 2 u
-        foreach (AudioSource sfx in sfxSources)
-            sfx.Stop();
         while (progressFill.GetComponent<Image>().fillAmount < (float)currentStage / requiredStage)
         {
+            MasterGameManager.instance.audioManager.PlaySFXClip(progressSound);
             progressFill.GetComponent<Image>().fillAmount = Mathf.MoveTowards(progressFill.GetComponent<Image>().fillAmount, (float)currentStage / requiredStage, Time.unscaledDeltaTime * fillSpeed);
             if (((float)currentStage / requiredStage) - progressFill.GetComponent<Image>().fillAmount <= 0.015f)
                 progressFill.GetComponent<Image>().fillAmount = (float)currentStage / requiredStage;
@@ -315,6 +307,7 @@ public class ResultScreen : MonoBehaviour
         float exp = (MasterGameManager.instance.playerStats.currentExperience - previousLevel) / (expToLevel - previousLevel);
         while (expFill.fillAmount < exp)
         {
+            MasterGameManager.instance.audioManager.PlaySFXClip(expSound);
             expFill.fillAmount = Mathf.MoveTowards(expFill.fillAmount, exp, Time.unscaledDeltaTime * fillSpeed);
             if (1 - expFill.fillAmount <= 0.015f)
             {
@@ -421,6 +414,12 @@ public class ResultScreen : MonoBehaviour
         {
             while (fill.fillAmount < 1)
             {
+                if (fill == bronze)
+                    MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[0]);
+                if (fill == silver)
+                    MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[1]);
+                if (fill == gold)
+                    MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[2]);
                 fill.fillAmount = Mathf.MoveTowards(fill.fillAmount, 1, Time.unscaledDeltaTime * fillSpeed);
                 if (1 - fill.fillAmount <= 0.015f)
                 {
@@ -440,31 +439,20 @@ public class ResultScreen : MonoBehaviour
         Debug.Log(quality.name);
         if (currentOrder.quality == "fail")
         {
+            MasterGameManager.instance.audioManager.PlaySFXClip(completionSounds[3]);
             Debug.Log("What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo.");
         }
         else if (currentOrder.quality == "standard")
         {
-            sfxSources[0].PlayOneShot(completionSounds[0]);
-            //audioManagerObject.Stop();
-            //audioManagerObject.loop = true;
-            //audioManagerObject.clip = completionSongs[0];
-            //audioManagerObject.Play();
+            MasterGameManager.instance.audioManager.PlaySFXClip(completionSounds[0]);
         }
         else if (currentOrder.quality == "hq")
         {
-            sfxSources[0].PlayOneShot(completionSounds[1]);
-            //audioManagerObject.Stop();
-            //audioManagerObject.loop = true;
-            //audioManagerObject.clip = completionSongs[1];
-            //audioManagerObject.Play();
+            MasterGameManager.instance.audioManager.PlaySFXClip(completionSounds[1]);
         }
         else if (currentOrder.quality == "mc")
         {
-            sfxSources[0].PlayOneShot(completionSounds[2]);
-            //audioManagerObject.Stop();
-            //audioManagerObject.loop = true;
-            //audioManagerObject.clip = completionSongs[2];
-            //audioManagerObject.Play();
+            MasterGameManager.instance.audioManager.PlaySFXClip(completionSounds[2]);
         }
         quality.SetActive(true);
 
@@ -494,8 +482,7 @@ public class ResultScreen : MonoBehaviour
         float goldFill = Mathf.Clamp(((float)totalScore - hq) / (mc - hq), 0f, 1f);
         if (bronze.fillAmount < bronzeFill)
         {
-
-            sfxSources[0].PlayOneShot(barSounds[0]);
+            MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[0]);
             bronze.fillAmount = Mathf.MoveTowards(bronze.fillAmount, bronzeFill, Time.unscaledDeltaTime * fillSpeed);
             if (bronzeFill - bronze.fillAmount <= 0.015f)
             {
@@ -506,7 +493,7 @@ public class ResultScreen : MonoBehaviour
         }
         else if (silver.fillAmount < silverFill)
         {
-            sfxSources[1].PlayOneShot(barSounds[1]);
+            MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[1]);
             silver.fillAmount = Mathf.MoveTowards(silver.fillAmount, silverFill, Time.unscaledDeltaTime * fillSpeed);
             if (silverFill - silver.fillAmount <= 0.015f)
             {
@@ -517,7 +504,7 @@ public class ResultScreen : MonoBehaviour
         }
         else if (gold.fillAmount < goldFill)
         {
-            sfxSources[2].PlayOneShot(barSounds[2]);
+            MasterGameManager.instance.audioManager.PlaySFXClip(barSounds[2]);
             gold.fillAmount = Mathf.MoveTowards(gold.fillAmount, goldFill, Time.unscaledDeltaTime * fillSpeed);
             if (goldFill - gold.fillAmount <= 0.015f)
             {
@@ -544,6 +531,7 @@ public class ResultScreen : MonoBehaviour
         star.GetComponent<Image>().color = starAlpha;
         starTrans.sizeDelta = new Vector2(starBigW, starBigH);
         //EFREN: add star DING sound here
+        MasterGameManager.instance.audioManager.PlaySFXClip(starSound);
         while (starTrans.sizeDelta.x != starWidth && starTrans.sizeDelta.y != starHeight)
         {
             starTrans.sizeDelta = Vector2.MoveTowards(starTrans.sizeDelta, new Vector2(starWidth, starHeight), Time.unscaledDeltaTime * 9000);
@@ -563,6 +551,7 @@ public class ResultScreen : MonoBehaviour
         icon.gameObject.SetActive(true);
         tempText.gameObject.SetActive(true);
         levelUp.transform.FindChild("box").gameObject.SetActive(true);
+        MasterGameManager.instance.audioManager.PlaySFXClip(levelUpSound);
         float alpha = tempText.color.a;
         float alpha2 = levelUp.transform.FindChild("box").GetComponent<Image>().color.a;
         while (icon.localPosition.y < 0)
