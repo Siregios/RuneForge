@@ -2640,6 +2640,7 @@ MonoBehaviour:
   - {fileID: 2043576718}
   - {fileID: 27750417}
   - {fileID: 1750180188}
+  - {fileID: 1465066228}
   book: {fileID: 949988399}
   movementIndex: 0000000001000000020000000300000006000000070000000a0000000e00000011000000
   characterMovements:
@@ -3189,6 +3190,12 @@ Transform:
   m_Father: {fileID: 229637536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465066228 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114701227716884540, guid: 438c6d38f7b07094da7ff88ff55a613d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1964228723}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1486685051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,6 +3379,8 @@ MonoBehaviour:
   minigameThumbnail: {fileID: 2106229260}
   minigameInstructions: {fileID: 28642267}
   animator: {fileID: 2106229257}
+  openSound: {fileID: 0}
+  playSound: {fileID: 0}
 --- !u!1 &1541452294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4753,16 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: Make two more runes for your mom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114701227716884540, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114701227716884540, guid: 438c6d38f7b07094da7ff88ff55a613d,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 438c6d38f7b07094da7ff88ff55a613d, type: 2}
