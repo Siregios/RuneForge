@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942dc3bb421865343b211ff87b7d58be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerID: 1
   spawnWithSpecificItem: 0
   itemName: 
   amount: 0

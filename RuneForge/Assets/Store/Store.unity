@@ -7007,7 +7007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32c96f0bb75bef4ebdd2f704739c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerList:
+  possibleCustomers:
   - {fileID: 114046562230453848, guid: 993cdee1d4ef86c4ba9ee17e11643790, type: 2}
   - {fileID: 114995890169827432, guid: 65dbe982639355d409c731fd0d4421a6, type: 2}
   - {fileID: 114790033016612986, guid: b20ef811461499043a41260160800efa, type: 2}

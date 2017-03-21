@@ -11,6 +11,8 @@ public class Customer : MonoBehaviour {
     public Interactable interactScript;
     public Text text;
 
+    [System.NonSerialized]
+    public int customerNum;
     public Quest quest;
 
     void Start()
@@ -35,8 +37,10 @@ public class Customer : MonoBehaviour {
         if(autoLeave)
             Leave();
     }
+
     public void Leave()
     {
+        CustomerSpawner.RemoveTodaysCustomer(this.customerNum);
         interactScript.active = false;
         fadeEffect.FadeOut();
         Destroy(this.gameObject, 1.5f);

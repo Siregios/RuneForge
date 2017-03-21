@@ -16,6 +16,7 @@ public class SaveManager : MonoBehaviour {
         SaveActionClock();
         SaveWorkOrders();
         SaveQuests();
+        SaveCustomers();
 
         PlayerPrefs.Save();
     }
@@ -27,6 +28,8 @@ public class SaveManager : MonoBehaviour {
         LoadActionClock();
         LoadWorkOrders();
         LoadQuests();
+        LoadCustomers();
+
         if (PlayerPrefs.HasKey("@General: Scene"))
             MasterGameManager.instance.sceneManager.LoadScene(PlayerPrefs.GetString("@General: Scene"));
     }
@@ -157,24 +160,26 @@ public class SaveManager : MonoBehaviour {
     void SaveQuests()
     {
         QuestGenerator questManager = MasterGameManager.instance.questGenerator;
-        int questNum = 1;
+        int questNum = 0;
         foreach (Quest quest in questManager.currentQuests)
         {
-            string productName = quest.product.name;
-            int amountProduct = quest.amountProduct;
-            int deadlineDate = quest.deadlineDate;
-            int goldReward = quest.gold;
-            string ingredientName = quest.ingredient.name;
-            int amountIngredient = quest.amountIngredient;
+            //string productName = quest.product.name;
+            //int amountProduct = quest.amountProduct;
+            //int deadlineDate = quest.deadlineDate;
+            //int goldReward = quest.gold;
+            //string ingredientName = quest.ingredient.name;
+            //int amountIngredient = quest.amountIngredient;
 
             string saveKey = string.Format("@CurrentQuests #{0}", questNum);
-            string saveValue = string.Format("{0}|{1}|{2}|{3}|{4}|{5}",
-                productName,
-                amountProduct,
-                deadlineDate,
-                goldReward,
-                ingredientName,
-                amountIngredient);
+            string saveValue = Quest.SerializeToString(quest);
+            Debug.Log(saveValue);
+            //string saveValue = string.Format("{0}|{1}|{2}|{3}|{4}|{5}",
+            //    productName,
+            //    amountProduct,
+            //    deadlineDate,
+            //    goldReward,
+            //    ingredientName,
+            //    amountIngredient);
             PlayerPrefs.SetString(saveKey, saveValue);
             questNum++;
         }
@@ -184,21 +189,67 @@ public class SaveManager : MonoBehaviour {
     {
         QuestGenerator questManager = MasterGameManager.instance.questGenerator;
         questManager.currentQuests.Clear();
-        for (int questNum = 1; questNum < questManager.maxQuestsPerDay + 1; questNum++)
+        for (int questNum = 0; questNum < questManager.maxQuestsPerDay; questNum++)
         {
             string saveKey = string.Format("@CurrentQuests #{0}", questNum);
             if (PlayerPrefs.HasKey(saveKey))
             {
                 string saveValue = PlayerPrefs.GetString(saveKey);
-                List<string> values = saveValue.Split('|').ToList();
-                Item productItem = ItemCollection.itemDict[values[0]];
-                int amountProduct = Convert.ToInt32(values[1]);
-                int deadlineDate = Convert.ToInt32(values[2]);
-                int goldReward = Convert.ToInt32(values[3]);
-                Item ingredient = ItemCollection.itemDict[values[4]];
-                int amountIngredient = Convert.ToInt32(values[5]);
-                questManager.currentQuests.Add(new Quest(productItem, amountProduct, deadlineDate, goldReward, ingredient, amountIngredient));
+                //List<string> values = saveValue.Split('|').ToList();
+                //Item productItem = ItemCollection.itemDict[values[0]];
+                //int amountProduct = Convert.ToInt32(values[1]);
+                //int deadlineDate = Convert.ToInt32(values[2]);
+                //int goldReward = Convert.ToInt32(values[3]);
+                //Item ingredient = ItemCollection.itemDict[values[4]];
+                //int amountIngredient = Convert.ToInt32(values[5]);
+                //questManager.currentQuests.Add(new Quest(productItem, amountProduct, deadlineDate, goldReward, ingredient, amountIngredient));
+                Quest quest = Quest.DeserialzeFromString(saveValue);
+                questManager.currentQuests.Add(quest);
             }
+        }
+    }
+
+    void SaveCustomers()
+    {
+        PlayerPrefs.SetInt("@CustomerSpawner: CurrentDay", CustomerSpawner.currentDay);
+
+        List<KeyValuePair<Quest, int>> todaysCustomers = CustomerSpawner.todaysCustomers;
+        for (int customerNum = 0; customerNum < todaysCustomers.Count; customerNum++)
+        {
+            KeyValuePair<Quest, int> customerPair = todaysCustomers[customerNum];
+            Quest quest = customerPair.Key;
+            int customerID = customerPair.Value;
+            if (quest != null)
+            {
+                string saveKey = string.Format("@CustomerSpawner: TodaysCustomers #{0}", customerNum);
+                string questString = Quest.SerializeToString(quest);
+                string saveValue = string.Format("{0}-{1}", questString, customerID);
+                PlayerPrefs.SetString(saveKey, saveValue);
+            }
+        }
+    }
+
+    void LoadCustomers()
+    {
+        if (PlayerPrefs.HasKey("@CustomerSpawner: CurrentDay"))
+            CustomerSpawner.currentDay = PlayerPrefs.GetInt("@CustomerSpawner: CurrentDay");
+
+        CustomerSpawner.todaysCustomers.Clear();
+        for (int customerNum = 0; customerNum < MasterGameManager.instance.questGenerator.maxQuestsPerDay; customerNum++)
+        {
+            KeyValuePair<Quest, int> customerPair =  new KeyValuePair<Quest, int>(null, -1);
+
+            string saveKey = string.Format("@CustomerSpawner: TodaysCustomers #{0}", customerNum);
+            if (PlayerPrefs.HasKey(saveKey))
+            {
+                string saveValue = PlayerPrefs.GetString(saveKey);
+                List<string> values = saveValue.Split('-').ToList();
+                Quest quest = Quest.DeserialzeFromString(values[0]);
+                int customerID = Convert.ToInt32(values[1]);
+                customerPair = new KeyValuePair<Quest, int>(quest, customerID);
+            }
+
+            CustomerSpawner.todaysCustomers.Add(customerPair);
         }
     }
 }

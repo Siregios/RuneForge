@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour {
-    public List<Customer> customerList;
+    /// A static list of customers for today. Used for reloading old customers who haven't left yet.
+    public static List<KeyValuePair<Quest, int>> todaysCustomers = new List<KeyValuePair<Quest, int>>();
+    public List<Customer> possibleCustomers;
     public static int currentDay = 0;
     public List<Transform> spawnPositions;
-    //public int questIndex = 0;
+
     void Start()
     {
-        //SpawnCustomer(MasterGameManager.instance.questGenerator.todaysQuests[Random.Range(0, MasterGameManager.instance.questGenerator.todaysQuests.Count)]);
-        //SpawnCustomer(MasterGameManager.instance.questGenerator.todaysQuests[questIndex]);
+        for (int i = 0; i < MasterGameManager.instance.questGenerator.maxQuestsPerDay; i++)
+        {
+            todaysCustomers.Add(new KeyValuePair<Quest, int>(null, -1));
+        }
+
         if (currentDay != MasterGameManager.instance.actionClock.Day)
         {
             NewDayCustomers();
             currentDay = MasterGameManager.instance.actionClock.Day;
+        }
+        else
+        {
+            SameDayCustomers();
         }
     }
 
@@ -23,23 +32,53 @@ public class CustomerSpawner : MonoBehaviour {
     /// </summary>
     public void NewDayCustomers()
     {
-        int customerID = 1;
+        int customerNum = 0;
         foreach (Quest quest in MasterGameManager.instance.questGenerator.todaysQuests)
         {
-            SpawnCustomer(quest, customerID);
-            customerID++;
+            SpawnCustomer(quest, customerNum);
+            customerNum++;
         }
 
-        if (customerID == 1)
+        if (customerNum == 0)
             Debug.Log("No quests today");
     }
 
-    public void SpawnCustomer(Quest quest, int customerID)
+    /// <summary>
+    /// Respawns customers that haven't left when returning to the Store scene in the same day.
+    /// </summary>
+    public void SameDayCustomers()
     {
-        Customer randomCustomer = customerList[Random.Range(0, customerList.Count)];
-        GameObject newCustomer = Instantiate(randomCustomer.gameObject, this.transform);
-        newCustomer.transform.position = spawnPositions[customerID].position;
+        for (int customerNum = 0; customerNum < todaysCustomers.Count; customerNum++)
+        {
+            KeyValuePair<Quest, int> customerQuest = todaysCustomers[customerNum];
+            Quest quest = customerQuest.Key;
+            int customerID = customerQuest.Value;
+            if (quest != null)
+            {
+                //Quest quest = MasterGameManager.instance.questGenerator.todaysQuests[customerNum];
+                SpawnCustomer(quest, customerNum, customerID);
+            }
+        }
+    }
+
+    public void SpawnCustomer(Quest quest, int customerNum, int customerID=-1)
+    {
+        if (customerID == -1)
+            customerID = Random.Range(0, possibleCustomers.Count);
+
+        //Save the customer in todaysCustomers to load again if the player hasn't accepted or declined their quest and returns to the store
+        todaysCustomers[customerNum] = new KeyValuePair<Quest, int>(quest, customerID);
+
+        Customer customer = possibleCustomers[customerID];
+        GameObject newCustomer = Instantiate(customer.gameObject, this.transform);
+        newCustomer.transform.position = spawnPositions[customerNum].position;
         Customer newCustomerScript = newCustomer.GetComponent<Customer>();
+        newCustomerScript.customerNum = customerNum;
         newCustomerScript.SetItem(quest);
+    }
+
+    public static void RemoveTodaysCustomer(int customerNum)
+    {
+        todaysCustomers[customerNum] = new KeyValuePair<Quest, int>(null, -1);
     }
 }

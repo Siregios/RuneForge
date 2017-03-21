@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -53,5 +54,35 @@ public class Quest {
         this.gold = gold;
         this.ingredient = ingredient;
         this.amountIngredient = amountIngredient;
+    }
+
+    /// <summary>
+    /// Returns the quest as a string formatted as: {productName}|{amountProduct(int)}|{deadlineDate(int)}|{gold(int)}|{ingredientName}|{amountIngredient(int)}
+    /// </summary>
+    /// <returns></returns>
+    public static string SerializeToString(Quest quest)
+    {
+        string result = string.Format("{0}|{1}|{2}|{3}|{4}|{5}",
+            quest.product.name,
+            quest.amountProduct,
+            quest.deadlineDate,
+            quest.gold,
+            quest.ingredient.name,
+            quest.amountIngredient);
+
+        return result;
+    }
+
+    public static Quest DeserialzeFromString(string questString)
+    {
+        List<string> values = questString.Split('|').ToList();
+        Item productItem = ItemCollection.itemDict[values[0]];
+        int amountProduct = System.Convert.ToInt32(values[1]);
+        int deadlineDate = System.Convert.ToInt32(values[2]);
+        int goldReward = System.Convert.ToInt32(values[3]);
+        Item ingredient = ItemCollection.itemDict[values[4]];
+        int amountIngredient = System.Convert.ToInt32(values[5]);
+
+        return new Quest(productItem, amountProduct, deadlineDate, goldReward, ingredient, amountIngredient);
     }
 }
