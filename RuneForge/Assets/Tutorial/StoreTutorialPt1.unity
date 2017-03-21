@@ -5917,11 +5917,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9bcd7ed50c07d4b8ea00db06899c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomOrderSound: {fileID: 0}
-  normalOrderSound: {fileID: 0}
-  addIngredientSound: {fileID: 0}
-  productSelectSound: {fileID: 0}
-  backSound: {fileID: 0}
+  randomOrderSound: {fileID: 8300000, guid: df65a2ee80e29cb45a214499711c0f1e, type: 3}
+  normalOrderSound: {fileID: 8300000, guid: 6ed43d53a022bd34790b3c409cd74e7f, type: 3}
+  addIngredientSound: {fileID: 8300000, guid: 4549719abf1f0a348a5e38e46c948010, type: 3}
+  productSelectSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  backSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
   productItemList: {fileID: 287090981}
   ingredientItemList: {fileID: 5240530}
   recipePage: {fileID: 1855409721}
@@ -7174,7 +7174,6 @@ MonoBehaviour:
   calendarPage: {fileID: 835386059}
   endDaySound: {fileID: 0}
   saveGameSound: {fileID: 0}
-  loadGameSound: {fileID: 0}
   quitGameSound: {fileID: 0}
 --- !u!224 &426791348
 RectTransform:
@@ -11158,8 +11157,8 @@ MonoBehaviour:
   currentDisplayedDay: 0
   questObjects: []
   productList: {fileID: 221960942}
-  clickSound: {fileID: 0}
-  turnInSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  turnInSound: {fileID: 8300000, guid: d9e1607266c56784bae950799bf79c23, type: 3}
   currentIndex: 7
   UIDialogueHandler: {fileID: 1267561640}
 --- !u!1 &739055536
@@ -12807,8 +12806,8 @@ MonoBehaviour:
   Cost: {fileID: 859031032}
   UpgradeButton: {fileID: 84436385}
   DescriptionShow: {fileID: 214147753}
-  clickSound: {fileID: 0}
-  buySound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  buySound: {fileID: 8300000, guid: b5ff0ffd28e9b8f4aa68e218c462fcdd, type: 3}
 --- !u!114 &843384316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27815,6 +27814,16 @@ Prefab:
       propertyPath: defaultFilter
       value: Product
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011846593552, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+    - target: {fileID: 114000011846593552, guid: 4f573761fbfb8ad49ba40b940dd658b3,
+        type: 2}
+      propertyPath: turnInSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d9e1607266c56784bae950799bf79c23, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f573761fbfb8ad49ba40b940dd658b3, type: 2}
   m_IsPrefabParent: 0
@@ -27971,8 +27980,8 @@ MonoBehaviour:
   upgrades: {fileID: 843384314}
   menuBar: {fileID: 165569158}
   moneyText: {fileID: 1136272200}
-  bookClose: {fileID: 0}
-  bookOpen: {fileID: 0}
+  bookClose: {fileID: 8300000, guid: fd462ee5fa03844489e96ae508ee79f8, type: 3}
+  bookOpen: {fileID: 8300000, guid: ec6526f6c19058d44b229851330063d9, type: 3}
 --- !u!1 &1877167299
 GameObject:
   m_ObjectHideFlags: 0
