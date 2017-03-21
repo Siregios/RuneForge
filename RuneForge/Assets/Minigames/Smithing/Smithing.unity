@@ -956,7 +956,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -338397555
+  randomSeed: -1822407238
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3980,7 +3980,7 @@ Prefab:
         type: 2}
       propertyPath: startSong
       value: 
-      objectReference: {fileID: 8300000, guid: a5368806ce8babd498cbbed3db778a82, type: 3}
+      objectReference: {fileID: 8300000, guid: 955e56b8694b3324fbb44c1cf834dcee, type: 3}
     - target: {fileID: 114142963966573194, guid: 25eeab7b97923e24dba0f52bf1e15a93,
         type: 2}
       propertyPath: m_Enabled

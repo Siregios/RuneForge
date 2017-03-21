@@ -196,7 +196,7 @@ Prefab:
         type: 2}
       propertyPath: startSong
       value: 
-      objectReference: {fileID: 8300000, guid: 0cdfc4f00f8fe7d4fb5320c96ab3bba0, type: 3}
+      objectReference: {fileID: 8300000, guid: 2ac9c70c3a6a7ba479731af213ca49ee, type: 3}
     - target: {fileID: 114142963966573194, guid: 25eeab7b97923e24dba0f52bf1e15a93,
         type: 2}
       propertyPath: m_Enabled

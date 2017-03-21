@@ -2947,7 +2947,7 @@ Prefab:
         type: 2}
       propertyPath: startSong
       value: 
-      objectReference: {fileID: 8300000, guid: 9d80085a2201599458707b11a9834336, type: 3}
+      objectReference: {fileID: 8300000, guid: 265d92d12b6339d4b863743dafe58d32, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
   m_IsPrefabParent: 0
@@ -3935,6 +3935,8 @@ MonoBehaviour:
   minigameThumbnail: {fileID: 2106229260}
   minigameInstructions: {fileID: 0}
   animator: {fileID: 2106229257}
+  openSound: {fileID: 0}
+  playSound: {fileID: 0}
 --- !u!1001 &1549269514
 Prefab:
   m_ObjectHideFlags: 0

@@ -7074,7 +7074,7 @@ Prefab:
         type: 2}
       propertyPath: startSong
       value: 
-      objectReference: {fileID: 8300000, guid: d2779cdf5bb63bd47846f7ff6a659f5d, type: 3}
+      objectReference: {fileID: 8300000, guid: 59ba5ebe8db49d5498f06fcbcfb31bc7, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25eeab7b97923e24dba0f52bf1e15a93, type: 2}
   m_IsPrefabParent: 0

@@ -6,7 +6,7 @@ public class FrontPageUIManager : MonoBehaviour {
     public CalendarPage calendarPage;
     public AudioClip endDaySound;
     public AudioClip saveGameSound;
-    public AudioClip loadGameSound;
+    //public AudioClip loadGameSound;
     public AudioClip quitGameSound;
     void OnEnable()
     {
@@ -27,7 +27,7 @@ public class FrontPageUIManager : MonoBehaviour {
 
     public void LoadGameClick()
     {
-        MasterGameManager.instance.audioManager.PlaySFXClip(loadGameSound);
+        //MasterGameManager.instance.audioManager.PlaySFXClip(loadGameSound);
         MasterGameManager.instance.saveManager.LoadData();
     }
 
