@@ -34,6 +34,7 @@ public class FrontPageUIManager : MonoBehaviour {
     public void QuitClick()
     {
         MasterGameManager.instance.audioManager.PlaySFXClip(quitGameSound);
+        MasterGameManager.instance.saveManager.SaveData();
         Application.Quit();
     }
 }
