@@ -104,7 +104,7 @@ public class DialogueHandler : MonoBehaviour {
     KeyCode cardqueueKey = KeyCode.Z;
 
     void Awake(){
-        audioCS = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //audioCS = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         lDefaultPos = lPortPos = leftPortrait.rectTransform.anchoredPosition;
         rDefaultPos = rPortPos = rightPortrait.rectTransform.anchoredPosition;
         ConstructDicts();

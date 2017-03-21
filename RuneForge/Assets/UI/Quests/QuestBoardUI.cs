@@ -13,6 +13,14 @@ public class QuestBoardUI : MonoBehaviour
     int objCount;
     public ItemListUI productList;
 
+    public AudioClip clickSound;
+    public AudioClip turnInSound;
+
+    public void playClickSound()
+    {
+        MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
+    }
+
     //public void Enable(bool active)
     //{
     //    if (active)
@@ -118,6 +126,7 @@ public class QuestBoardUI : MonoBehaviour
             }
             objCount = 0;
             questObjects.Remove(quest);
+            MasterGameManager.instance.audioManager.PlaySFXClip(turnInSound);
             MasterGameManager.instance.questGenerator.currentQuests.Remove(quest.GetComponent<QuestNote>().quest);
             foreach (GameObject q in questObjects)
             {

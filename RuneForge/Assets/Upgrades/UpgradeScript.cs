@@ -18,6 +18,9 @@ public class UpgradeScript : MonoBehaviour {
 
     public GameObject DescriptionShow;
 
+    public AudioClip clickSound;
+    public AudioClip buySound;
+
     void FixedUpdate()
     {
         DescriptionShow.SetActive(tier > 0);
@@ -59,6 +62,7 @@ public class UpgradeScript : MonoBehaviour {
         MasterGameManager.instance.upgradeManager.tier = tier;
         MasterGameManager.instance.upgradeManager.upgrade = upgrade;
         MasterGameManager.instance.upgradeManager.setUpgrade();
+        MasterGameManager.instance.audioManager.PlaySFXClip(buySound);
     }
 
     public void setDescription(int temp)
@@ -66,6 +70,7 @@ public class UpgradeScript : MonoBehaviour {
         bool omni = MasterGameManager.instance.upgradeManager.omni;
         tier = temp / 10;
         upgrade = temp % 10;
+        MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
         switch (tier)
         {
             case 1:

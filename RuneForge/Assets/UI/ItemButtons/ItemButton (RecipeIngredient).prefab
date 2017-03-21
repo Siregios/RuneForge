@@ -392,6 +392,7 @@ MonoBehaviour:
   attribute2: {fileID: 114000013574021200}
   countText: {fileID: 114000011831550606}
   dragObject: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
 --- !u!114 &114000013489666586
 MonoBehaviour:
   m_ObjectHideFlags: 1

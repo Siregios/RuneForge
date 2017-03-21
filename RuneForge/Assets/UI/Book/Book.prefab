@@ -668,7 +668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013966623296
 GameObject:
   m_ObjectHideFlags: 1
@@ -3944,6 +3944,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9bcd7ed50c07d4b8ea00db06899c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomOrderSound: {fileID: 8300000, guid: b5ff0ffd28e9b8f4aa68e218c462fcdd, type: 3}
+  normalOrderSound: {fileID: 8300000, guid: b5ff0ffd28e9b8f4aa68e218c462fcdd, type: 3}
+  addIngredientSound: {fileID: 8300000, guid: 4549719abf1f0a348a5e38e46c948010, type: 3}
+  productSelectSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  backSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
   productItemList: {fileID: 114857382842785726}
   ingredientItemList: {fileID: 114000011955474778}
   recipePage: {fileID: 114000012240273044}
@@ -4520,6 +4525,8 @@ MonoBehaviour:
   upgrades: {fileID: 1176349397357702}
   menuBar: {fileID: 0}
   moneyText: {fileID: 114116524549597090}
+  bookClose: {fileID: 8300000, guid: fd462ee5fa03844489e96ae508ee79f8, type: 3}
+  bookOpen: {fileID: 8300000, guid: ec6526f6c19058d44b229851330063d9, type: 3}
 --- !u!114 &114000011552050258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4751,7 +4758,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
-  pageChangeSound: {fileID: 0}
+  pageChangeSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
 --- !u!114 &114000012014514372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5624,7 +5631,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114813489136898024}
   m_OnClick:
     m_PersistentCalls:
@@ -6511,7 +6518,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114882686841955272}
   m_OnClick:
     m_PersistentCalls:
@@ -7089,7 +7096,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114209487265725044}
   m_OnClick:
     m_PersistentCalls:
@@ -7243,6 +7250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   calendarPage: {fileID: 114920435340386546}
+  endDaySound: {fileID: 8300000, guid: 6ed43d53a022bd34790b3c409cd74e7f, type: 3}
+  saveGameSound: {fileID: 8300000, guid: 6ed43d53a022bd34790b3c409cd74e7f, type: 3}
+  loadGameSound: {fileID: 8300000, guid: 6ed43d53a022bd34790b3c409cd74e7f, type: 3}
+  quitGameSound: {fileID: 8300000, guid: df65a2ee80e29cb45a214499711c0f1e, type: 3}
 --- !u!114 &114169839105355478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7536,6 +7547,8 @@ MonoBehaviour:
   Cost: {fileID: 114005400661931298}
   UpgradeButton: {fileID: 114815338617620786}
   DescriptionShow: {fileID: 1341483818630904}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  buySound: {fileID: 8300000, guid: b5ff0ffd28e9b8f4aa68e218c462fcdd, type: 3}
 --- !u!114 &114209487265725044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8469,7 +8482,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114955055068566584}
   m_OnClick:
     m_PersistentCalls:
@@ -8809,7 +8822,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114198137895018084}
   m_OnClick:
     m_PersistentCalls:
@@ -8993,7 +9006,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 10
   padY: 20
-  pageChangeSound: {fileID: 0}
+  pageChangeSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
 --- !u!114 &114465402681362600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10743,7 +10756,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114872282805565988}
   m_OnClick:
     m_PersistentCalls:
@@ -11175,7 +11188,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114482794846207084}
   m_OnClick:
     m_PersistentCalls:
@@ -11262,6 +11275,8 @@ MonoBehaviour:
   currentDisplayedDay: 0
   questObjects: []
   productList: {fileID: 114462488631633828}
+  clickSound: {fileID: 8300000, guid: f15e0cc2cd2c31f4eae971a852dea461, type: 3}
+  turnInSound: {fileID: 8300000, guid: d9e1607266c56784bae950799bf79c23, type: 3}
 --- !u!114 &114857382842785726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11280,7 +11295,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
-  pageChangeSound: {fileID: 0}
+  pageChangeSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
 --- !u!114 &114861429971766106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11342,7 +11357,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114307812821585186}
   m_OnClick:
     m_PersistentCalls:
@@ -11840,7 +11855,7 @@ MonoBehaviour:
   inventoryType: 0
   padX: 20
   padY: 20
-  pageChangeSound: {fileID: 0}
+  pageChangeSound: {fileID: 8300000, guid: 33459ef16b0f77a4397b223d57b6933c, type: 3}
 --- !u!114 &114921178452581706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11875,7 +11890,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114214919433918378}
   m_OnClick:
     m_PersistentCalls:
@@ -11972,7 +11987,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114073681094047106}
   m_OnClick:
     m_PersistentCalls:

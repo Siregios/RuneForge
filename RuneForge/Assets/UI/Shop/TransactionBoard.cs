@@ -4,7 +4,6 @@ using System.Collections;
 
 public class TransactionBoard : MonoBehaviour
 {
-    private AudioManager AudioManager;
     private ShopUIManager shopManager;
 
     public Item item;
@@ -18,9 +17,11 @@ public class TransactionBoard : MonoBehaviour
     //public AttributeBarUI fireAttribute, waterAttribute, earthAttribute, airAttribute;
     public Button sellButton, buyButton;
 
+    public AudioClip goldLoseSound;
+    public AudioClip goldGainSound;
+
     void Awake()
     {
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         shopManager = this.transform.parent.GetComponent<ShopUIManager>();
     }
 
@@ -78,7 +79,7 @@ public class TransactionBoard : MonoBehaviour
         TradeManager.BuyItem(item, transactionQuanitity.quantity);
         if (refreshPlayerInventory)
             shopManager.sellItemList.RefreshPage();
-        AudioManager.PlaySound(6);
+        MasterGameManager.instance.audioManager.PlaySFXClip(goldLoseSound);
     }
 
     public void ClickSell()
@@ -86,7 +87,7 @@ public class TransactionBoard : MonoBehaviour
         TradeManager.SellItem(item, transactionQuanitity.quantity);
         if (PlayerInventory.inventory.GetItemCount(item) == 0)
             shopManager.sellItemList.RefreshPage();
-        AudioManager.PlaySound(5);
+        MasterGameManager.instance.audioManager.PlaySFXClip(goldGainSound);
     }
 
     public void Clear()

@@ -5,8 +5,12 @@ using System.Collections.Generic;
 
 public class RecipeUIManager : MonoBehaviour {
     Item productItem;
-    private AudioManager AudioManager;
 
+    public AudioClip randomOrderSound;
+    public AudioClip normalOrderSound;
+    public AudioClip addIngredientSound;
+    public AudioClip productSelectSound;
+    public AudioClip backSound;
     public ItemListUI productItemList, ingredientItemList;
     public RecipePage recipePage;
     public Button cancelButton, pinSelectButton, pinRandomButton;
@@ -25,7 +29,6 @@ public class RecipeUIManager : MonoBehaviour {
     {
         productItemList.AddButtonFunction(AddProduct);
         ingredientItemList.AddButtonFunction(AddIngredient);
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void OnEnable()
@@ -109,9 +112,9 @@ public class RecipeUIManager : MonoBehaviour {
             MasterGameManager.instance.workOrderManager.CreateWorkOrder(productItem, enhanced, isRandom);
             RemoveAllIngredients(false);
             if (isRandom)
-                AudioManager.PlaySound(4);
+                MasterGameManager.instance.audioManager.PlaySFXClip(randomOrderSound);
             else
-                AudioManager.PlaySound(3);
+                MasterGameManager.instance.audioManager.PlaySFXClip(normalOrderSound);
             ImportProductMode();
         }
         else
@@ -123,13 +126,13 @@ public class RecipeUIManager : MonoBehaviour {
     public void CreateWorkOrderTutorial()
     {
         MasterGameManager.instance.workOrderManager.CreateWorkOrderTutorial(productItem);
-        AudioManager.PlaySound(3);
+        MasterGameManager.instance.audioManager.PlaySFXClip(normalOrderSound);
         ImportProductMode();
     }
 
     void AddProduct(Item item)
     {
-        AudioManager.PlaySound(1);
+        MasterGameManager.instance.audioManager.PlaySFXClip(productSelectSound);
         productItem = item;
         foreach (var kvp in item.recipe)
         {
@@ -154,7 +157,7 @@ public class RecipeUIManager : MonoBehaviour {
             }
             recipePage.ProvideToAttrBars(providedAttributes);
 
-            AudioManager.PlaySound(2);
+            MasterGameManager.instance.audioManager.PlaySFXClip(addIngredientSound);
             foreach (IngredientEntry entry in ingredientEntryList)
             {
                 if (entry.loadedButton == null)
@@ -199,7 +202,7 @@ public class RecipeUIManager : MonoBehaviour {
 
     public void BackButton() 
     {
-        AudioManager.PlaySound(0);
+        MasterGameManager.instance.audioManager.PlaySFXClip(backSound);
         ImportProductMode();
     }
 }

@@ -21,6 +21,7 @@ public class ItemButton : MonoBehaviour
     //Drag objects
     public GameObject dragObject;
     protected GameObject draggable;
+    public AudioClip clickSound;
 
     public int ItemCount
     {
@@ -81,6 +82,7 @@ public class ItemButton : MonoBehaviour
 
     public void OnMouseDown()
     {
+        PlayClickSound();
         if (LastClicked != null)
         {
             if ((LastClicked.name == "QuestUI(Clone)"))
@@ -180,5 +182,10 @@ public class ItemButton : MonoBehaviour
         newImage.rectTransform.localScale = Vector3.one;
         newImage.rectTransform.anchoredPosition = Vector3.zero;
         newImage.sprite = Resources.Load<Sprite>(string.Format("ItemSprites/Charms/{0} Charm", item.ingredientType));
+    }
+
+    public void PlayClickSound()
+    {
+        MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
     }
 }

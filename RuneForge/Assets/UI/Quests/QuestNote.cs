@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class QuestNote : MonoBehaviour {
     public GameObject eventSystem;
     public Quest quest;
+    private bool PlayOnce;
+    public AudioClip clickSound;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,11 +23,17 @@ public class QuestNote : MonoBehaviour {
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
             GetComponent<Button>().image.color = Color.cyan;
+            if(PlayOnce)
+            {
+                MasterGameManager.instance.audioManager.PlaySFXClip(clickSound);
+                PlayOnce = false;
+            }
         }
 
         else
         {
             GetComponent<Button>().image.color = Color.white;
+            PlayOnce = true;
         }
     }
     //bool followingMouse = false;

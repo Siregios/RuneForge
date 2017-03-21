@@ -8,17 +8,18 @@ public class ShopUIManager : MonoBehaviour {
         BUY,
         SELL
     }
-    private AudioManager audioManager;
     public ItemListUI buyItemList, sellItemList;
     public TransactionBoard transactionBoard;
     public Text moneyText;
     public GameObject menuBar;
+    public AudioClip storeEntry;
+    public AudioClip storeExit;
+    public AudioClip itemSelectSound;
 
     void Awake()
     {
         buyItemList.AddButtonFunction(BuyShopItemButton);
         sellItemList.AddButtonFunction(SellShopItemButton);
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Enable(bool active)
@@ -29,10 +30,10 @@ public class ShopUIManager : MonoBehaviour {
         {
             buyItemList.RefreshPage(true);
             sellItemList.RefreshPage(true);
-            audioManager.PlaySound(9);
+            MasterGameManager.instance.audioManager.PlaySFXClip(storeEntry);
         }
         else
-            audioManager.PlaySound(10);
+            MasterGameManager.instance.audioManager.PlaySFXClip(storeExit);
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class ShopUIManager : MonoBehaviour {
     
     void ClickItemButton(Item item, TransactionType transactionType)
     {
-        audioManager.PlaySound(1);
+        MasterGameManager.instance.audioManager.PlaySFXClip(itemSelectSound);
         transactionBoard.DisplayItem(item, transactionType);
     }
 

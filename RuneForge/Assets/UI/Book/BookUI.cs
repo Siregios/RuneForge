@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class BookUI : MonoBehaviour {
-    private AudioManager audioManager;
     public enum BookSection
     {
         FRONT_PAGE,
@@ -22,10 +21,12 @@ public class BookUI : MonoBehaviour {
     public GameObject upgrades;
     public GameObject menuBar;
     public Text moneyText;
+    public AudioClip bookClose;
+    public AudioClip bookOpen;
 
     void Awake()
     {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
     }
 
     void Update()
@@ -41,9 +42,9 @@ public class BookUI : MonoBehaviour {
         //MasterGameManager.instance.interactionManager.canInteract = !active;
         //menuBar.SetActive(!active);
         if (active)
-            audioManager.PlaySound(7);
+            MasterGameManager.instance.audioManager.PlaySFXClip(bookOpen);
         else
-            audioManager.PlaySound(8);
+            MasterGameManager.instance.audioManager.PlaySFXClip(bookClose);
     }
 
     //public void DisplaySection(BookSection section)
