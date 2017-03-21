@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeManager : MonoBehaviour {
+public class UpgradeManager : MonoBehaviour
+{
 
     public bool omni = false;      //bool that checks if you can by all upgrades at one level
     int l1 = 0;
@@ -22,11 +23,31 @@ public class UpgradeManager : MonoBehaviour {
     public int l5cost;
     public int omnicost;
 
-    public int level1 { get { return l1; }}
-    public int level2 { get { return l2; } }
-    public int level3 { get { return l3; } }
-    public int level4 { get { return l4; } }
-    public int level5 { get { return l5; } }
+    public int level1
+    {
+        get { return l1; }
+        set { l1 = value; }
+    }
+    public int level2
+    {
+        get { return l2; }
+        set { l2 = value; }
+    }
+    public int level3
+    {
+        get { return l3; }
+        set { l3 = value; }
+    }
+    public int level4
+    {
+        get { return l4; }
+        set { l4 = value; }
+    }
+    public int level5
+    {
+        get { return l5; }
+        set { l5 = value; }
+    }
 
     public void setUpgrade()
     {

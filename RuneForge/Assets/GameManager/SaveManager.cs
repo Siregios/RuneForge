@@ -17,6 +17,7 @@ public class SaveManager : MonoBehaviour {
         SaveWorkOrders();
         SaveQuests();
         SaveCustomers();
+        SaveUpgrades();
 
         PlayerPrefs.Save();
     }
@@ -29,6 +30,7 @@ public class SaveManager : MonoBehaviour {
         LoadWorkOrders();
         LoadQuests();
         LoadCustomers();
+        LoadUpgrades();
 
         if (PlayerPrefs.HasKey("@General: Scene"))
             MasterGameManager.instance.sceneManager.LoadScene(PlayerPrefs.GetString("@General: Scene"));
@@ -251,5 +253,33 @@ public class SaveManager : MonoBehaviour {
 
             CustomerSpawner.todaysCustomers.Add(customerPair);
         }
+    }
+
+    void SaveUpgrades()
+    {
+        UpgradeManager upgradeManager = MasterGameManager.instance.upgradeManager;
+        PlayerPrefs.SetInt("@UpgradeManager L1", upgradeManager.level1);
+        PlayerPrefs.SetInt("@UpgradeManager L2", upgradeManager.level2);
+        PlayerPrefs.SetInt("@UpgradeManager L3", upgradeManager.level3);
+        PlayerPrefs.SetInt("@UpgradeManager L4", upgradeManager.level4);
+        PlayerPrefs.SetInt("@UpgradeManager L5", upgradeManager.level5);
+        PlayerPrefs.SetInt("@UpgradeManager Omni", Convert.ToInt32(upgradeManager.omni));
+    }
+
+    void LoadUpgrades()
+    {
+        UpgradeManager upgradeManager = MasterGameManager.instance.upgradeManager;
+        if (PlayerPrefs.HasKey("@UpgradeManager L1"))
+            upgradeManager.level1 = PlayerPrefs.GetInt("@UpgradeManager L1");
+        if (PlayerPrefs.HasKey("@UpgradeManager L2"))
+            upgradeManager.level2 = PlayerPrefs.GetInt("@UpgradeManager L2");
+        if (PlayerPrefs.HasKey("@UpgradeManager L3"))
+            upgradeManager.level3 = PlayerPrefs.GetInt("@UpgradeManager L3");
+        if (PlayerPrefs.HasKey("@UpgradeManager L4"))
+            upgradeManager.level4 = PlayerPrefs.GetInt("@UpgradeManager L4");
+        if (PlayerPrefs.HasKey("@UpgradeManager L5"))
+            upgradeManager.level5 = PlayerPrefs.GetInt("@UpgradeManager L5");
+        if (PlayerPrefs.HasKey("@UpgradeManager Omni"))
+            upgradeManager.omni = Convert.ToBoolean(PlayerPrefs.GetInt("@UpgradeManager Omni"));
     }
 }
