@@ -79,6 +79,7 @@ public class CustomerSpawner : MonoBehaviour {
 
     public static void RemoveTodaysCustomer(int customerNum)
     {
-        todaysCustomers[customerNum] = new KeyValuePair<Quest, int>(null, -1);
+        if (customerNum < todaysCustomers.Count)
+            todaysCustomers[customerNum] = new KeyValuePair<Quest, int>(null, -1);
     }
 }
