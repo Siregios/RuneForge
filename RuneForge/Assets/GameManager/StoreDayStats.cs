@@ -32,6 +32,7 @@ public class StoreDayStats : MonoBehaviour {
         money = PlayerInventory.money;
         level = playerStats.level;
         experience = playerStats.currentExperience;
+        quests = 0;
         inventory = new Inventory(PlayerInventory.inventory);
     }
 }

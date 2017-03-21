@@ -18,6 +18,7 @@ public class SaveManager : MonoBehaviour {
         SaveQuests();
         SaveCustomers();
         SaveUpgrades();
+        SaveDayStats();
 
         PlayerPrefs.Save();
     }
@@ -31,6 +32,7 @@ public class SaveManager : MonoBehaviour {
         LoadQuests();
         LoadCustomers();
         LoadUpgrades();
+        LoadDayStats();
 
         if (PlayerPrefs.HasKey("@General: Scene"))
             MasterGameManager.instance.sceneManager.LoadScene(PlayerPrefs.GetString("@General: Scene"));
@@ -281,5 +283,48 @@ public class SaveManager : MonoBehaviour {
             upgradeManager.level5 = PlayerPrefs.GetInt("@UpgradeManager L5");
         if (PlayerPrefs.HasKey("@UpgradeManager Omni"))
             upgradeManager.omni = Convert.ToBoolean(PlayerPrefs.GetInt("@UpgradeManager Omni"));
+    }
+
+    void SaveDayStats()
+    {
+        StoreDayStats dayStats = MasterGameManager.instance.storeDayStats;
+        PlayerPrefs.SetInt("@DayStats: Day", dayStats.day);
+        PlayerPrefs.SetString("@DayStats: Season", dayStats.season);
+        PlayerPrefs.SetInt("@DayStats: Actions", dayStats.actions);
+        PlayerPrefs.SetInt("@DayStats: Money", dayStats.money);
+        PlayerPrefs.SetInt("@DayStats: Level", dayStats.level);
+        PlayerPrefs.SetFloat("@DayStats: Experience", dayStats.experience);
+        PlayerPrefs.SetInt("@DayStats: Quests", dayStats.quests);
+        foreach (var kvp in dayStats.inventory.inventoryDict)
+        {
+            string itemName = kvp.Key.name;
+            int amount = kvp.Value;
+            PlayerPrefs.SetInt("@DayStats: Inventory: " + itemName, amount);
+        }
+    }
+
+    void LoadDayStats()
+    {
+        StoreDayStats dayStats = MasterGameManager.instance.storeDayStats;
+        if (PlayerPrefs.HasKey("@DayStats: Day"))
+            dayStats.day = PlayerPrefs.GetInt("@DayStats: Day");
+        if (PlayerPrefs.HasKey("@DayStats: Season"))
+            dayStats.season = PlayerPrefs.GetString("@DayStats: Season");
+        if (PlayerPrefs.HasKey("@DayStats: Actions"))
+            dayStats.actions = PlayerPrefs.GetInt("@DayStats: Actions");
+        if (PlayerPrefs.HasKey("@DayStats: Money"))
+            dayStats.money = PlayerPrefs.GetInt("@DayStats: Money");
+        if (PlayerPrefs.HasKey("@DayStats: Level"))
+            dayStats.level = PlayerPrefs.GetInt("@DayStats: Level");
+        if (PlayerPrefs.HasKey("@DayStats: Experience"))
+            dayStats.experience = PlayerPrefs.GetFloat("@DayStats: Experience");
+        if (PlayerPrefs.HasKey("@DayStats: Quests"))
+            dayStats.quests = PlayerPrefs.GetInt("@DayStats: Quests");
+
+        foreach (Item item in ItemCollection.itemList)
+        {
+            if (PlayerPrefs.HasKey("@DayStats: Inventory: " + item.name))
+                dayStats.inventory.inventoryDict[item] = PlayerPrefs.GetInt("@DayStats: Inventory: " + item.name);
+        }
     }
 }
