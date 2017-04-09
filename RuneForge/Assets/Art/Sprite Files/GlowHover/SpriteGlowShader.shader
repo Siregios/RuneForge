@@ -5,13 +5,15 @@
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 	_Color("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+		[HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
+		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
+		[PerRendererData] _AlphaTex("External Alpha", 2D) = "white" {}
+	[PerRendererData] _EnableExternalAlpha("Enable External Alpha", Float) = 0
 
 		// Add values to determine if outlining is enabled and outline color.
 		[PerRendererData] _Outline("Outline", Float) = 0
 		[PerRendererData] _OutlineColor("Outline Color", Color) = (1,1,1,1)
 		[PerRendererData] _OutlineSize("Outline Size", int) = 1
-		[PerRendererData] _Rect("Rect Display", Vector) = (0,0,1,1)
-
 	}
 
 		SubShader
@@ -33,60 +35,18 @@
 		Pass
 	{
 		CGPROGRAM
-#pragma vertex vert
+#pragma vertex SpriteVert
 #pragma fragment frag
+#pragma target 2.0
+#pragma multi_compile_instancing
 #pragma multi_compile _ PIXELSNAP_ON
-#pragma shader_feature ETC1_EXTERNAL_ALPHA
-#include "UnityCG.cginc"
+#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
+#include "UnitySprites.cginc"
 
-	struct appdata_t
-	{
-		float4 vertex   : POSITION;
-		float4 color    : COLOR;
-		float2 texcoord : TEXCOORD0;
-	};
-
-	struct v2f
-	{
-		float4 vertex   : SV_POSITION;
-		fixed4 color : COLOR;
-		float2 texcoord  : TEXCOORD0;
-	};
-
-	fixed4 _Color;
-	float _Outline;
+		float _Outline;
 	fixed4 _OutlineColor;
 	int _OutlineSize;
-	fixed4 _Rect;
-
-	v2f vert(appdata_t IN)
-	{
-		v2f OUT;
-		OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
-		OUT.texcoord = IN.texcoord;
-		OUT.color = IN.color * _Color;
-#ifdef PIXELSNAP_ON
-		OUT.vertex = UnityPixelSnap(OUT.vertex);
-#endif
-
-		return OUT;
-	}
-
-	sampler2D _MainTex;
-	sampler2D _AlphaTex;
 	float4 _MainTex_TexelSize;
-
-	fixed4 SampleSpriteTexture(float2 uv)
-	{
-		fixed4 color = tex2D(_MainTex, uv);
-
-#if ETC1_EXTERNAL_ALPHA
-		// get the color from an external texture
-		color.a = tex2D(_AlphaTex, uv).r;
-#endif 
-
-		return color;
-	}
 
 	fixed4 frag(v2f IN) : SV_Target
 	{
@@ -96,22 +56,14 @@
 	if (_Outline > 0 && c.a != 0) {
 		float totalAlpha = 1.0;
 
-		if (IN.texcoord.x < _Rect.x + _MainTex_TexelSize.x || IN.texcoord.y < _Rect.y + _MainTex_TexelSize.y ||
-			IN.texcoord.x > _Rect.z - _MainTex_TexelSize.x || IN.texcoord.y > _Rect.w - _MainTex_TexelSize.y)
-		{
-			totalAlpha = 0;
-		}
-		else
-		{
-			[unroll(16)]
-			for (int i = 1; i < _OutlineSize + 1; i++) {
-				fixed4 pixelUp = tex2D(_MainTex, IN.texcoord + fixed2(0, i * _MainTex_TexelSize.y));
-				fixed4 pixelDown = tex2D(_MainTex, IN.texcoord - fixed2(0, i *  _MainTex_TexelSize.y));
-				fixed4 pixelRight = tex2D(_MainTex, IN.texcoord + fixed2(i * _MainTex_TexelSize.x, 0));
-				fixed4 pixelLeft = tex2D(_MainTex, IN.texcoord - fixed2(i * _MainTex_TexelSize.x, 0));
+		[unroll(16)]
+		for (int i = 1; i < _OutlineSize + 1; i++) {
+			fixed4 pixelUp = tex2D(_MainTex, IN.texcoord + fixed2(0, i * _MainTex_TexelSize.y));
+			fixed4 pixelDown = tex2D(_MainTex, IN.texcoord - fixed2(0,i *  _MainTex_TexelSize.y));
+			fixed4 pixelRight = tex2D(_MainTex, IN.texcoord + fixed2(i * _MainTex_TexelSize.x, 0));
+			fixed4 pixelLeft = tex2D(_MainTex, IN.texcoord - fixed2(i * _MainTex_TexelSize.x, 0));
 
-				totalAlpha = totalAlpha * pixelUp.a * pixelDown.a * pixelRight.a * pixelLeft.a;
-			}
+			totalAlpha = totalAlpha * pixelUp.a * pixelDown.a * pixelRight.a * pixelLeft.a;
 		}
 
 		if (totalAlpha == 0) {
